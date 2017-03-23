@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            list-style:none;
+        }
+        .main-content{
+            position:relative;
+            height:300px;
+            transform-style:preserve-3d;
+            perspective:1000px;
+        }
+        li{
+            /*display:none;*/
+            position:absolute;
+            transition: all 0.75s;
+        }
+        .left-side{
+            transform:rotateY(111deg);
+            transform-origin: 0 100%;
+            left:65px;
+        }
+        .center-side{
+            transform:rotateY(0deg);
+            transform-origin: 100% 100%;
+            left:100px;
+        }
+        .right-side{
+            transform:rotateY(-60deg);
+            transform-origin: 100% 100%;
+            left:135px;
+            opacity: 0.5;
+        }
+        .z-index-2 {
+            z-index: 2;
+        }
+        .z-index-3 {
+            z-index: 3;
+        }
+        .z-index-1 {
+            z-index: 1;
+        }
+
+
+    </style>
+    <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js "></script>
+</head>
+<body>
+
+    <div class="container">
+        <div class="w">
+            <div class="toolbar"><input type="button" name="netPage" value="下一页" /></div>
+            <div class="main-content">
+                <ul>
+                    <li class="center-side z-index-3"><img src="images/test/cheng.jpg"></li>
+                    <li class="right-side z-index-2"><img src="images/test/green.jpg"></li>
+                    <li class="right-side z-index-1"><img src="images/test/blue.jpg"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(function(){
+       $("input[name='netPage']").on('click',function(){
+           //var center = $('.main-content').find('.center-side');
+           var center = $('.center-side');
+           var index = center.index();
+           //console.log(index);
+           center.removeClass('center-side');
+           center.addClass('left-side z-index-2');
+           center.next().removeClass('right-side');
+           center.next().addClass('center-side z-index-3');
+       });
+    });
+</script>

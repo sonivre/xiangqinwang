@@ -1,0 +1,814 @@
+@charset "UTF-8";
+
+.profile-mainbox .w{
+    position:relative;
+}
+
+.profile-mainbox{
+    padding-top:90px;
+    padding-bottom:55px;
+}
+
+.profile-female{
+    background-color: #E55B4E;
+}
+
+.profile-male{
+    background-color: #3190B0;
+}
+
+.user-avatar{
+    width:238px;
+    padding:6px;
+    background-color: #fff;
+    padding-bottom:0;
+}
+
+.profile-basic-main{
+    max-width: 600px;
+    position:absolute;
+    right:0;
+    bottom:0;
+}
+
+.user-status-bar{
+    font-family: "SimSun", "宋体";
+    line-height:100%;
+    color:#fff;
+}
+
+.user-status-bar .username{
+    font-size:25px;
+    font-weight:bold;
+}
+
+.credit-level-female{
+    background-color: #fff;
+    border-radius: 11px;
+    font-size:11px;
+    color:#E55B4E;
+    padding:2px 5px;
+    vertical-align: bottom;
+}
+
+.credit-level-female:hover{
+    color:#E55B4E;
+    text-decoration: underline;
+}
+
+
+.user-status-bar .uid{
+    font-family: "Microsoft YaHei";
+    font-size:13px;
+}
+
+.icon-verified-mobile-female{
+    width:21px;
+    height: 21px;
+    background: url(../images/icon_v160825.png) -100px -102px no-repeat;
+    vertical-align: bottom;
+}
+
+.profile-basic-info{
+    font-size:0;
+    color:#fff;
+    font-family: "SimSun", "宋体";
+    margin-top:10px;
+}
+
+.profile-basic-info span{
+    font-size:15px;
+    padding-right:10px;
+}
+
+.profile-basic-info .info-percent{
+    padding-left:20px;
+}
+
+.profile-basic-tag-list{
+    font-size:0;
+    color:#fff;
+}
+
+.profile-basic-tag-list span{
+    font-family: "SimSun", "宋体";
+    font-size:13px;
+    float:left;
+    padding:2px 10px;
+    border-radius: 24px;
+    border:1px solid #fff;
+    line-height:100%;
+    margin-right:10px;
+    margin-top:10px;
+}
+
+.profile-basic-relation{
+    font-size:0;
+    margin-top:20px;
+}
+
+.profile-basic-relation a{
+    font-family: "SimSun", "宋体";
+    font-size:12px;
+    display:inline-block;
+    color:#fff;
+    line-height:100%;
+}
+
+.profile-basic-relation a em{
+    display:inline-block;
+    margin-right:3px;
+    vertical-align: bottom;
+}
+
+.profile-basic-relation a{
+    padding:6px 10px;
+    margin-right:5px;
+}
+
+.profile-basic-relation a:hover{
+    opacity: 0.8;
+}
+
+.profile-basic-relation .icon-mess{
+    background-color: #48C3F0;
+}
+
+.profile-basic-relation .icon-mess em{
+    width:13px;
+    height:11px;
+    background:url(../images/icon_v160825.png) -46px -331px no-repeat;
+}
+
+.profile-basic-relation .icon-fav{
+    background-color: #64C86C;
+}
+
+.profile-basic-relation .icon-fav em{
+    width:13px;
+    height:11px;
+    background:url(../images/icon_v160825.png) -146px -371px no-repeat;
+}
+
+.profile-basic-relation .sayhi{
+    background-color: #6FD4B1;
+}
+
+.profile-basic-relation .sayhi em{
+    width:17px;
+    height:14px;
+    background:url(../images/icon_v160825.png) -219px -281px no-repeat;
+}
+
+.profile-basic-relation .sendgift{
+    background-color: #5DBBDE;
+}
+
+.profile-basic-relation .sendgift em{
+    width:9px;
+    height:12px;
+    background:url(../images/icon_v160825.png) -275px -331px no-repeat;
+}
+
+.send-gift-msg-box {
+    font-family: "SimSun", "宋体";
+    font-size:11px;
+    position:absolute;
+    bottom:-26px;
+    right:243px;
+    color:#636363;
+    background-color: #FFFFE0;
+    border:1px solid #F7CB91;
+    line-height:100%;
+    padding:5px 20px 5px 10px;
+    border-radius: 3px;
+}
+
+.send-gift-msg-box .upper-arrows{
+    position:absolute;
+    top:-3px;
+    left:50%;
+    transform:translate(0,-50%);
+    width:9px;
+    height:6px;
+    background:url(../images/icon_v160825.png) -22px -698px no-repeat;
+}
+
+.send-gift-msg-box .close-icon-btn{
+    position:absolute;
+    top:3px;
+    right:3px;
+    width:9px;
+    height:9px;
+    background:url(../images/icon_v160825.png) -101px -229px no-repeat;
+    cursor:pointer;
+}
+
+.send-gift-msg-box .close-icon-btn:hover{
+    background:url(../images/icon_v160825.png) -130px -229px no-repeat;
+}
+
+.profile-sns{
+    position:absolute;
+    font-size:0;
+    right:0;
+    bottom:-30px;
+    color:#fff;
+}
+
+.profile-sns span{
+    font-family: "SimSun", "宋体";
+    font-size:12px;
+    margin-right:5px;
+    line-height: 100%;
+}
+
+.profile-sns em{
+    display: inline-block;
+    width:19px;
+    height:19px;
+    cursor: pointer;
+    margin-right:5px;
+    vertical-align: top;
+}
+
+.profile-sns em:hover{
+    transition: all 0.5s;
+    transform-origin:center;
+    transform:rotateZ(360deg);
+}
+
+.profile-sns .weibo-trigger{
+    background:url(../images/sns_21_v140312.png) -22px -170px no-repeat;
+}
+
+.profile-sns .qzone-trigger{
+    background:url(../images/sns_21_v140312.png) -22px -250px no-repeat;
+}
+
+.profile-sns .renren-trigger{
+    background:url(../images/sns_21_v140312.png) -22px -290px no-repeat;
+}
+
+.profile-sns .qq-trigger{
+    background:url(../images/sns_21_v140312.png) -22px -370px no-repeat;
+}
+
+.profile-sns .weixin-trigger{
+    background:url(../images/sns_21_v140312.png) -22px -410px no-repeat;
+}
+
+.profile-sns .yixin-trigger{
+    background:url(../images/sns_21_v140312.png) -22px -450px no-repeat;
+}
+
+.profile-header{
+    position:absolute;
+    left:0;
+    bottom: -95px;
+    width:inherit;
+    background-color: #fff;
+    padding:20px 0;
+}
+
+.monolog-box{
+    font-family: "SimSun", "宋体";
+    color:#5B5B5B;
+    margin-left:30px;
+}
+
+.monolog-upper-arrows{
+    position:absolute;
+    top:-10px;
+    left:115px;
+    background:url(../images/icon_v160825.png) -215px -673px no-repeat;
+    width:27px;
+    height:10px;
+}
+
+.icon-quote-up{
+    background:url(../images/icon_v160825.png) -206px -310px no-repeat;
+    width:16px;
+    height:14px;
+    vertical-align: super;
+}
+
+.icon-quote-down{
+    background:url(../images/icon_v160825.png) -227px -310px no-repeat;
+    width:16px;
+    height:14px;
+    vertical-align: bottom;
+}
+
+.profile-content-box{
+    background-color: #EDEFF5;
+    padding-top:50px;
+}
+
+.con-left{
+    width:610px;
+    padding-left:30px;
+    padding-right:30px;
+    background-color: #fff;
+}
+
+.con-left .profile-tabbar{
+    padding-top:30px;
+    border-bottom:1px solid #F7F7F7;
+}
+
+.con-left .profile-tabbar li{
+    float:left;
+    font-size:18px;
+    color:#333;
+    line-height: 100%;
+    padding-top:10px;
+    padding-bottom:10px;
+    margin-right:40px;
+    cursor:pointer;
+}
+
+.con-left .profile-tabbar li.current{
+    font-weight: bold;
+    border-bottom:3px solid #F73E3E;
+}
+
+.photo-info .photo-trigger{
+    display:inline-block;
+    width:16px;
+    height:12px;
+    background:url(../images/icon_v160825.png) -122px -310px no-repeat;
+    vertical-align: middle;
+}
+
+.photo-info{
+    font-family: "SimSun", "宋体";
+    color:#8A8F9C;
+    font-size:13px;
+}
+
+.photo-info a{
+    color:#8A8F9C;
+}
+
+.photo-info a:hover{
+    text-decoration: underline;
+}
+
+.photo-info strong{
+    color:#333;
+}
+
+.trend-js .photo-media{
+    font-size:0;
+    margin-top:10px;
+}
+
+.trend-js .photo-media a{
+    margin-right:8px;
+}
+
+.trend-js .trend-item-title{
+    font-family: "SimSun", "宋体";
+    font-size:14px;
+}
+
+.trend-js .trend-footer , .trend-js .media-info a{
+    color:#BABABA;
+    font-size:11px;
+}
+
+.trend-js .trend-footer{
+    margin-top:10px;
+}
+
+.trend-js li{
+    padding-bottom:20px;
+    border-bottom:1px solid #EEF1F9;
+    overflow: hidden;
+}
+
+.trend-js .media-info{
+    padding-top:8px;
+}
+
+.trend-js .media-info a:hover{
+    text-decoration: underline;
+}
+
+.trend-js .trend-publish-time{
+    width:9px;
+    height:9px;
+    background:url(../images/icon_v160825.png) -164px -331px no-repeat;
+}
+
+.right-contact-btn a{
+    position:relative;
+    display:inline-block;
+    border:1px solid #EBEBEB;
+    min-width: 60px;
+    /*padding:4px 0 4px 10px;*/
+    font-size:8px;
+    font-weight:700;
+    color:#999999;
+    vertical-align:middle;
+}
+
+.right-contact-btn a:hover{
+    /*color:#999999;*/
+}
+
+.right-contact-btn .likes{
+    padding-left:33px;
+}
+
+.right-contact-btn .icon-like{
+    position:absolute;
+    left:10px;
+    top:50%;
+    margin-top:-9px;
+    display:inline-block;
+    width:17px;
+    height:17px;
+    margin-right:5px;
+    /*vertical-align:middle;*/
+}
+
+.right-contact-btn .native{
+    background: url(../images/icon_v160825.png) -64px -371px no-repeat;
+}
+
+.right-contact-btn .invoke{
+    background: url(../images/icon_v160825.png) -42px -371px no-repeat;
+}
+
+.right-contact-btn .current{
+    border:1px solid #C3C3C3;
+}
+
+.right-contact-btn .icon-send-msg{
+    height:30px;
+}
+
+.right-contact-btn .icon-send-msg .native{
+    width:18px;
+    height:13px;
+    margin-top:-7px;
+    left:50%;
+    margin-left:-9px;
+    background: url(../images/icon_v160825.png) 0 -331px no-repeat;
+}
+
+.right-contact-btn .icon-send-msg .invoke{
+    background: url(../images/icon_v160825.png) -23px -331px no-repeat;
+}
+
+.dating-list-info{
+    font-family: "SimSun", "宋体";
+    font-size:12px;
+    color:#5B5B5B;
+    line-height:28px;
+}
+
+.dating-list-info em{
+    display:inline-block;
+    width:13px;
+    height: 13px;
+    vertical-align: sub;
+}
+
+.dating-cost{
+    background: url(../images/icon_v160825.png) -133px -84px no-repeat;
+}
+
+.dating-time{
+    background: url(../images/icon_v160825.png) -151px -84px no-repeat;
+}
+
+.dating-location{
+    width:12px;
+    height:14px;
+    background: url(../images/icon_v160825.png) -169px -84px no-repeat;
+}
+
+.dating-desc{
+    width:13px;
+    height:14px;
+    background: url(../images/icon_v160825.png) -186px -84px no-repeat;
+}
+
+.dating-publish-date em{
+    display:inline-block;
+    width:9px;
+    height: 9px;
+    vertical-align: initial;
+    background: url(../images/icon_v160825.png) -164px -331px no-repeat;
+}
+
+.dating-list-title{
+    font-size:15px;
+    color:#333;
+}
+
+.dating-publish-media{
+    margin-left:10px;
+}
+
+.footer-text{
+    color:#BABABA;
+}
+
+.dating-publish-media a{
+    color:#BABABA;
+}
+
+.dating-publish-media a:hover{
+    text-decoration: underline;
+}
+
+.dating-list-info{
+    padding-top:10px;
+}
+
+.profile-join-btn a{
+    font-weight: normal;
+    text-align: center;
+}
+
+.footer-text .media-info{
+    font-family:"Microsoft YaHei";
+    padding-top:8px;
+}
+
+.lover-desc-box,.summary-info-box{
+    font-size:14px;
+    font-family: "SimSun", "宋体";
+    color:#333;
+    padding-bottom:50px;
+}
+
+.label-text{
+    font-weight: bold;
+    font-size:16px;
+    color:#5B5B5B;
+    padding:10px 0;
+}
+
+.lover-desc-box span{
+    display:inline-block;
+    font-weight: bold;
+    color:#447BAF;
+}
+
+.text-gray{
+    color:#8A8F9C;
+}
+
+
+.summary-info-box p span{
+    display:inline-block;
+    width:275px;
+    text-align: right;
+}
+
+.con-right{
+    width:232px;
+    background-color: #fff;
+    padding:9px;
+}
+
+.gift-box{
+
+}
+
+.text-h2{
+    color:#5B5B5B;
+    font-size:12px;
+    font-weight: bold;
+}
+
+.gift-count{
+    font-size:13px;
+}
+
+.gift-count i{
+    color:#FF3333;
+}
+
+.gift-list-box{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.gift-list-box .icon-gift{
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-left:-25px;
+    transform:translateY(-50%);
+    width:48px;
+    height:55px;
+    background: url(../images/gift_sprites.png) 0 -78px no-repeat;
+}
+
+.gift-list-box li{
+    position:relative;
+    float:left;
+    width:70px;
+    height:70px;
+    overflow:hidden;
+    cursor:pointer;
+    background-color: #F7F7F7;
+}
+
+.gift-list-box .icon-left-arrows{
+    position:absolute;
+    bottom:20px;
+    left:-1px;
+    width:0;
+    height:0;
+    font-size:0;
+    border-width: 0 0 11px 11px;
+    border-style:none none solid dashed;
+    border-color:transparent transparent #3796B9;
+}
+
+.gift-list-box .icon-right-arrows{
+    position:absolute;
+    bottom:20px;
+    right:1px;
+    width:0;
+    height:0;
+    font-size:0;
+    border-width: 0 11px 11px 0;
+    border-style:none solid dashed none;
+    border-color:transparent transparent #3796B9;
+}
+
+.gift-list-box .send-gift-text{
+    position:absolute;
+    bottom:0;
+    right:0;
+    width:inherit;
+    text-align:center;
+    color:#fff;
+    font-size:11px;
+    background-color: #5DBBDE;
+    line-height:20px;
+}
+
+.gift-list-box li.first-icon-bar{
+    background: none;
+}
+
+.gift-list-box .gift-item-desc-text{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:70px;
+    height:0;
+    background-color: #EEEEEE;
+    font-family: SimSun;
+    color:#333333;
+    font-size:12px;
+    line-height:20px;
+    text-align: center;
+    transition: all 0.25s;
+    overflow: hidden;
+}
+
+.gift-list-box .gift-item-desc-text.hovered{
+    height:70px;
+}
+
+.gift-list-pagination{
+    margin-top:10px;
+    margin-right:5px;
+}
+
+.gift-list-pagination a{
+    display:inline-block;
+    width:9px;
+    height:15px;
+}
+
+.gift-list-pagination .pages-prev{
+     background:url(../images/icon_v160825.png) -206px -653px no-repeat;
+ }
+
+.gift-list-pagination .pages-prev.disable{
+    background:url(../images/icon_v160825.png) -220px -653px no-repeat;
+}
+
+.gift-list-pagination .pages-next{
+    margin-left:15px;
+    background:url(../images/icon_v160825.png) -234px -653px no-repeat;
+}
+
+.gift-list-pagination .pages-next.disable{
+    background:url(../images/icon_v160825.png) -249px -653px no-repeat;
+}
+
+.contact-us{
+    width:230px;
+    position:relative;
+}
+
+.contact-us .top-text{
+    position:relative;
+    margin-top:30px;
+    color:#5B5B5B;
+}
+
+.contact-us .top-text span{
+    font-size:12px;
+    font-weight: bold;
+}
+
+.contact-us li{
+    font-size:12px;
+    font-family: "SimSun", "宋体";
+    color:#5B5B5B;
+}
+
+.contact-us li a{
+    color:#333;
+}
+
+.contact-us .wrap-font{
+    padding-left:60px;
+    display:inline-block;
+    color:#333;
+}
+
+.contact-us .main-info li a:hover{
+    text-decoration: underline;
+}
+
+.contact-us .serval-info a{
+    display:inline-block;
+    vertical-align: middle;
+    margin-right:2px;
+}
+
+.contact-us .sina-icon{
+    width:18px;
+    height:18px;
+    background:url(../images/icon_v160825.png) -161px -584px no-repeat;
+}
+
+.contact-us .douban-icon{
+    width:17px;
+    height:17px;
+    background:url(../images/icon_v160825.png) -184px -584px no-repeat;
+}
+
+.contact-us .wx-icon{
+    width:18px;
+    height:18px;
+    background:url(../images/icon_v160825.png) -207px -584px no-repeat;
+}
+
+.market-cooperation{
+    margin-top:10px;
+    margin-bottom:5px;
+}
+
+.contact-info{
+    font-size:11px;
+    color:#333;
+    font-family: "SimSun", "宋体";
+}
+
+.contact-info span{
+    color:#5b5b5b;
+}
+
+.weixin-guide{
+    background-color: #FFF4DE;
+    text-align: center;
+    color:#777B82;
+    font-size:12px;
+    line-height:20px;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.weixin-guide p i{
+    color:#FF3333;
+}
+
+.weixin-guide img{
+    width:180px;
+}
+
+.weixin-guide .qr-bg{
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+.system-ads{
+    text-align: center;
+}
+
+

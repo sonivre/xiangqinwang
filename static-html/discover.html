@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>遇见</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/discover.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+</head>
+<body>
+    <header>
+    <div class="top-nav">
+        <div class="w">
+            <div class="left-area">
+                <div class="logo"><a href="#"></a></div>
+                <ul class="nav">
+                    <li class="current"><a href="#">推荐</a></li>
+                    <li><a href="#">动态</a></li>
+                    <li><a href="#">遇见</a></li>
+                    <li><a href="#">搭讪广场</a></li>
+                    <li><a href="#">个人主页</a></li>
+                </ul>
+            </div>
+            <div class="right-area">
+                <a href="#"><span class="sp1"></span><span class="sp2">服务</span><span class="sp3"></span></a>
+                <a href="#"><em></em></a>
+                <a href="#"><span class="sp1"></span></a>
+                <a href="#"><span class="sp1"></span></a>
+                <div class="today-base">
+                    <a href="#">今日推荐<em class="notice-num">1</em></a>
+                    <a href="#">暂不提示</a>
+                </div>
+                <div class="msg-box">
+                    <ul>
+                        <li><a href="#">查看私信</a></li>
+                        <li><a href="#">新增"赞"</a></li>
+                        <li><a href="#">新增喜欢</a></li>
+                        <li><a href="#">最近访客</a></li>
+                        <li class="bot-border"><a href="#">收到礼物</a></li>
+                        <li><a href="#" class="hl">今日推荐<em class="notice-num1">1</em></a></li>
+                        <li><a href="#">系统通知</a></li>
+                        <li><a href="#">话题消息</a></li>
+                        <li><a href="#">约会消息</a></li>
+                    </ul>
+                    <p><a href="#">查看全部消息</a></p>
+                </div>
+                <div class="msg-box1">
+                    <ul>
+                        <li><a href="#" class="notice-new">邀好友赢会员<em></em></a></li>
+                        <li><a href="#">账号设置</a></li>
+                        <li><a href="#">会员服务中心</a></li>
+                        <li><a href="#">信用等级</a></li>
+                        <li><a href="#">认证</a></li>
+                        <li><a href="#">关闭资料</a></li>
+                    </ul>
+                    <p><a href="#">退出</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+    <section id="middle">
+        <div class="w">
+            <div class="search-filter">
+                <div class="description">
+                    <p class="text-dark-gray clearfix">
+                        <span class="fl">选一个TA符合的标签</span>
+                        <span class="fr text-dark">有标签用户才会被搜到！<a href="#">完善资料</a> 或 <a href="#">回答QA</a> 可获得标签</span>
+                    </p>
+                    <div class="hot-recommand">
+                        <p>
+                            <span class="text-dark">热门推荐：</span>
+                            <span class="disposition">
+                                <a class="color-green" href="#">苗条</a>
+                                <a class="color-red" href="#">身材控</a>
+                                <a class="color-blue" href="#">贤妻良母</a>
+                            </span>
+                        </p>
+                        <p>
+                            <span class="text-dark">兴趣爱好：</span>
+                            <span class="disposition">
+                                <a class="color-green" href="#">苗条</a>
+                                <a class="color-red" href="#">身材控</a>
+                                <a class="color-blue" href="#">贤妻良母</a>
+                            </span>
+                        </p>
+                        <p>
+                            <span class="text-dark">性格特点：</span>
+                            <span class="disposition">
+                                <a class="color-green" href="#">苗条</a>
+                                <a class="color-red" href="#">身材控</a>
+                                <a class="color-blue" href="#">贤妻良母</a>
+                            </span>
+                        </p>
+                        <p>
+                            <span class="text-dark">其他标签：</span>
+                            <span class="disposition">
+                                <a class="color-green" href="#">苗条</a>
+                                <a class="color-red" href="#">身材控</a>
+                                <a class="color-blue" href="#">贤妻良母</a>
+                            </span>
+                        </p>
+                        <div class="more-tags">
+                            <span class="text-dark text-block">更多标签</span>
+                            <a class="fold-trigger" href="#">
+                                <em class="fold-arrows up-switch"></em>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="condition-filter">
+                        <div class="f-l">
+                            <div class="lable-text text-dark-gray min-width">筛 选：</div>
+                            <div class="lable-text">
+                                <div class="lable-text filter-parent">
+                                    <div class="text-dark-gray select-filter">
+                                        湖北武汉
+                                        <span class="border-r-bg"></span>
+                                        <em class="select-bg-arrows down-arrows"></em>
+                                    </div>
+                                    <div class="folder-item">
+                                        <p class="text-gray">请选择所在地</p>
+                                        <select name="">
+                                            <option>湖北</option>
+                                            <option>2</option>
+                                        </select>
+                                        <select name="">
+                                            <option>武汉</option>
+                                            <option>2</option>
+                                        </select>
+                                        <p class="action-js">
+                                            <button class="submit-btn">确定</button>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="lable-text filter-parent">
+                                    <div class="text-dark-gray select-filter">
+                                        18到22岁
+                                        <em class="border-r-bg"></em>
+                                        <em class="select-bg-arrows down-arrows"></em>
+                                    </div>
+                                    <div class="folder-item">
+                                        <p class="text-gray">请选择年龄</p>
+                                        <select name="">
+                                            <option>18</option>
+                                            <option>2</option>
+                                        </select>
+                                        <select name="">
+                                            <option>22</option>
+                                            <option>2</option>
+                                        </select>
+                                        <p class="action-js">
+                                            <button class="submit-btn">确定</button>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="more-tags">
+                                <span class="text-dark text-block">
+                                    <em class="vip-open-icon"></em>
+                                    <a class="vip-text" href="#">开通高级vip会员</a>可享受更多搜索条件</span>
+                                <a class="fold-trigger" href="#">
+                                    <em class="fold-arrows up-switch"></em>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="t-l">
+                            <div class="lable-text text-dark-gray min-width"></div>
+                            <div class="lable-text">
+                                <div class="lable-text filter-parent">
+                                    <div class="text-dark-gray select-filter">
+                                        学历
+                                        <span class="border-r-bg"></span>
+                                        <em class="select-bg-arrows down-arrows"></em>
+                                    </div>
+                                    <div class="folder-item">
+                                        <p class="text-gray">请选择所在地</p>
+                                        <select name="">
+                                            <option>湖北</option>
+                                            <option>2</option>
+                                        </select>
+                                        <select name="">
+                                            <option>武汉</option>
+                                            <option>2</option>
+                                        </select>
+                                        <p class="action-js">
+                                            <button class="submit-btn">确定</button>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="lable-text filter-parent">
+                                    <div class="text-dark-gray select-filter">
+                                        身高
+                                        <em class="border-r-bg"></em>
+                                        <em class="select-bg-arrows down-arrows"></em>
+                                    </div>
+                                    <div class="folder-item">
+                                        <p class="text-gray">请选择年龄</p>
+                                        <select name="">
+                                            <option>18</option>
+                                            <option>2</option>
+                                        </select>
+                                        <select name="">
+                                            <option>22</option>
+                                            <option>2</option>
+                                        </select>
+                                        <p class="action-js">
+                                            <button class="submit-btn">确定</button>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="lable-text filter-parent">
+                                    <div class="text-dark-gray select-filter">
+                                        月收入
+                                        <em class="border-r-bg"></em>
+                                        <em class="select-bg-arrows down-arrows"></em>
+                                    </div>
+                                    <div class="folder-item">
+                                        <p class="text-gray">请选择年龄</p>
+                                        <select name="">
+                                            <option>18</option>
+                                            <option>2</option>
+                                        </select>
+                                        <select name="">
+                                            <option>22</option>
+                                            <option>2</option>
+                                        </select>
+                                        <p class="action-js">
+                                            <button class="submit-btn">确定</button>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="lable-text filter-parent">
+                                    <div class="text-dark-gray select-filter">
+                                        行业
+                                        <em class="border-r-bg"></em>
+                                        <em class="select-bg-arrows down-arrows"></em>
+                                    </div>
+                                    <div class="folder-item">
+                                        <p class="text-gray">请选择年龄</p>
+                                        <select name="">
+                                            <option>18</option>
+                                            <option>2</option>
+                                        </select>
+                                        <select name="">
+                                            <option>22</option>
+                                            <option>2</option>
+                                        </select>
+                                        <p class="action-js">
+                                            <button class="submit-btn">确定</button>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="lable-text filter-parent">
+                                    <div class="text-dark-gray select-filter">
+                                        住房
+                                        <em class="border-r-bg"></em>
+                                        <em class="select-bg-arrows down-arrows"></em>
+                                    </div>
+                                    <div class="folder-item">
+                                        <p class="text-gray">请选择年龄</p>
+                                        <select name="">
+                                            <option>18</option>
+                                            <option>2</option>
+                                        </select>
+                                        <select name="">
+                                            <option>22</option>
+                                            <option>2</option>
+                                        </select>
+                                        <p class="action-js">
+                                            <button class="submit-btn">确定</button>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="lable-text filter-parent">
+                                    <div class="text-dark-gray select-filter">
+                                        购车
+                                        <em class="border-r-bg"></em>
+                                        <em class="select-bg-arrows down-arrows"></em>
+                                    </div>
+                                    <div class="folder-item">
+                                        <p class="text-gray">请选择年龄</p>
+                                        <select name="">
+                                            <option>18</option>
+                                            <option>2</option>
+                                        </select>
+                                        <select name="">
+                                            <option>22</option>
+                                            <option>2</option>
+                                        </select>
+                                        <p class="action-js">
+                                            <button class="submit-btn">确定</button>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="lable-text filter-parent">
+                                    <div class="text-dark-gray select-filter">
+                                        星座
+                                        <em class="border-r-bg"></em>
+                                        <em class="select-bg-arrows down-arrows"></em>
+                                    </div>
+                                    <div class="folder-item">
+                                        <p class="text-gray">请选择年龄</p>
+                                        <select name="">
+                                            <option>18</option>
+                                            <option>2</option>
+                                        </select>
+                                        <select name="">
+                                            <option>22</option>
+                                            <option>2</option>
+                                        </select>
+                                        <p class="action-js">
+                                            <button class="submit-btn">确定</button>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="lable-text filter-parent">
+                                    <div class="text-dark-gray select-filter">
+                                        籍贯
+                                        <em class="border-r-bg"></em>
+                                        <em class="select-bg-arrows down-arrows"></em>
+                                    </div>
+                                    <div class="folder-item">
+                                        <p class="text-gray">请选择年龄</p>
+                                        <select name="">
+                                            <option>18</option>
+                                            <option>2</option>
+                                        </select>
+                                        <select name="">
+                                            <option>22</option>
+                                            <option>2</option>
+                                        </select>
+                                        <p class="action-js">
+                                            <button class="submit-btn">确定</button>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="lable-text filter-parent">
+                                    <div class="text-dark-gray select-filter">
+                                        民族
+                                        <em class="border-r-bg"></em>
+                                        <em class="select-bg-arrows down-arrows"></em>
+                                    </div>
+                                    <div class="folder-item">
+                                        <p class="text-gray">请选择年龄</p>
+                                        <select name="">
+                                            <option>18</option>
+                                            <option>2</option>
+                                        </select>
+                                        <select name="">
+                                            <option>22</option>
+                                            <option>2</option>
+                                        </select>
+                                        <p class="action-js">
+                                            <button class="submit-btn">确定</button>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="lable-text filter-parent">
+                                    <div class="text-dark-gray select-filter">
+                                        婚姻状况
+                                        <em class="border-r-bg"></em>
+                                        <em class="select-bg-arrows down-arrows"></em>
+                                    </div>
+                                    <div class="folder-item">
+                                        <p class="text-gray">请选择年龄</p>
+                                        <select name="">
+                                            <option>18</option>
+                                            <option>2</option>
+                                        </select>
+                                        <select name="">
+                                            <option>22</option>
+                                            <option>2</option>
+                                        </select>
+                                        <p class="action-js">
+                                            <button class="submit-btn">确定</button>
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="view-recommand-user">
+                <div class="tigger-bar clearfix">
+                    <span class="fl"><a class="prev-page" href="#">上一页></a></span>
+                    <span class="fr"><a class="next-page" href="javascript:;">下一页></a></span>
+                </div>
+
+                <div class="user-item">
+                    <div class="js-item center-side z-index-2">
+                        <div class="top-div">
+                            <div class="user-portrait"><img src="images/discover-recomand-user/076931169365.jpg" alt=""></div>
+                            <div class="user-trait z-index-2">
+                                <p class="user-tail">
+                                    <span class="name">溜溜梅</span>
+                                    <span class="age">22岁</span>
+                                    <span class="city">武汉</span>
+                                </p>
+                                <p class="user-character">
+                                    <span>善良</span>
+                                    <span>孝顺</span>
+                                    <span>浪漫</span>
+                                    <span>传统</span>
+                                    <span>有责任心</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bot-div clearfix">
+                            <div class="fl love">
+                                <em></em>
+                                <span></span>
+                            </div>
+                            <div class="vertical-line fl"></div>
+                            <div class="fr dislike">
+                                <em></em>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="js-item right-side z-index-1">
+                        <div class="top-div">
+                            <div class="user-portrait"><img src="images/discover-recomand-user/3410752388316.jpg" alt=""></div>
+                            <div class="user-trait z-index-1">
+                                <p class="user-tail">
+                                    <span class="name">溜溜梅</span>
+                                    <span class="age">22岁</span>
+                                    <span class="city">武汉</span>
+                                </p>
+                                <p class="user-character">
+                                    <span>善良</span>
+                                    <span>孝顺</span>
+                                    <span>浪漫</span>
+                                    <span>传统</span>
+                                    <span>有责任心</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bot-div clearfix">
+                            <div class="fl love">
+                                <em></em>
+                                <span></span>
+                            </div>
+                            <div class="vertical-line fl"></div>
+                            <div class="fr dislike">
+                                <em></em>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="js-item right-side z-index-1">
+                        <div class="top-div">
+                            <div class="user-portrait"><img src="images/discover-recomand-user/65325091884769.jpg" alt=""></div>
+                            <div class="user-trait  z-index-1">
+                                <p class="user-tail">
+                                    <span class="name">溜溜梅</span>
+                                    <span class="age">22岁</span>
+                                    <span class="city">武汉</span>
+                                </p>
+                                <p class="user-character">
+                                    <span>善良</span>
+                                    <span>孝顺</span>
+                                    <span>浪漫</span>
+                                    <span>传统</span>
+                                    <span>有责任心</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bot-div clearfix">
+                            <div class="fl love">
+                                <em></em>
+                                <span></span>
+                            </div>
+                            <div class="vertical-line fl"></div>
+                            <div class="fr dislike">
+                                <em></em>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section id="footer">
+        <div class="w">
+            <div class="bot">
+                <a href="#">公司简介</a> -
+                <a href="#">联系方法</a> -
+                <a href="#">招聘信息</a> -
+                <a href="#">使用条款</a> -
+                <a href="#">花田动态</a> -
+                <a href="#">友情链接</a> -
+                <a href="#">网站地图</a> -
+                <a href="#">花田意见反馈</a> -
+                增值电信业务经营许可证：<a href="#">浙B2-20090185</a><br/>
+                网易公司版权所有<br/>
+                <i>©1997-2016</i>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
