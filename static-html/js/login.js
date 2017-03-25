@@ -37,7 +37,7 @@ $(function(){
         var scrollTop = $(document).scrollTop();
         //文档高度
         //var docHeight = $(document).height();
-        console.log(scrollTop);
+        //console.log(scrollTop);
         if(scrollTop > 500) {
             //显示底部固定定位导航
             $('#float-login').slideDown('slow');

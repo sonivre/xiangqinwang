@@ -11,16 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 // frontend 前端模块
 // intranet 后端模块
 
 Route::group(array('namespace' => 'Frontend'), function () {
 
-    Route::any('/login', 'BasicController@login');
+    Route::any('/', 'BasicController@login');
     Route::group(array('middleware' => 'LoginCheck'), function () {
 
     });

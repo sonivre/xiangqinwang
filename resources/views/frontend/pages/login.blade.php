@@ -73,14 +73,14 @@
                                 {{ csrf_field() }}
                                 <div class="login-input">
                                     <i class="user-icon"></i>
-                                    <input type="text" name="username" placeholder="邮箱账号/邮箱地址/手机号"/>
+                                    <input type="text" name="username" value="@php if (! empty(old('username'))) echo old('username'); @endphp" placeholder="邮箱账号/邮箱地址/手机号"/>
                                     <i class="clear-text"></i>
                                 </div>
                                 <div class="login-input" style="margin-top:-1px;">
                                     <i class="pass-icon"></i>
                                     <input type="password" name="password" placeholder="6-16位密码，区分大小写"/>
                                 </div>
-                                <div class="err-dialog @php if (! empty($errors->first())) echo 'active'; @endphp"><i></i>
+                                <div class="err-dialog @php if (! empty($errors->first())) echo 'active'; @endphp"><i class="empty-error-msg"></i>
                                     <span>
                                         @php
                                         if (! empty($errors->first())) {
@@ -255,4 +255,12 @@
 
 @section('addtional-js')
     <script type="text/javascript" src="{{config('custom.staticServer')}}/js/login.js"></script>
+    <script>
+        $(function () {
+            $('.empty-error-msg').on('click', function () {
+                $(this).parents('.err-dialog').hide();
+            });
+        })
+    </script>
 @endsection
+
