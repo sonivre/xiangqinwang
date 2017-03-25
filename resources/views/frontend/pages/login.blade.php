@@ -80,7 +80,15 @@
                                     <i class="pass-icon"></i>
                                     <input type="password" name="password" placeholder="6-16位密码，区分大小写"/>
                                 </div>
-                                <div class="err-dialog"><i></i><span>请输入密码</span></div>
+                                <div class="err-dialog @php if (! empty($errors->first())) echo 'active'; @endphp"><i></i>
+                                    <span>
+                                        @php
+                                        if (! empty($errors->first())) {
+                                            echo $errors->first();
+                                        }
+                                        @endphp
+                                    </span>
+                                </div>
                                 <div>
                                     <input type="submit" class="submit-btn enable" value="登&nbsp;&nbsp;录"/>
                                 </div>

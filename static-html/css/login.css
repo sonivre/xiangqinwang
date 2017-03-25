@@ -176,6 +176,10 @@
     color:#FA605B;
 }
 
+#top-login .err-dialog.active{
+    display: block;
+}
+
 .err-dialog i{
     position:absolute;
     left:0;
