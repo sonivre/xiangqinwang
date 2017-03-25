@@ -1,0 +1,3 @@
+
+创建某个子目录控制器，例如一个命名空间路由
+php artisan make:controller Frontend/BasicController

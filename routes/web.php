@@ -14,3 +14,24 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// frontend 前端模块
+// intranet 后端模块
+
+Route::group(array('namespace' => 'Frontend'), function () {
+
+    Route::any('/login', 'BasicController@login');
+    Route::group(array('middleware' => 'LoginCheck'), function () {
+
+    });
+    Route::group(array('prefix' => 'home'), function () {
+//        Route::any('/login', function () {
+//            echo 'aaa';
+//        });
+    });
+
+});
+
+Route::group(array('namespace' => 'Intranet'), function () {
+
+});
