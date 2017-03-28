@@ -39,8 +39,15 @@ class BasicController extends Controller
         if (intval($request->get('remember')) == 1) {
             $request->session()->put("loginModule['remember']", 1);
         }
+        $request->session()->put("loginModule['username']", $request->get('username'));
+        $request->session()->put("loginModule['password']", $request->get('password'));
         var_dump($request->session()->all());
         // 待处理...
         echo 'aaa';
+    }
+
+    public function prepareRegister(Request $request)
+    {
+        return view('frontend.pages.register_baseinfo');
     }
 }

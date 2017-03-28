@@ -21,6 +21,7 @@
 Route::group(array('namespace' => 'Frontend'), function () {
 
     Route::any('/', 'BasicController@login');
+    Route::any('/register_step_one', 'BasicController@prepareRegister');
     Route::group(array('middleware' => 'LoginCheck'), function () {
 
     });
