@@ -6,13 +6,7 @@
  * Time: 10:06
  */
 ?>
-<footer id="footer">
-    <div class="top">
-        <h4>上花田，轻松找对象</h4>
-        <div class="down-btn clearfix"><a href="#">注册花田</a><a href="#">登录花田</a></div>
-        <p class="p1">关注花田：<a href="#" class="em-sina"></a><a href="#" class="em-dou"></a>花田微信号：lovehuatian</p>
-        <p class="p2">iPhone用户客服邮箱：ihuatianiphone@163.com&nbsp;&nbsp;&nbsp;&nbsp;Android用户客服邮箱：ihuatianandroid@163.com</p>
-    </div>
+<footer id="footer"> 
     <div class="bot">
         <a href="#">公司简介</a> -
         <a href="#">联系方法</a> -
