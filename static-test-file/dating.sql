@@ -74,7 +74,7 @@ create table if not exists `xqw_city` (
   `id` int not null auto_increment,
   `code` varchar(30) not null comment '编码',
   `name` varchar(50) not null,
-  `provicecode` varchar(30) not null,
+  `provincecode` varchar(30) not null,
   primary key (`id`)
 )engine=innodb default charset=utf8;
 
