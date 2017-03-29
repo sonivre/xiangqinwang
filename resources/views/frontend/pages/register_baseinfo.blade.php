@@ -56,6 +56,13 @@
                     <span class="required-symbol">*</span>
                     <labal>昵 &nbsp; 称：</labal>
                     <input class="col-12" type="text" name="" placeholder="限12个汉字和24个英文字母">
+                    <span class="text-icon-tips text-icon-tips-correct">
+                	    <em class="icon-correct-check"></em>
+                    </span>
+                    <span class="text-icon-tips text-icon-tips-incorrect on">
+                        <em class="icon-incorrect-check"></em>
+                        <i>您的昵称格式不正确</i>
+                    </span>
                 </div>
                 <div class="form-control">
                     <span class="required-symbol">*</span>

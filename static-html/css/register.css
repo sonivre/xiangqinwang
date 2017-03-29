@@ -179,6 +179,47 @@ option {
     color: #FF3346;
 }
 
+.form-control .text-icon-tips {
+    padding-left: 5px;
+}
+
+.text-icon-tips-correct {
+    display: none;
+}
+
+.text-icon-tips-correct .icon-correct-check {
+    display: inline-block;
+    vertical-align: sub;
+    width: 20px;
+    height: 20px;
+    background: url(../images/icon_v160825.png) -32px -185px no-repeat;
+}
+
+.text-icon-tips-correct.on{
+    display: inline;
+}
+
+.form-control .text-icon-tips-incorrect {
+    display: none;
+    border: 1px solid #E39F9F;
+    padding: 5px;
+    border-radius: 3px;
+    color: #EC3636;
+    font-size: 11px;
+}
+
+.text-icon-tips-incorrect.on {
+    display: inline;
+}
+
+.text-icon-tips-incorrect .icon-incorrect-check {
+    display: inline-block;
+    vertical-align: sub;
+    width: 14px;
+    height: 14px;
+    background: url(../images/icon_v160825.png) -64px -210px no-repeat;
+}
+
 .form-control {
     margin-top: 20px;
 }
