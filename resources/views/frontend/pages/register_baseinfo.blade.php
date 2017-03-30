@@ -52,10 +52,13 @@
                     <span>当前账户：1039814413@qq.com</span>
                     <a href="#">切换账号</a>
                 </div>
+                <form action="{{url('register_step_one')}}" method="post" name="register_step_one" enctype="multipart/form-data">
+                <!-- 设置表单token -->
+                {{csrf_field()}}
                 <div class="form-control">
                     <span class="required-symbol">*</span>
                     <labal>昵 &nbsp; 称：</labal>
-                    <input class="col-12" type="text" name="" placeholder="限12个汉字和24个英文字母">
+                    <input class="col-12" type="text" name="username" value="" placeholder="限12个汉字和24个英文字母">
                     <span class="text-icon-tips text-icon-tips-correct">
                 	    <em class="icon-correct-check"></em>
                     </span>
@@ -68,7 +71,7 @@
                     <span class="required-symbol">*</span>
                     <labal>性 &nbsp; 别：</labal>
                 <span class="form-inline">
-                    <input class="input-radio" type="radio" name="sex">男
+                    <input class="input-radio" type="radio" checked="checked" name="sex">男
                 </span>
                 <span class="form-inline">
                     <input class="input-radio" type="radio" name="sex">女
@@ -78,20 +81,20 @@
                     <span class="required-symbol">*</span>
                     <labal>生 &nbsp; 日：</labal>
                 <span class="form-inline">
-                    <select class="birth" required>
+                    <select class="birth" name="birthyear">
                         <option disabled selected value="">年</option>
                         <option value="">1994</option>
                         <option value="">1995</option>
                     </select>
                 </span>
                 <span class="form-inline">
-                    <select class="birth" required>
+                    <select class="birth" name="birthmonth">
                         <option disabled selected value="">月</option>
                         <option value="">12</option>
                     </select>
                 </span>
                 <span class="form-inline">
-                    <select class="birth" required>
+                    <select class="birth"  name="birthday">
                         <option disabled selected value="">日</option>
                         <option value="">30</option>
                     </select>
@@ -101,7 +104,7 @@
                     <span class="required-symbol">*</span>
                     <labal>身 &nbsp; 高：</labal>
                 <span class="form-inline">
-                    <select class="select-row col-12" required>
+                    <select class="select-row col-12">
                         <option disabled selected value="">请选择</option>
                         <option value="">167</option>
                         <option value="">168</option>
@@ -112,7 +115,7 @@
                     <span class="required-symbol">*</span>
                     <labal>学 &nbsp; 历：</labal>
                 <span class="form-inline">
-                    <select class="select-row col-12" required>
+                    <select class="select-row col-12">
                         <option disabled selected value="">请选择</option>
                         <option value="">大学</option>
                         <option value="">小学</option>
@@ -123,14 +126,14 @@
                     <span class="required-symbol">*</span>
                     <labal>居 住 地：</labal>
                 <span class="form-inline">
-                    <select class="col-6" required>
+                    <select class="col-6">
                         <option disabled selected value="">请选择</option>
                         <option value="">湖北</option>
                         <option value="">湖南</option>
                     </select>
                 </span>
                 <span class="form-inline">
-                    <select class="col-6" required>
+                    <select class="col-6">
                         <option disabled selected value="">请选择</option>
                         <option value="">武汉</option>
                         <option value="">长沙</option>
@@ -141,7 +144,7 @@
                     <span class="required-symbol">*</span>
                     <labal>月均收入：</labal>
                 <span class="form-inline">
-                    <select class="select-row" required>
+                    <select class="select-row">
                         <option disabled selected value="">请选择</option>
                         <option value="">6000</option>
                         <option value="">7000</option>
@@ -180,14 +183,14 @@
 
                 <div class="form-control">
                 <span class="form-inline font-11">
-                    <input class="agree-checkbox" name="" type="checkbox"><i>我同意花田交友服务条款</i>
+                    <input class="agree-checkbox" name="" checked="checked" type="checkbox"><i>我同意花田交友服务条款</i>
                 </span>
                 </div>
 
                 <div class="form-control">
                     <button class="register-step1-btn" type="submit" name="" value="">下一步</button>
                 </div>
-
+                </form>
             </div>
         </div>
     </div>
@@ -197,7 +200,45 @@
     <script type="text/javascript" src="{{config('custom.staticServer')}}/js/common.js"></script>
     <script>
         $(function () {
+            var validator = new FormValidator('register_step_one', [{
+                name: 'username',
+                display: 'required',
+                rules: 'required|min_length[2]|max_length[12]'
+            }, {
+                name: 'birthyear',
+                display: 'required',
+                rules: 'required'
+            }, {
+                name: 'birthmonth',
+                display: 'required',
+                rules: 'required'
+            }, {
+                name: 'birthday',
+                display: 'required',
+                rules: 'required'
+            }], function (errors, event) {
+                console.log(errors);
+            });
+        });
 
-        })
+        /**
+         * 错误信息回调函数
+         * errors - An array of errors from the validation object. If the length > 0, the form failed validation
+             This array will contain javascript objects with up to four properties:
+             - id: The id attribute of the form element
+             - name: The name attribute of the form element
+             - message: The error message to display
+             - messages: The error message of every failed validation of the given field to display
+             - rule: The rule that prompted this error
+         * event - If the browser supports it, the onsubmit event is passed in.
+         */
+        function displayErrorMsgBox(errors, event)
+        {
+            if (errors.length > 0) {
+//                var elementName = errors
+                console.log(errors);
+            }
+
+        }
     </script>
 @endsection

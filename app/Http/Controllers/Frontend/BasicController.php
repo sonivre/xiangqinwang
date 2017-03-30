@@ -48,6 +48,9 @@ class BasicController extends Controller
 
     public function prepareRegister(Request $request)
     {
+        if ($request->isMethod('post')) {
+            echo 'coming soon!';exit;
+        }
         return view('frontend.pages.register_baseinfo');
     }
 }
