@@ -23,3 +23,4 @@
 </footer>
 <!--type = text/javascript -->
 <script type="text/javascript" src="{{config('custom.staticServer')}}/js/jquery.js"></script>
+<script type="text/javascript" src="{{config('custom.staticServer')}}/js/validate.min.js"></script>
