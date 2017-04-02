@@ -6,9 +6,18 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Validator;
+use App\Frontend\Components\User\UserComponent;
+use Illuminate\Support\Facades\DB;
 
 class BasicController extends Controller
 {
+    protected $userComponent;
+
+    public function __construct(UserComponent $userComponent)
+    {
+        $this->userComponent = $userComponent;
+    }
+
     public function login(Request $request)
     {
         if ($request->isMethod('get')) {
@@ -41,9 +50,8 @@ class BasicController extends Controller
         }
         $request->session()->put("loginModule['username']", $request->get('username'));
         $request->session()->put("loginModule['password']", $request->get('password'));
-        var_dump($request->session()->all());
-        // 待处理...
-        echo 'aaa';
+        // var_dump($request->session()->all());
+        return redirect('register_step_one');
     }
 
     public function prepareRegister(Request $request)
@@ -52,5 +60,19 @@ class BasicController extends Controller
             echo 'coming soon!';exit;
         }
         return view('frontend.pages.register_baseinfo');
+    }
+
+    public function checkUserExists()
+    {
+        file_put_contents('kk.txt', FILE_APPEND);
+        $info = DB::table('xqw_user')->select('user_id')->where('username', 'test')->first();
+        if (! empty($info->user_id)) {
+            $response = array(
+                'valid' => false,
+                'message' => '用户名已存在'
+            );
+            return response()->json($response);
+        }
+        return response()->json(array('valid'=>true));
     }
 }
