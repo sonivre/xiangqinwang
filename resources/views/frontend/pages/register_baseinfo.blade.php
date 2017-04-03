@@ -58,7 +58,7 @@
                 <div class="form-control">
                     <span class="required-symbol">*</span>
                     <labal>昵 &nbsp; 称：</labal>
-                    <input class="col-12" type="text"  data-validation="required check_special_length server"  data-validation-url="{{url('User/checkExists')}}" data-custom-length="4-24" data-validation-error-msg-required="用户名不能为空" id="username" name="username" value="" placeholder="限12个汉字和24个英文字母">
+                    <input class="col-12"  type="text" id="username" name="username" value="" placeholder="限12个汉字和24个英文字母">
                     <span class="text-icon-tips text-icon-tips-correct">
                 	    <em class="icon-correct-check"></em>
                     </span>
@@ -70,72 +70,114 @@
                 <div class="form-control">
                     <span class="required-symbol">*</span>
                     <labal>性 &nbsp; 别：</labal>
-                <span class="form-inline">
-                    <input class="input-radio" type="radio" checked="checked" name="gender" value="1">男
-                </span>
-                <span class="form-inline">
-                    <input class="input-radio" type="radio" name="gender" value="2">女
-                </span>
+                    <span class="form-inline">
+                        <input class="input-radio" type="radio" checked="checked" name="gender" value="1">男
+                    </span>
+                    <span class="form-inline">
+                        <input class="input-radio" type="radio" name="gender" value="2">女
+                    </span>
+                    <span class="text-icon-tips text-icon-tips-correct">
+                	    <em class="icon-correct-check"></em>
+                    </span>
+                    <span class="text-icon-tips text-icon-tips-incorrect">
+                        <em class="icon-incorrect-check"></em>
+                        <i class="text-error-tips"></i>
+                    </span>
                 </div>
                 <div class="form-control">
                     <span class="required-symbol">*</span>
                     <labal>生 &nbsp; 日：</labal>
-                <span class="form-inline">
-                    <select class="birth" name="birthyear" id="birthyear">
-                        <option disabled selected value="">年</option>
-                    </select>
-                </span>
-                <span class="form-inline">
-                    <select class="birth" name="birthmonth" id="birthmonth">
-                        <option disabled selected value="">月</option>
-                    </select>
-                </span>
-                <span class="form-inline">
-                    <select class="birth"  name="birthday" id="birthday">
-                        <option disabled selected value="">日</option>
-                    </select>
-                </span>
+                    <span class="form-inline">
+                        <select class="birth" name="birthyear" id="birthyear">
+                            <option disabled selected value="">年</option>
+                        </select>
+                    </span>
+                    <span class="form-inline">
+                        <select class="birth" name="birthmonth" id="birthmonth">
+                            <option disabled selected value="">月</option>
+                        </select>
+                    </span>
+                    <span class="form-inline">
+                        <select class="birth"  name="birthday" id="birthday">
+                            <option disabled selected value="">日</option>
+                        </select>
+                    </span>
+                    <span class="text-icon-tips text-icon-tips-correct">
+                	    <em class="icon-correct-check"></em>
+                    </span>
+                    <span class="text-icon-tips text-icon-tips-incorrect">
+                        <em class="icon-incorrect-check"></em>
+                        <i class="text-error-tips"></i>
+                    </span>
                 </div>
                 <div class="form-control">
                     <span class="required-symbol">*</span>
                     <labal>身 &nbsp; 高：</labal>
-                <span class="form-inline">
-                    <select class="select-row col-12" name="height" id="height">
-                        <option disabled selected value="">请选择</option>
-                    </select>
-                </span>
+                    <span class="form-inline">
+                        <select class="select-row col-12" name="height" id="height">
+                            <option disabled selected value="">请选择</option>
+                        </select>
+                    </span>
+                    <span class="text-icon-tips text-icon-tips-correct">
+                	    <em class="icon-correct-check"></em>
+                    </span>
+                    <span class="text-icon-tips text-icon-tips-incorrect">
+                        <em class="icon-incorrect-check"></em>
+                        <i class="text-error-tips"></i>
+                    </span>
                 </div>
                 <div class="form-control">
                     <span class="required-symbol">*</span>
                     <labal>学 &nbsp; 历：</labal>
-                <span class="form-inline">
-                    <select class="select-row col-12" name="education" id="education">
-                        <option disabled selected value="">请选择</option>
-                    </select>
-                </span>
+                    <span class="form-inline">
+                        <select class="select-row col-12" name="education" id="education">
+                            <option disabled selected value="">请选择</option>
+                        </select>
+                    </span>
+                    <span class="text-icon-tips text-icon-tips-correct">
+                	    <em class="icon-correct-check"></em>
+                    </span>
+                    <span class="text-icon-tips text-icon-tips-incorrect">
+                        <em class="icon-incorrect-check"></em>
+                        <i class="text-error-tips"></i>
+                    </span>
                 </div>
                 <div class="form-control">
                     <span class="required-symbol">*</span>
                     <labal>居 住 地：</labal>
-                <span class="form-inline">
-                    <select class="col-6" name="resideprovince" id="resideprovince">
-                        <option disabled selected value="">请选择</option>
-                    </select>
-                </span>
-                <span class="form-inline">
-                    <select class="col-6" name="residecity" id="residecity">
-                        <option disabled selected value="">请选择</option>
-                    </select>
-                </span>
+                    <span class="form-inline">
+                        <select class="reside-area col-6" name="resideprovince" id="resideprovince">
+                            <option disabled selected value="">请选择</option>
+                        </select>
+                    </span>
+                    <span class="form-inline">
+                        <select class="reside-area col-6" name="residecity" id="residecity">
+                            <option disabled selected value="">请选择</option>
+                        </select>
+                    </span>
+                    <span class="text-icon-tips text-icon-tips-correct">
+                	    <em class="icon-correct-check"></em>
+                    </span>
+                    <span class="text-icon-tips text-icon-tips-incorrect">
+                        <em class="icon-incorrect-check"></em>
+                        <i class="text-error-tips"></i>
+                    </span>
                 </div>
                 <div class="form-control">
                     <span class="required-symbol">*</span>
                     <labal>月均收入：</labal>
-                <span class="form-inline">
-                    <select class="select-row" name="revenue" id="revenue">
-                        <option disabled selected value="">请选择</option>
-                    </select>
-                </span>
+                    <span class="form-inline">
+                        <select class="select-row" name="revenue" id="revenue">
+                            <option disabled selected value="">请选择</option>
+                        </select>
+                    </span>
+                    <span class="text-icon-tips text-icon-tips-correct">
+                	    <em class="icon-correct-check"></em>
+                    </span>
+                    <span class="text-icon-tips text-icon-tips-incorrect">
+                        <em class="icon-incorrect-check"></em>
+                        <i class="text-error-tips"></i>
+                    </span>
                 </div>
                 <div class="verify-tips">
                     <p>
@@ -153,9 +195,16 @@
                 </span>
                 <span class="form-inline">
                     <input class="height-common col-7"   name="mobile" id="mobile" placeholder="请输入手机号">
+                    <span class="text-icon-tips text-icon-tips-correct">
+                	    <em class="icon-correct-check"></em>
+                    </span>
+                    <span class="text-icon-tips text-icon-tips-incorrect">
+                        <em class="icon-incorrect-check"></em>
+                        <i class="text-error-tips"></i>
+                    </span>
                 </span>
                 </div>
-
+<!--
                 <div class="form-control">
                     <span class="required-symbol">*</span>
                     <labal>验 证 码：</labal>
@@ -164,7 +213,7 @@
                         <span class=""><button type="button" class="verify-code-btn disabled" name="" value="">获取验证码</button></span>
                     </span>
                 </div>
-
+-->
                 <div class="form-control">
                 <span class="form-inline font-11">
                     <input class="agree-checkbox" name="license" id="license" checked="checked" value="1" type="checkbox"><i>我同意花田交友服务条款</i>
@@ -181,65 +230,178 @@
 @endsection
 
 @section('addtional-js')
+    {{--<script src="{{config('custom.staticServer')}}/js/register-validation.js"></script>--}}
     <script>
-        /**
-         * @see http://www.formvalidator.net
-         */
         $(function () {
-            $.formUtils.addValidator({
-                name : 'check_special_length',
-                validatorFunction : function (value, el, config, language, form) {
-                    var usernameLength = getStringLength(value);
-                    var ranges = el.data('custom-length').split('-');
-                    var minLength = ranges[0];
-                    var maxLength = ranges[1];
-                    if (usernameLength < minLength || usernameLength > maxLength) {
-                        return false;
+            var validation = {};
+            validation.usernameCheck = false;
+            validation.mobileCheck = false;
+            validation.birthCheck = false;
+            validation.genderCheck = false;
+            validation.heightCheck = false;
+            validation.educationCheck = false;
+            validation.resideCheck = false;
+            validation.revenueCheck = false;
+            $("input[name=username]").on({
+                blur: function () {
+                    // 验证是否为空
+                    var username = $(this).val();
+                    if (! isEmpty(username)) {
+                        validation.usernameCheck = true;
+                        usernameRemoveError($(this));
+                    } else {
+                        validation.usernameCheck = false;
+                        usernameAttachError($(this), '用户名不能为空');
                     }
-                },
-                errorMessage : '昵称长度需在2-12个字范围以内',
-                errorMessageKey: 'check_special_length_error'
+
+                    if (validation.usernameCheck) {
+                        if (! checkUsernameLength(username, 4, 24)) {
+                            validation.usernameCheck = false;
+                            usernameAttachError($(this), '用户名长度必须在2-12个字之间');
+                        } else {
+                            validation.usernameCheck = true;
+                            usernameRemoveError($(this));
+                        }
+                    }
+                    // 不为空验证是否存在
+                    if (validation.usernameCheck) {
+                        $.ajax({
+                            context: $(this),
+                            type: "POST",
+                            url: "{{url('User/checkExists')}}",
+                            data: "username=" + username + "&_token=" + "{{csrf_token()}}",
+                            success: function (response) {
+                                if (response.valid == false) {
+                                    $(this).focus();
+                                    usernameAttachError($(this), '用户名已经存在');
+                                } else {
+                                    usernameRemoveError($(this));
+                                }
+                            }
+                        });
+                    }
+
+                }
             });
 
-            $.validate({
-                form : '#register_step_one',
-                modules : 'security',
-                inlineErrorMessageCallback: function (input, errorMessage, config) {
-                    if (errorMessage) {
-                        singleErrorMessages(input, errorMessage, config);
-                    } else {
-                        singleRemoveErrorMessages(input);
-                    }
-                    return false;
-                },
-                submitErrorMessageCallback: function (form, errorMessages, config) {
-                    return false; // prevent default behaviour
-                },
-                onSuccess : function(form) {
-                    // 发送ajax
-                    // ...
-                    return true; // Will stop the submission of the form
+            // 性别
+
+            //生日验证
+            $('.birth').on('change', function () {
+                if (! checkSelectChecked($('.birth'))) {
+                    validation.birthCheck = false;
+                    usernameAttachError($(this), '请选择您的生日');
+                } else {
+                    validation.birthCheck = true;
+                    usernameRemoveError($(this));
                 }
+            });
+
+            // 身高
+            $("select[name=height]").on('change', function () {
+                if (! checkSelectChecked($(this))) {
+                    validation.heightCheck = false;
+                    usernameAttachError($(this), '请选择您的身高');
+                } else {
+                    validation.heightCheck = true;
+                    usernameRemoveError($(this));
+                }
+            });
+
+            // 学历
+            $("select[name=education]").on('change', function () {
+                if (! checkSelectChecked($(this))) {
+                    validation.educationCheck = false;
+                    usernameAttachError($(this), '请选择您的学历');
+                } else {
+                    validation.educationCheck = true;
+                    usernameRemoveError($(this));
+                }
+            });
+
+            // 验证居住地
+            $(".reside-area").on('change', function () {
+                if (! checkSelectChecked($(this))) {
+                    validation.resideCheck = false;
+                    usernameAttachError($(this), '请选择您的居住地');
+                } else {
+                    validation.resideCheck = true;
+                    usernameRemoveError($(this));
+                }
+            });
+
+            // 验证月收入
+            $("select[name=revenue]").on('change', function () {
+                if (! checkSelectChecked($(this))) {
+                    validation.revenueCheck = false;
+                    usernameAttachError($(this), '请选择您的月收入');
+                } else {
+                    validation.revenueCheck = false;
+                    usernameRemoveError($(this));
+                }
+            });
+
+            // 手机号的验证
+            $("input[name=mobile]").on('blur', function () {
+                // 验证是否为空
+                var mobile = $(this).val();
+                if (! isEmpty(mobile)) {
+                    validation.mobileCheck = true;
+                    usernameRemoveError($(this));
+                } else {
+                    validation.mobileCheck = true;
+                    usernameAttachError($(this), '手机号不能为空');
+                }
+            });
+
+            $('#register_step_one').on('submit', function () {
+                //console.log(validation);
+                return false;
             });
         });
 
-        function singleErrorMessages(item, errorMessage, config)
+        function usernameAttachError(currentElementObject, content, border)
         {
-            var inputElementName = item.attr('name');
-            var currentElementObject = $("input[name="+inputElementName+"]");
-            var currentElementParentObject = currentElementObject.parent();
-            currentElementParentObject.children('.text-icon-tips-correct').removeClass('on');
-            currentElementParentObject.children('.text-icon-tips-incorrect').addClass('on');
-            currentElementParentObject.find('.text-error-tips').html(errorMessage);
+            if (border) {
+                currentElementObject.addClass('invalid-border');
+            }
+            currentElementObject.parents('.form-control').find('.text-icon-tips-incorrect').addClass('on');
+            currentElementObject.parents('.form-control').find('.text-icon-tips-correct').removeClass('on');
+            currentElementObject.parents('.form-control').find('.text-error-tips').html(content);
         }
 
-        function singleRemoveErrorMessages(item)
+        function usernameRemoveError(currentElementObject, border)
         {
-            var inputElementName = item.attr('name');
-            var currentElementObject = $("input[name="+inputElementName+"]");
-            var currentElementParentObject = currentElementObject.parent();
-            currentElementParentObject.children('.text-icon-tips-correct').addClass('on');
-            currentElementParentObject.children('.text-icon-tips-incorrect').removeClass('on');
+            if (border) {
+                currentElementObject.removeClass('invalid-border');
+            }
+            currentElementObject.parents('.form-control').find('.text-icon-tips-correct').addClass('on');
+            currentElementObject.parents('.form-control').find('.text-icon-tips-incorrect').removeClass('on');
+        }
+
+        // 验证radio是否有被选中的
+        function checkRadioChecked(queryObjects)
+        {
+            var status = false;
+            queryObjects.each(function (i, n) {
+                if ($(n).is(':checked')) {
+                    status = true;
+                }
+            });
+            return status;
+        }
+
+        // 验证select是否存在被选中的
+        function checkSelectChecked(queryObjects)
+        {
+            var status = true;
+            queryObjects.each(function (i, n) {
+                var value = $.trim($(n).val());
+                if (! value) {
+                    status = false;
+                }
+            });
+            return status;
         }
     </script>
 @endsection

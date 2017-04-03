@@ -23,7 +23,7 @@ Route::group(array('namespace' => 'Frontend'), function () {
     Route::any('/', 'BasicController@login');
     Route::any('register_step_one', 'BasicController@prepareRegister');
     Route::group(array('prefix' => 'User'), function () {
-        Route::any('checkExists', 'BasicController@checkUserExists');
+        Route::post('checkExists', 'BasicController@checkUserExists');
     });
     Route::group(array('middleware' => 'LoginCheck'), function () {
 

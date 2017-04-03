@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
 use App\Frontend\Components\User\UserComponent;
 use Illuminate\Support\Facades\DB;
 
@@ -64,15 +65,12 @@ class BasicController extends Controller
 
     public function checkUserExists()
     {
-        file_put_contents('kk.txt', FILE_APPEND);
-        $info = DB::table('xqw_user')->select('user_id')->where('username', 'test')->first();
+        $username = Input::get('username');
+        $info = DB::table('xqw_user')->select('user_id')->where('username', $username)->first();
+        $response = array('valid' => true);
         if (! empty($info->user_id)) {
-            $response = array(
-                'valid' => false,
-                'message' => '用户名已存在'
-            );
-            return response()->json($response);
+            $response['valid'] = false;
         }
-        return response()->json(array('valid'=>true));
+        return response()->json($response);
     }
 }
