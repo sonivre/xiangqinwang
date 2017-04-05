@@ -274,8 +274,10 @@
                                 if (response.valid == false) {
                                     $(this).focus();
                                     attachError($(this), '用户名已经存在');
+                                    validation.usernameCheck = false;
                                 } else {
                                     removeError($(this));
+                                    validation.usernameCheck = true;
                                 }
                             }
                         });
@@ -383,6 +385,7 @@
                         event.preventDefault();
                     }
                 }
+
             });
         });
 
