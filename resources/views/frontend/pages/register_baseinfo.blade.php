@@ -248,19 +248,19 @@
                     var username = $(this).val();
                     if (! isEmpty(username)) {
                         validation.usernameCheck = true;
-                        usernameRemoveError($(this));
+                        removeError($(this));
                     } else {
                         validation.usernameCheck = false;
-                        usernameAttachError($(this), '用户名不能为空');
+                        attachError($(this), '用户名不能为空');
                     }
 
                     if (validation.usernameCheck) {
                         if (! checkUsernameLength(username, 4, 24)) {
                             validation.usernameCheck = false;
-                            usernameAttachError($(this), '用户名长度必须在2-12个字之间');
+                            attachError($(this), '用户名长度必须在2-12个字之间');
                         } else {
                             validation.usernameCheck = true;
-                            usernameRemoveError($(this));
+                            removeError($(this));
                         }
                     }
                     // 不为空验证是否存在
@@ -273,9 +273,9 @@
                             success: function (response) {
                                 if (response.valid == false) {
                                     $(this).focus();
-                                    usernameAttachError($(this), '用户名已经存在');
+                                    attachError($(this), '用户名已经存在');
                                 } else {
-                                    usernameRemoveError($(this));
+                                    removeError($(this));
                                 }
                             }
                         });
@@ -290,10 +290,10 @@
             $('.birth').on('change', function () {
                 if (! checkSelectChecked($('.birth'))) {
                     validation.birthCheck = false;
-                    usernameAttachError($(this), '请选择您的生日');
+                    attachError($(this), '请选择您的生日');
                 } else {
                     validation.birthCheck = true;
-                    usernameRemoveError($(this));
+                    removeError($(this));
                 }
             });
 
@@ -301,10 +301,10 @@
             $("select[name=height]").on('change', function () {
                 if (! checkSelectChecked($(this))) {
                     validation.heightCheck = false;
-                    usernameAttachError($(this), '请选择您的身高');
+                    attachError($(this), '请选择您的身高');
                 } else {
                     validation.heightCheck = true;
-                    usernameRemoveError($(this));
+                    removeError($(this));
                 }
             });
 
@@ -312,10 +312,10 @@
             $("select[name=education]").on('change', function () {
                 if (! checkSelectChecked($(this))) {
                     validation.educationCheck = false;
-                    usernameAttachError($(this), '请选择您的学历');
+                    attachError($(this), '请选择您的学历');
                 } else {
                     validation.educationCheck = true;
-                    usernameRemoveError($(this));
+                    removeError($(this));
                 }
             });
 
@@ -323,10 +323,10 @@
             $(".reside-area").on('change', function () {
                 if (! checkSelectChecked($(this))) {
                     validation.resideCheck = false;
-                    usernameAttachError($(this), '请选择您的居住地');
+                    attachError($(this), '请选择您的居住地');
                 } else {
                     validation.resideCheck = true;
-                    usernameRemoveError($(this));
+                    removeError($(this));
                 }
             });
 
@@ -334,33 +334,59 @@
             $("select[name=revenue]").on('change', function () {
                 if (! checkSelectChecked($(this))) {
                     validation.revenueCheck = false;
-                    usernameAttachError($(this), '请选择您的月收入');
+                    attachError($(this), '请选择您的月收入');
                 } else {
-                    validation.revenueCheck = false;
-                    usernameRemoveError($(this));
+                    validation.revenueCheck = true;
+                    removeError($(this));
                 }
             });
 
             // 手机号的验证
             $("input[name=mobile]").on('blur', function () {
                 // 验证是否为空
-                var mobile = $(this).val();
+                var mobile = $.trim($(this).val());
                 if (! isEmpty(mobile)) {
                     validation.mobileCheck = true;
-                    usernameRemoveError($(this));
+                    removeError($(this));
                 } else {
-                    validation.mobileCheck = true;
-                    usernameAttachError($(this), '手机号不能为空');
+                    validation.mobileCheck = false;
+                    attachError($(this), '手机号不能为空');
+                }
+
+                // 验证手机号格式
+                if (validation.mobileCheck == true) {
+                    var regExp = /^1(3|4|5|7|8)\d{9}$/;
+                    if (mobile.length != 11 && ! regExp.test(mobile)) {
+                        validation.mobileCheck = false;
+                        attachError($(this), '手机号格式不正确');
+                    }
                 }
             });
 
-            $('#register_step_one').on('submit', function () {
-                //console.log(validation);
-                return false;
+            // 提交事件
+            $('#register_step_one').on('submit', function (event) {
+                // 触发事件
+                validation.genderCheck = false;
+                $("input[name=username]").trigger('blur');
+                if (checkRadioChecked($("input[name=gender]"))) {
+                    validation.genderCheck = true;
+                }
+                $(".birth").trigger('change');
+                $("select[name=height]").trigger('change');
+                $("select[name=education]").trigger('change');
+                $(".reside-area").trigger('change');
+                $("select[name=revenue]").trigger('change');
+                $("input[name=mobile]").trigger('blur');
+
+                for (var i in validation) {
+                    if (validation[i] == false) {
+                        event.preventDefault();
+                    }
+                }
             });
         });
 
-        function usernameAttachError(currentElementObject, content, border)
+        function attachError(currentElementObject, content, border)
         {
             if (border) {
                 currentElementObject.addClass('invalid-border');
@@ -370,7 +396,7 @@
             currentElementObject.parents('.form-control').find('.text-error-tips').html(content);
         }
 
-        function usernameRemoveError(currentElementObject, border)
+        function removeError(currentElementObject, border)
         {
             if (border) {
                 currentElementObject.removeClass('invalid-border');
@@ -403,5 +429,6 @@
             });
             return status;
         }
+
     </script>
 @endsection
