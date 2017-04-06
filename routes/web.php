@@ -20,10 +20,10 @@
 
 Route::group(array('namespace' => 'Frontend'), function () {
 
-    Route::any('/', 'BasicController@login');
-    Route::any('register_step_one', 'BasicController@prepareRegister');
+    Route::any('/', 'UserController@login');
+    Route::any('register_step_one', 'UserController@prepareRegister');
     Route::group(array('prefix' => 'User'), function () {
-        Route::post('checkExists', 'BasicController@checkUserExists');
+        Route::post('checkExists', 'UserController@checkUserExists');
     });
     Route::group(array('middleware' => 'LoginCheck'), function () {
 
@@ -38,8 +38,4 @@ Route::group(array('namespace' => 'Frontend'), function () {
 
 Route::group(array('namespace' => 'Intranet'), function () {
 
-});
-
-Route::any('test', function () {
-    return redirect('User/checkExists');
 });

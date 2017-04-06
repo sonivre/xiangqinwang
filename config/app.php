@@ -177,6 +177,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // 自定义的服务组件
+        App\Konohanaruto\Services\Frontend\UserServiceProvider::class,
+
     ],
 
     /*
