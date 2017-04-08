@@ -8,56 +8,48 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Konohanaruto\Exceptions\Frontend\NotFoundException;
 use App\Konohanaruto\Repositories\Frontend\User\UserRepository;
+use App\Konohanaruto\Validators\EmailPasswordValidator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Input;
 
 class UserController extends BasicController
 {
 
     private $registerRepo;
+    private $emailPasswordValidator;
 
-    public function __construct(UserRepository $userRegister)
+    public function __construct(UserRepository $userRegister, EmailPasswordValidator $emailPasswordValidator)
     {
         $this->registerRepo = $userRegister;
+        $this->emailPasswordValidator = $emailPasswordValidator;
     }
 
-    public function login(Request $request)
+    public function authenticationRegisterEmail(Request $request)
     {
         if ($request->isMethod('get')) {
             if (View::exists('frontend.pages.login')) {
                 return view('frontend.pages.login');
             }
+            throw new NotFoundException;
         }
 
-        $validateRule = array(
-            'username' => 'bail|required|email',
-            'password' => 'bail|required|digits_between:6,16'
-        );
-
-        $errorMessages = array(
-            'username.required' => '用户名不能为空',
-            'username.email' => '非有效的邮箱格式',
-            'password.required' => '密码不能为空',
-            'password.digits_between' => '密码必须在6-16个字符之间'
-        );
-
-        $validator = Validator::make($request->all(), $validateRule, $errorMessages);
-        if ($validator->fails()) {
-            // 返回并携带错误信息
-            return redirect('/')->withErrors($validator)->withInput();
+        $validator = $this->emailPasswordValidator->runValidatorChecks($request->all());
+        if ($validator) {
+            if ($validator->fails())
+                // 返回并携带错误信息
+                return redirect('/')->withErrors($validator)->withInput();
+            // 判断是否记住密码
+            if (intval($request->get('remember')) == 1) {
+                $request->session()->put("loginModule['remember']", 1);
+            }
+            $request->session()->put("loginModule['username']", $request->get('username'));
+            $request->session()->put("loginModule['password']", $request->get('password'));
+            return redirect('register_step_one');
         }
 
-        // 判断是否记住密码
-        if (intval($request->get('remember')) == 1) {
-            $request->session()->put("loginModule['remember']", 1);
-        }
-        $request->session()->put("loginModule['username']", $request->get('username'));
-        $request->session()->put("loginModule['password']", $request->get('password'));
-        // var_dump($request->session()->all());
-        return redirect('register_step_one');
+        return view('frontend.pages.login');
     }
 
     public function prepareRegister(Request $request)

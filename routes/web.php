@@ -20,7 +20,7 @@
 
 Route::group(array('namespace' => 'Frontend'), function () {
 
-    Route::any('/', 'UserController@login');
+    Route::any('/', 'UserController@authenticationRegisterEmail');
     Route::any('register_step_one', 'UserController@prepareRegister');
     Route::group(array('prefix' => 'User'), function () {
         Route::post('checkExists', 'UserController@checkUserExists');

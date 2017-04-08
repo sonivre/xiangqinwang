@@ -26,13 +26,22 @@ class UserRegisterRepository implements UserRepository
     }
 
     /**
+     * @param $username
+     * @return mixed
+     */
+    public function getUserInfoByName($username)
+    {
+        return DB::table('xqw_user')->select('user_id')->where('username', $username)->first();
+    }
+
+    /**
      * 验证用户是否存在
      * @param String $username
      * @return boolean true|false
      */
     public function checkUserExists($username)
     {
-        $info = DB::table('xqw_user')->select('user_id')->where('username', $username)->first();
+        $info = $this->getUserInfoByName($username);
         if (! empty($info->user_id)) {
             return false;
         }

@@ -69,7 +69,7 @@
                     <div class="content content-2 hide">
                         <div class="left-form fl">
                             <p>网易邮箱可以直接登录开通<a class="fr" href="#">没有网易邮箱？开通>></a></p>
-                            <form action="{{action('Frontend\BasicController@login')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{url('/')}}" method="POST" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="login-input">
                                     <i class="user-icon"></i>
