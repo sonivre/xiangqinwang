@@ -59,6 +59,7 @@
                     <span class="required-symbol">*</span>
                     <labal>昵 &nbsp; 称：</labal>
                     <input class="col-12"  type="text" id="username" name="username" value="" placeholder="限12个汉字和24个英文字母">
+                    <span class="text-icon-tips ajaxload-icon hide"><img src="{{config('custom.staticServer')}}/images/refresh-20x20.gif"></span>
                     <span class="text-icon-tips text-icon-tips-correct">
                 	    <em class="icon-correct-check"></em>
                     </span>
@@ -242,10 +243,20 @@
             validation.educationCheck = false;
             validation.resideCheck = false;
             validation.revenueCheck = false;
-            $("input[name=username]").on({
+            // 监控username
+            var usernameInputObject = $("input[name=username]");
+            var oldUsername = usernameInputObject.val();
+            var usernameExistsText = "用户名已存在";
+            usernameInputObject.on({
                 blur: function () {
-                    // 验证是否为空
                     var username = $(this).val();
+                    // 判断是否已经存在错误的消息框, 防止ajax验证频繁请求服务器
+                    var errorText = $(this).parents('.form-control').find('.text-error-tips').html();
+                    if (errorText == usernameExistsText && oldUsername == username) {
+                        return;
+                    }
+
+                    // 验证是否为空
                     if (! isEmpty(username)) {
                         validation.usernameCheck = true;
                         removeError($(this));
@@ -265,15 +276,21 @@
                     }
                     // 不为空验证是否存在
                     if (validation.usernameCheck) {
+                        oldUsername = username;
+                        $(this).parents('.form-control').find('.text-icon-tips-correct').removeClass('on');
+                        $(".ajaxload-icon").removeClass('hide');
                         $.ajax({
                             context: $(this),
                             type: "POST",
                             url: "{{url('User/checkExists')}}",
                             data: "username=" + username + "&_token=" + "{{csrf_token()}}",
                             success: function (response) {
+                                // 移除加载效果
+                                $(".ajaxload-icon").addClass('hide');
+
                                 if (response.valid == false) {
                                     $(this).focus();
-                                    attachError($(this), '用户名已经存在');
+                                    attachError($(this), usernameExistsText);
                                     validation.usernameCheck = false;
                                 } else {
                                     removeError($(this));
@@ -281,6 +298,7 @@
                                 }
                             }
                         });
+
                     }
 
                 }
