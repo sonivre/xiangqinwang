@@ -57,7 +57,11 @@ class UserController extends BasicController
         if ($request->isMethod('post')) {
             echo 'coming soon!';exit;
         }
-        return view('frontend.pages.register_baseinfo');
+        // 得到生日的select数据
+        $birthData = $this->registerRepo->getBirthSelectData();
+        return view('frontend.pages.register_baseinfo', array(
+            'birthData' => $birthData
+        ));
     }
 
     public function checkUserExists(Request $request)

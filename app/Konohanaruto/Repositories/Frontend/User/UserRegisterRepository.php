@@ -8,6 +8,7 @@
 
 namespace App\Konohanaruto\Repositories\Frontend\User;
 use Illuminate\Support\Facades\DB;
+use App\Konohanaruto\Infrastructures\Common\BirthDate;
 
 class UserRegisterRepository implements UserRepository
 {
@@ -46,5 +47,18 @@ class UserRegisterRepository implements UserRepository
             return false;
         }
         return true;
+    }
+
+    public function getBirthSelectData()
+    {
+        $birthDate = new BirthDate();
+        $data = array();
+        try {
+            $data['year'] = $birthDate->getYearList();
+            $data['month'] = $birthDate->getMonthList();
+            $data['day'] = 31;
+        } catch (\Exception $e) {
+        }
+        return $data;
     }
 }
