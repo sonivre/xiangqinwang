@@ -61,4 +61,13 @@ class UserRegisterRepository implements UserRepository
         }
         return $data;
     }
+
+    public function getHeightSelectData()
+    {
+        $heightFillData = array();
+        for ($i = 150; $i <= 210; $i++) {
+            array_push($heightFillData, $i);
+        }
+        return $heightFillData;
+    }
 }

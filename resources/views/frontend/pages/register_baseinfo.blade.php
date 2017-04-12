@@ -126,6 +126,9 @@
                     <span class="form-inline">
                         <select class="select-row col-12" name="height" id="height">
                             <option disabled selected value="">请选择</option>
+                            @foreach ($heightSelectData as $height)
+                            <option value="{{$height}}">{{$height}}</option>
+                            @endforeach
                         </select>
                     </span>
                     <span class="text-icon-tips text-icon-tips-correct">

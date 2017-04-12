@@ -59,8 +59,11 @@ class UserController extends BasicController
         }
         // 得到生日的select数据
         $birthData = $this->registerRepo->getBirthSelectData();
+        // 得到身高的select下拉框数据
+        $heightFillSelectData = $this->registerRepo->getHeightSelectData();
         return view('frontend.pages.register_baseinfo', array(
-            'birthData' => $birthData
+            'birthData' => $birthData,
+            'heightSelectData' => $heightFillSelectData
         ));
     }
 
