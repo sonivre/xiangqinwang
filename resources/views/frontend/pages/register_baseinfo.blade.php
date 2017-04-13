@@ -512,7 +512,7 @@
                         var birthDaySelect = $("select[name=birthday]");
                         birthDaySelect.html('');
                         birthDaySelect.append('<option disabled selected value="">日</option>');
-                        content = '';
+                        var content = '';
                         for (var i = 1; i <= days; i++) {
                             content += '<option value="'+ i +'">'+ i +'</option>';
                         }
