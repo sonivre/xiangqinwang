@@ -15,5 +15,7 @@ return array(
         'startHeight' => 150,
         'endHeight' => 210,
     ),
-    'registerBirthYearSelect' => 1901
+    'registerBirthYearSelect' => 1901,
+    'educationLevel' => array('大专以下', '大专', '硕士', '博士'),
+    'revenueLevel' => array('2000元以下', '2000-4000元', '4000-6000元', '6000-10000元', '10000-15000元', '15000-20000元', '20000-50000元', '50000元以上'),
 );

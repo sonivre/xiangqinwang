@@ -65,9 +65,39 @@ class UserRegisterRepository implements UserRepository
     public function getHeightSelectData()
     {
         $heightFillData = array();
-        for ($i = 150; $i <= 210; $i++) {
+        $startHeight = config('operation.registerHeightSelect.startHeight');
+        $endHeight = config('operation.registerHeightSelect.endHeight');
+        for ($i = $startHeight; $i <= $endHeight; $i++) {
             array_push($heightFillData, $i);
         }
         return $heightFillData;
+    }
+
+    /**
+     * 得到学历数据
+     *
+     * @param void
+     * @return array
+     */
+    public function getEducationSelectData()
+    {
+        if (config('operation.educationLevel')) {
+            return config('operation.educationLevel');
+        }
+        return array();
+    }
+
+    /**
+     * 得到收入下拉框数据
+     *
+     * @param void
+     * @return array
+     */
+    public function getRevenueSelectData()
+    {
+        if (config('operation.revenueLevel')) {
+            return config('operation.revenueLevel');
+        }
+        return array();
     }
 }

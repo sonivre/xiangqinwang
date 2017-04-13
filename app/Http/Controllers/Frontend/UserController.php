@@ -57,13 +57,17 @@ class UserController extends BasicController
         if ($request->isMethod('post')) {
             echo 'coming soon!';exit;
         }
+        $selectData = array();
         // 得到生日的select数据
-        $birthData = $this->registerRepo->getBirthSelectData();
+        $selectData['birth'] = $this->registerRepo->getBirthSelectData();
         // 得到身高的select下拉框数据
-        $heightFillSelectData = $this->registerRepo->getHeightSelectData();
+        $selectData['height'] = $this->registerRepo->getHeightSelectData();
+        // 得到学历数据
+        $selectData['education'] = $this->registerRepo->getEducationSelectData();
+        // 收入下拉框数据
+        $selectData['revenue'] = $this->registerRepo->getRevenueSelectData();
         return view('frontend.pages.register_baseinfo', array(
-            'birthData' => $birthData,
-            'heightSelectData' => $heightFillSelectData
+            'selectData' => $selectData
         ));
     }
 

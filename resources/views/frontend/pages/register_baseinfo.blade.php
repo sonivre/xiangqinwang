@@ -91,7 +91,7 @@
                     <span class="form-inline">
                         <select class="birth" name="birthyear" id="birthyear">
                             <option disabled selected value="">年</option>
-                            @foreach ($birthData['year'] as $year)
+                            @foreach ($selectData['birth']['year'] as $year)
                                 <option value="{{$year}}">{{$year}}</option>
                             @endforeach
                         </select>
@@ -99,7 +99,7 @@
                     <span class="form-inline">
                         <select class="birth" name="birthmonth" id="birthmonth">
                             <option disabled selected value="">月</option>
-                            @foreach ($birthData['month'] as $month)
+                            @foreach ($selectData['birth']['month'] as $month)
                                 <option value="{{$month}}">{{$month}}</option>
                             @endforeach
                         </select>
@@ -107,7 +107,7 @@
                     <span class="form-inline">
                         <select class="birth"  name="birthday" id="birthday">
                             <option disabled selected value="">日</option>
-                            @for ($i = 1; $i <= $birthData['day']; $i++)
+                            @for ($i = 1; $i <= $selectData['birth']['day']; $i++)
                                 <option value="{{$i}}">{{$i}}</option>
                             @endfor
                         </select>
@@ -126,7 +126,7 @@
                     <span class="form-inline">
                         <select class="select-row col-12" name="height" id="height">
                             <option disabled selected value="">请选择</option>
-                            @foreach ($heightSelectData as $height)
+                            @foreach ($selectData['height'] as $height)
                             <option value="{{$height}}">{{$height}}</option>
                             @endforeach
                         </select>
@@ -145,6 +145,9 @@
                     <span class="form-inline">
                         <select class="select-row col-12" name="education" id="education">
                             <option disabled selected value="">请选择</option>
+                            @foreach ($selectData['education'] as $education)
+                                <option value="{{$education}}">{{$education}}</option>
+                            @endforeach
                         </select>
                     </span>
                     <span class="text-icon-tips text-icon-tips-correct">
@@ -182,6 +185,9 @@
                     <span class="form-inline">
                         <select class="select-row" name="revenue" id="revenue">
                             <option disabled selected value="">请选择</option>
+                            @foreach ($selectData['revenue'] as $revenue)
+                                <option value="{{$revenue}}">{{$revenue}}</option>
+                            @endforeach
                         </select>
                     </span>
                     <span class="text-icon-tips text-icon-tips-correct">
