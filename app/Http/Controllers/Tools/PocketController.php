@@ -18,11 +18,9 @@ use App\Konohanaruto\Infrastructures\Common\BirthDate;
 class PocketController
 {
 
-    public function getDaysByYearMonth(Request $request)
+    public function getDaysByYearMonth(Request $request, $year, $month)
     {
         if ($request->ajax()) {
-            $year = $request->get('year');
-            $month = $request->get('month');
             $data = array();
             try {
                 $birthDate = new BirthDate();
