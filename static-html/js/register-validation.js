@@ -73,6 +73,17 @@ $(function () {
 
     //生日验证
     $('.birth').on('change', function () {
+        if ($(this).attr('name') == 'birthyear') {
+            if ($("select[name=birthmonth]").val()) {
+                refreshCorrentDays($(this).val(), $("select[name=birthmonth]").val());
+            }
+        }
+        if ($(this).attr('name') == 'birthmonth') {
+            //console.log($("input[name=birthyear]").val());
+            if ($("select[name=birthyear]").val()) {
+                refreshCorrentDays($("select[name=birthyear]").val(), $(this).val());
+            }
+        }
         if (! checkSelectChecked($('.birth'))) {
             validation.birthCheck = false;
             attachError($(this), '请选择您的生日');
@@ -106,7 +117,30 @@ $(function () {
 
     // 验证居住地
     $(".reside-area").on('change', function () {
-        if (! checkSelectChecked($(this))) {
+        // ajax二级联动
+        if ($(this).attr('name') == 'resideprovince') {
+            var provinceCode = $(this).val();
+            $.ajax({
+                context: $(this),
+                type: "GET",
+                url: getCitiesUrl + '/' + provinceCode,
+                success: function (response) {
+                    var content = '';
+                    if (response.status == 200) {
+                        for (var i in response.data) {
+                            if (content == '') {
+                                var isSelected = ' selected ';
+                            } else {
+                                var isSelected = '';
+                            }
+                            content += '<option' + isSelected + ' value="' + i + '">' + response.data[i] + '</option>';
+                        }
+                        $('select[name=residecity]').html(content);
+                    }
+                }
+            });
+        }
+        if (! checkSelectChecked($(".reside-area"))) {
             validation.resideCheck = false;
             attachError($(this), '请选择您的居住地');
         } else {
@@ -156,7 +190,9 @@ $(function () {
         if (checkRadioChecked($("input[name=gender]"))) {
             validation.genderCheck = true;
         }
-        $(".birth").trigger('change');
+        if (! checkSelectChecked($('.birth'))) {
+            $(".birth").trigger('change');
+        }
         $("select[name=height]").trigger('change');
         $("select[name=education]").trigger('change');
         $(".reside-area").trigger('change');
@@ -169,6 +205,11 @@ $(function () {
             }
         }
 
+        //agree-checkbox
+        if (! $('.agree-checkbox').is(':checked')) {
+            alert('您必须同意注册协议！');
+            event.preventDefault();
+        }
     });
 });
 
@@ -214,4 +255,26 @@ function checkSelectChecked(queryObjects)
         }
     });
     return status;
+}
+
+function refreshCorrentDays(currentYear, currentMonth)
+{
+    $.ajax({
+        context: $(this),
+        type: "GET",
+        url: getDaysUrl + '/' + currentYear + '/' + currentMonth,
+        success: function (response) {
+            if (response.status == 200) {
+                var days = response.data;
+                var birthDaySelect = $("select[name=birthday]");
+                birthDaySelect.html('');
+                birthDaySelect.append('<option disabled selected value="">日</option>');
+                var content = '';
+                for (var i = 1; i <= days; i++) {
+                    content += '<option value="'+ i +'">'+ i +'</option>';
+                }
+                birthDaySelect.append(content);
+            }
+        }
+    });
 }
