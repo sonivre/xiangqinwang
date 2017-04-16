@@ -179,6 +179,7 @@ return [
 
         // 自定义的服务组件
         App\Konohanaruto\Services\Frontend\UserServiceProvider::class,
+        App\Providers\HelperServiceProvider::class,
 
     ],
 
