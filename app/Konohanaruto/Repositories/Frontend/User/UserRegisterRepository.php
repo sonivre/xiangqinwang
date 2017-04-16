@@ -123,6 +123,8 @@ class UserRegisterRepository implements UserRepository
     {
         $info = $this->getUserLocation($ip);
         if ($info) {
+            $provinces = array();
+            $areas = array();
             $data = DB::table('province')->select('name', 'code')->get();
             foreach ($data as $item) {
                 $provinces[$item->code] = $item->name;
@@ -134,10 +136,7 @@ class UserRegisterRepository implements UserRepository
                 $res = DB::table('city')->select('name', 'code')->where('provincecode', $info['province'])->first();
                 $info['city'] = $res->code;
             }
-            $data = DB::table('city')->select('name', 'code')->where('provincecode', $info['province'])->get()->toArray();
-            foreach ($data as $item) {
-                $cities[$item->code] = $item->name;
-            }
+            $cities = $this->getCityListByProvinceCode($info['province']);
 
             $data = DB::table('area')->select('name', 'code')->where('citycode', $info['city'])->get()->toArray();
             foreach ($data as $item) {
@@ -153,6 +152,16 @@ class UserRegisterRepository implements UserRepository
             );
         }
         return array();
+    }
+
+    public function getCityListByProvinceCode($provinceCode)
+    {
+        $data = DB::table('city')->select('name', 'code')->where('provincecode', $provinceCode)->get()->toArray();
+        $result = array();
+        foreach ($data as $item) {
+            $result[$item->code] = $item->name;
+        }
+        return $result;
     }
 
 }

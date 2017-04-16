@@ -48,6 +48,7 @@
                 <div class="s-tab2 fl"><span>上传照片，完成注册</span></div>
             </div>
             <div class="signup-form-content">
+
                 <div class="current-account">
                     <span>当前账户：1039814413@qq.com</span>
                     <a href="#">切换账号</a>
@@ -259,6 +260,7 @@
         var checkUserUrl = '{{url('User/checkExists')}}';
         var csrfToken = '{{csrf_token()}}';
         var getDaysUrl = '{{url('tools/totalDays')}}';
+        var getCitiesUrl = '{{url('tools/cityList')}}';
 //        /**
 //         * ajax得到某年某月的具体天数
 //         */
@@ -396,6 +398,29 @@
 
             // 验证居住地
             $(".reside-area").on('change', function () {
+                // ajax二级联动
+                if ($(this).attr('name') == 'resideprovince') {
+                    var provinceCode = $(this).val();
+                    $.ajax({
+                        context: $(this),
+                        type: "GET",
+                        url: getCitiesUrl + '/' + provinceCode,
+                        success: function (response) {
+                            var content = '';
+                            if (response.status == 200) {
+                                for (var i in response.data) {
+                                    if (content == '') {
+                                        var isSelected = ' selected ';
+                                    } else {
+                                        var isSelected = '';
+                                    }
+                                    content += '<option' + isSelected + ' value="' + i + '">' + response.data[i] + '</option>';
+                                }
+                                $('select[name=residecity]').html(content);
+                            }
+                        }
+                    });
+                }
                 if (! checkSelectChecked($(".reside-area"))) {
                     validation.resideCheck = false;
                     attachError($(this), '请选择您的居住地');
@@ -461,6 +486,11 @@
                     }
                 }
 
+                //agree-checkbox
+                if (! $('.agree-checkbox').is(':checked')) {
+                    alert('您必须同意注册协议！');
+                    event.preventDefault();
+                }
             });
         });
 

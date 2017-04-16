@@ -12,11 +12,18 @@
 
 namespace App\Http\Controllers\Tools;
 use App\Konohanaruto\Exceptions\Frontend\NotFoundException;
+use App\Konohanaruto\Repositories\Frontend\User\UserRepository;
 use Illuminate\Http\Request;
 use App\Konohanaruto\Infrastructures\Common\BirthDate;
 
 class PocketController
 {
+    private $registerRepo;
+
+    public function __construct(UserRepository $userRegister)
+    {
+        $this->registerRepo = $userRegister;
+    }
 
     public function getDaysByYearMonth(Request $request, $year, $month)
     {
@@ -31,6 +38,15 @@ class PocketController
                 $data['detail'] = $e->getMessage();
             }
             return response()->json($data);
+        }
+        throw new NotFoundException;
+    }
+
+    public function getCitiesByProvinceCode(Request $request, $provinceCode)
+    {
+        if ($request->ajax()) {
+            $data = $this->registerRepo->getCityListByProvinceCode($provinceCode);
+            return response()->json(array('status' => 200, 'data' => $data));
         }
         throw new NotFoundException;
     }
