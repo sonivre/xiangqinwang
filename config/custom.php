@@ -9,4 +9,6 @@
 return array(
     // 静态文件服务器
     'staticServer' => 'http://image.xqw.test',
+    // 淘宝ip地址库
+    'ipTaobaoMap' => 'http://ip.taobao.com//service/getIpInfo.php?ip=',
 );

@@ -66,6 +66,10 @@ class UserController extends BasicController
         $selectData['education'] = $this->registerRepo->getEducationSelectData();
         // 收入下拉框数据
         $selectData['revenue'] = $this->registerRepo->getRevenueSelectData();
+        // 根据用户ip地址粗略得到地址
+        $currentIp = $request->ip();
+        $currentIp = '114.215.142.180';
+        $selectData['location'] = $this->registerRepo->getLocationSelectData($currentIp);
         return view('frontend.pages.register_baseinfo', array(
             'selectData' => $selectData
         ));

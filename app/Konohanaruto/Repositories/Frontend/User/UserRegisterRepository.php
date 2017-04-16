@@ -32,7 +32,7 @@ class UserRegisterRepository implements UserRepository
      */
     public function getUserInfoByName($username)
     {
-        return DB::table('xqw_user')->select('user_id')->where('username', $username)->first();
+        return DB::table('user')->select('user_id')->where('username', $username)->first();
     }
 
     /**
@@ -100,4 +100,59 @@ class UserRegisterRepository implements UserRepository
         }
         return array();
     }
+
+    /**
+     * 得到用户地址，根据用户ip
+     *
+     * @param string $ip
+     * @return array province_id 省份 city_id 城市
+     */
+    public function getUserLocation($ip)
+    {
+        $data = getUserLocationByIp($ip);
+        if ($data) {
+            return array('province' => $data['region_id'], 'city' => $data['city_id']);
+        }
+        return false;
+    }
+
+    /**
+     * 返回所有的省, 以及通过ip定位当前省的所有市和地区
+     */
+    public function getLocationSelectData($ip)
+    {
+        $info = $this->getUserLocation($ip);
+        if ($info) {
+            $data = DB::table('province')->select('name', 'code')->get();
+            foreach ($data as $item) {
+                $provinces[$item->code] = $item->name;
+                if (! $info['province'] && $item->name == '北京市') {
+                    $info['province'] = $item->code;
+                }
+            }
+            if (! $info['city']) {
+                $res = DB::table('city')->select('name', 'code')->where('provincecode', $info['province'])->first();
+                $info['city'] = $res->code;
+            }
+            $data = DB::table('city')->select('name', 'code')->where('provincecode', $info['province'])->get()->toArray();
+            foreach ($data as $item) {
+                $cities[$item->code] = $item->name;
+            }
+
+            $data = DB::table('area')->select('name', 'code')->where('citycode', $info['city'])->get()->toArray();
+            foreach ($data as $item) {
+                $areas[$item->code] = $item->name;
+            }
+
+            return array(
+                'province' => $provinces,
+                'city' => $cities,
+                'area' => $areas,
+                'currentprovincecode' => $info['province'],
+                'currentcitycode' => $info['city'],
+            );
+        }
+        return array();
+    }
+
 }

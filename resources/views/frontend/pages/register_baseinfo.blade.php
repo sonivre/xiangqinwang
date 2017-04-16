@@ -164,11 +164,17 @@
                     <span class="form-inline">
                         <select class="reside-area col-6" name="resideprovince" id="resideprovince">
                             <option disabled selected value="">请选择</option>
+                            @foreach ($selectData['location']['province'] as $key => $item)
+                                <option @if($key == $selectData['location']['currentprovincecode']) selected @endif value="{{$key}}">{{$item}}</option>
+                            @endforeach
                         </select>
                     </span>
                     <span class="form-inline">
                         <select class="reside-area col-6" name="residecity" id="residecity">
                             <option disabled selected value="">请选择</option>
+                            @foreach ($selectData['location']['city'] as $key => $item)
+                                <option @if($key == $selectData['location']['currentcitycode']) selected @endif value="{{$key}}">{{$item}}</option>
+                            @endforeach
                         </select>
                     </span>
                     <span class="text-icon-tips text-icon-tips-correct">
@@ -390,7 +396,7 @@
 
             // 验证居住地
             $(".reside-area").on('change', function () {
-                if (! checkSelectChecked($(this))) {
+                if (! checkSelectChecked($(".reside-area"))) {
                     validation.resideCheck = false;
                     attachError($(this), '请选择您的居住地');
                 } else {
@@ -440,7 +446,9 @@
                 if (checkRadioChecked($("input[name=gender]"))) {
                     validation.genderCheck = true;
                 }
-                $(".birth").trigger('change');
+                if (! checkSelectChecked($('.birth'))) {
+                    $(".birth").trigger('change');
+                }
                 $("select[name=height]").trigger('change');
                 $("select[name=education]").trigger('change');
                 $(".reside-area").trigger('change');
