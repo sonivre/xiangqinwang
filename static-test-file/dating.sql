@@ -53,6 +53,14 @@ create table if not exists xqw_user_status(
   primary key (`user_id`)
 )engine=innodb default charset=utf8;
 
+-- 用户url访问日志表
+create table if not exists xqw_user_url_access_log(
+  `user_id` int unsigned not null,
+  `url` varchar(255) not null default '' comment '访问的url',
+  `access_time` datetime not null default '0000-00-00 00:00:00' comment '访问时间',
+  primary key (user_id)
+)engine=innodb default charset=utf8;
+
 -- 测试数据
 insert into xqw_user (username) values ('test');
 insert into xqw_user (username) values ('测试');
