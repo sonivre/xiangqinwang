@@ -46,12 +46,12 @@ create table if not exists `xqw_user` (
 -- 用户状态表
 create table if not exists xqw_user_status(
   `user_id` int unsigned not null,
-  `regip` char(15) not null default comment '注册ip',
-  `lastip` char(15) not null default comment '最后登录ip',
+  `regip` char(15) not null default '' comment '注册ip',
+  `lastip` char(15) not null default '' comment '最后登录ip',
   `isvisible` tinyint not null default 0 comment '是否隐身登录',
   `profile_progress` tinyint unsigned not null default 0 comment '个人资料完成度',
   primary key (`user_id`)
-)engine=innodb default charset=utf-8;
+)engine=innodb default charset=utf8;
 
 -- 测试数据
 insert into xqw_user (username) values ('test');
