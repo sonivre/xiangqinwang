@@ -73,6 +73,20 @@ class UserController extends BasicController
             'selectData' => $selectData
         ));
     }
+    
+    /**
+     * 注册的最终页面
+     * 
+     * @param Request $request
+     */
+    public function finalRegister(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            file_put_contents('kk.txt', json_encode($_FILES));
+            return response()->json(array('status' => 200));
+        }
+        return view('frontend.pages.register_final');
+    }
 
     public function checkUserExists(Request $request)
     {
