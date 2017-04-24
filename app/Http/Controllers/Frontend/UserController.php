@@ -81,9 +81,25 @@ class UserController extends BasicController
      */
     public function finalRegister(Request $request)
     {
-        if ($request->isMethod('post')) {
-            file_put_contents('kk.txt', json_encode($_FILES));
-            return response()->json(array('status' => 200));
+        if ($request->ajax()) {
+            
+            $file = $request->file('avatar');
+            if (empty($file)) {
+                return response()->json(array('status' => '-200'));
+            }
+            $path = 'avatar/' . date('Ymd');
+            //file_put_contents('kk.txt', json_encode($_FILES));
+            $imagePath = $file->store($path, 'uploads');
+            if (! empty($imagePath)) {
+                $fullPath = config('custom.staticServer') . '/uploads/' . $imagePath;
+                return response()->json(array(
+                    'msg' => array(
+                        'src' => $fullPath,
+                        'relationPath' => $imagePath
+                    )
+                ));
+            }
+            return response()->json(array('status' => '-200'));
         }
         return view('frontend.pages.register_final');
     }

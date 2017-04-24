@@ -62,6 +62,11 @@ return [
             'region' => env('AWS_REGION'),
             'bucket' => env('AWS_BUCKET'),
         ],
+        
+        'uploads' => array(
+            'driver' => 'local',
+            'root' => '/data/uploads'
+        ),
 
     ],
 

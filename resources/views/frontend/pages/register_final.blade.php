@@ -6,14 +6,6 @@
  * Time: 18:30
  */
 ?>
-<?php
-/**
- * Created by PhpStorm.
- * User: konohanaruto
- * Date: 2017/3/28
- * Time: 20:34
- */
-?>
 @extends('frontend.layouts.default')
 @section('title', '注册基本资料')
 @section('addtional-css')
@@ -98,8 +90,21 @@
             		contentType: false,
             		cache: false,
             		processData: false,
+            		beforeSend: function () {
+                		$('.insideloading').addClass('on');
+                	},
             		success: function (data) {
-            			console.log('aaa');
+            			$('.insideloading').removeClass('on');
+            			if (data.msg) {
+                			$('#user-avatar').attr('src', data.msg.src);
+                			$('#user-avatar').attr('alt', data.msg.relationPath);
+                		}
+            			if ('status' in data) {
+                			alert('上传失败, 请刷新页面后再试！');
+                	    }
+                	    // 切换提示
+                	    $('.upload-text').removeClass('active');
+                	    $('.re-upload-text').addClass('active');
             		},
             		error: function () {} 	        
         		});
