@@ -82,7 +82,6 @@ class UserController extends BasicController
     public function finalRegister(Request $request)
     {
         if ($request->ajax()) {
-            
             $file = $request->file('avatar');
             if (empty($file)) {
                 return response()->json(array('status' => '-200'));
