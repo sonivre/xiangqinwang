@@ -108,3 +108,17 @@ create table if not exists `xqw_area` (
   `citycode` varchar(30) not null,
   primary key (`id`)
 )engine=innodb default charset=utf8;
+
+-- 管理员表
+create table `xqw_admin` (
+	`admin_id` smallint unsigned not null auto_increment,
+	`username` varchar(50) not null default '',
+	`password` varchar(50) not null default '',
+	`group_id` smallint unsigned not null default 0,
+	`super` tinyint not null default 0 comment '是否是超级管理员',
+	`flag` tinyint not null default 1 comment '是否可用',
+	`last_login` datetime not null default '0000-00-00 00:00:00' comment '最后一次登录时间',
+	`login_times` int unsigned not null default 0 comment '登录次数',
+	`loginip` int unsigned not null default 0 comment '最后一次登录ip',
+	primary key prk_index(`admin_id`)
+)engine=innodb default charset=utf8;
