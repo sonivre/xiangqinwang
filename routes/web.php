@@ -38,8 +38,10 @@ Route::group(array('namespace' => 'Frontend'), function () {
 });
 
 Route::group(array('namespace' => 'Intranet', 'prefix' => 'intranet'), function () {
-    Route::get('/', 'UserController@home');
     Route::get('login', 'userController@login');
+    Route::group(array('middleware' => 'LoginCheck'), function () {
+        Route::get('/', 'UserController@home');
+    });
 });
 
 Route::group(array('namespace' => 'Tools', 'prefix' => 'tools'), function () {
