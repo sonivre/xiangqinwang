@@ -39,7 +39,7 @@ Route::group(array('namespace' => 'Frontend'), function () {
 
 Route::group(array('namespace' => 'Intranet', 'prefix' => 'intranet'), function () {
     Route::get('login', 'userController@login');
-    Route::group(array('middleware' => 'LoginCheck'), function () {
+    Route::group(array('middleware' => 'intranet.logincheck'), function () {
         Route::get('/', 'UserController@home');
     });
 });
