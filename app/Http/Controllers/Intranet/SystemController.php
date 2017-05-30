@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Intranet;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class UserController extends Controller
+class SystemController extends Controller
 {
     public function home()
     {
