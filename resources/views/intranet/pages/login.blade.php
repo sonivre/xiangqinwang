@@ -1,4 +1,5 @@
 @extends('intranet.layouts.base')
+@section('title', '登录')
 @section('import-resource')
 @parent
 <style>
