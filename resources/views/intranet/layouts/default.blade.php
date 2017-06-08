@@ -1,0 +1,9 @@
+<html>
+<head>
+@include('intranet.includes.head')
+@yield('addtional-css')
+</head>
+<body>
+@yield('content')
+</body>
+</html>

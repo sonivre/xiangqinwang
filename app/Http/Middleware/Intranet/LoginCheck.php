@@ -17,7 +17,7 @@ class LoginCheck
     public function handle($request, Closure $next)
     {
         // 验证是否已经登录, 否则跳转到登录界面
-        if (! $request->session()->exists('userinfo')) {
+        if (! $request->session()->exists('intranet')) {
             return redirect('intranet/login');
         }
         return $next($request);

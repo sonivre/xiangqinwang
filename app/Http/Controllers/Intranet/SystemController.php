@@ -14,8 +14,17 @@ class SystemController extends Controller
     /**
      * 登录
      */
-    public function login()
+    public function login(Request $request)
     {
-        echo 'login page.';
+        if ($request->isMethod('get')) {
+            
+        }
+        // render页面
+        return $this->_renderLoginPage();
+    }
+    
+    private function _renderLoginPage()
+    {
+        return view('intranet.pages.login');
     }
 }
