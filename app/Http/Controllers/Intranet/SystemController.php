@@ -27,4 +27,10 @@ class SystemController extends Controller
     {
         return view('intranet.pages.login');
     }
+    
+//     // 验证码
+//     public function refreshCaptcha()
+//     {
+        
+//     }
 }

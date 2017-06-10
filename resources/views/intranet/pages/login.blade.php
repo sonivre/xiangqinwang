@@ -42,7 +42,7 @@
                                 <tr><td colspan="2"><h4 style="letter-spacing:1px;font-size:16px;">RainMan 网站管理后台</h4></td></tr>
                                 <tr><td>管理员：</td><td><input type="text" name="" value="" /></td></tr>
                                 <tr><td>密&nbsp;&nbsp;&nbsp;&nbsp;码：</td><td><input type="password" name="" value="" /></td></tr>
-                                <tr><td>验证码：</td><td><input type="text" name="" value="" style="width:80px;"/></td></tr>
+                                <tr><td>验证码：</td><td><input type="text" name="" value="" style="width:70px;"/><img onclick="this.src='{{captcha_src()}}' + '&random=' + Math.random()" style="display: inline; vertical-align: middle; cursor: pointer;" src="{{captcha_src()}}"></td></tr>
                                 <tr class="bt" align="center"><td>&nbsp;<input type="submit" value="登陆" /></td><td>&nbsp;<input type="reset" value="重填" /></td></tr>
                             </table>
                         </form>
