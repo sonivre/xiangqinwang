@@ -114,11 +114,21 @@ create table `xqw_admin` (
 	`admin_id` smallint unsigned not null auto_increment,
 	`username` varchar(50) not null default '',
 	`password` varchar(50) not null default '',
-	`group_id` smallint unsigned not null default 0,
 	`super` tinyint not null default 0 comment '是否是超级管理员',
 	`flag` tinyint not null default 1 comment '是否可用',
 	`last_login` datetime not null default '0000-00-00 00:00:00' comment '最后一次登录时间',
 	`login_times` int unsigned not null default 0 comment '登录次数',
 	`loginip` int unsigned not null default 0 comment '最后一次登录ip',
 	primary key prk_index(`admin_id`)
+)engine=innodb default charset=utf8;
+
+create table `xqw_admin_log(
+	`id` int unsigned NOT NULL AUTO_INCREMENT,
+	`content` varchar(50) NOT NULL COMMENT '操作内容',
+	`createtime` datetime DEFAULT NULL COMMENT '发生时间',
+	`admin_name` varchar(30) NOT NULL COMMENT '管理员',
+	`admin_id` smallint unsigned NOT NULL DEFAULT '0' COMMENT '管理员ID',
+	`ip` char(15) NOT NULL COMMENT 'IP',
+	`url` varchar(100) NOT NULL DEFAULT '' COMMENT 'route',
+	primary key `pk_id` (`id`)
 )engine=innodb default charset=utf8;
