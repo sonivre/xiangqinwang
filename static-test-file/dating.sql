@@ -122,7 +122,7 @@ create table `xqw_admin` (
 	primary key prk_index(`admin_id`)
 )engine=innodb default charset=utf8;
 
-create table `xqw_admin_log(
+create table `xqw_admin_log`(
 	`id` int unsigned NOT NULL AUTO_INCREMENT,
 	`content` varchar(50) NOT NULL COMMENT '操作内容',
 	`createtime` datetime DEFAULT NULL COMMENT '发生时间',
@@ -132,3 +132,21 @@ create table `xqw_admin_log(
 	`url` varchar(100) NOT NULL DEFAULT '' COMMENT 'route',
 	primary key `pk_id` (`id`)
 )engine=innodb default charset=utf8;
+
+-- rbac
+
+CREATE TABLE `xqw_menus` (
+  `menu_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `menu_parent_id` int unsigned NOT NULL DEFAULT '0',
+  `permission_id` int unsigned NOT NULL DEFAULT '0',
+  `menu_name` varchar(50) NOT NULL DEFAULT '',
+  `menu_route` varchar(100) NOT NULL DEFAULT '',
+  PRIMARY KEY (`menu_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `xqw_permissions` (
+  `permission_id` int(11) NOT NULL AUTO_INCREMENT,
+  `permission_name` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`permission_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
