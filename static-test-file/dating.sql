@@ -115,6 +115,7 @@ create table `xqw_admin` (
 	`username` varchar(50) not null default '',
 	`password` varchar(50) not null default '',
 	`super` tinyint not null default 0 comment '是否是超级管理员',
+	`salt` varchar(50) not null default '' comment '杂质',
 	`flag` tinyint not null default 1 comment '是否可用',
 	`last_login` datetime not null default '0000-00-00 00:00:00' comment '最后一次登录时间',
 	`login_times` int unsigned not null default 0 comment '登录次数',
