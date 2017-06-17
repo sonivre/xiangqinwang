@@ -1,58 +1,75 @@
-@extends('intranet.layouts.default')
-<table width="100%">
-    <!-- 顶部部分 -->
-    <tr height="41"><td colspan="2" background="./Images/login_top_bg.gif">&nbsp;</td></tr>
-    <!-- 主体部分 -->
-    <tr style="background:url(./Images/login_bg.jpg) repeat-x;" height="532">
-        <!-- 主体左部分 -->
-        <td id="left_cont">
-            <table width="100%" height="100%">
-                <tr height="155"><td colspan="2">&nbsp;</td></tr>
-                <tr>
-                    <td width="20%" rowspan="2">&nbsp;</td>
-                    <td width="60%">
-                        <table width="100%">
-                            <tr height="70"><td align="right"><img src="{{config('custom.staticServer')}}/Intranet/Images/logo.gif" title="瑞曼科技" alt="瑞曼科技" /></td></tr>
-                            <tr height="274">
-                                <td valign="top" align="right">
-                                    <ul>
-                                        <li>1- 企业门户站建立的首选方案...</li>
-                                        <li>2- 一站通式的整合方式，方便用户使用...</li>
-                                        <li>3- 强大的后台系统，管理内容易如反掌...</li>
-                                        <li><img src="{{config('custom.staticServer')}}/Intranet/Images/icon_demo.gif" />&nbsp;<a href="javascript:void(0)">使用说明</a>&nbsp;&nbsp;<span> <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=609307843&site=qq&menu=yes" onfocus="this.blur()"><img border="0" src="http://wpa.qq.com/pa?p=2:609307843:41" alt="瑞曼为您服务" title="瑞曼科技"></a> </span></li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        </table>
-                    <td width="15%" rowspan="2">&nbsp;</td>
-                    </td>
-                </tr>
-                <tr><td colspan="2">&nbsp;</td></tr>
-            </table>
-        </td>
-        <!-- 主体右部分 -->
-        <td id="right_cont">
-            <table height="100%">
-                <tr height="30%"><td colspan="3">&nbsp;</td></tr>
-                <tr>
-                    <td width="30%" rowspan="5">&nbsp;</td>
-                    <td valign="top" id="form">
-                        <form action="" method="">
-                            <table valign="top" width="50%">
-                                <tr><td colspan="2"><h4 style="letter-spacing:1px;font-size:16px;">RainMan 网站管理后台</h4></td></tr>
-                                <tr><td>管理员：</td><td><input type="text" name="" value="" /></td></tr>
-                                <tr><td>密&nbsp;&nbsp;&nbsp;&nbsp;码：</td><td><input type="password" name="" value="" /></td></tr>
-                                <tr><td>验证码：</td><td><input type="text" name="" value="" style="width:70px;"/><img onclick="this.src='{{captcha_src()}}' + '&random=' + Math.random()" style="display: inline; vertical-align: middle; cursor: pointer;" src="{{captcha_src()}}"></td></tr>
-                                <tr class="bt" align="center"><td>&nbsp;<input type="submit" value="登陆" /></td><td>&nbsp;<input type="reset" value="重填" /></td></tr>
-                            </table>
-                        </form>
-                    </td>
-                    <td rowspan="5">&nbsp;</td>
-                </tr>
-                <tr><td colspan="3">&nbsp;</td></tr>
-            </table>
-        </td>
-    </tr>
-    <!-- 底部部分 -->
-    <tr id="login_bot"><td colspan="2"><p>Copyright © 2011-2012 RainMan 网络工作室</p></td></tr>
-</table>
+@extends('intranet.layouts.base')
+@section('import-resource')
+@parent
+<style>
+.tooltip {
+    top: 158.5px !important;
+}
+
+.tooltip-inner {
+	background-color: #AAAAAA !important;
+}
+
+.tooltip.right .tooltip-arrow {
+	border-right-color: #AAAAAA !important;
+}
+
+.refresh-captcha {
+	cursor: pointer;
+}
+</style>
+@endsection
+
+@section('content')
+<body class="login">
+    <div>
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            <form>
+              <h1>系统登录</h1>
+              <div>
+                <input type="text" class="form-control" name="info[username]" placeholder="用户名" required="" />
+              </div>
+              <div>
+                <input type="password" class="form-control" name="info[password]" placeholder="密码" required="" />
+              </div>
+              <div>
+                <input type="text" class="form-control slide-captcha-code btn-secondary" data-toggle="tooltip" data-placement="right" data-trigger="click" data-html="true" title='<div><img title="点击更换验证码" class="refresh-captcha" src="{{captcha_src()}}"></div>' name="info[captcha]" placeholder="验证码" required="" />
+              </div>
+              <div>
+                <a class="btn btn-default submit">登录</a>
+<!--                 <a class="reset_pass" href="#">Lost your password?</a> -->
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+<!--                 <p class="change_link">New to site? -->
+<!--                   <a href="#signup" class="to_register"> Create Account </a> -->
+<!--                 </p> -->
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+<!--                   <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p> -->
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+</body>
+@endsection
+
+@section('extra-js')
+<script>
+var captchaUrl = '{{captcha_src()}}';
+</script>
+<script src="{{config('custom.staticServerIntranet')}}/build/js/user-authentication.js"></script>
+@endsection
