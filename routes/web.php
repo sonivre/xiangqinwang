@@ -38,7 +38,7 @@ Route::group(array('namespace' => 'Frontend'), function () {
 });
 
 Route::group(array('namespace' => 'Intranet', 'prefix' => 'intranet'), function () {
-    Route::get('login', 'SystemController@login');
+    Route::any('login', 'SystemController@login');
 //     Route::get('secure/refreshCaptcha', 'SystemController@refreshCaptcha');
     Route::group(array('middleware' => 'intranet.logincheck'), function () {
         Route::get('/', 'SystemController@home');
