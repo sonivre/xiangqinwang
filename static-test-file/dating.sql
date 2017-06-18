@@ -123,6 +123,9 @@ create table `xqw_admin` (
 	primary key prk_index(`admin_id`)
 )engine=innodb default charset=utf8;
 
+-- 默认系统管理员 admin 密码: 123456
+-- insert into xqw_admin (`username`, `password`, `salt`, `super`) values ('admin', '9391a098312698a442c211ad26dccbc5ac91fc0004ee9164ed6ac828d8340efd', '5cee835f2336eaec', 1);
+
 create table `xqw_admin_log`(
 	`id` int unsigned NOT NULL AUTO_INCREMENT,
 	`content` varchar(50) NOT NULL COMMENT '操作内容',

@@ -34,7 +34,7 @@
 
 @section('content')
 <body class="login">
-@if (count($errors) > 0)
+@if (count($errors) > 0 || ! empty($userAuthErrors))
     <div class="alert alert-success" role="alert">
     <a href="#" class="close" data-dismiss="alert">
         &times;
@@ -44,6 +44,8 @@
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
+            <!-- 认证错误 -->
+            @php if (! empty($userAuthErrors)) echo '<li>' . $userAuthErrors . '</li>';@endphp
         </ul>
     </div>
 @endif

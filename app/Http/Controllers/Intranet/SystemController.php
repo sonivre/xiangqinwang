@@ -4,12 +4,24 @@ namespace App\Http\Controllers\Intranet;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Validator;
+use App\Konohanaruto\Infrastructures\Common\PasswordSecure;
+use App\Konohanaruto\Repositories\Intranet\User\UserEloquentRepository;
 
 class SystemController extends Controller
 {
-    public function home()
+    
+    private $passwordSecure;
+    private $userEloquent;
+    
+    public function __construct(UserEloquentRepository $userEloquent, PasswordSecure $passwordSecure)
     {
-        echo 'aaa';
+        $this->passwordSecure = $passwordSecure;
+        $this->userEloquent = $userEloquent;
+    }
+    
+    public function home(Request $request)
+    {
+        echo 'index page';
     }
     
     /**
@@ -20,14 +32,7 @@ class SystemController extends Controller
         
         if ($request->isMethod('post')) {
             $formInfo = $request->get('info');
-            $validator = Validator::make($formInfo, [
-                'username' => 'required',
-                'password' => 'required',
-                'captcha'  => 'required|captcha',
-            ], array(
-                'require' => ':attribute不能为空',
-                'captcha' => '验证码填写不正确',
-            ));
+            $validator = $this->userValidate($formInfo);
             // view中的errors是一个索引数组，无任何对应关系，类似如下：
             // array(2) { [0]=> string(21) "邮箱格式不正确" [1]=> string(24) "验证码填写不正确" }
             if ($validator->fails()) {
@@ -35,22 +40,47 @@ class SystemController extends Controller
                 ->withErrors($validator)
                 ->withInput($formInfo);
             }
-            
-            // 验证成功
-            var_dump($formInfo);exit;
+            $status = $this->checkUserPassword($formInfo['password'], $formInfo['username']);
+            if (empty($status)) {
+                $request->session()->put('intranet', array('username' => $formInfo['username']));
+                return redirect('intranet/index');
+            }
+            return view('intranet.pages.login', $status);
         }
-        // render页面
-        return $this->_renderLoginPage();
-    }
-    
-    private function _renderLoginPage()
-    {
         return view('intranet.pages.login');
     }
     
-//     // 验证码
-//     public function refreshCaptcha()
-//     {
-        
-//     }
+    /**
+     * 表单验证
+     * 
+     * @return Unknown
+     */
+    private function userValidate($formInfo)
+    {
+        $validator = Validator::make($formInfo, [
+            'username' => 'required',
+            'password' => 'required',
+            'captcha'  => 'required|captcha',
+        ], array(
+            'require' => ':attribute不能为空',
+            'captcha' => '验证码填写不正确',
+        ));
+        return $validator;
+    }
+    
+    /**
+     * 验证密码
+     */
+    private function checkUserPassword($nativePassword, $username)
+    {
+        $userinfo = $this->userEloquent->getUserInfo($username);
+        if (empty($userinfo)) {
+            return array('userAuthErrors' => '用户不存在');
+        }
+        $encryptPassword = $this->passwordSecure->getEncryptPassword($nativePassword, $userinfo['salt']);
+        if ($encryptPassword !== $userinfo['password']) {
+            return array('userAuthErrors' => '用户名或密码不正确');
+        }
+        return array();
+    }
 }

@@ -23,6 +23,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+//         $this->app->singleton(
+//         \App\Konohanaruto\Repositories\Intranet\User\UserRepositoryInterface::class,
+//         \App\Konohanaruto\Repositories\Intranet\User\UserEloquentRepository::class
+//         );
+        $this->app->bind(
+            \App\Konohanaruto\Repositories\Intranet\User\UserRepositoryInterface::class,
+            \App\Konohanaruto\Repositories\Intranet\User\UserEloquentRepository::class
+        );
     }
 }
