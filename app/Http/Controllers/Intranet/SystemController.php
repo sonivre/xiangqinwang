@@ -21,7 +21,7 @@ class SystemController extends Controller
     
     public function home(Request $request)
     {
-        echo 'index page';
+        return view('intranet.pages.home');
     }
     
     /**
@@ -29,6 +29,10 @@ class SystemController extends Controller
      */
     public function login(Request $request)
     {
+        // 如果已经登录则跳转上一页
+        if ($this->checkUserLoginStatus()) {
+            return redirect()->back();
+        }
         
         if ($request->isMethod('post')) {
             $formInfo = $request->get('info');
@@ -43,11 +47,20 @@ class SystemController extends Controller
             $status = $this->checkUserPassword($formInfo['password'], $formInfo['username']);
             if (empty($status)) {
                 $request->session()->put('intranet', array('username' => $formInfo['username']));
-                return redirect('intranet/index');
+                return redirect('intranet');
             }
             return view('intranet.pages.login', $status);
         }
         return view('intranet.pages.login');
+    }
+    
+    /**
+     * 注销/退出登录
+     */
+    public static function actionLogout(Request $request)
+    {
+        $request->session()->forget('intranet');
+        return redirect('/intranet');
     }
     
     /**
@@ -82,5 +95,13 @@ class SystemController extends Controller
             return array('userAuthErrors' => '用户名或密码不正确');
         }
         return array();
+    }
+    
+    /**
+     * 验证用户是否已经登录
+     */
+    public function checkUserLoginStatus()
+    {
+        return ! empty(session('intranet')) ? true : false;
     }
 }

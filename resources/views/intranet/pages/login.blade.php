@@ -35,7 +35,7 @@
 @section('content')
 <body class="login">
 @if (count($errors) > 0 || ! empty($userAuthErrors))
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-danger alert-dismissible fade in" role="alert">
     <a href="#" class="close" data-dismiss="alert">
         &times;
     </a>
