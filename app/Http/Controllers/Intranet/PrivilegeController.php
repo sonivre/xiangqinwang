@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Intranet;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Konohanaruto\Repositories\Intranet\Permission\PermissionEloquentRepository;
 
-class PrivilegeController extends Controller
+class PrivilegeController extends CoreController
 {
     protected $permission;
     

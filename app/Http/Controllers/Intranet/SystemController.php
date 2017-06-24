@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Intranet;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Validator;
 use App\Konohanaruto\Infrastructures\Common\PasswordSecure;
 use App\Konohanaruto\Repositories\Intranet\User\UserEloquentRepository;
 
-class SystemController extends Controller
+class SystemController extends CoreController
 {
     
     private $passwordSecure;
