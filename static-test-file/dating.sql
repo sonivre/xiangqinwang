@@ -154,3 +154,11 @@ CREATE TABLE `xqw_permissions` (
   PRIMARY KEY (`permission_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
+-- 后台权限相关
+
+create table xqw_permissions(
+	`permission_id` int auto_increment,
+	`permission_name` varchar(50) not null default '',
+	primary key `permission_id` (`permission_id`)
+)engine=innodb default charset=utf8;
+

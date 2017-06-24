@@ -3,10 +3,9 @@
 <div class="right_col" role="main" style="min-height: 1161px;">
 <div class="x_panel">
   <div class="x_title">
-    <h2>权限列表 <small></small></h2>
+    <h2>权限列表</h2>
     <ul class="nav navbar-right panel_toolbox">
-      <li><a class="close-link"><i class="fa fa-close"></i></a>
-      </li>
+      <li><button type="button" class="btn btn-default btn-sm">添加权限</button></li>
     </ul>
     <div class="clearfix"></div>
   </div>
