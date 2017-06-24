@@ -23,7 +23,7 @@ class PrivilegeController extends Controller
     public function actionAdd(Request $request)
     {
         if ($request->isMethod('POST')) {
-            $userinfo = $request->session()->get('intranet');
+            $userinfo = $request->session()->get(config('custom.intranetSessionName'));
             $permissionData = array();
             $permissionData['permission_name'] = $request->get('permission_name');
             $permissionData['admin_id'] = $userinfo['admin_id'];

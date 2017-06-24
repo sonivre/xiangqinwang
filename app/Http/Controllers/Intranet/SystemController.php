@@ -47,7 +47,7 @@ class SystemController extends Controller
             $userinfo = $this->userEloquent->getUserInfo($formInfo['username']);
             $status = $this->checkUserPassword($formInfo['password'], $formInfo['username']);
             if (empty($status)) {
-                $request->session()->put('intranet', array(
+                $request->session()->put(config('custom.intranetSessionName'), array(
                     'username' => $formInfo['username'],
                     'admin_id' => $userinfo['admin_id']
                 ));
@@ -63,7 +63,7 @@ class SystemController extends Controller
      */
     public static function actionLogout(Request $request)
     {
-        $request->session()->forget('intranet');
+        $request->session()->forget(config('custom.intranetSessionName'));
         return redirect('/intranet');
     }
     
@@ -106,6 +106,6 @@ class SystemController extends Controller
      */
     public function checkUserLoginStatus()
     {
-        return ! empty(session('intranet')) ? true : false;
+        return ! empty(session(config('custom.intranetSessionName'))) ? true : false;
     }
 }

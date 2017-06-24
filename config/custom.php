@@ -12,4 +12,6 @@ return array(
     'staticServerIntranet' => 'http://image.xqw.test/Intranet',
     // 淘宝ip地址库
     'ipTaobaoMap' => 'http://ip.taobao.com//service/getIpInfo.php?ip=',
+    // 后台session名
+    'intranetSessionName' => 'intranet',
 );
