@@ -11,7 +11,9 @@
     <!-- /top navigation -->
 
     <!-- page content -->
+    <div class="right_col" role="main" style="min-height: 1161px;">
     @yield('page-main')
+    </div>
     <!-- /page content -->
 
     <!-- footer content -->

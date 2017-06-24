@@ -158,7 +158,10 @@ CREATE TABLE `xqw_permissions` (
 
 create table xqw_permissions(
 	`permission_id` int auto_increment,
+	`admin_id` int not null default 0,
 	`permission_name` varchar(50) not null default '',
+	`create_time` datetime not null default '0000-00-00 00:00:00',
+	`update_time` datetime not null default '0000-00-00 00:00:00',
 	primary key `permission_id` (`permission_id`)
 )engine=innodb default charset=utf8;
 

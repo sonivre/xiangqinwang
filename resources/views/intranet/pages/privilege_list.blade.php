@@ -1,11 +1,10 @@
 @extends('intranet.layouts.intranet_iframe_style')
 @section('page-main')
-<div class="right_col" role="main" style="min-height: 1161px;">
 <div class="x_panel">
   <div class="x_title">
     <h2>权限列表</h2>
     <ul class="nav navbar-right panel_toolbox">
-      <li><button type="button" class="btn btn-default btn-sm">添加权限</button></li>
+      <li><a href="{{url('intranet/Privilege/add')}}"><button type="button" class="btn btn-default btn-sm">添加权限</button></a></li>
     </ul>
     <div class="clearfix"></div>
   </div>
@@ -42,6 +41,5 @@
     </table>
 
   </div>
-</div>
 </div>
 @endsection

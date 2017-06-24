@@ -31,5 +31,11 @@ class AppServiceProvider extends ServiceProvider
             \App\Konohanaruto\Repositories\Intranet\User\UserRepositoryInterface::class,
             \App\Konohanaruto\Repositories\Intranet\User\UserEloquentRepository::class
         );
+        
+        // privileges
+        $this->app->singleton(
+        \App\Konohanaruto\Repositories\Intranet\Permission\PermissionRepositoryInterface::class,
+        \App\Konohanaruto\Repositories\Intranet\Permission\PermissionEloquentRepository::class
+        );
     }
 }

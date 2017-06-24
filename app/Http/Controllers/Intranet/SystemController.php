@@ -44,9 +44,13 @@ class SystemController extends Controller
                 ->withErrors($validator)
                 ->withInput($formInfo);
             }
+            $userinfo = $this->userEloquent->getUserInfo($formInfo['username']);
             $status = $this->checkUserPassword($formInfo['password'], $formInfo['username']);
             if (empty($status)) {
-                $request->session()->put('intranet', array('username' => $formInfo['username']));
+                $request->session()->put('intranet', array(
+                    'username' => $formInfo['username'],
+                    'admin_id' => $userinfo['admin_id']
+                ));
                 return redirect('intranet');
             }
             return view('intranet.pages.login', $status);

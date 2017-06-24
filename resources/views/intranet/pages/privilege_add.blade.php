@@ -1,54 +1,41 @@
+@extends('intranet.layouts.intranet_iframe_style')
+@section('page-main')
 <div class="x_panel">
+<!-- 错误信息输出 -->
+@if (! empty($errorMsg))
+<div class="alert alert-danger alert-dismissible fade in" role="alert">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+</button>
+<strong>糟糕！</strong> @if (! empty($errorMsg)) {{$errorMsg}} @endif
+</div>
+@endif
+
   <div class="x_title">
-    <h2>Hover rows <small>Try hovering over the rows</small></h2>
+    <h2>权限添加</h2>
     <ul class="nav navbar-right panel_toolbox">
-      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-      </li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-        <ul class="dropdown-menu" role="menu">
-          <li><a href="#">Settings 1</a>
-          </li>
-          <li><a href="#">Settings 2</a>
-          </li>
-        </ul>
-      </li>
-      <li><a class="close-link"><i class="fa fa-close"></i></a>
-      </li>
+      <li><a href="{{url('intranet/Privilege/list')}}"><button type="button" class="btn btn-default btn-sm">权限列表</button></a></li>
     </ul>
     <div class="clearfix"></div>
   </div>
-  <div class="x_content" style="display: block;">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="x_content">
+    <br>
+    <form action="" method="post" class="form-horizontal form-label-left">
 
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">权限名称 <span class="required">*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <input type="text" id="" required="required" name="permission_name" class="form-control col-md-7 col-xs-12">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+        {{csrf_field()}}
+        <button type="submit" class="btn btn-success">提交</button>
+		<button class="btn btn-primary" type="reset" onclick="window.location.href=window.location.href;">重置</button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
+@endsection
