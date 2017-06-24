@@ -54,6 +54,11 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
              ->namespace($this->namespace)
              ->group(base_path('routes/web.php'));
+        
+        // intranetPrivileges
+        Route::middleware('web')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/intranet.php'));
     }
 
     /**

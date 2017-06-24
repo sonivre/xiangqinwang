@@ -37,15 +37,6 @@ Route::group(array('namespace' => 'Frontend'), function () {
 
 });
 
-Route::group(array('namespace' => 'Intranet', 'prefix' => 'intranet'), function () {
-    Route::any('login', 'SystemController@login');
-//     Route::get('secure/refreshCaptcha', 'SystemController@refreshCaptcha');
-    Route::group(array('middleware' => 'intranet.logincheck'), function () {
-        Route::get('/', 'SystemController@home');
-        Route::get('/logout', 'SystemController@actionLogout');
-    });
-});
-
 Route::group(array('namespace' => 'Tools', 'prefix' => 'tools'), function () {
     Route::get('totalDays/{year}/{month}', 'PocketController@getDaysByYearMonth');
     Route::get('cityList/{provinceCode}', 'PocketController@getCitiesByProvinceCode');
