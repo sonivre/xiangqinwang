@@ -181,6 +181,7 @@ return [
         App\Konohanaruto\Services\Frontend\UserServiceProvider::class,
         App\Providers\HelperServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
+        App\Konohanaruto\Services\Intranet\AdminActivityLogServiceProvider::class,
 
     ],
 

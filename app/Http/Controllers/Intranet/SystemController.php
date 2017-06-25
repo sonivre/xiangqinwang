@@ -16,6 +16,7 @@ class SystemController extends CoreController
     {
         $this->passwordSecure = $passwordSecure;
         $this->userEloquent = $userEloquent;
+        parent::__construct();
     }
     
     public function home(Request $request)
