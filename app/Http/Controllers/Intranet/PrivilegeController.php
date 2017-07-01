@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Intranet;
 
 use Illuminate\Http\Request;
-use App\Konohanaruto\Repositories\Intranet\Permission\PermissionEloquentRepository;
+use Validator;
+use App\Konohanaruto\Repositories\Intranet\Permission\PermissionRepositoryInterface;
 
 class PrivilegeController extends CoreController
 {
     protected $permission;
     
-    public function __construct(PermissionEloquentRepository $permission)
+    public function __construct(PermissionRepositoryInterface $permission)
     {
         $this->permission = $permission;
         parent::__construct();
@@ -17,7 +18,8 @@ class PrivilegeController extends CoreController
     
     public function actionList()
     {
-        return view('intranet.pages.privilege_list');
+        $permissionList = $this->permission->getPermissionList();
+        return view('intranet.pages.privilege_list', array('permissionList' => $permissionList));
     }
     
     public function actionAdd(Request $request)
@@ -40,5 +42,42 @@ class PrivilegeController extends CoreController
             ));
         }
         return view('intranet.pages.privilege_add');
+    }
+    
+    public function actionEdit(Request $request, $permissionId = null)
+    {
+        if ($request->isMethod('POST')) {
+            $formInfo = $request->all();
+            $validator = Validator::make($formInfo, [
+                'permission_id' => 'numeric',
+                'permission_name' => 'required'
+            ], array(
+                'numeric' => ':attribute必须为数字',
+                'required' => ':attribute不能为空',
+            ));
+            
+            if ($validator->fails()) {
+                return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput($formInfo);
+            }
+            
+            $status = $this->permission->updatePermissionById($formInfo);
+            
+            if ($status) {
+                return redirect('intranet/Privilege/list');
+            }
+            
+            return view('intranet.pages.privilege_edit', array('errorMsg' => '操作失败！'));
+        }
+        
+        if (empty($permissionId)) {
+            return redirect()->back();
+        }
+        
+        $permissionId = intval($permissionId);
+        $info = $this->permission->getInfoById($permissionId);
+        return view('intranet.pages.privilege_edit', array('info' => $info));
     }
 }

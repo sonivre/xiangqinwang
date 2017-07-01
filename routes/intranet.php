@@ -7,5 +7,6 @@ Route::group(array('namespace' => 'Intranet', 'prefix' => 'intranet'), function 
         Route::get('/logout', 'SystemController@actionLogout');
         Route::get('/Privilege/list', 'PrivilegeController@actionList');
         Route::any('/Privilege/add', 'PrivilegeController@actionAdd');
+        Route::any('/Privilege/edit/{permissionId?}', 'PrivilegeController@actionEdit');
     });
 });

@@ -39,4 +39,24 @@ class PermissionEloquentRepository extends EloquentRepository implements Permiss
         }
         return false;
     }
+    
+    /**
+     * 得到权限列表
+     */
+    public function getPermissionList()
+    {
+        $result = $this->model->join('admin', 'permissions.admin_id', '=', 'admin.admin_id')->get();
+        if (empty($result)) {
+            return array();
+        }
+        return $result->toArray();
+    }
+    
+    public function __call($method, $args = array())
+    {
+        if (! empty($args)) {
+            $args = $args[0];
+        }
+        return $this->model->$method($args);
+    }
 }

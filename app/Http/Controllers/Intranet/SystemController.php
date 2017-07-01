@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Intranet;
 use Illuminate\Http\Request;
 use Validator;
 use App\Konohanaruto\Infrastructures\Common\PasswordSecure;
-use App\Konohanaruto\Repositories\Intranet\User\UserEloquentRepository;
+use App\Konohanaruto\Repositories\Intranet\User\UserRepositoryInterface;
 
 class SystemController extends CoreController
 {
@@ -12,7 +12,7 @@ class SystemController extends CoreController
     private $passwordSecure;
     private $userEloquent;
     
-    public function __construct(UserEloquentRepository $userEloquent, PasswordSecure $passwordSecure)
+    public function __construct(UserRepositoryInterface $userEloquent, PasswordSecure $passwordSecure)
     {
         $this->passwordSecure = $passwordSecure;
         $this->userEloquent = $userEloquent;
