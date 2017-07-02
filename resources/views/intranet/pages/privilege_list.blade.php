@@ -132,7 +132,8 @@
      		   success: function (msg) {
          		   if (msg.error) {
           			  swal({
-                       title: msg.error,
+                       title: '操作失败!',
+                       text: msg.error,
                        type: "error",
                        timer: 1500
                      });

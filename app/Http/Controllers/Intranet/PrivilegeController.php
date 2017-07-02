@@ -86,7 +86,7 @@ class PrivilegeController extends CoreController
         if ($request->ajax()) {
             $permissionId = $request->get('permission_id');
             if (empty($permissionId)) {
-                return response()->json(array('error' => '没有需要删除的项'));
+                return response()->json(array('error' => '您还没有选择需要删除的项'));
             }
             $affectedRows = $this->permission->removeDataById($permissionId);
             return response()->json(array('rows' => $affectedRows));
