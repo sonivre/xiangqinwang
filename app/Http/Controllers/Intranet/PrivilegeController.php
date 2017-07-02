@@ -35,7 +35,7 @@ class PrivilegeController extends CoreController
             if ($result) {
                 // 写入管理员日志
                 $this->writeAdminLog('添加了"' . $request->get('permission_name') . '"权限');
-                return view('intranet.pages.privilege_list');
+                return redirect('intranet/Privilege/list');
             }
             return view('intranet.pages.privilege_add', array(
                 'errorMsg' => '添加失败！ 已存在的权限或网络错误！'
@@ -76,6 +76,26 @@ class PrivilegeController extends CoreController
             return redirect()->back();
         }
         
+        $permissionId = intval($permissionId);
+        $info = $this->permission->getInfoById($permissionId);
+        return view('intranet.pages.privilege_edit', array('info' => $info));
+    }
+    
+    public function actionDelete(Request $request, $permissionId = null)
+    {
+        if ($request->ajax()) {
+            $permissionId = $request->get('permission_id');
+            if (empty($permissionId)) {
+                return response()->json(array('error' => '没有需要删除的项'));
+            }
+            $affectedRows = $this->permission->removeDataById($permissionId);
+            return response()->json(array('rows' => $affectedRows));
+        }
+    
+        if (empty($permissionId)) {
+            return redirect()->back();
+        }
+    
         $permissionId = intval($permissionId);
         $info = $this->permission->getInfoById($permissionId);
         return view('intranet.pages.privilege_edit', array('info' => $info));

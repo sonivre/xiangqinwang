@@ -8,5 +8,6 @@ Route::group(array('namespace' => 'Intranet', 'prefix' => 'intranet'), function 
         Route::get('/Privilege/list', 'PrivilegeController@actionList');
         Route::any('/Privilege/add', 'PrivilegeController@actionAdd');
         Route::any('/Privilege/edit/{permissionId?}', 'PrivilegeController@actionEdit');
+        Route::any('/Privilege/delete/{permissionId?}', 'PrivilegeController@actionDelete');
     });
 });

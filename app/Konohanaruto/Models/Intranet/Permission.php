@@ -69,4 +69,16 @@ class Permission extends Model
         }
         return $permission->toArray();
     }
+    
+    /**
+     * 删除权限
+     * 
+     * @param string|int $permissionSet 例如: 1 或者 逗号连接的1, 2 ....
+     * @return boolean
+     */
+    public function removeDataById($permissionSet)
+    {
+        $permissionId = explode(',', $permissionSet);
+        return $this->whereIn('permission_id', $permissionId)->delete();
+    }
 }
