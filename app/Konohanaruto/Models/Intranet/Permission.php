@@ -55,6 +55,7 @@ class Permission extends Model
             $permission->$attribute = $value;
         }
         
+        // save 方法返回boolean值， true和false
         return $permission->save();
     }
     
@@ -79,6 +80,7 @@ class Permission extends Model
     public function removeDataById($permissionSet)
     {
         $permissionId = explode(',', $permissionSet);
+        // 删除方法返回的是受影响的行 0行则返回0
         return $this->whereIn('permission_id', $permissionId)->delete();
     }
 }
