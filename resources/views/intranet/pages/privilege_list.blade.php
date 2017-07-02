@@ -83,6 +83,7 @@
 @section('extra-js')
 <script>
     $(function () {
+        // 全选和取消全选功能
         $(document).on('change', '.check-box-all-delete', function () {
             if (! $(this).is(':checked')) {
             	$('.a-center .icheckbox_flat-green').each(function (index, item) {
@@ -117,6 +118,13 @@
     	
     });
 
+    /**
+     * 移除权限
+     *
+     * @param array permissionId 需要删除的permission权限数组
+     * @param boolean isConfirm 类似alert弹出框的用户行为判断
+     * @return void
+     */
     function removePermission(permissionId, isConfirm) 
     {
         // 数组
