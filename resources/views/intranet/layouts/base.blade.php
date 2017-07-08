@@ -23,6 +23,12 @@
 <script src="{{config('custom.staticServerIntranet')}}/build/js/sweetalert.min.js"></script>
 <script src="{{config('custom.staticServerIntranet')}}/build/js/jquery.validationEngine.js"></script>
 <script src="{{config('custom.staticServerIntranet')}}/build/js/jquery.validationEngine-zh_CN.js"></script>
+<link href="{{config('custom.staticServerIntranet')}}/vendors/nprogress/nprogress.css" rel="stylesheet">
+<link href="{{config('custom.staticServerIntranet')}}/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+<script src="{{config('custom.staticServerIntranet')}}/vendors/fastclick/lib/fastclick.js"></script>
+<script src="{{config('custom.staticServerIntranet')}}/vendors/nprogress/nprogress.js"></script>
+<script src="{{config('custom.staticServerIntranet')}}/vendors/iCheck/icheck.min.js"></script>
+<script src="{{config('custom.staticServerIntranet')}}/build/js/custom.min.js"></script>
 <!-- csrf token define -->
 <script>
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');

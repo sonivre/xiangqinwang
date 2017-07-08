@@ -51,11 +51,26 @@ class SystemController extends CoreController
                     'username' => $formInfo['username'],
                     'admin_id' => $userinfo['admin_id']
                 ));
+                // 更新登录ip
+                $this->updateUserStatus($userinfo['admin_id'], $request->ip());
+                // 记录日志
+                $this->writeAdminLog('系统登录', $request->ip());
                 return redirect('intranet');
             }
             return view('intranet.pages.login', $status);
         }
         return view('intranet.pages.login');
+    }
+    
+    private function updateUserStatus($adminId, $requestIp)
+    {
+        $this->userEloquent->updateUserInfoById(array(
+            'admin_id' => $adminId,
+            'data' => array(
+                'last_login' => date('Y-m-d H:i:s'),
+                'loginip' => $requestIp
+            ),
+        ));
     }
     
     /**

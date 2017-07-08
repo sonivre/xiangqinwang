@@ -23,8 +23,8 @@ class CoreController extends Controller
      * @param unknown $content
      * @return boolean
      */
-    public function writeAdminLog($content)
+    public function writeAdminLog($content, $ip = '')
     {
-        return $this->adminLog->saveLog($content);
+        return $this->adminLog->saveLog($content, $ip);
     }
 }

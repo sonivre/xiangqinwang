@@ -113,13 +113,14 @@ create table if not exists `xqw_area` (
 create table `xqw_admin` (
 	`admin_id` smallint unsigned not null auto_increment,
 	`username` varchar(50) not null default '',
-	`password` varchar(50) not null default '',
+	`password` varchar(255) not null default '',
 	`super` tinyint not null default 0 comment '是否是超级管理员',
 	`salt` varchar(50) not null default '' comment '杂质',
 	`flag` tinyint not null default 1 comment '是否可用',
 	`last_login` datetime not null default '0000-00-00 00:00:00' comment '最后一次登录时间',
 	`login_times` int unsigned not null default 0 comment '登录次数',
-	`loginip` int unsigned not null default 0 comment '最后一次登录ip',
+	`create_time` datetime not null default '0000-00-00 00:00:00' comment '创建时间',
+	`loginip` char(15) not null default '' comment '最后一次登录ip',
 	primary key prk_index(`admin_id`)
 )engine=innodb default charset=utf8;
 
@@ -148,12 +149,6 @@ CREATE TABLE `xqw_menus` (
   PRIMARY KEY (`menu_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
-CREATE TABLE `xqw_permissions` (
-  `permission_id` int(11) NOT NULL AUTO_INCREMENT,
-  `permission_name` varchar(50) NOT NULL DEFAULT '',
-  PRIMARY KEY (`permission_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
 -- 后台权限相关
 
 create table xqw_permissions(
@@ -164,4 +159,5 @@ create table xqw_permissions(
 	`update_time` datetime not null default '0000-00-00 00:00:00',
 	primary key `permission_id` (`permission_id`)
 )engine=innodb default charset=utf8;
+
 

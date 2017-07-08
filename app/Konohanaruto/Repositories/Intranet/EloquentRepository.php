@@ -95,4 +95,12 @@ abstract class EloquentRepository implements RepositoryInterface
     
         return false;
     }
+    
+    public function __call($method, $args = array())
+    {
+        if (! empty($args)) {
+            $args = $args[0];
+        }
+        return $this->model->$method($args);
+    }
 }

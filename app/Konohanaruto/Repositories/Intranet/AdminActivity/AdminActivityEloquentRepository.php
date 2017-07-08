@@ -2,6 +2,7 @@
 namespace App\Konohanaruto\Repositories\Intranet\AdminActivity;
 
 use App\Konohanaruto\Repositories\Intranet\EloquentRepository;
+use Illuminate\Http\Request;
 
 class AdminActivityEloquentRepository extends EloquentRepository implements AdminActivityRepositoryInterface
 {
@@ -26,13 +27,13 @@ class AdminActivityEloquentRepository extends EloquentRepository implements Admi
      * @param unknown $content
      * @return boolean
      */
-    public function saveLog($content = '')
+    public function saveLog($content = '', $ip = '')
     {
         $data = array();
         $userinfo = session(config('custom.intranetSessionName'));
         $data['admin_name'] = $userinfo['username'];
         $data['admin_id'] = $userinfo['admin_id'];
-        $data['ip'] = $userinfo['ip'];
+        $data['ip'] = empty($userinfo['ip']) ? $ip : $userinfo['ip'];
         $data['create_time'] = date('Y-m-d H:i:s');
         $data['content'] = $content;
         return $this->model->writeAdminActionLog($data);
