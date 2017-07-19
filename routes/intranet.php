@@ -11,5 +11,8 @@ Route::group(array('namespace' => 'Intranet', 'prefix' => 'intranet'), function 
         Route::any('Privilege/delete/{permissionId?}', 'PrivilegeController@actionDelete');
         // 管理员管理
         Route::get('AdminUserManage/list', 'AdminController@actionList');
+        Route::any('AdminUserManage/add', 'AdminController@actionAdd');
+        Route::any('AdminUserManage/edit/{userid?}', 'AdminController@actionEdit');
+        // 角色管理
     });
 });

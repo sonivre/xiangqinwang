@@ -27,7 +27,7 @@
               <td class="a-center">
               <div class="icheckbox_flat-green permission-row" data-permissionid="{{$item['permission_id']}}"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"></div>
               </td>
-              <td>{{$item['permission_name']}}</td>
+              <td>{{$item['permission_name_zh']}}</td>
               <td>{{$item['username']}}</td>
               <td>{{$item['create_time']}}</td>
               <td>

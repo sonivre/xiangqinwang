@@ -45,7 +45,11 @@ class PermissionEloquentRepository extends EloquentRepository implements Permiss
      */
     public function getPermissionList()
     {
-        $result = $this->model->join('admin', 'permissions.admin_id', '=', 'admin.admin_id')->get();
+        // getTable 得到表名
+        $result = $this->model
+        ->from($this->model->getTable() . ' as a')
+        ->select('a.*', 'b.admin_id', 'b.username')
+        ->join('admin as b', 'a.action_user_id', '=', 'b.admin_id')->get();
         if (empty($result)) {
             return array();
         }

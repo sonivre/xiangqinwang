@@ -25,35 +25,9 @@
         <label class="control-label col-md-3 col-sm-3 col-xs-12">权限名称 <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-          <input type="text" id="" required="required" name="permission_name_en" class="form-control col-md-7 col-xs-12">
-        </div>
-        <span>英文名称, 类似"permission_name"</span>
-      </div>
-      
-      <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12">权限名称 <span class="required">*</span>
-        </label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <input type="text" id="" required="required" name="permission_name_zh" class="form-control col-md-7 col-xs-12">
-        </div>
-        <span>中文名称, 类似"权限名称"</span>
-      </div>
-      
-      <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12">上级分类 <span class="required">*</span>
-        </label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
-          <select class="form-control" name="parent_id">
-            <option value="0">顶级分类</option>
-            @if (! empty($topPermissions))
-            @foreach ($topPermissions as $item)
-            <option value="{{$item['permission_id']}}">{{$item['permission_name_zh']}}</option>
-            @endforeach
-            @endif
-          </select>
+          <input type="text" id="" required="required" name="permission_name" class="form-control col-md-7 col-xs-12">
         </div>
       </div>
-      
       <div class="form-group">
         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
         {{csrf_field()}}
@@ -64,5 +38,4 @@
     </form>
   </div>
 </div>
-
 @endsection

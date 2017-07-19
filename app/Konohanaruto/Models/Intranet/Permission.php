@@ -5,14 +5,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Permission extends Model
 {
-    protected $table = 'permissions';
+    protected $table = 'admin_permissions';
     protected $primaryKey = 'permission_id';
     public $timestamps = false;
-    
-    public function userAll()
-    {
-        return $this->belongsTo('App\Konohanaruto\Models\Intranet\User', 'admin_id', 'admin_id');
-    }
     
     public function addPermission()
     {
@@ -22,9 +17,13 @@ class Permission extends Model
     /**
      * 查询权限是否已存在
      */
-    public function getPermissionByName($permissionName)
+    public function getPermissionByName($permissionData)
     {
-        return $this->where('permission_name', $permissionName)->first();
+        $permission_name_zh = $permissionData['permission_name_zh'];
+        $permission_name_en = $permissionData['permission_name_en'];
+        return $this->where('permission_name_zh', $permission_name_zh)
+        ->orWhere('permission_name_en', $permission_name_en)
+        ->first();
     }
     
     /**
@@ -44,7 +43,11 @@ class Permission extends Model
     public function updatePermissionById($args)
     {
         $permissionId = $args['permission_id'];
-        $data = array('permission_name' => $args['permission_name']);
+        $data = array(
+            'permission_name_zh' => $args['permission_name_zh'],
+            'permission_name_en' => $args['permission_name_en'],
+            'parent_id' => $args['parent_id'],
+        );
         $permission = static::where('permission_id', $permissionId)->first();
         
         if (empty($permission)) {
@@ -72,6 +75,18 @@ class Permission extends Model
     }
     
     /**
+     * 得到子分类
+     */
+    public function getChildrenPermissions($permission_id)
+    {
+        $result = static::where('parent_id', $permission_id)->first();
+        if (empty($result)) {
+            return false;
+        }
+        return $result->toArray();
+    }
+    
+    /**
      * 删除权限
      * 
      * @param string|int $permissionSet 例如: 1 或者 逗号连接的1, 2 ....
@@ -82,5 +97,23 @@ class Permission extends Model
         $permissionId = explode(',', $permissionSet);
         // 删除方法返回的是受影响的行 0行则返回0
         return $this->whereIn('permission_id', $permissionId)->delete();
+    }
+    
+    /**
+     * 得到所有的顶级分类
+     * 
+     * @param void
+     * @return array 顶级权限
+     */
+    public function getTopPermissions()
+    {
+        $result = $this
+        ->select('permission_id', 'permission_name_en', 'permission_name_zh')
+        ->where('parent_id', 0)
+        ->get();
+        if (empty($result)) {
+            return array();
+        }
+        return $result->toArray();
     }
 }

@@ -151,13 +151,46 @@ CREATE TABLE `xqw_menus` (
 
 -- 后台权限相关
 
-create table xqw_permissions(
+create table xqw_admin_permissions(
 	`permission_id` int auto_increment,
-	`admin_id` int not null default 0,
-	`permission_name` varchar(50) not null default '',
+	`parent_id` int not null default 0,
+	`action_user_id` int not null default 0,
+	`permission_name_en` varchar(50) not null default '',
+	`permission_name_zh` varchar(50) not null default '',
 	`create_time` datetime not null default '0000-00-00 00:00:00',
 	`update_time` datetime not null default '0000-00-00 00:00:00',
 	primary key `permission_id` (`permission_id`)
+)engine=innodb default charset=utf8;
+
+-- 角色表
+
+create table xqw_admin_roles(
+	`role_id` int auto_increment,
+	`action_user_id` int not null default 0,
+	`role_name` varchar(100) not null default '',
+	`create_time` datetime not null default '0000-00-00 00:00:00',
+	`update_time` datetime not null default '0000-00-00 00:00:00',
+	primary key `role_id` (`role_id`)
+)engine=innodb default charset=utf8;
+
+-- 角色权限表
+
+create table xqw_admin_role_permission(
+	`id` int auto_increment,
+	`action_user_id` int not null default 0,
+	`role_id` int not null default 0,
+	`permission_id` int not null default 0,
+	primary key `pk_id` (`id`)
+)engine=innodb default charset=utf8;
+
+-- 用户角色表
+
+create table xqw_admin_user_role(
+	`id` int auto_increment,
+	`action_user_id` int not null default 0,
+	`admin_id` int not null default 0,
+	`role_id` int not null default 0,
+	primary key `pk_id` (`id`)
 )engine=innodb default charset=utf8;
 
 
