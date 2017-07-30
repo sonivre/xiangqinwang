@@ -10,9 +10,9 @@ class AdminLog extends Model
     
     public function writeAdminActionLog($data)
     {
-        foreach ($data as $k => $value) {
-            $this->$k = $value;
-        }
-        return $this->save();
+//         foreach ($data as $k => $value) {
+//             $this->$k = $value;
+//         }
+        return $this->insert($data);
     }
 }

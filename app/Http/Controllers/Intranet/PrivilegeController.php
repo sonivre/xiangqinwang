@@ -108,17 +108,22 @@ class PrivilegeController extends CoreController
                 return response()->json(array('error' => '您还没有选择需要删除的项'));
             }
             
+            
+            $permissionItems = explode(',', $permissionId);
             // 判断当前分类下是否有子分类, 如有, 删除失败
-            $result = $this->permission->getChildrenPermissions($permissionId);
-            if (! empty($result)) {
+            $status = $this->permission->checkChildrenStatus($permissionItems);
+            if (! $status) {
                 return response()->json(array('error' => '当前分类下存在子分类, 删除失败'));
             }
             
-            $permissionInfo = $this->permission->getInfoById($permissionId);
+            $deletePermissionRows = $this->permission->getInfoById($permissionItems);
             $affectedRows = $this->permission->removeDataById($permissionId);
             
+            // 更新相关删除日志
             if ($affectedRows) {
-                $this->writeAdminLog('删除了"' . $permissionInfo['permission_name_en'] . '"权限');
+                foreach ($deletePermissionRows as $permissionInfo) {
+                    $this->writeAdminLog('删除了"' . $permissionInfo['permission_name_en'] . '"权限');
+                }
             }
             
             return response()->json(array('rows' => $affectedRows));

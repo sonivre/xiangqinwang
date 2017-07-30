@@ -55,4 +55,51 @@ class PermissionEloquentRepository extends EloquentRepository implements Permiss
         }
         return $result->toArray();
     }
+    
+    /**
+     * 删除权限之前的验证, 验证permission层级关系, 以及完整性，是否可以删除, 子分类的验证等等
+     */
+    public function checkChildrenStatus($permissions = array())
+    {
+        if (empty($permissions)) {
+            return false;
+        }
+        
+        $permissionList = $this->getPermissionList();
+        $permissionRelation = array();
+        if (! empty($permissionList)) {
+            foreach ($permissionList as $item) {
+                if ($item['parent_id'] != 0) {
+                    $permissionRelation[$item['parent_id']][] = $item['permission_id'];
+                }
+            }
+        }
+        
+        $permissionClient = array();
+        // 讲用户传入的permission构造成和上方数组一样的结构
+        foreach ($permissions as $item) {
+            if (key_exists($item, $permissionRelation)) {
+                // 处理该数组
+                $permissionClient[$item] = array();
+                foreach ($permissionRelation[$item] as $permissionId) {
+                    // 客户端传来的分类中, 存在父分类下的某一个子项, 则把它加入数组
+                    if (in_array($permissionId, $permissions)) {
+                        $permissionClient[$item][] = $permissionId;
+                    }
+                }
+            }
+        }
+        
+        // 最后，比较
+        if (! empty($permissionClient)) {
+            foreach ($permissionClient as $parentId => $childrens) {
+                // 只要存在父分类存在子分类没有被勾选的情况，就返回false
+                if ($permissionRelation[$parentId] != $childrens) {
+                    return false;
+                }
+            }
+        }
+        
+        return true;
+    }
 }

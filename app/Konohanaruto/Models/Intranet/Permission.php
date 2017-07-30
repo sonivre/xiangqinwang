@@ -67,7 +67,7 @@ class Permission extends Model
      */
     public function getInfoById($id)
     {
-        $permission = static::where('permission_id', $id)->first();
+        $permission = static::whereIn('permission_id', $id)->get();
         if (empty($permission)) {
             return false;
         }
