@@ -116,4 +116,31 @@ class Permission extends Model
         }
         return $result->toArray();
     }
+    
+    /**
+     * 得到层级关系的权限树
+     * 
+     * @param array $permissionList
+     * @return array
+     */
+    public function getPermissionTree($permissionList = array())
+    {
+        if (empty($permissionList)) {
+            return array();
+        }
+        
+        $permissionTree = array();
+        foreach ($permissionList as $key => $item) {
+            if ($item['parent_id'] == 0) {
+                $permissionTree[$item['permission_id']] = $item;
+                unset($permissionList[$key]);
+            }
+        }
+        
+        foreach ($permissionList as $item) {
+            $permissionTree[$item['parent_id']]['children'][$item['permission_id']] = $item;
+        }
+        
+        return $permissionTree;
+    }
 }

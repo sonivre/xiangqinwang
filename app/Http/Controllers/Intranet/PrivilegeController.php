@@ -19,6 +19,7 @@ class PrivilegeController extends CoreController
     public function actionList()
     {
         $permissionList = $this->permission->getPermissionList();
+        $permissionList = $this->permission->getPermissionTree($permissionList);
         return view('intranet.pages.privilege_list', array('permissionList' => $permissionList));
     }
     
@@ -43,6 +44,7 @@ class PrivilegeController extends CoreController
                 'errorMsg' => '添加失败！ 已存在的权限或网络错误！'
             ));
         }
+        
         // 得到顶级分类列表
         $topPermissions = $this->permission->getTopPermissions();
         return view('intranet.pages.privilege_add', array('topPermissions' => $topPermissions));
