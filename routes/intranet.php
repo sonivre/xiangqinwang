@@ -14,5 +14,9 @@ Route::group(array('namespace' => 'Intranet', 'prefix' => 'intranet'), function 
         Route::any('AdminUserManage/add', 'AdminController@actionAdd');
         Route::any('AdminUserManage/edit/{userid?}', 'AdminController@actionEdit');
         // 角色管理
+        Route::get('RoleManage/list', 'RoleController@actionList');
+        Route::any('RoleManage/add', 'RoleController@actionAdd');
+        Route::any('RoleManage/edit/{roleId?}', 'RoleController@actionEdit');
+        Route::any('RoleManage/delete/{roleId?}', 'RoleController@actionDelete');
     });
 });
