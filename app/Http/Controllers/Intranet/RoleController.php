@@ -18,6 +18,11 @@ class RoleController extends CoreController
     
     public function actionList()
     {
-        return view('intranet.pages.privilege_list');
+        return view('intranet.pages.role_list');
+    }
+    
+    public function actionAdd()
+    {
+        return view('intranet.pages.role_add');
     }
 }
