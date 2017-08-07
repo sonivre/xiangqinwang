@@ -5,6 +5,7 @@
 <style>
 .permission-box-toolbar {
 	cursor: pointer;
+	margin-bottom: 0;
 }
 
 .right-arrows {
@@ -38,6 +39,40 @@
 	position: absolute;
 	top: 10px;
 	right: 10px;
+}
+
+.permission-box-content {
+	height: 300px;
+	border: 1px solid #CCCCCC;
+	border-top: none;
+	overflow-y: scroll;
+}
+
+.permission-box-content.hide {
+	display: none;
+}
+
+.item-group {
+	list-style: none;
+	border-bottom: 1px solid #cccccc;
+/* 	padding-left: 15px; */
+	padding-left: 0;
+}
+
+.item-group > li {
+	display: inline-block;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 15px;
+}
+
+.item-group > li input {
+	vertical-align: sub;
+}
+
+.item-group > .li-father {
+	display: block;
+/* 	border-bottom: 1px solid #cccccc; */
 }
 </style>
 @endsection
@@ -75,13 +110,31 @@
       <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12">指定权限 <span class="required">*</span></label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-        <div class="permission-box">
-        <div class="panel panel-default permission-box-toolbar">
-            <div class="panel-heading permission-box-toolbar-header"><i class="right-arrows incline-top"></i></div>
-        </div>
-        </div>
-        <div class="permission-box-content">
-        </div>
+            <div class="permission-box">
+            <div class="panel panel-default permission-box-toolbar">
+                <div class="panel-heading permission-box-toolbar-header"><i class="right-arrows incline-bottom"></i></div>
+            </div>
+            </div>
+            <div class="permission-box-content">
+            @if (! empty($permissions))
+            @foreach ($permissions as $item)
+            <ul class="item-group">
+                <li class="li-father">
+                <span><input type="checkbox" name="permission_id[]" value="{{$item['permission_id']}}"></span>
+                <span>{{$item['permission_name_zh']}}</span>
+                </li>
+                @if (! empty($item['children']))
+                @foreach ($item['children'] as $sub)
+                <li class="li-children">
+                <span><input type="checkbox" name="permission_id[]" value="{{$sub['permission_id']}}"></span>
+                <span>{{$sub['permission_name_zh']}}</span>
+                </li>
+                @endforeach
+                @endif
+            </ul>
+            @endforeach
+            @endif
+            </div>
         </div>
       </div>
       
@@ -103,8 +156,10 @@ $(function(){
 	$('.permission-box-toolbar-header').on('click', function () {
 		if ($(this).find('.right-arrows').hasClass('incline-top')) {
 			$(this).find('.right-arrows').removeClass('incline-top').addClass('incline-bottom');
+			$('.permission-box-content').removeClass('hide');
 		} else {
 			$(this).find('.right-arrows').removeClass('incline-bottom').addClass('incline-top');
+			$('.permission-box-content').addClass('hide');
 		}
 	});
 });

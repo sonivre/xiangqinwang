@@ -102,4 +102,37 @@ class PermissionEloquentRepository extends EloquentRepository implements Permiss
         
         return true;
     }
+    
+    /**
+     * 构造权限树形结构
+     * 
+     * @param void
+     * @return array 权限树
+     */
+    public function getPermissionTrees()
+    {
+        $permissionList = $this->getPermissionList();
+        
+        if (empty($permissionList)) {
+            return $permissionList;
+        }
+        
+        $permissions = array();
+        
+        // 父级分类
+        foreach ($permissionList as $item) {
+            if ($item['parent_id'] == 0) {
+                $permissions[$item['permission_id']] = $item;
+            }
+        }
+        
+        // 子级分类
+        foreach ($permissionList as $item) {
+            if ($item['parent_id'] != 0) {
+                $permissions[$item['parent_id']]['children'][$item['permission_id']] = $item;
+            }
+        }
+        
+        return $permissions;
+    }
 }
