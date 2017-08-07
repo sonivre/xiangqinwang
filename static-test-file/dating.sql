@@ -177,7 +177,6 @@ create table xqw_admin_roles(
 
 create table xqw_admin_role_permission(
 	`id` int auto_increment,
-	`action_user_id` int not null default 0,
 	`role_id` int not null default 0,
 	`permission_id` int not null default 0,
 	primary key `pk_id` (`id`)
