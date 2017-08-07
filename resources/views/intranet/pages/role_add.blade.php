@@ -59,6 +59,10 @@
 	padding-left: 0;
 }
 
+.item-group:last-of-type {
+	border-bottom: none;
+}
+
 .item-group > li {
 	display: inline-block;
 	padding-top: 5px;
@@ -160,6 +164,43 @@ $(function(){
 		} else {
 			$(this).find('.right-arrows').removeClass('incline-bottom').addClass('incline-top');
 			$('.permission-box-content').addClass('hide');
+		}
+	});
+
+	// 权限的checkbox全选
+	$('.li-father input[type="checkbox"]').on('change', function () {
+		if ($(this).is(':checked')) {
+			$(this).parents('.item-group').find('.li-children input[type="checkbox"]').each(function (i, n) {
+				$(n)[0].checked = true;
+			});
+		} else {
+			$(this).parents('.item-group').find('.li-children input[type="checkbox"]').each(function (i, n) {
+				$(n)[0].checked = false;
+			});
+		}
+		
+	});
+
+	$('.li-children input[type="checkbox"]').on('change', function () {
+		var ulObject = $(this).parents('.item-group');
+		var liChildrens = ulObject.find('.li-children input[type="checkbox"]');
+		var liFather = ulObject.find('.li-father input[type="checkbox"]');
+		// 得到子级权限checkbox的个数
+		var liChildrenCount = liChildrens.length;
+		// 得到被选中的checkbox的个数
+		var selectedLiChildrenCount = 0;
+		
+		liChildrens.each(function (i, n) {
+			if ($(n).is(':checked')) {
+				++selectedLiChildrenCount;
+			}
+		});
+
+		// 子级全部被选中, 则将父级标注为选中状态
+		if (liChildrenCount == selectedLiChildrenCount) {
+			liFather[0].checked = true;
+		} else {
+			liFather[0].checked = false;
 		}
 	});
 });
