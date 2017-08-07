@@ -100,12 +100,11 @@
 @section('extra-js')
 <script type="text/javascript">
 $(function(){
-	$('.right-arrows').on('click', function () {
-		console.log('aaaa');
-		if ($(this).hasClass('incline-top')) {
-			$(this).removeClass('incline-top').addClass('incline-bottom');
+	$('.permission-box-toolbar-header').on('click', function () {
+		if ($(this).find('.right-arrows').hasClass('incline-top')) {
+			$(this).find('.right-arrows').removeClass('incline-top').addClass('incline-bottom');
 		} else {
-			$(this).removeClass('incline-bottom').addClass('incline-top');
+			$(this).find('.right-arrows').removeClass('incline-bottom').addClass('incline-top');
 		}
 	});
 });
