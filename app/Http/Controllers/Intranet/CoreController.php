@@ -27,4 +27,20 @@ class CoreController extends Controller
     {
         return $this->adminLog->saveLog($content, $ip);
     }
+    
+    public function getCurrentUserInfo()
+    {
+        return session(config('custom.intranetSessionName'));
+    }
+    
+    public function getCurrentUserId()
+    {
+        $userInfo = session(config('custom.intranetSessionName'));
+        
+        if (! empty($userInfo['admin_id'])) {
+            return $userInfo['admin_id'];
+        }
+        
+        return false;
+    }
 }

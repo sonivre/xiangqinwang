@@ -124,7 +124,7 @@
             @foreach ($permissions as $item)
             <ul class="item-group">
                 <li class="li-father">
-                <span><input type="checkbox" name="permission_id[]" value="{{$item['permission_id']}}"></span>
+                <span><input type="checkbox"></span>
                 <span>{{$item['permission_name_zh']}}</span>
                 </li>
                 @if (! empty($item['children']))
