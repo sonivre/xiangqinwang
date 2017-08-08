@@ -84,13 +84,7 @@ class RoleController extends CoreController
     
             return response()->json(array('rows' => $affectedRows));
         }
-    
-        if (empty($actionId)) {
-            return redirect()->back();
-        }
-    
-        $actionId = intval($actionId);
-        $info = $this->role->getInfoById($actionId);
-        return view('intranet.pages.role_edit', array('info' => $info));
+        
+        return response()->json(array('error' => '非法请求'));
     }
 }
