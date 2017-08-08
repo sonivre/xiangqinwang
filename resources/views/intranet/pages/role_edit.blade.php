@@ -124,13 +124,13 @@
             @foreach ($permissions as $item)
             <ul class="item-group">
                 <li class="li-father">
-                <span><input type="checkbox"></span>
+                <span><input type="checkbox" @php if (in_array($item['permission_id'], $selectedPermissionId)) echo 'checked'; @endphp></span>
                 <span>{{$item['permission_name_zh']}}</span>
                 </li>
                 @if (! empty($item['children']))
                 @foreach ($item['children'] as $sub)
                 <li class="li-children">
-                <span><input type="checkbox" name="permission_id[]" value="{{$sub['permission_id']}}"></span>
+                <span><input type="checkbox" @php if (in_array($sub['permission_id'], $selectedPermissionId)) echo 'checked'; @endphp name="permission_id[]" value="{{$sub['permission_id']}}"></span>
                 <span>{{$sub['permission_name_zh']}}</span>
                 </li>
                 @endforeach

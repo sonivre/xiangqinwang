@@ -37,4 +37,21 @@ class RolePermission extends Model
         // 删除方法返回的是受影响的行 0行则返回0
         return $this->whereIn('role_id', $ids)->delete();
     }
+    
+    /**
+     * 根据角色id查看对应的权限
+     * 
+     * @param integer $roleId
+     * @return array
+     */
+    public function getPermissionsByRoleId($roleId)
+    {
+        $permissions = static::where('role_id', '=', $roleId)->get();
+        
+        if (empty($permissions)) {
+            return false;
+        }
+        
+        return $permissions->toArray();
+    }
 }
