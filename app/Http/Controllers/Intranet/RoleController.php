@@ -94,4 +94,46 @@ class RoleController extends CoreController
         
         return response()->json(array('error' => '非法请求'));
     }
+    
+    /**
+     * 编辑
+     */
+    public function actionEdit(Request $request, $actionId = null)
+    {
+        if ($request->isMethod('POST')) {
+            $formData = $request->all();
+            $validator = Validator::make($formData, [
+                'role_id' => 'numeric',
+                'permission_id[]' => 'array'
+            ], array(
+                'numeric' => ':attribute必须为数字',
+                'array' => ':attribute必须选择一项',
+            ));
+    
+            if ($validator->fails()) {
+                return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput($formData);
+            }
+    
+//             $status = $this->permission->updatePermissionById($formInfo);
+    
+//             if ($status) {
+//                 $this->writeAdminLog($actionLogContent);
+//                 return redirect('intranet/Privilege/list');
+//             }
+    
+//             return view('intranet.pages.privilege_edit', array('errorMsg' => '操作失败！'));
+        }
+    
+        if (empty($actionId)) {
+            return redirect()->back();
+        }
+        
+        $actionId = intval($actionId);
+        // 必须传入一个数组
+        $info = $this->role->getInfoById(array($actionId));
+        return view('intranet.pages.role_edit', array('info' => $info));
+    }
 }

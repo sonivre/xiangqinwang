@@ -49,7 +49,7 @@ class Role extends Model
     /**
      * 得到详细信息
      * 
-     * @param string|integer $id
+     * @param array $id 需要检索的id
      * @return mixed
      */
     public function getInfoById($id)
