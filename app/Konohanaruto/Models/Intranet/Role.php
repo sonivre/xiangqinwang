@@ -45,4 +45,34 @@ class Role extends Model
         
         return $result->toArray();
     }
+    
+    /**
+     * 得到详细信息
+     * 
+     * @param string|integer $id
+     * @return mixed
+     */
+    public function getInfoById($id)
+    {
+        $roles = static::whereIn('role_id', $id)->get();
+        
+        if (empty($roles)) {
+            return false;
+        }
+        
+        return $roles->toArray();
+    }
+    
+    /**
+     * 删除
+     *
+     * @param string|int $permissionSet 例如: 1 或者 逗号连接的1, 2 ....
+     * @return boolean
+     */
+    public function removeDataById($permissionSet)
+    {
+        $permissionId = explode(',', $permissionSet);
+        // 删除方法返回的是受影响的行 0行则返回0
+        return $this->whereIn('permission_id', $permissionId)->delete();
+    }
 }
