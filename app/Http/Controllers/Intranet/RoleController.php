@@ -59,4 +59,38 @@ class RoleController extends CoreController
         $permissions = $this->permissionRepository->getPermissionTrees();
         return view('intranet.pages.role_add', array('permissions' => $permissions));
     }
+    
+    public function actionDelete(Request $request, $actionId = null)
+    {
+        if ($request->ajax()) {
+            $actionId = $request->get('action_id');
+    
+            if (empty($actionId)) {
+                return response()->json(array('error' => '您还没有选择需要删除的项'));
+            }
+    
+    
+            $actionItems = explode(',', $actionId);
+            // 得到被删除的信息
+            $deleteItemRows = $this->role->getInfoById($actionItems);
+            $affectedRows = $this->role->removeDataById($actionId);
+    
+            // 更新相关删除日志
+            if ($affectedRows) {
+                foreach ($deleteItemRows as $info) {
+                    $this->writeAdminLog('删除了"' . $info['role_name'] . '"角色');
+                }
+            }
+    
+            return response()->json(array('rows' => $affectedRows));
+        }
+    
+        if (empty($actionId)) {
+            return redirect()->back();
+        }
+    
+        $actionId = intval($actionId);
+        $info = $this->role->getInfoById($actionId);
+        return view('intranet.pages.role_edit', array('info' => $info));
+    }
 }
