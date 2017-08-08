@@ -24,4 +24,17 @@ class RolePermission extends Model
         
         return $status;
     }
+    
+    /**
+     * 删除
+     *
+     * @param string|int $ids 例如: 1 或者 逗号连接的1, 2 ....
+     * @return boolean
+     */
+    public function removeDataByRoleId($ids)
+    {
+        $ids = explode(',', $ids);
+        // 删除方法返回的是受影响的行 0行则返回0
+        return $this->whereIn('role_id', $ids)->delete();
+    }
 }

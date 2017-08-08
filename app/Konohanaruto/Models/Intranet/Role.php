@@ -66,13 +66,13 @@ class Role extends Model
     /**
      * 删除
      *
-     * @param string|int $permissionSet 例如: 1 或者 逗号连接的1, 2 ....
+     * @param string|int $ids 例如: 1 或者 逗号连接的1, 2 ....
      * @return boolean
      */
-    public function removeDataById($permissionSet)
+    public function removeDataById($ids)
     {
-        $permissionId = explode(',', $permissionSet);
+        $ids = explode(',', $ids);
         // 删除方法返回的是受影响的行 0行则返回0
-        return $this->whereIn('permission_id', $permissionId)->delete();
+        return $this->whereIn('role_id', $ids)->delete();
     }
 }

@@ -127,6 +127,7 @@
      		   url: "{{url('intranet/RoleManage/delete')}}",
      		   data: "_token=" + CSRF_TOKEN + "&action_id=" + actionId,
      		   success: function (msg) {
+         		   //console.log(msg);
          		   if (msg.error) {
           			  swal({
                        title: '操作失败!',
@@ -137,7 +138,7 @@
              	   } else {
                  	  // 删除DOM行
                  	  for (var i in actionArray) {
-                  		 $(".data-row[data-permissionid=" + actionArray[i] + "]").parents('tr').remove();
+                  		 $(".data-row[data-actionid=" + actionArray[i] + "]").parents('tr').remove();
                       }
                  	  
                       swal({

@@ -11,6 +11,7 @@ use App\Konohanaruto\Repositories\Intranet\RolePermission\RolePermissionEloquent
 class RoleController extends CoreController
 {
     protected $role;
+    protected $rolePermission;
     protected $permissionRepository;
 
     public function __construct(RoleRepositoryInterface $role, PermissionEloquentRepository $permissionRepository, RolePermissionEloquentRepository $rolePermission)
@@ -74,6 +75,12 @@ class RoleController extends CoreController
             // 得到被删除的信息
             $deleteItemRows = $this->role->getInfoById($actionItems);
             $affectedRows = $this->role->removeDataById($actionId);
+            
+            // 删除role_permission表相应记录
+            if ($affectedRows) {
+                $this->rolePermission->removeDataByRoleId($actionId);
+            }
+            // return response()->json(array('rows' => $deleteItemRows));
     
             // 更新相关删除日志
             if ($affectedRows) {
