@@ -27,4 +27,22 @@ class Role extends Model
         
         return false;
     }
+    
+    /**
+     * 得到角色列表
+     * 
+     * @return array
+     */
+    public function getRoleList()
+    {
+        $result = $this->from($this->getTable() . ' as a')
+        ->select('a.*', 'b.admin_id', 'b.username')
+        ->join('admin as b', 'a.action_user_id', '=', 'b.admin_id')->get();
+        
+        if (empty($result)) {
+            return array();
+        }
+        
+        return $result->toArray();
+    }
 }
