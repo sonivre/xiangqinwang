@@ -107,7 +107,7 @@
         <label class="control-label col-md-3 col-sm-3 col-xs-12">角色名称 <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-          <input type="text" id="" required="required" name="role_name" class="form-control col-md-7 col-xs-12">
+          <input type="text" id="" required="required" name="role_name" value="@if (! empty($info['role_name'])) {{$info['role_name']}}@endif" class="form-control col-md-7 col-xs-12">
         </div>
       </div>
       

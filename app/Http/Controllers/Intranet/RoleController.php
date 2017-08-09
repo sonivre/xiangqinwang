@@ -134,6 +134,13 @@ class RoleController extends CoreController
         $actionId = intval($actionId);
         // 必须传入一个数组
         $info = $this->role->getInfoById(array($actionId));
-        return view('intranet.pages.role_edit', array('info' => $info));
+        // 取出权限树
+        $permissions = $this->permissionRepository->getPermissionTrees();
+        
+        if (! empty($info[0])) {
+            $info = $info[0];
+        }
+        
+        return view('intranet.pages.role_edit', array('info' => $info, 'permissions' => $permissions));
     }
 }
