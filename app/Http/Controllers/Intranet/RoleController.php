@@ -101,30 +101,22 @@ class RoleController extends CoreController
     public function actionEdit(Request $request, $actionId = null)
     {
         if ($request->isMethod('POST')) {
-            $formData = $request->all();
-            $validator = Validator::make($formData, [
-                'role_id' => 'numeric',
-                'permission_id[]' => 'array'
-            ], array(
-                'numeric' => ':attribute必须为数字',
-                'array' => ':attribute必须选择一项',
-            ));
-    
-            if ($validator->fails()) {
-                return redirect()
-                ->back()
-                ->withErrors($validator)
-                ->withInput($formData);
+            $formData = array();
+            $formData['role_name'] = $request->get('role_name');
+            $formData['granted_permissions'] = $request->get('permission_id');
+            $formData['user_id'] = $this->getCurrentUserId();
+            $roleId = $request->get('role_id');
+            
+            // 相关信息修改
+            if ($roleId) {
+                // 修改角色名称
+                $status = $this->role->updateDataByRoleId($formData, $roleId);
             }
-    
-//             $status = $this->permission->updatePermissionById($formInfo);
-    
-//             if ($status) {
-//                 $this->writeAdminLog($actionLogContent);
-//                 return redirect('intranet/Privilege/list');
-//             }
-    
-//             return view('intranet.pages.privilege_edit', array('errorMsg' => '操作失败！'));
+            
+            // 操作失败返回
+            return redirect()
+            ->back()
+            ->withInput($formData);
         }
     
         if (empty($actionId)) {

@@ -75,4 +75,11 @@ class Role extends Model
         // 删除方法返回的是受影响的行 0行则返回0
         return $this->whereIn('role_id', $ids)->delete();
     }
+    
+    /**
+     * 更新数据
+     * 
+     * @param array $data
+     * @return
+     */
 }
