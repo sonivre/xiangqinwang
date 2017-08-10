@@ -105,12 +105,17 @@ class RoleController extends CoreController
             $formData['role_name'] = $request->get('role_name');
             $formData['granted_permissions'] = $request->get('permission_id');
             $formData['user_id'] = $this->getCurrentUserId();
-            $roleId = $request->get('role_id');
+            $formData['role_id'] = $request->get('role_id');
             
             // 相关信息修改
-            if ($roleId) {
+            if ($formData['role_id']) {
                 // 修改角色名称
-                $status = $this->role->updateDataByRoleId($formData, $roleId);
+                $status = $this->role->updateDataByRoleId($formData);
+                
+                if ($status) {
+                    // 更新包含的权限
+                    
+                }
             }
             
             // 操作失败返回

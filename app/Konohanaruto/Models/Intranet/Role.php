@@ -82,4 +82,25 @@ class Role extends Model
      * @param array $data
      * @return
      */
+    public function updateDataByRoleId($args)
+    {
+        $roleId = $args['role_id'];
+        $data = array(
+            'role_name' => $args['role_name'],
+            'update_time' => date('Y-m-d H:i:s'),
+            'action_user_id' => $args['user_id']
+        );
+        $info = $this->where('role_id', $roleId)->first();
+        
+        if (empty($info)) {
+            return false;
+        }
+        
+        foreach ($data as $attribute => $value) {
+            $info->$attribute = $value;
+        }
+        
+        // save 方法返回boolean值， true和false
+        return $info->save();
+    }
 }
