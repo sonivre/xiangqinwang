@@ -103,7 +103,7 @@ class RoleController extends CoreController
         if ($request->isMethod('POST')) {
             $formData = array();
             $formData['role_name'] = $request->get('role_name');
-            $formData['granted_permissions'] = $request->get('permission_id');
+            $formData['granted_permissions'] = empty($request->get('permission_id')) ? array() : $request->get('permission_id');
             $formData['user_id'] = $this->getCurrentUserId();
             $formData['role_id'] = $request->get('role_id');
             
@@ -113,7 +113,39 @@ class RoleController extends CoreController
                 $status = $this->role->updateDataByRoleId($formData);
                 
                 if ($status) {
-                    // 更新包含的权限
+                    // 得到目前所有的已赋有的权限
+                    $res = $this->rolePermission->getPermissionsByRoleId($formData['role_id']);
+                    $res = $res ? $res : array();
+                    $selectedPermissions = array();
+                    
+                    foreach ($res as $per) {
+                        array_push($selectedPermissions, $per['permission_id']);
+                    }
+                    
+                    if (! empty($selectedPermissions)) {
+                        foreach ($selectedPermissions as $s => $selectId) {
+                            // 只有当客户端提交的不为空才进行差异处理
+                            if (! empty($formData['granted_permissions'])) {
+                                foreach ($formData['granted_permissions'] as $g => $grantedId) {
+                                    // 存在公共元素
+                                    if ($selectId == $grantedId) {
+                                        unset($selectedPermissions[$s]);
+                                        unset($formData['granted_permissions'][$g]);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        $selectedPermissions = array();
+                    }
+                    
+                    // 得到需要删除和需要新增的元素
+                    $deletingPermissions = $selectedPermissions;
+                    $insertPermissions = $formData['granted_permissions'];
+                    echo '<pre>';var_dump($deletingPermissions);
+                    echo '<hr>';
+                    var_dump($insertPermissions);exit;
                     
                 }
             }
