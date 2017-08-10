@@ -54,4 +54,13 @@ class RolePermission extends Model
         
         return $permissions->toArray();
     }
+    
+    /**
+     * 根据角色id，权限id删除记录
+     */
+    public function removeRowsByRolePermission($args)
+    {
+        $roleId = $args['role_id'];
+        $permissionIds = $args['permission_ids'];
+    }
 }

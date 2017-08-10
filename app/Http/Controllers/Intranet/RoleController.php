@@ -140,13 +140,16 @@ class RoleController extends CoreController
                         $selectedPermissions = array();
                     }
                     
-                    // 得到需要删除和需要新增的元素
-                    $deletingPermissions = $selectedPermissions;
-                    $insertPermissions = $formData['granted_permissions'];
-                    echo '<pre>';var_dump($deletingPermissions);
-                    echo '<hr>';
-                    var_dump($insertPermissions);exit;
-                    
+                    // 删除
+                    $this->rolePermission->removeRowsByRolePermission(array(
+                        'role_id' => $formData['role_id'],
+                        'permission_ids' => $selectedPermissions,
+                    ));
+                    // 新增
+//                     $this->rolePermission->removeRowsByRolePermission(array(
+//                         'role_id' => $formData['role_id'],
+//                         'permission_ids' => $selectedPermissions,
+//                     ));
                 }
             }
             
