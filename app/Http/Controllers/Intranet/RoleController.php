@@ -122,28 +122,14 @@ class RoleController extends CoreController
                         array_push($selectedPermissions, $per['permission_id']);
                     }
                     
-                    if (! empty($selectedPermissions)) {
-                        foreach ($selectedPermissions as $s => $selectId) {
-                            // 只有当客户端提交的不为空才进行差异处理
-                            if (! empty($formData['granted_permissions'])) {
-                                foreach ($formData['granted_permissions'] as $g => $grantedId) {
-                                    // 存在公共元素
-                                    if ($selectId == $grantedId) {
-                                        unset($selectedPermissions[$s]);
-                                        unset($formData['granted_permissions'][$g]);
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    } else {
-                        $selectedPermissions = array();
-                    }
+                    $removePermissions = array_diff($selectedPermissions, $formData['granted_permissions']);
+                    $insertPermissions = array_diff($formData['granted_permissions'], $selectedPermissions);
+                    //var_dump($removePermissions);echo '<hr>';var_dump($insertPermissions);exit;
                     
                     // 删除
                     $this->rolePermission->removeRowsByRolePermission(array(
                         'role_id' => $formData['role_id'],
-                        'permission_ids' => $selectedPermissions,
+                        'permission_ids' => $removePermissions
                     ));
                     // 新增
 //                     $this->rolePermission->removeRowsByRolePermission(array(
