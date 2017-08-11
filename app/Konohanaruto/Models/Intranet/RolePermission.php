@@ -68,4 +68,15 @@ class RolePermission extends Model
             array('permission_id', $permissionId)
         ))->delete();
     }
+    
+    /**
+     * 按permission id删除相关记录
+     * 
+     * @param integer $permission_id
+     * @return mixed
+     */
+    public function removeAllByPermissionId($permissionId)
+    {
+        return $this->where('permission_id', $permissionId)->delete();
+    }
 }

@@ -5,14 +5,17 @@ namespace App\Http\Controllers\Intranet;
 use Illuminate\Http\Request;
 use Validator;
 use App\Konohanaruto\Repositories\Intranet\Permission\PermissionRepositoryInterface;
+use App\Konohanaruto\Repositories\Intranet\RolePermission\RolePermissionEloquentRepository;
 
 class PrivilegeController extends CoreController
 {
     protected $permission;
+    protected $rolePermission;
     
-    public function __construct(PermissionRepositoryInterface $permission)
+    public function __construct(PermissionRepositoryInterface $permission, RolePermissionEloquentRepository $rolePermission)
     {
         $this->permission = $permission;
+        $this->rolePermission = $rolePermission;
         parent::__construct();
     }
     
@@ -113,12 +116,15 @@ class PrivilegeController extends CoreController
             $permissionItems = explode(',', $permissionId);
             // 判断当前分类下是否有子分类, 如有, 删除失败
             $status = $this->permission->checkChildrenStatus($permissionItems);
+            
             if (! $status) {
                 return response()->json(array('error' => '当前分类下存在子分类, 删除失败'));
             }
             
             $deletePermissionRows = $this->permission->getInfoById($permissionItems);
             $affectedRows = $this->permission->removeDataById($permissionId);
+            // 删除角色权限表中冗余的数据，也就是删除和该权限相关联的所有数据
+            $this->rolePermission->removeAllByPermissionId($permissionId);
             
             // 更新相关删除日志
             if ($affectedRows) {
