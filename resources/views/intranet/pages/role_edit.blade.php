@@ -146,6 +146,7 @@
         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
         {{csrf_field()}}
         <input type="hidden" name="role_id" value="{{$info['role_id']}}">
+        <input type="hidden" name="old_role_name" value="{{$info['role_name']}}">
         <button type="submit" class="btn btn-success">提交</button>
 		<button class="btn btn-primary" type="reset" onclick="window.location.href=window.location.href;">重置</button>
         </div>

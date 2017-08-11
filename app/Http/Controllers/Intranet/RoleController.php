@@ -106,6 +106,7 @@ class RoleController extends CoreController
             $formData['granted_permissions'] = empty($request->get('permission_id')) ? array() : $request->get('permission_id');
             $formData['user_id'] = $this->getCurrentUserId();
             $formData['role_id'] = $request->get('role_id');
+            $oldRoleName = $request->get('old_role_name');
             
             // 相关信息修改
             if ($formData['role_id']) {
@@ -138,13 +139,21 @@ class RoleController extends CoreController
                     
                     // 新增
                     if (! empty($insertPermissions)) {
-                        foreach ($insertPermissions as $item) {
-                            $insertStatus = $this->rolePermission->addData(array(
-                                'role_id' => $formData['role_id'],
-                                'granted_permissions' => $insertPermissions
-                            ));
-                        }
+                        $insertStatus = $this->rolePermission->addData(array(
+                            'role_id' => $formData['role_id'],
+                            'granted_permissions' => $insertPermissions
+                        ));
                     }
+                    
+                    // 角色名称尚未被修改
+                    if ($formData['role_name'] == $oldRoleName) {
+                        $logContent = '修改了"' . $formData['role_name'] . '"角色';
+                    } else {
+                        $logContent = '将"' . $oldRoleName . '"角色修改为"' . $formData['role_name'] . '"';
+                    }
+                    
+                    // 写入更新日志
+                    $this->writeAdminLog($logContent);
                     
                     return redirect('intranet/RoleManage/list');
                 }
