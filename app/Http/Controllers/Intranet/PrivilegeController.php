@@ -93,7 +93,8 @@ class PrivilegeController extends CoreController
         }
         
         $permissionId = intval($permissionId);
-        $info = $this->permission->getInfoById($permissionId);
+        $info = $this->permission->getInfoById(array($permissionId));
+        $info = ! empty($info[0]) ? $info[0] : array();
         $categoryInfo = $this->permission->getTopPermissions();
         $info['topCategory'] = $categoryInfo;
         return view('intranet.pages.privilege_edit', array('info' => $info));

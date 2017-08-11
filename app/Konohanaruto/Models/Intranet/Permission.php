@@ -64,6 +64,9 @@ class Permission extends Model
     
     /**
      * 得到详细信息
+     * 
+     * @param array $id 包含权限id的一个数组
+     * @return mixed
      */
     public function getInfoById($id)
     {
