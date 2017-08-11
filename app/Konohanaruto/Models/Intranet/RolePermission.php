@@ -61,6 +61,11 @@ class RolePermission extends Model
     public function removeRowsByRolePermission($args)
     {
         $roleId = $args['role_id'];
-        $permissionIds = $args['permission_ids'];
+        $permissionId = $args['permission_id'];
+        // 返回受影响的行, integer
+        return $this->where(array(
+            array('role_id', $roleId),
+            array('permission_id', $permissionId)
+        ))->delete();
     }
 }

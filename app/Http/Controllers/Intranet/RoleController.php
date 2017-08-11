@@ -127,15 +127,26 @@ class RoleController extends CoreController
                     //var_dump($removePermissions);echo '<hr>';var_dump($insertPermissions);exit;
                     
                     // 删除
-                    $this->rolePermission->removeRowsByRolePermission(array(
-                        'role_id' => $formData['role_id'],
-                        'permission_ids' => $removePermissions
-                    ));
+                    if (! empty($removePermissions)) {
+                        foreach ($removePermissions as $item) {
+                            $removeStatus = $this->rolePermission->removeRowsByRolePermission(array(
+                                'role_id' => $formData['role_id'],
+                                'permission_id' => $item
+                            ));
+                        }
+                    }
+                    
                     // 新增
-//                     $this->rolePermission->removeRowsByRolePermission(array(
-//                         'role_id' => $formData['role_id'],
-//                         'permission_ids' => $selectedPermissions,
-//                     ));
+                    if (! empty($insertPermissions)) {
+                        foreach ($insertPermissions as $item) {
+                            $insertStatus = $this->rolePermission->addData(array(
+                                'role_id' => $formData['role_id'],
+                                'granted_permissions' => $insertPermissions
+                            ));
+                        }
+                    }
+                    
+                    return redirect('intranet/RoleManage/list');
                 }
             }
             
