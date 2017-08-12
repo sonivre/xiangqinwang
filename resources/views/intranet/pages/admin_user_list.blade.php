@@ -1,5 +1,21 @@
 @extends('intranet.layouts.intranet_iframe_style')
+
+@section('import-resource')
+@parent
+<style>
+th, td {
+	text-align: center;
+}
+</style>
+@endsection
+
 @section('page-main')
+
+@php
+$errorIcon = config('custom.staticServer') . '/images/icons/small_cross_icon.png';
+$rightIcon = config('custom.staticServer') . '/images/icons/small_hook_icon.png';
+@endphp
+
 <div class="x_panel">
   <div class="x_title">
     <h2>用户列表</h2>
@@ -15,7 +31,8 @@
           <th class="a-center check-all-box">#</th>
           <th style="width: 20%">用户名</th>
           <th>上次登录</th>
-          <th>是否有效用户</th>
+          <th>用户状态</th>
+          <th>超级管理员</th>
           <th>登录ip</th>
           <th style="width: 20%">#操作</th>
         </tr>
@@ -30,7 +47,8 @@
               </td>
               <td>{{$item['username']}}</td>
               <td>{{$item['last_login']}}</td>
-              <td>{{$item['flag']}}</td>
+              <td style="cursor: pointer;"><img src="@php if (! empty($item['flag'])) echo $errorIcon; @endphp"></td>
+              <td style="cursor: pointer;"><img src="@php if (! empty($item['super'])) echo $rightIcon; @endphp"></td>
               <td>{{$item['loginip']}}</td>
               <td>
 <!--                 <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a> -->
