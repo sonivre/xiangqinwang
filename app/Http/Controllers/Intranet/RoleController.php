@@ -37,6 +37,14 @@ class RoleController extends CoreController
             $formData['granted_permissions'] = $request->get('permission_id');
             $formData['user_id'] = $this->getCurrentUserId();
             
+            // 角色名称是否已经存在
+            if (! $this->role->checkFromRoleName($formData['role_name'])) {
+                return redirect()
+                ->back()
+                ->with('errorMsg', '角色名已经存在')
+                ->withInput($formData);
+            }
+            
             // 验证是否选中了权限
             if (empty($formData['granted_permissions'])) {
                 return redirect()
@@ -119,6 +127,15 @@ class RoleController extends CoreController
             
             // 相关信息修改
             if ($formData['role_id']) {
+                
+                // 角色名称被改变，验证角色名称是否已经存在
+                if ($formData['role_name'] != $oldRoleName && ! $this->role->checkFromRoleName($formData['role_name'])) {
+                    return redirect()
+                    ->back()
+                    ->with('errorMsg', '角色名已经存在')
+                    ->withInput($formData);
+                }
+                
                 // 修改角色名称
                 $status = $this->role->updateDataByRoleId($formData);
                 

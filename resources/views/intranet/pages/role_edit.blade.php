@@ -84,11 +84,11 @@
 @section('page-main')
 <div class="x_panel">
 <!-- 错误信息输出 -->
-@if (! empty($errorMsg))
+@if (! empty(session('errorMsg')))
 <div class="alert alert-danger alert-dismissible fade in" role="alert">
 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
 </button>
-<strong>糟糕！</strong> @if (! empty($errorMsg)) {{$errorMsg}} @endif
+<strong>糟糕！</strong> @if (! empty(session('errorMsg'))) {{session('errorMsg')}} @endif
 </div>
 @endif
 

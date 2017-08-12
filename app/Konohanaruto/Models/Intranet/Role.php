@@ -103,4 +103,16 @@ class Role extends Model
         // save 方法返回boolean值， true和false
         return $info->save();
     }
+    
+    /**
+     * 验证角色是否存在
+     * 
+     * @param string $roleName
+     * @return 
+     */
+    public function checkFromRoleName($roleName)
+    {
+        $info = $this->where('role_name', $roleName)->first();
+        return empty($info) ? true : false;
+    }
 }
