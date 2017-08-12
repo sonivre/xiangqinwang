@@ -36,6 +36,15 @@ class RoleController extends CoreController
             $formData['role_name'] = $request->get('role_name');
             $formData['granted_permissions'] = $request->get('permission_id');
             $formData['user_id'] = $this->getCurrentUserId();
+            
+            // 验证是否选中了权限
+            if (empty($formData['granted_permissions'])) {
+                return redirect()
+                ->back()
+                ->with('errorMsg', '尚未选择任何权限')
+                ->withInput($formData);
+            }
+            
             // 角色信息入库
             $roleId = $this->role->addRole($formData);
             

@@ -84,15 +84,15 @@
 @section('page-main')
 <div class="x_panel">
 <!-- 错误信息输出 -->
-@if (! empty($errorMsg))
+@if (! empty(session('errorMsg')))
 <div class="alert alert-danger alert-dismissible fade in" role="alert">
 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
 </button>
-<strong>糟糕！</strong> @if (! empty($errorMsg)) {{$errorMsg}} @endif
+<strong>糟糕！</strong> @if (! empty(session('errorMsg'))) {{session('errorMsg')}} @endif
 </div>
 @endif
 
-  <div class="x_title">
+  <div class="x_title content-box">
     <h2>角色添加</h2>
     <ul class="nav navbar-right panel_toolbox">
       <li><a href="{{url('intranet/RoleManage/list')}}"><button type="button" class="btn btn-default btn-sm">角色列表</button></a></li>
@@ -101,13 +101,13 @@
   </div>
   <div class="x_content">
     <br>
-    <form action="" method="post" class="form-horizontal form-label-left">
+    <form action="" method="post" class="action-form form-horizontal form-label-left">
 
       <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12">角色名称 <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-          <input type="text" id="" required="required" name="role_name" class="form-control col-md-7 col-xs-12">
+          <input type="text" id="" required="required" name="role_name" value="@if (! empty(old('role_name'))) {{old('role_name')}} @endif" class="form-control col-md-7 col-xs-12">
         </div>
       </div>
       
@@ -156,7 +156,7 @@
 
 @section('extra-js')
 <script type="text/javascript">
-$(function(){
+$(function () {
 	$('.permission-box-toolbar-header').on('click', function () {
 		if ($(this).find('.right-arrows').hasClass('incline-top')) {
 			$(this).find('.right-arrows').removeClass('incline-top').addClass('incline-bottom');
@@ -202,6 +202,28 @@ $(function(){
 		} else {
 			liFather[0].checked = false;
 		}
+	});
+
+	// 监听表单提交，如果尚未选中任何权限，则弹出一个提示信息
+	$('form').on('submit', function (event) {
+		var liChildrens = $('.li-children input[type="checkbox"]');
+		// 得到被选中的checkbox的个数
+		var selectedLiChildrenCount = 0;
+		
+		liChildrens.each(function (i, n) {
+			if ($(n).is(':checked')) {
+				++selectedLiChildrenCount;
+			}
+		});
+
+		if (selectedLiChildrenCount != 0) {
+			return true;
+		}
+
+		$('.content-box').prev('.alert-danger').remove();
+		var content = '<div class="alert alert-danger alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>请至少选择一个权限！</div>';
+		$('.content-box').before(content);
+		event.preventDefault();
 	});
 });
 </script>
