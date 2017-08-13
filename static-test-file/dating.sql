@@ -57,7 +57,7 @@ create table if not exists xqw_user_status(
 create table if not exists xqw_user_url_access_log(
   `user_id` int unsigned not null,
   `url` varchar(255) not null default '' comment '访问的url',
-  `access_time` datetime not null default '0000-00-00 00:00:00' comment '访问时间',
+  `access_time` datetime comment '访问时间',
   primary key (user_id)
 )engine=innodb default charset=utf8;
 
@@ -117,9 +117,9 @@ create table `xqw_admin` (
 	`super` tinyint not null default 0 comment '是否是超级管理员',
 	`salt` varchar(50) not null default '' comment '杂质',
 	`flag` tinyint not null default 1 comment '是否可用',
-	`last_login` datetime not null default '0000-00-00 00:00:00' comment '最后一次登录时间',
+	`last_login` datetime comment '最后一次登录时间',
 	`login_times` int unsigned not null default 0 comment '登录次数',
-	`create_time` datetime not null default '0000-00-00 00:00:00' comment '创建时间',
+	`create_time` datetime comment '创建时间',
 	`loginip` char(15) not null default '' comment '最后一次登录ip',
 	primary key prk_index(`admin_id`)
 )engine=innodb default charset=utf8;
@@ -157,8 +157,8 @@ create table xqw_admin_permissions(
 	`action_user_id` int not null default 0,
 	`permission_name_en` varchar(50) not null default '',
 	`permission_name_zh` varchar(50) not null default '',
-	`create_time` datetime not null default '0000-00-00 00:00:00',
-	`update_time` datetime not null default '0000-00-00 00:00:00',
+	`create_time` datetime,
+	`update_time` datetime,
 	primary key `permission_id` (`permission_id`)
 )engine=innodb default charset=utf8;
 
@@ -168,8 +168,8 @@ create table xqw_admin_roles(
 	`role_id` int auto_increment,
 	`action_user_id` int not null default 0,
 	`role_name` varchar(100) not null default '',
-	`create_time` datetime not null default '0000-00-00 00:00:00',
-	`update_time` datetime not null default '0000-00-00 00:00:00',
+	`create_time` datetime,
+	`update_time` datetime,
 	primary key `role_id` (`role_id`)
 )engine=innodb default charset=utf8;
 
