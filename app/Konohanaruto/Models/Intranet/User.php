@@ -51,4 +51,21 @@ class User extends Model
     
         return $this->insertGetId($insertData);
     }
+    
+    /**
+     * 得到用户信息
+     * 
+     * @param integer $userId
+     * @return array
+     */
+    public function getUserInfoById($userId)
+    {
+        $roles = $this->where('admin_id', $userId)->first();
+        
+        if (empty($roles)) {
+            return false;
+        }
+        
+        return $roles->toArray();
+    }
 }

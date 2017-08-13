@@ -38,9 +38,9 @@
 @endif
 
   <div class="x_title content-box">
-    <h2>权限添加</h2>
+    <h2>用户添加</h2>
     <ul class="nav navbar-right panel_toolbox">
-      <li><a href="{{url('intranet/Privilege/list')}}"><button type="button" class="btn btn-default btn-sm">权限列表</button></a></li>
+      <li><a href="{{url('intranet/AdminUserManage/list')}}"><button type="button" class="btn btn-default btn-sm">用户列表</button></a></li>
     </ul>
     <div class="clearfix"></div>
   </div>

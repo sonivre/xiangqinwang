@@ -93,27 +93,7 @@ class AdminController extends CoreController
     public function actionEdit(Request $request, $userid = null)
     {
         if ($request->isMethod('POST')) {
-            $formInfo = $request->all();
-            $validator = Validator::make($formInfo, [
-                'user_id' => 'numeric',
-            ], array(
-                'numeric' => ':attribute必须为数字',
-            ));
-        
-            if ($validator->fails()) {
-                return redirect()
-                ->back()
-                ->withErrors($validator)
-                ->withInput($formInfo);
-            }
-        
-            $status = $this->userRepository->updateUserInfoById($formInfo);
-        
-            if ($status) {
-                return redirect('intranet/AdminUserManage/list');
-            }
-        
-            return view('intranet.pages.admin_user_edit', array('errorMsg' => '操作失败！'));
+            
         }
         
         if (empty($userid)) {
@@ -121,8 +101,22 @@ class AdminController extends CoreController
         }
         
         $userid = intval($userid);
-        $info = $this->userRepository->getInfoById($userid);
-        return view('intranet.pages.admin_user_edit', array('info' => $info));
+        $info = $this->userRepository->getUserInfoById($userid);
+        // 得到关联的角色
+        $roles = $this->userRole->getRolesByUserId($userid);
+        
+        if (! empty($roles)) {
+            $roles = array_column($roles, 'role_id');
+        }
+        
+        // 得到所有的角色
+        $roleList = $this->role->getRoleList();
+        
+        return view('intranet.pages.admin_user_edit', array(
+            'info' => $info,
+            'roles' => $roles,
+            'roleList' => $roleList
+        ));
     }
     
     public function actionDelete()

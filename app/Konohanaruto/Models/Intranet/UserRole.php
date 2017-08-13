@@ -18,4 +18,21 @@ class UserRole extends Model
     {
         return $this->insert($args);
     }
+    
+    /**
+     * 得到角色列表
+     * 
+     * @param integer $userId
+     * @return mixed
+     */
+    public function getRolesByUserId($userId)
+    {
+        $roles = $this->where('admin_id', $userId)->get();
+        
+        if (empty($roles)) {
+            return array();
+        }
+        
+        return $roles->toArray();
+    }
 }
