@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Konohanaruto\Services\Intranet;
+namespace App\Konohanaruto\Providers\Intranet;
 use Illuminate\Support\ServiceProvider;
 
 class AdminActivityLogServiceProvider extends ServiceProvider

@@ -37,4 +37,18 @@ class User extends Model
         
         return $user->save();
     }
+    
+    /**
+     * 添加用户
+     */
+    public function addUser($data)
+    {
+        $insertData = array();
+        $insertData['username'] = $data['username'];
+        $insertData['password'] = $data['password'];
+        $insertData['salt'] = $data['salt'];
+        $insertData['create_time'] = $data['create_time'];
+    
+        return $this->insertGetId($insertData);
+    }
 }

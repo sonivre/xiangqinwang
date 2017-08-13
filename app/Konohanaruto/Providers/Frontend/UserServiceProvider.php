@@ -6,7 +6,7 @@
  * Time: 19:38
  */
 
-namespace App\Konohanaruto\Services\Frontend;
+namespace App\Konohanaruto\Providers\Frontend;
 use Illuminate\Support\ServiceProvider;
 
 class UserServiceProvider extends ServiceProvider

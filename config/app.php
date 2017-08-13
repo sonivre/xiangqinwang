@@ -178,10 +178,11 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         // 自定义的服务组件
-        App\Konohanaruto\Services\Frontend\UserServiceProvider::class,
+        App\Konohanaruto\Providers\Frontend\UserServiceProvider::class,
         App\Providers\HelperServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
-        App\Konohanaruto\Services\Intranet\AdminActivityLogServiceProvider::class,
+        App\Konohanaruto\Providers\Intranet\AdminActivityLogServiceProvider::class,
+        App\Konohanaruto\Providers\Intranet\UserRoleServiceProvider::class,
 
     ],
 

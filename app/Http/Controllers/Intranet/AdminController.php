@@ -5,14 +5,23 @@ namespace App\Http\Controllers\Intranet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Konohanaruto\Repositories\Intranet\User\UserRepositoryInterface;
+use App\Konohanaruto\Repositories\Intranet\Role\RoleEloquentRepository;
+use App\Konohanaruto\Infrastructures\Common\PasswordSecure;
+use App\Konohanaruto\Repositories\Intranet\UserRole\UserRoleEloquentRepository;
 
 class AdminController extends CoreController
 {
     private $userRepository;
+    private $role;
+    private $passwordSecure;
+    private $userRole;
     
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserRepositoryInterface $userRepository, RoleEloquentRepository $role, PasswordSecure $passwordSecure, UserRoleEloquentRepository $userRole)
     {
         $this->userRepository = $userRepository;
+        $this->role = $role;
+        $this->passwordSecure = $passwordSecure;
+        $this->userRole = $userRole;
         parent::__construct();
     }
     
@@ -25,23 +34,60 @@ class AdminController extends CoreController
     public function actionAdd(Request $request)
     {
         if ($request->isMethod('POST')) {
-            $userinfo = $request->session()->get(config('custom.intranetSessionName'));
-            $permissionData = array();
-            $permissionData['permission_name'] = $request->get('permission_name');
-            $permissionData['admin_id'] = $userinfo['admin_id'];
-            $permissionData['create_time'] = date('Y-m-d H:i:s');
-            $permissionData['update_time'] = date('Y-m-d H:i:s');
-            $result = $this->permission->addPermission($permissionData);
-            if ($result) {
-                // 写入管理员日志
-                $this->writeAdminLog('添加了"' . $request->get('permission_name') . '"权限');
-                return redirect('intranet/Privilege/list');
-            }
-            return view('intranet.pages.privilege_add', array(
-                'errorMsg' => '添加失败！ 已存在的权限或网络错误！'
+            // 表单验证
+            $formData = $request->all();
+            $validator = Validator::make($formData, [
+                'role_id' => 'required',
+                'username' => 'unique:admin,username,null,admin_id',
+                'password' => 'required',
+            ], array(
+                'unique' => '管理员名称已存在',
+                'required' => ':attribute不能为空',
             ));
+            
+            if ($validator->fails()) {
+                return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput($formData);
+            }
+            
+            // 密码处理
+            $salt = $this->passwordSecure->gernerateSalt();
+            $formData['password'] = $this->passwordSecure->getEncryptPassword($formData['password'], $salt);
+            $formData['create_time'] = date('Y-m-d H:i:s');
+            $formData['salt'] = $salt;
+            // 插入用户表
+            $adminId = $this->userRepository->addUser($formData);
+            
+            // 用户角色表
+            if ($adminId) {
+                $create = array();
+                foreach ($formData['role_id'] as $roleId) {
+                    $create[] = array(
+                        'admin_id' => $adminId,
+                        'action_user_id' => $this->getCurrentUserId(),
+                        'role_id' => $roleId
+                    );
+                }
+                
+                $status = $this->userRole->insertData($create);
+                
+                if ($status) {
+                    $this->writeAdminLog('添加了"' . $formData['username'] . '"用户');
+                    return redirect('intranet/AdminUserManage/list');
+                }
+            }
+            
+            return redirect()
+            ->back()
+            ->with('errorMsg', '插入失败')
+            ->withInput($formData);
         }
-        return view('intranet.pages.admin_user_add');
+        
+        // 得到所有的角色
+        $roleList = $this->role->getRoleList();
+        return view('intranet.pages.admin_user_add', array('roleList' => $roleList));
     }
     
     public function actionEdit(Request $request, $userid = null)
