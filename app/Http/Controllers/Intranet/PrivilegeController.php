@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Intranet;
 use Illuminate\Http\Request;
 use Validator;
 use App\Konohanaruto\Repositories\Intranet\Permission\PermissionRepositoryInterface;
-use App\Konohanaruto\Repositories\Intranet\RolePermission\RolePermissionEloquentRepository;
+use App\Konohanaruto\Repositories\Intranet\RolePermission\RolePermissionRepositoryInterface;
 
 class PrivilegeController extends CoreController
 {
     protected $permission;
     protected $rolePermission;
     
-    public function __construct(PermissionRepositoryInterface $permission, RolePermissionEloquentRepository $rolePermission)
+    public function __construct(PermissionRepositoryInterface $permission, RolePermissionRepositoryInterface $rolePermission)
     {
         $this->permission = $permission;
         $this->rolePermission = $rolePermission;
