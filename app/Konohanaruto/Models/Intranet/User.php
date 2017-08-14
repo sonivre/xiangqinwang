@@ -82,4 +82,29 @@ class User extends Model
         
         return $this->where('admin_id', $adminId)->update($updateData);
     }
+    
+    /**
+     * 得到详细信息
+     *
+     * @param array $id 需要检索的id
+     * @return mixed
+     */
+    public function getInfoById($id)
+    {
+        $users = $this->whereIn('admin_id', $id)->get();
+        return empty($users) ? array() : $users->toArray();
+    }
+    
+    /**
+     * 删除
+     *
+     * @param string|int $ids 例如: 1 或者 逗号连接的1, 2 ....
+     * @return boolean
+     */
+    public function removeDataById($ids)
+    {
+        $ids = explode(',', $ids);
+        // 删除方法返回的是受影响的行 0行则返回0
+        return $this->whereIn('admin_id', $ids)->delete();
+    }
 }

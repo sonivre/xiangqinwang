@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Intranet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Konohanaruto\Repositories\Intranet\User\UserRepositoryInterface;
-use App\Konohanaruto\Repositories\Intranet\Role\RoleEloquentRepository;
 use App\Konohanaruto\Infrastructures\Common\PasswordSecure;
-use App\Konohanaruto\Repositories\Intranet\UserRole\UserRoleEloquentRepository;
+use App\Konohanaruto\Repositories\Intranet\Role\RoleRepositoryInterface;
+use App\Konohanaruto\Repositories\Intranet\UserRole\UserRoleRepositoryInterface;
 
 class AdminController extends CoreController
 {
@@ -16,7 +16,7 @@ class AdminController extends CoreController
     private $passwordSecure;
     private $userRole;
     
-    public function __construct(UserRepositoryInterface $userRepository, RoleEloquentRepository $role, PasswordSecure $passwordSecure, UserRoleEloquentRepository $userRole)
+    public function __construct(UserRepositoryInterface $userRepository, RoleRepositoryInterface $role, PasswordSecure $passwordSecure, UserRoleRepositoryInterface $userRole)
     {
         $this->userRepository = $userRepository;
         $this->role = $role;
@@ -193,8 +193,36 @@ class AdminController extends CoreController
         ));
     }
     
-    public function actionDelete()
+    public function actionDelete(Request $request)
     {
+        if ($request->ajax()) {
+            $actionId = $request->get('item_id');
+    
+            if (empty($actionId)) {
+                return response()->json(array('error' => '您还没有选择需要删除的项'));
+            }
+    
+    
+            $actionItems = explode(',', $actionId);
+            // 得到被删除的信息
+            $deleteItemRows = $this->userRepository->getInfoById($actionItems);
+            $affectedRows = $this->userRepository->removeDataById($actionId);
+            
+            // 删除role_permission表相应记录
+            if ($affectedRows) {
+                $this->userRole->removeDataByUserId($actionId);
+            }
+    
+            // 更新相关删除日志
+            if ($affectedRows) {
+                foreach ($deleteItemRows as $info) {
+                    $this->writeAdminLog('删除了"' . $info['username'] . '"用户');
+                }
+            }
+    
+            return response()->json(array('rows' => $affectedRows));
+        }
         
+        return response()->json(array('error' => '非法请求'));
     }
 }

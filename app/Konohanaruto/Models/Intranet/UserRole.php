@@ -45,4 +45,17 @@ class UserRole extends Model
         ->whereIn('role_id', $args['role_id'])
         ->delete();
     }
+    
+    /**
+     * 删除
+     *
+     * @param string|int $ids 例如: 1 或者 逗号连接的1, 2 ....
+     * @return boolean
+     */
+    public function removeDataByUserId($ids)
+    {
+        $ids = explode(',', $ids);
+        // 删除方法返回的是受影响的行 0行则返回0
+        return $this->whereIn('admin_id', $ids)->delete();
+    }
 }

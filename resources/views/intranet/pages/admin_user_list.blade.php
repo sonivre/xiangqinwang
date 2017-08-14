@@ -130,9 +130,9 @@ $rightIcon = config('custom.staticServer') . '/images/icons/small_hook_icon.png'
     });
 
     /**
-     * 移除权限
+     * 移除
      *
-     * @param array permissionId 需要删除的permission权限数组
+     * @param array itemId 需要删除的数组
      * @param boolean isConfirm 类似alert弹出框的用户行为判断
      * @return void
      */
@@ -149,6 +149,7 @@ $rightIcon = config('custom.staticServer') . '/images/icons/small_hook_icon.png'
      		   url: "{{url('intranet/AdminUserManage/delete')}}",
      		   data: "_token=" + CSRF_TOKEN + "&item_id=" + itemId,
      		   success: function (msg) {
+         		   console.log(msg);
          		   if (msg.error) {
           			  swal({
                        title: '操作失败!',
@@ -159,7 +160,7 @@ $rightIcon = config('custom.staticServer') . '/images/icons/small_hook_icon.png'
              	   } else {
                  	  // 删除DOM行
                  	  for (var i in itemArray) {
-                  		 $(".item-row[data-adminid=" + itemArray[i] + "]").parents('tr').remove();
+                  		 $(".item-row[data-itemid=" + itemArray[i] + "]").parents('tr').remove();
                       }
                  	  
                       swal({

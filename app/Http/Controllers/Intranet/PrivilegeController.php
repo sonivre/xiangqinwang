@@ -135,13 +135,7 @@ class PrivilegeController extends CoreController
             
             return response()->json(array('rows' => $affectedRows));
         }
-    
-        if (empty($permissionId)) {
-            return redirect()->back();
-        }
-    
-        $permissionId = intval($permissionId);
-        $info = $this->permission->getInfoById($permissionId);
-        return view('intranet.pages.privilege_edit', array('info' => $info));
+        
+        return response()->json(array('errorMsg' => '非法访问'));
     }
 }
