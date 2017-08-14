@@ -4,17 +4,14 @@ namespace App\Http\Controllers\Intranet;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Konohanaruto\Repositories\Intranet\AdminActivity\AdminActivityEloquentRepository;
 
 class CoreController extends Controller
 {
     protected $adminLog;
     
-    public function __construct(AdminActivityEloquentRepository $adminLog = null)
+    public function __construct()
     {
-        if (! $adminLog) {
-            $this->adminLog = new AdminActivityEloquentRepository();
-        }
+        $this->adminLog = \App::make('App\Konohanaruto\Repositories\Intranet\AdminActivity\AdminActivityEloquentRepository');
     }
     
     /**
