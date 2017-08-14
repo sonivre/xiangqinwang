@@ -60,12 +60,26 @@ class User extends Model
      */
     public function getUserInfoById($userId)
     {
-        $roles = $this->where('admin_id', $userId)->first();
+        $userInfo = $this->where('admin_id', $userId)->first();
         
-        if (empty($roles)) {
+        if (empty($userInfo)) {
             return false;
         }
         
-        return $roles->toArray();
+        return $userInfo->toArray();
+    }
+    
+    /**
+     * 更新用户信息
+     * 
+     * @param array $updateData
+     * @return boolean
+     */
+    public function updateDataById($updateData)
+    {
+        if (! empty($updateData['admin_id']) && $adminId = $updateData['admin_id'])
+            unset($updateData['admin_id']);
+        
+        return $this->where('admin_id', $adminId)->update($updateData);
     }
 }

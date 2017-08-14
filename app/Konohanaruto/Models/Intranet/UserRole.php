@@ -35,4 +35,14 @@ class UserRole extends Model
         
         return $roles->toArray();
     }
+    
+    /**
+     * 删除记录， 通过给定的条件
+     */
+    public function deleteRowsByIdAndRoleId($args)
+    {
+        return $this->where('admin_id', $args['admin_id'])
+        ->whereIn('role_id', $args['role_id'])
+        ->delete();
+    }
 }

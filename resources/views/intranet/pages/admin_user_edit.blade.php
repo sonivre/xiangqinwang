@@ -52,7 +52,7 @@
         <label class="control-label col-md-3 col-sm-3 col-xs-12">用户名 <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-          <input type="text" id="" required="required" name="username" value="@if (! empty(old('username'))) {{old('username')}} @elseif (! empty($info['username'])) {{$info['username']}} @endif" class="form-control col-md-7 col-xs-12">
+          <input type="text" id="" required="required" name="username" value="@if (! empty(old('username'))){{old('username')}}@elseif (! empty($info['username'])){{$info['username']}}@endif" class="form-control col-md-7 col-xs-12">
         </div>
       </div>
       
@@ -60,7 +60,7 @@
         <label class="control-label col-md-3 col-sm-3 col-xs-12">登录密码 <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-          <input type="text" id="" required="required" name="password" value="@if (! empty(old('password'))) {{old('password')}} @endif" class="form-control col-md-7 col-xs-12" placeholder="如果填写，则密码会被修改">
+          <input type="text" name="password" value="@if (! empty(old('password'))) {{old('password')}} @endif" class="form-control col-md-7 col-xs-12" placeholder="留空表示原密码不变">
         </div>
       </div>
       

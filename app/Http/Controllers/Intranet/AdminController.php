@@ -36,6 +36,7 @@ class AdminController extends CoreController
         if ($request->isMethod('POST')) {
             // 表单验证
             $formData = $request->all();
+            $formData['username'] = ! empty($formData['username']) ? trim($formData['username']) : '';
             $validator = Validator::make($formData, [
                 'role_id' => 'required',
                 'username' => 'unique:admin,username,null,admin_id',
@@ -93,7 +94,80 @@ class AdminController extends CoreController
     public function actionEdit(Request $request, $userid = null)
     {
         if ($request->isMethod('POST')) {
+            // 表单验证
+            $formData = $request->all();
+            $formData['username'] = ! empty($formData['username']) ? trim($formData['username']) : '';
+            $validator = Validator::make($formData, [
+                'role_id' => 'required',
+                'username' => 'unique:admin,username,' . $userid . ',admin_id'
+            ], array(
+                'unique' => '管理员名称已存在',
+                'required' => ':attribute不能为空',
+            ));
             
+            if ($validator->fails()) {
+                return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput($formData);
+            }
+            
+            $userInfo = $this->userRepository->getUserInfoById($userid);
+            $oldUserName = $userInfo['username'];
+            
+            $updateData = array();
+            // 密码处理
+            $updateData['username'] = $formData['username'];
+            $updateData['admin_id'] = $userid;
+            
+            if (! empty($formData['password'])) {
+                $salt = $this->passwordSecure->gernerateSalt();
+                $updateData['password'] = $this->passwordSecure->getEncryptPassword($formData['password'], $salt);
+                $updateData['salt'] = $salt;
+            }
+            
+            // 插入用户表
+            $updateUserStatus = $this->userRepository->updateDataById($updateData);
+            
+            // 更新相关角色
+            if ($updateUserStatus !== false) {
+                $roles = $this->userRole->getRolesByUserId($userid);
+                
+                if (! empty($roles)) {
+                    $roles = array_column($roles, 'role_id');
+                }
+                
+                $deleteRoles = array_diff($roles, $formData['role_id']);
+                $insertRoles = array_diff($formData['role_id'], $roles);
+                
+                if (! empty($deleteRoles)) {
+                    $status = $this->userRole->deleteRowsByIdAndRoleId(array('admin_id' => $userid, 'role_id' => $deleteRoles));
+                }
+                
+                if (! empty($insertRoles)) {
+                    $insertData = array();
+                    
+                    foreach ($insertRoles as $roleId) {
+                        $insertData[] = array('admin_id' => $userid, 'role_id' => $roleId);
+                    }
+                    
+                    $this->userRole->insertData($insertData);   
+                }
+                
+                // 记录日志
+                if ($oldUserName != $formData['username']) {
+                    $this->writeAdminLog('将"' . $oldUserName . '"用户的用户名修改为"' . $formData['username'] . '"');
+                } else {
+                    $this->writeAdminLog('修改了"' . $formData['username'] . '"的用户信息');
+                }
+                
+                return redirect('intranet/AdminUserManage/list');
+            }
+            
+            return redirect()
+            ->back()
+            ->with('errorMsg', '插入失败')
+            ->withInput($formData);
         }
         
         if (empty($userid)) {
