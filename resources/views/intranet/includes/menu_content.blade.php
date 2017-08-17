@@ -7,6 +7,7 @@
       <li><a href="{{url('intranet/Privilege/list')}}">权限设置</a></li>
       <li><a href="{{url('intranet/AdminUserManage/list')}}">管理员设置</a></li>
       <li><a href="{{url('intranet/RoleManage/list')}}">角色设置</a></li>
+      <li><a href="{{url('intranet/RoleManage/list')}}">角色设置</a></li>
     </ul>
   </li>
 </ul>

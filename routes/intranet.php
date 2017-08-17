@@ -19,5 +19,10 @@ Route::group(array('namespace' => 'Intranet', 'prefix' => 'intranet'), function 
         Route::any('RoleManage/add', 'RoleController@actionAdd');
         Route::any('RoleManage/edit/{actionId?}', 'RoleController@actionEdit');
         Route::any('RoleManage/delete/{actionId?}', 'RoleController@actionDelete');
+        // 菜单管理
+        Route::get('MenuManage/list', 'MenuController@actionList');
+        Route::any('MenuManage/add', 'MenuController@actionAdd');
+        Route::any('MenuManage/edit/{actionId?}', 'MenuController@actionEdit');
+        Route::any('MenuManage/delete/{actionId?}', 'MenuController@actionDelete');
     });
 });
