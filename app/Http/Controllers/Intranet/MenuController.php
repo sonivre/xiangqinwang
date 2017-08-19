@@ -18,10 +18,7 @@ use App\Konohanaruto\Repositories\Intranet\RolePermission\RolePermissionReposito
 
 class MenuController extends CoreController
 {
-    private $userRepository;
-    private $role;
-    private $passwordSecure;
-    private $userRole;
+    private $menu;
 
     public function __construct()
     {
@@ -30,7 +27,6 @@ class MenuController extends CoreController
 
     public function actionAdd()
     {
-
     }
 
     public function actionDelete()

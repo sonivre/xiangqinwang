@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Intranet;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Konohanaruto\Repositories\Intranet\AdminActivity\AdminActivityRepositoryInterface;
 
 class CoreController extends Controller
 {
@@ -11,7 +12,7 @@ class CoreController extends Controller
     
     public function __construct()
     {
-        $this->adminLog = \App::make('App\Konohanaruto\Repositories\Intranet\AdminActivity\AdminActivityEloquentRepository');
+        $this->adminLog = app(AdminActivityRepositoryInterface::class);
     }
     
     /**
