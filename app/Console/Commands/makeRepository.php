@@ -4,14 +4,14 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class createRepositoryByInterface extends Command
+class makeRepository extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'command:generateRepository';
+    protected $signature = 'make:repository';
 
     /**
      * The console command description.
@@ -37,6 +37,6 @@ class createRepositoryByInterface extends Command
      */
     public function handle()
     {
-        //
+        $this->info('这是一个测试命令');
     }
 }
