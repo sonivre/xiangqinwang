@@ -15,18 +15,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Konohanaruto\Repositories\Intranet\Permission\PermissionRepositoryInterface;
 use App\Konohanaruto\Repositories\Intranet\RolePermission\RolePermissionRepositoryInterface;
+use App\Konohanaruto\Repositories\Intranet\Menus\MenusRepositoryInterface;
 
 class MenuController extends CoreController
 {
-    private $menu;
+    private $menuRepository;
 
-    public function __construct()
+    public function __construct(MenusRepositoryInterface $menuRepository)
     {
+        $this->menuRepository = $menuRepository;
+        
         parent::__construct();
     }
 
     public function actionAdd()
     {
+        return view('intranet.pages.menu_add');
     }
 
     public function actionDelete()
@@ -41,6 +45,7 @@ class MenuController extends CoreController
 
     public function actionList()
     {
-
+        $menuList = $this->menuRepository->getMenuList();
+        return view('intranet.pages.menu_list', array('menuList' => $menuList));
     }
 }
