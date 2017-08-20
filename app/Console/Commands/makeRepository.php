@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Konohanaruto\Infrastructures\Common\BaseGenerateRepository;
 
 class makeRepository extends Command
 {
@@ -11,7 +12,7 @@ class makeRepository extends Command
      *
      * @var string
      */
-    protected $signature = 'make:repository';
+    protected $signature = 'make:repository {moduleName} {repositoryName}';
 
     /**
      * The console command description.
@@ -35,8 +36,28 @@ class makeRepository extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(BaseGenerateRepository $makeRepository)
     {
-        $this->info('这是一个测试命令');
+        $moduleName = $this->argument('moduleName');
+        $repositoryName = $this->argument('repositoryName');
+        
+        
+        $makeRepository->init($moduleName, $repositoryName);
+        // repository
+        $repositoryStatus = $makeRepository->gernerateRepositoryFile();
+        // interface
+        $interfaceStatus = $makeRepository->gernerateInterfaceFile();
+        // model
+        $modelStatus = $makeRepository->generateModelFile();
+        // provider
+        $providerStatus = $makeRepository->generateProviderFile();
+        
+        if ($repositoryStatus && $interfaceStatus && $modelStatus && $providerStatus) {
+            $content = $makeRepository->getManuallyInjectString();
+        } else {
+            $content = 'failed';
+        }
+        
+        return $this->info($content);
     }
 }

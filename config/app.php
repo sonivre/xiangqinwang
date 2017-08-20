@@ -183,7 +183,8 @@ return [
         Mews\Captcha\CaptchaServiceProvider::class,
         App\Konohanaruto\Providers\Intranet\AdminActivityLogServiceProvider::class,
         App\Konohanaruto\Providers\Intranet\UserRoleServiceProvider::class,
-
+        App\Konohanaruto\Providers\Common\makeRepositoryCommandServiceProvider::class,
+        App\Konohanaruto\Providers\Intranet\MenusServiceProvider::class,
     ],
 
     /*
