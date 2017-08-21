@@ -12,10 +12,9 @@
 namespace App\Http\Controllers\Intranet;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use App\Konohanaruto\Repositories\Intranet\Permission\PermissionRepositoryInterface;
-use App\Konohanaruto\Repositories\Intranet\RolePermission\RolePermissionRepositoryInterface;
 use App\Konohanaruto\Repositories\Intranet\Menus\MenusRepositoryInterface;
+use App\Konohanaruto\Repositories\Intranet\Permission\PermissionRepositoryInterface;
+use App\Http\Requests\Intranet\MenuCreateFormRequest;
 
 class MenuController extends CoreController
 {
@@ -27,10 +26,30 @@ class MenuController extends CoreController
         
         parent::__construct();
     }
-
-    public function actionAdd()
+    
+    public function actionAdd(PermissionRepositoryInterface $permissionRepository)
     {
-        return view('intranet.pages.menu_add');
+        $permissions = $permissionRepository->getPermissionTrees();
+        $topMenus = $this->menuRepository->getTopMenus();
+        
+        return view('intranet.pages.menu_add', array(
+            'permissions' => $permissions,
+            'topMenus' => $topMenus
+        ));
+    }
+
+    public function actionStoreMenu(MenuCreateFormRequest $request)
+    {
+        $insertStatus = $this->menuRepository->storeMenu($request->all());
+        
+        if ($insertStatus) {
+            $logContent = "添加了{$request->get['menu_name']}后台菜单";
+        } else {
+            $logContent = "添加{$request->get['menu_name']}后台菜单失败";
+        }
+        
+        $this->writeAdminLog($logContent);
+        return redirect('intranet/MenuManage/list');
     }
 
     public function actionDelete()
@@ -46,6 +65,8 @@ class MenuController extends CoreController
     public function actionList()
     {
         $menuList = $this->menuRepository->getMenuList();
+        $menuList = $this->menuRepository->getMenuTree($menuList);
+        
         return view('intranet.pages.menu_list', array('menuList' => $menuList));
     }
 }

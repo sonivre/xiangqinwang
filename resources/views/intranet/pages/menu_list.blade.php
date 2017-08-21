@@ -46,11 +46,11 @@
               @if ($item['menu_parent_id'] == 0)
               <td class="cursor-pointer minus-icon"></td>
               @endif
-              <td class="a-center">
+              <td class="a-center"  style="width: 213px;">
               <div class="item-row" data-actionid="{{$item['menu_id']}}"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"></div>
               </td>
               <td>{{$item['menu_name']}}</td>
-              <td>{{$item['menu_route']}}</td>
+              <td>@if(empty($item['menu_route']))---@else{{$item['menu_route']}}@endif</td>
               <td>
                 <a href="{{url('intranet/MenuManage/edit')}}/{{$item['menu_id']}}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 编辑</a>
                 <a href="javascript:;" class="btn btn-danger btn-xs remove-item" data-actionid="{{$item['menu_id']}}"><i class="fa fa-trash-o"></i> 删除</a>
@@ -65,7 +65,7 @@
               @else
               <td></td>
               @endif
-              <td class="a-center">
+              <td class="a-center" style="width: 213px;">
               <div class="icheckbox_flat-green item-row" data-actionid="{{$current['menu_id']}}"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"></div>
               </td>
               <td>{{$current['menu_name']}}</td>
@@ -244,7 +244,7 @@
   		  closeOnCancel: true,
   		  //allowOutsideClick: true
   		}, function (isConfirm) {
-  	  		removePermission(actionId, isConfirm);
+  	  		removeItem(actionId, isConfirm);
   	  	});
     }
 </script>
