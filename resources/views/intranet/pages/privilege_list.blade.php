@@ -167,7 +167,7 @@
         // checkbox取消勾选事件, path: build/js/custom.js
         $('table input').on('ifUnchecked', function () {
         	var rowFatherObject = $(this).closest('tr');
-        	// 当前tr为父级分类, 选中所有子级分类
+        	// 当前tr为父级分类, 取消选中所有子级分类
             if (rowFatherObject.hasClass('father-tr')) {
                 rowFatherObject.nextUntil($('.father-tr'), 'tr').each(function (i, item) {
                 	$(item).find('.icheckbox_flat-green').removeClass('checked');

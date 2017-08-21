@@ -82,4 +82,28 @@ class MenusEloquentRepository extends EloquentRepository implements MenusReposit
     
         return $menuTree;
     }
+    
+    /**
+     * 删除记录
+     * 
+     * @param array $actionId 相关的menu_id数组
+     * @return mixed 返回受影响的行
+     */
+    public function removeDataByMenuIds($menuIds)
+    {
+        return $this->model->whereIn('menu_id', $menuIds)->delete();
+    }
+    
+    /**
+     * 通过menu_id数组检索记录
+     * 
+     * @param array $menuIds
+     * @return array
+     */
+    public function getMenuListByIds($menuIds)
+    {
+        $lists = $this->model->whereIn('menu_id', $menuIds)->get();
+        
+        return empty($lists) ? array() : $lists->toArray();
+    }
 }

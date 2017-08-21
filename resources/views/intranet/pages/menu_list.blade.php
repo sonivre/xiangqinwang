@@ -146,7 +146,18 @@
                 	actionId.push($(item).parent().data('actionid'));
                 }
             });
-            showNoticeDialog(actionId);
+
+            if (actionId.length === 0) {
+            	swal({
+                    title: '提交失败',
+                    text: '请至少选择一个需要删除的项！',
+                    type: "error",
+                    timer: 1500
+                  });
+            } else {
+            	showNoticeDialog(actionId);
+            }
+            
         });
 
         // checkbox选中事件, 通过查看源码得知此操作方式, path: build/js/custom.js

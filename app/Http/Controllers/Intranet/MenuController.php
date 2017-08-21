@@ -48,13 +48,36 @@ class MenuController extends CoreController
             $logContent = "添加{$request->get['menu_name']}后台菜单失败";
         }
         
+        // 写入管理员日志
         $this->writeAdminLog($logContent);
         return redirect('intranet/MenuManage/list');
     }
 
-    public function actionDelete()
+    public function actionDelete(Request $request)
     {
-
+        if ($request->ajax()) {
+            $actionId = $request->get('action_id');
+            $removeIds = explode(',', $actionId);
+            
+            if (empty($actionId) || empty($removeIds)) {
+                return response()->json(array('error' => '参数错误'));
+            }
+            
+            $relationMenuList = $this->menuRepository->getMenuListByIds($removeIds);
+            // 移除相关记录
+            $affects = $this->menuRepository->removeDataByMenuIds($removeIds);
+            
+            // 写入管理员日志
+            if ($affects) {
+                foreach ($relationMenuList as $item) {
+                    $this->writeAdminLog('删除了"' . $item['menu_name'] . '"菜单');
+                }
+            }
+            
+            return response()->json(array('rows' => $affects));
+        }
+        
+        return response()->json(array('code' => 400, 'errorMsg' => '非法请求'), 404);
     }
 
     public function actionEdit()
