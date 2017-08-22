@@ -3,6 +3,7 @@
 namespace App\Konohanaruto\Repositories\Intranet\Menus;
 
 use App\Konohanaruto\Repositories\Intranet\EloquentRepository;
+use PhpParser\Builder\Interface_;
 
 class MenusEloquentRepository extends EloquentRepository implements MenusRepositoryInterface
 {
@@ -105,5 +106,18 @@ class MenusEloquentRepository extends EloquentRepository implements MenusReposit
         $lists = $this->model->whereIn('menu_id', $menuIds)->get();
         
         return empty($lists) ? array() : $lists->toArray();
+    }
+    
+    /**
+     * 通过menu_id得到详细信息
+     * 
+     * @param integer $menuId
+     * @return mixed
+     */
+    public function getDetailByMenuId($menuId)
+    {
+        $detail = $this->model->where('menu_id', $menuId)->first();
+        
+        return empty($detail) ? array() : $detail->toArray();
     }
 }

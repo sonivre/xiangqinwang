@@ -80,9 +80,29 @@ class MenuController extends CoreController
         return response()->json(array('code' => 400, 'errorMsg' => '非法请求'), 404);
     }
 
-    public function actionEdit()
+    /**
+     * @get method
+     */
+    public function actionEdit(PermissionRepositoryInterface $permissionRepository, Request $request, $actionId)
     {
-
+        $menuDetail = $this->menuRepository->getDetailByMenuId($actionId);
+        $permissions = $permissionRepository->getPermissionTrees();
+        $topMenus = $this->menuRepository->getTopMenus();
+        
+        // 移除自身
+        if (! empty($topMenus)) {
+            foreach ($topMenus as $key => $item) {
+                if ($actionId == $item['menu_id']) {
+                    unset($topMenus[$key]);
+                }
+            }
+        }
+        
+        return view('intranet.pages.menu_edit', array(
+            'menuDetail' => $menuDetail,
+            'permissions' => $permissions,
+            'topMenus' => $topMenus,
+        ));
     }
 
     public function actionList()

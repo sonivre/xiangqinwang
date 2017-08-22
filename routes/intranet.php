@@ -23,7 +23,8 @@ Route::group(array('namespace' => 'Intranet', 'prefix' => 'intranet'), function 
         Route::get('MenuManage/list', 'MenuController@actionList');
         Route::get('MenuManage/add', 'MenuController@actionAdd');
         Route::post('MenuManage/storeMenu', 'MenuController@actionStoreMenu');
-        Route::any('MenuManage/edit/{actionId?}', 'MenuController@actionEdit');
+        Route::get('MenuManage/edit/{actionId}', 'MenuController@actionEdit');
+        Route::post('MenuManage/update', 'MenuController@actionUpdate');
         Route::post('MenuManage/delete', 'MenuController@actionDelete');
     });
 });
