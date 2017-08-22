@@ -25,8 +25,7 @@ class RoleController extends CoreController
     public function actionList()
     {
         $roleList = $this->role->getRoleList();
-        // echo '<pre>';var_dump($roleList);exit;
-        return view('intranet.pages.role_list', array('roleList' => $roleList));
+        return view('intranet.pages.role_list', array('list' => $roleList));
     }
     
     public function actionAdd(Request $request)
