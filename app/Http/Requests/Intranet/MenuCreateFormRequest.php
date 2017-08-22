@@ -28,7 +28,7 @@ class MenuCreateFormRequest extends FormRequest
             // menu_route不能为空，除非menu_parent_id为0
             'menu_route' => 'required_unless:menu_parent_id,0',
             'menu_parent_id' => 'numeric',
-            'permission_id' => 'required|numeric'
+            'permission_id' => 'required_unless:menu_parent_id,0'
         );
     }
     
@@ -45,8 +45,7 @@ class MenuCreateFormRequest extends FormRequest
             'menu_name.unique' => '菜单名称已经存在！',
             'menu_route.required_unless' => '非顶级菜单时，菜单链接不能为空！',
             'menu_parent_id.numeric' => '上级菜单参数错误！',
-            'permission_id.required' => '请指定一个权限！',
-            'permission_id.numeric'  => '请指定一个权限！',
+            'permission_id.required_unless' => '非顶级菜单是，菜单权限不能为空！'
         ];
     }
 }

@@ -49,7 +49,7 @@ class MenusEloquentRepository extends EloquentRepository implements MenusReposit
         $insert['menu_name']      = $data['menu_name'];
         // 确保为顶级Menus才允许写入该值
         $insert['menu_route']     = (empty($data['menu_route']) || $data['menu_parent_id'] ==0) ? '' : $data['menu_route'];
-        $insert['permission_id']  = $data['permission_id'];
+        $insert['permission_id']  = empty($data['permission_id']) ? 0 : $data['permission_id'];
         $insert['menu_parent_id'] = $data['menu_parent_id'];
         
         return $this->model->insert($insert);

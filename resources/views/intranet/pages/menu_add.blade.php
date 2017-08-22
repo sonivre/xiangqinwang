@@ -211,28 +211,6 @@ $(function () {
 
 		$(this)[0].checked = true;
 	});
-
-	// 监听表单提交，如果尚未选中任何权限，则弹出一个提示信息
-	$('form').on('submit', function (event) {
- 		var checkedItems = $('input[type="checkbox"]');
-		// 得到被选中的checkbox的个数
-		var selectedLiChildrenCount = 0;
-		
-		checkedItems.each(function (i, n) {
-			if ($(n).is(':checked')) {
-				++selectedLiChildrenCount;
-			}
-		});
-
-		if (selectedLiChildrenCount != 0) {
-			return true;
-		}
-
-		$('.content-box').prev('.alert-danger').remove();
-		var content = '<div class="alert alert-danger alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>请选择一个权限！</div>';
-		$('.content-box').before(content);
-		event.preventDefault();
-	});
 });
 </script>
 @endsection
