@@ -1,5 +1,5 @@
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-<div class="menu_section">
+<div class="menu_section active">
 <h3>General</h3>
 <ul class="nav side-menu">
   <li class="active"><a><i class="fa fa-home"></i> 菜单权限管理 <span class="fa fa-chevron-down"></span></a>

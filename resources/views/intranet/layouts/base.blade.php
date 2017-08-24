@@ -13,22 +13,23 @@
 <!-- NProgress -->
 <link href="{{config('custom.staticServerIntranet')}}/vendors/nprogress/nprogress.css" rel="stylesheet">
 <link href="{{config('custom.staticServerIntranet')}}/build/js/sweetalert.css" rel="stylesheet">
+<link href="{{config('custom.staticServerIntranet')}}/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <!-- Animate.css -->
 <link href="{{config('custom.staticServerIntranet')}}/vendors/animate.css/animate.min.css" rel="stylesheet">
+<link href="{{config('custom.staticServerIntranet')}}/vendors/nprogress/nprogress.css" rel="stylesheet">
+<link href="{{config('custom.staticServerIntranet')}}/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 <!-- Custom Theme Style -->
 <link href="{{config('custom.staticServerIntranet')}}/build/css/custom.min.css" rel="stylesheet">
-<script src="{{config('custom.staticServerIntranet')}}/build/js/jquery.js"></script>
+<script src="{{config('custom.staticServerIntranet')}}/vendors/jquery/dist/jquery.min.js"></script>
 <script src="{{config('custom.staticServerIntranet')}}/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="{{config('custom.staticServerIntranet')}}/build/js/bootstrap-tooltip.js"></script>
 <script src="{{config('custom.staticServerIntranet')}}/build/js/sweetalert.min.js"></script>
 <script src="{{config('custom.staticServerIntranet')}}/build/js/jquery.validationEngine.js"></script>
 <script src="{{config('custom.staticServerIntranet')}}/build/js/jquery.validationEngine-zh_CN.js"></script>
-<link href="{{config('custom.staticServerIntranet')}}/vendors/nprogress/nprogress.css" rel="stylesheet">
-<link href="{{config('custom.staticServerIntranet')}}/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 <script src="{{config('custom.staticServerIntranet')}}/vendors/fastclick/lib/fastclick.js"></script>
 <script src="{{config('custom.staticServerIntranet')}}/vendors/nprogress/nprogress.js"></script>
 <script src="{{config('custom.staticServerIntranet')}}/vendors/iCheck/icheck.min.js"></script>
-<script src="{{config('custom.staticServerIntranet')}}/build/js/custom.min.js"></script>
+<script src="{{config('custom.staticServerIntranet')}}/build/js/custom.js"></script>
 <!-- csrf token define -->
 <script>
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
