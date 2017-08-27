@@ -121,19 +121,24 @@
         <label class="control-label col-md-3 col-sm-3 col-xs-12">菜单名称 <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-          <input type="text" required="required" name="menu_name" value="{{old('menu_name')}}{{$menuDetail['menu_name']}}" class="form-control col-md-7 col-xs-12">
+          <input type="text" required="required" name="menu_name" value="@if(!empty(old('menu_name'))){{old('menu_name')}}@elseif(!empty($menuDetail['menu_name'])){{$menuDetail['menu_name']}}@endif" class="form-control col-md-7 col-xs-12">
         </div>
       </div>
       
+      {{-- 顶级菜单不显示 --}}
+      @if ($menuDetail['menu_parent_id'] != 0)
       <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12">菜单链接 <span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-          <input type="text" name="menu_route" value="{{old('munu_route')}}{{$menuDetail['menu_route']}}" class="form-control col-md-7 col-xs-12">
+          <input type="text" name="menu_route" value="@if(!empty(old('menu_route'))){{old('menu_route')}}@elseif(!empty($menuDetail['menu_route'])){{$menuDetail['menu_route']}}@endif" class="form-control col-md-7 col-xs-12">
         </div>
         <span>类似： MenuManage/add</span>
       </div>
+      @endif
       
+      {{-- 顶级菜单不显示 --}}
+      @if ($menuDetail['menu_parent_id'] != 0)
       <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12">上级菜单 <span class="required">*</span>
         </label>
@@ -148,7 +153,10 @@
           </select>
         </div>
       </div>
+      @endif
       
+      {{-- 顶级菜单不显示 --}}
+      @if ($menuDetail['menu_parent_id'] != 0)
       <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12">选择权限 <span class="required">*</span></label>
         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -178,10 +186,12 @@
             </div>
         </div>
       </div>
+      @endif
       
       <div class="form-group">
         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
         {{csrf_field()}}
+        <input type="hidden" name="is_root_menu" value="{{$isRootMenu}}">
         <button type="submit" class="btn btn-success">提交</button>
 		<button class="btn btn-primary" type="reset" onclick="window.location.href=window.location.href;">重置</button>
         </div>

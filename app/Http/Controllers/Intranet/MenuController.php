@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use App\Konohanaruto\Repositories\Intranet\Menus\MenusRepositoryInterface;
 use App\Konohanaruto\Repositories\Intranet\Permission\PermissionRepositoryInterface;
 use App\Http\Requests\Intranet\MenuCreateFormRequest;
+use App\Http\Requests\Intranet\MenuUpdateFormRequest;
 
 class MenuController extends CoreController
 {
@@ -89,6 +90,11 @@ class MenuController extends CoreController
         $permissions = $permissionRepository->getPermissionTrees();
         $topMenus = $this->menuRepository->getTopMenus();
         
+        // 不存在给出错误信息
+        if (empty($menuDetail)) {
+            throw new \Exception('页面未发现！');
+        }
+        
         // 移除自身
         if (! empty($topMenus)) {
             foreach ($topMenus as $key => $item) {
@@ -98,11 +104,23 @@ class MenuController extends CoreController
             }
         }
         
+        // 区分是顶级Menu 还是子集Menu
+        $isRootMenu = $menuDetail['menu_parent_id'] == 0 ? 1 : 0;
+        
         return view('intranet.pages.menu_edit', array(
             'menuDetail' => $menuDetail,
             'permissions' => $permissions,
             'topMenus' => $topMenus,
+            'isRootMenu' => $isRootMenu
         ));
+    }
+    
+    /**
+     * @post update
+     */
+    public function actionUpdate(MenuUpdateFormRequest $request)
+    {
+        echo 'aaa';
     }
 
     public function actionList()
