@@ -16,6 +16,7 @@ use App\Konohanaruto\Repositories\Intranet\Menus\MenusRepositoryInterface;
 use App\Konohanaruto\Repositories\Intranet\Permission\PermissionRepositoryInterface;
 use App\Http\Requests\Intranet\MenuCreateFormRequest;
 use App\Http\Requests\Intranet\MenuUpdateFormRequest;
+use Illuminate\Support\Facades\Log;
 
 class MenuController extends CoreController
 {
@@ -134,7 +135,7 @@ class MenuController extends CoreController
             ), $formData['menu_id']);
         }
         
-        if ($updateStatus) {
+        if ($updateStatus !== false) {
             if ($formData['old_menu_name'] == $formData['menu_name']) {
                 $logContent = '修改了菜单"' . $formData['menu_name'] . '"';
             } else {
@@ -145,6 +146,8 @@ class MenuController extends CoreController
             
             return redirect('intranet/MenuManage/list');
         }
+        
+        Log::info('菜单更新失败!', array('menu_name' => $formData['menu_name'], 'menu_id' => $formData['menu_id']));
         
         return redirect()->back()->withInput($formData);
     }
