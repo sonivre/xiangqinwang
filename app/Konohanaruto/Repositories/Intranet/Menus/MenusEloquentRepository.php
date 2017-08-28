@@ -120,4 +120,14 @@ class MenusEloquentRepository extends EloquentRepository implements MenusReposit
         
         return empty($detail) ? array() : $detail->toArray();
     }
+    
+    /**
+     * 根据menu_id更新
+     * 
+     * @return boolean
+     */
+    public function updateData($data, $menuId)
+    {
+        return $this->model->where('menu_id', $menuId)->update($data);
+    }
 }

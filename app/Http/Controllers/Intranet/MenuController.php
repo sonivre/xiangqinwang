@@ -120,7 +120,33 @@ class MenuController extends CoreController
      */
     public function actionUpdate(MenuUpdateFormRequest $request)
     {
-        echo 'aaa';
+        $formData = $request->all();
+        
+        // 顶级Menu
+        if ($formData['is_root_menu'] == 1) {
+            $updateStatus = $this->menuRepository->updateData(array('menu_name' => $formData['menu_name']), $formData['menu_id']);
+        } else {
+            $updateStatus = $this->menuRepository->updateData(array(
+                'menu_name' => $formData['menu_name'],
+                'menu_route' => $formData['menu_route'],
+                'menu_parent_id' => $formData['menu_parent_id'],
+                'permission_id' => $formData['permission_id']
+            ), $formData['menu_id']);
+        }
+        
+        if ($updateStatus) {
+            if ($formData['old_menu_name'] == $formData['menu_name']) {
+                $logContent = '修改了菜单"' . $formData['menu_name'] . '"';
+            } else {
+                $logContent = '将菜单"' . $formData['old_menu_name'] . '"更名为"' . $formData['menu_name'] . '"';
+            }
+            
+            $this->writeAdminLog($logContent);
+            
+            return redirect('intranet/MenuManage/list');
+        }
+        
+        return redirect()->back()->withInput($formData);
     }
 
     public function actionList()

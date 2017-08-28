@@ -25,7 +25,8 @@ class MenuUpdateFormRequest extends FormRequest
     public function rules()
     {
         return array(
-            'menu_name' => 'required', 
+            'menu_name' => 'required',
+            'menu_id' => 'required'
         );
     }
     

@@ -7,6 +7,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use App\Konohanaruto\Exceptions\Frontend\FrequentException;
 use App\Konohanaruto\Exceptions\Frontend\NotFoundException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -48,10 +49,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if (config('app.debug')) {
-            return parent::render($request, $exception);
-        }
-        return $this->handle($request, $exception);
+        //if (config('app.debug')) {
+        //    return parent::render($request, $exception);
+        //}
+        //return $this->handle($request, $exception);
+        return parent::render($request, $exception);
     }
 
     /**
@@ -78,21 +80,22 @@ class Handler extends ExceptionHandler
      * @return JSONResponse
      */
     private function handle($request, Exception $e) {
-        if ($e instanceOf FrequentException) {
-            $data   = $e->toArray();
-            $status = $e->getStatus();
-        }
+//         if ($e instanceOf FrequentException) {
+//             $data   = $e->toArray();
+//             $status = $e->getStatus();
+//         }
 
-        if ($e instanceOf NotFoundException) {
-            $data = array_merge([
-                'id'     => 'not_found',
-                'status' => '404'
-            ], config('errors.not_found'));
+//         if ($e instanceOf NotFoundException) {
+//             $data = array_merge([
+//                 'id'     => 'not_found',
+//                 'status' => '404'
+//             ], config('errors.not_found'));
 
-            $status = 404;
-        }
+//             $status = 404;
+//         }
 
-        return response()->json($data, $status);
+//         return response()->json($data, $status);
+        //return parent::render($request, $exception);
     }
 
 }
