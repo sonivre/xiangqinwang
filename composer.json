@@ -10,7 +10,8 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "mews/captcha": "^2.1",
-        "php-curl-class/php-curl-class": "^7.2"
+        "php-curl-class/php-curl-class": "^7.2",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
