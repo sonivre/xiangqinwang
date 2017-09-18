@@ -14,3 +14,6 @@
 Route::get('test', function () {
     var_dump(getUserLocationByIp('114.215.142.180'));
 });
+
+Route::get('logging', 'HomeController@logging');
+Route::get('storeLog', 'HomeController@storeLog');

@@ -52,4 +52,12 @@ $app->singleton(
 |
 */
 
+$app->configureMonologUsing(function ($monolog) {
+    $mongoHandler = new \Monolog\Handler\MongoDBHandler(
+        new MongoClient('mongodb://192.168.2.116:27017'), 'laravel_project_db', 'logs'
+    );
+
+    $monolog->pushHandler($mongoHandler);
+});
+
 return $app;
