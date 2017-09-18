@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Created by ZendStudio 12.5.1.
+ * User: konohanaruto
+ * Blog: http://www.muyesanren.com
+ * QQ: 1039814413
+ * Wechat Number: wikitest
+ * @date: Sep 17, 2017
+ */
+
 namespace App\Konohanaruto\Providers\Common;
 
 use Illuminate\Support\ServiceProvider;
