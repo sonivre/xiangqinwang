@@ -186,6 +186,7 @@ return [
         App\Konohanaruto\Providers\Common\makeRepositoryCommandServiceProvider::class,
         App\Konohanaruto\Providers\Intranet\MenusServiceProvider::class,
         Jenssegers\Mongodb\MongodbServiceProvider::class,
+        App\Konohanaruto\Providers\Common\MongoLogServiceProvider::class,
     ],
 
     /*

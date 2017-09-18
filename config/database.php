@@ -69,14 +69,11 @@ return [
         'mongodb' => [
             'driver'   => 'mongodb',
             // 我的mongodb在另一台linux虚拟机上，所以我填的并不是localhost
-            'host'     => env('MONGO_DB_HOST', '192.168.2.116'),
+            'host'     => env('MONGO_DB_HOST', '127.0.0.1'),
             'port'     => env('MONGO_DB_PORT', 27017),
             'database' => env('MONGO_DB_DATABASE', 'laravel_project_db'),
             //'username' => env('DB_USERNAME'),
             //'password' => env('DB_PASSWORD'),
-            'options'  => [
-                'database' => 'laravel_project_db'
-            ]
         ],
 
     ],
