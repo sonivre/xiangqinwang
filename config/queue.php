@@ -59,7 +59,7 @@ return [
 
         'redis' => [
             'driver' => 'redis',
-            'connection' => 'default',
+            'connection' => 'default', // connection name, see config/database.php
             'queue' => 'default',
             'retry_after' => 90,
         ],
