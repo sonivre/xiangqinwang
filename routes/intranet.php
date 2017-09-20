@@ -5,6 +5,7 @@ Route::group(array('namespace' => 'Intranet', 'prefix' => 'intranet'), function 
     Route::group(array('middleware' => array('intranet.logincheck', 'intranet.useranalyzetool')), function () {
         Route::get('/', 'SystemController@home');
         Route::get('logout', 'SystemController@actionLogout');
+        // 权限设置
         Route::get('Privilege/list', 'PrivilegeController@actionList');
         Route::any('Privilege/add', 'PrivilegeController@actionAdd');
         Route::any('Privilege/edit/{permissionId?}', 'PrivilegeController@actionEdit');
@@ -26,5 +27,7 @@ Route::group(array('namespace' => 'Intranet', 'prefix' => 'intranet'), function 
         Route::get('MenuManage/edit/{actionId}', 'MenuController@actionEdit');
         Route::post('MenuManage/update', 'MenuController@actionUpdate');
         Route::post('MenuManage/delete', 'MenuController@actionDelete');
+        // 基础设置模块
+        Route::get('SafeSetting/detail', 'SafeSettingController@actionDetail');
     });
 });
