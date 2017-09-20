@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Log;
 use App\Konohanaruto\Jobs\Intranet\SendTestEmail;
 use App\Konohanaruto\Repositories\Intranet\User\UserRepositoryInterface;
+use Flc\Dysms\Client;
+use Flc\Dysms\Request\SendSms;
 
 class HomeController extends Controller
 {
@@ -32,5 +34,17 @@ class HomeController extends Controller
         
         $job = (new SendTestEmail())->onQueue('SendTestEmail');
         dispatch($job);
+    }
+    
+    public function smsTest()
+    {
+        $config = [
+            'accessKeyId'    => '',
+            'accessKeySecret' => '',
+        ];
+        
+        $client  = new Client($config);
+        $sendSms = new SendSms;
+        echo '<pre>';var_dump($sendSms);exit;
     }
 }

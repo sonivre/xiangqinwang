@@ -18,3 +18,4 @@ Route::get('test', function () {
 Route::get('logging', 'HomeController@logging');
 Route::get('storeLog', 'HomeController@storeLog');
 Route::get('jobFeatureTest', 'HomeController@jobFeatureTest');
+Route::get('smsTest', 'HomeController@smsTest');
