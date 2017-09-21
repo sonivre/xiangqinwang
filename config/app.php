@@ -187,6 +187,7 @@ return [
         App\Konohanaruto\Providers\Intranet\MenusServiceProvider::class,
         Jenssegers\Mongodb\MongodbServiceProvider::class,
         App\Konohanaruto\Providers\Common\MongoLogServiceProvider::class,
+        App\Konohanaruto\Providers\Intranet\NavbarComposerServiceProvider::class,
     ],
 
     /*

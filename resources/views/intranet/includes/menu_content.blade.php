@@ -17,3 +17,8 @@
 </ul>
 </div>
 </div>
+
+@php 
+
+var_dump($count);
+@endphp
