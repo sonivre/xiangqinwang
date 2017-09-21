@@ -33,10 +33,14 @@ class NavbarComposer
         $currentRoute = substr($requestUri, strpos($requestUri, '/') + 1);
         $menuList = $this->menuRepository->getMenuList();
         $menuList = $this->menuRepository->getMenuTree($menuList);
-        //echo '<pre>';var_dump($menuList);exit;
+        // 得到当前route的父级menu id
+        $parentMenuDetail = $this->menuRepository->getParentMenuIdByRoute($currentRoute);
+        $parentMenuId = $parentMenuDetail['menu_id'];
+        //echo '<pre>';var_dump($parentMenuId);exit;
         $view->with(array(
             'currentRoute' => $currentRoute,
-            'menuList' => $menuList
+            'menuList' => $menuList,
+            'parentMenuId' => $parentMenuId
         ));
     }
 }
