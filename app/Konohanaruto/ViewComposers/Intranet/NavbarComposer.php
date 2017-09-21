@@ -3,18 +3,22 @@
 namespace App\Konohanaruto\ViewComposers\Intranet;
 
 use Illuminate\View\View;
+use App\Konohanaruto\Repositories\Intranet\Menus\MenusRepositoryInterface;
+use Request;
 
 class NavbarComposer
 {
+    
+    private $menuRepository;
     
     /**
      * Create a new composer.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(MenusRepositoryInterface $menuRepository)
     {
-        
+        $this->menuRepository = $menuRepository;
     }
     
     /**
@@ -25,6 +29,14 @@ class NavbarComposer
      */
     public function leftNavbar(View $view)
     {
-        $view->with('count', '1111');
+        $requestUri = Request::path();
+        $currentRoute = substr($requestUri, strpos($requestUri, '/') + 1);
+        $menuList = $this->menuRepository->getMenuList();
+        $menuList = $this->menuRepository->getMenuTree($menuList);
+        //echo '<pre>';var_dump($menuList);exit;
+        $view->with(array(
+            'currentRoute' => $currentRoute,
+            'menuList' => $menuList
+        ));
     }
 }
