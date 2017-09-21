@@ -132,7 +132,10 @@ class MenusEloquentRepository extends EloquentRepository implements MenusReposit
     }
     
     /**
+     * 通过route name得到父级menu id
      * 
+     * @param string $routeName
+     * @return mixed
      */
     public function getParentMenuIdByRoute($routeName)
     {
