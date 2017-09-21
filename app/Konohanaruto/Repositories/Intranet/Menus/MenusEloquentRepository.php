@@ -139,6 +139,8 @@ class MenusEloquentRepository extends EloquentRepository implements MenusReposit
      */
     public function getParentMenuIdByRoute($routeName)
     {
-        return $this->model->select('menu_id')->where('menu_route', $routeName)->first();
+        $detail = $this->model->select('menu_id')->where('menu_route', $routeName)->first();
+        
+        return empty($detail) ? array() : $detail->toArray();
     }
 }
