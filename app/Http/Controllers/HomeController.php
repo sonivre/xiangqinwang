@@ -7,9 +7,11 @@ use Illuminate\Support\Facades\DB;
 use Log;
 use App\Konohanaruto\Jobs\Intranet\SendTestEmail;
 use App\Konohanaruto\Repositories\Intranet\User\UserRepositoryInterface;
-use Flc\Dysms\Client;
-use Flc\Dysms\Request\SendSms;
-use Config;
+use Aliyun\Core\Config;
+use Aliyun\Core\Profile\DefaultProfile;
+use Aliyun\Core\DefaultAcsClient;
+use Aliyun\Api\Sms\Request\V20170525\SendSmsRequest;
+use Aliyun\Api\Sms\Request\V20170525\QuerySendDetailsRequest;
 
 class HomeController extends Controller
 {
@@ -39,15 +41,7 @@ class HomeController extends Controller
     
     public function smsTest()
     {
-        $config = Config::get('custom.aliyunSMS');
-        $client  = new Client($config);
-        $sendSms = new SendSms;
-        $sendSms->setPhoneNumbers('18672670383');
-        $sendSms->setSignName(env('ALIYUN_SIGN_NAME'));
-        $sendSms->setTemplateCode(env('ALIYUN_TEMPLATE_CODE'));
-        $sendSms->setTemplateParam(['code' => rand(100000, 999999)]);
-        $sendSms->setOutId('konohanaruto');
-        
-        print_r($client->execute($sendSms));
+        $request = new SendSmsRequest();
+        var_dump($request);
     }
 }
