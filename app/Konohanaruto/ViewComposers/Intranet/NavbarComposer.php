@@ -29,8 +29,6 @@ class NavbarComposer
      */
     public function leftNavbar(View $view)
     {
-
-
         $requestUri = Request::path();
 
         if (strpos($requestUri, '/') === false) {
@@ -42,7 +40,6 @@ class NavbarComposer
             $currentRoute = substr($requestUri, strpos($requestUri, '/') + 1);
             $routeStatus = $this->menuRepository->getMenuInfoByRoute($currentRoute);
             $sessionData = session(config('custom.intranetSessionName') . '.selectedMenuRoute');
-
             if (! empty($routeStatus)) {
                 $parentMenuDetail = $this->menuRepository->getParentMenuIdByRoute($currentRoute);
                 $parentMenuId = $parentMenuDetail['menu_id'];
@@ -54,22 +51,18 @@ class NavbarComposer
                 $currentRoute = $defaultMenuRoute['currentRoute'];
                 $parentMenuId = $defaultMenuRoute['parentMenuId'];
             }
-
-            //echo '<pre>';var_dump($currentRoute . '---' . $parentMenuId);exit;
-
-
         }
 
         // 将默认的menu和被选中的route写入session
-        session(config('custom.intranetSessionName') . '.selectedMenuRoute.currentRoute', $currentRoute);
-        session(config('custom.intranetSessionName') . '.selectedMenuRoute.parentMenuId', $parentMenuId);
-        var_dump(session(config('custom.intranetSessionName')));exit;
+        session(array(config('custom.intranetSessionName') . '.selectedMenuRoute' => array(
+            'currentRoute' => $currentRoute,
+            'parentMenuId' => $parentMenuId
+        )));
 
         $menuList = $this->menuRepository->getMenuList();
         $menuList = $this->menuRepository->getMenuTree($menuList);
         $menuList = $this->filterInvalidMenu($menuList);
 
-        //echo '<pre>';var_dump($currentRoute . '---' . $parentMenuId);exit;
         $view->with(array(
             'currentRoute' => $currentRoute,
             'menuList' => $menuList,

@@ -41,7 +41,8 @@ class HomeController extends Controller
     
     public function smsTest()
     {
-        $request = new SendSmsRequest();
-        var_dump($request);
+        //$request = new SendSmsRequest();
+        session(array('intranet.selectedRoute' => array('currentRoute' => 'permission/list')));
+        var_dump(session('intranet.selectedRoute.currentRoute'));
     }
 }

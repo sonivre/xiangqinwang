@@ -121,6 +121,6 @@ class SystemController extends CoreController
      */
     public function checkUserLoginStatus()
     {
-        return ! empty(session(config('custom.intranetSessionName'))) ? true : false;
+        return ! empty(session(config('custom.intranetSessionName') . '.username')) ? true : false;
     }
 }
