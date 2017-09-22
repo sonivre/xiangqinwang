@@ -143,4 +143,32 @@ class MenusEloquentRepository extends EloquentRepository implements MenusReposit
         
         return empty($detail) ? array() : $detail->toArray();
     }
+
+    /**
+     * 得到首个父级菜单
+     */
+    public function getFirstParentMenu()
+    {
+        $parentMenu = $this->model->select('menu_id')->where('menu_parent_id', 0)->first();
+
+        return empty($parentMenu) ? array() : $parentMenu->toArray();
+    }
+
+    /**
+     * 得到默认的首个子级menu
+     *
+     * @param $parentMenuId
+     * @return array
+     */
+    public function getFirstChildrenRouteByParentMenuId($parentMenuId)
+    {
+        $menu = $this->model->select('menu_route')->where('menu_parent_id', $parentMenuId)->first();
+
+        return empty($menu) ? array() : $menu->toArray();
+    }
+
+    public function getMenuInfoByRoute($route)
+    {
+        return $this->model->select('menu_id')->where('menu_route', $route)->first();
+    }
 }
