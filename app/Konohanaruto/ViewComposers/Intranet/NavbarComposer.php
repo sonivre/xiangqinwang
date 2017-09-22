@@ -81,7 +81,7 @@ class NavbarComposer
         return $menuList;
     }
 
-    protected function getDefaultMenuRoute()
+    public function getDefaultMenuRoute()
     {
         $currentRoute = '';
         $parentMenuId = 0;

@@ -5,23 +5,27 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Konohanaruto\Infrastructures\Common\PasswordSecure;
 use App\Konohanaruto\Repositories\Intranet\User\UserRepositoryInterface;
+use App\Konohanaruto\ViewComposers\Intranet\NavbarComposer;
 
 class SystemController extends CoreController
 {
     
     private $passwordSecure;
     private $userEloquent;
+    private $defaultRoute;
     
-    public function __construct(UserRepositoryInterface $userEloquent, PasswordSecure $passwordSecure)
+    public function __construct(UserRepositoryInterface $userEloquent, PasswordSecure $passwordSecure, NavbarComposer $navbarComposer)
     {
         $this->passwordSecure = $passwordSecure;
         $this->userEloquent = $userEloquent;
+        $defaultRoute = $navbarComposer->getDefaultMenuRoute();
+        $this->defaultRoute = $defaultRoute['currentRoute'];
         parent::__construct();
     }
     
     public function home(Request $request)
     {
-        return view('intranet.pages.home');
+        return redirect('intranet/' . $this->defaultRoute);
     }
     
     /**
@@ -55,7 +59,7 @@ class SystemController extends CoreController
                 $this->updateUserStatus($userinfo['admin_id'], $request->ip());
                 // 记录日志
                 $this->writeAdminLog('系统登录', $request->ip());
-                return redirect('intranet');
+                return redirect('intranet/' . $this->defaultRoute);
             }
             return view('intranet.pages.login', $status);
         }
