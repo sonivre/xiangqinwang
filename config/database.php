@@ -76,6 +76,18 @@ return [
             //'password' => env('DB_PASSWORD'),
         ],
 
+        // memcached
+        'memcached' => [
+            'driver' => 'memcached',
+            'servers' => [
+                [
+                    'host' => env('MEMCACHED_HOST', '127.0.0.1'),
+                    'port' => env('MEMCACHED_PORT', 11211),
+                    'weight' => 100,
+                ],
+            ],
+        ],
+
     ],
 
     /*

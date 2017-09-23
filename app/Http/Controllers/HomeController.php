@@ -7,11 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Log;
 use App\Konohanaruto\Jobs\Intranet\SendTestEmail;
 use App\Konohanaruto\Repositories\Intranet\User\UserRepositoryInterface;
-use Aliyun\Core\Config;
-use Aliyun\Core\Profile\DefaultProfile;
-use Aliyun\Core\DefaultAcsClient;
-use Aliyun\Api\Sms\Request\V20170525\SendSmsRequest;
-use Aliyun\Api\Sms\Request\V20170525\QuerySendDetailsRequest;
+use App\Konohanaruto\Infrastructures\Common\SMS\ShortMessageServiceInterface;
 
 class HomeController extends Controller
 {
@@ -39,10 +35,10 @@ class HomeController extends Controller
         dispatch($job);
     }
     
-    public function smsTest()
+    public function smsTest(ShortMessageServiceInterface $smsService)
     {
-        //$request = new SendSmsRequest();
-        session(array('intranet.selectedRoute' => array('currentRoute' => 'permission/list')));
-        var_dump(session('intranet.selectedRoute.currentRoute'));
+        $result = $smsService->send('18672670383');
+        echo '<pre>';
+        var_dump($result);
     }
 }
