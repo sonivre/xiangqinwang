@@ -29,5 +29,10 @@ Route::group(array('namespace' => 'Intranet', 'prefix' => 'intranet'), function 
         Route::post('MenuManage/delete', 'MenuController@actionDelete');
         // 基础设置模块
         Route::get('SafeSetting/detail', 'SafeSettingController@actionDetail');
+
+        // 用户管理模块
+        Route::get('Education/list', 'EducationController@actionList');
+        Route::get('Education/showAddForm', 'EducationController@actionShowAddForm');
+        Route::post('Education/store', 'EducationController@actionStore');
     });
 });
