@@ -48,11 +48,10 @@
                 <div class="s-tab2 fl"><span>上传照片，完成注册</span></div>
             </div>
             <div class="signup-form-content">
-
-                <div class="current-account">
-                    <span>当前账户：1039814413@qq.com</span>
-                    <a href="#">切换账号</a>
-                </div>
+                {{--<div class="current-account">--}}
+                    {{--<span>当前账户：1039814413@qq.com</span>--}}
+                    {{--<a href="#">切换账号</a>--}}
+                {{--</div>--}}
                 <form id="register_step_one" action="{{url('register_step_one')}}" method="post" name="register_step_one" enctype="multipart/form-data">
                 <!-- 设置表单token -->
                 {{csrf_field()}}
@@ -262,5 +261,5 @@
         var getDaysUrl = '{{url('tools/totalDays')}}';
         var getCitiesUrl = '{{url('tools/cityList')}}';
     </script>
-    <script src="{{config('custom.staticServer')}}/js/register-validation.js"></script>
+    <script src="{{config('custom.staticServer')}}/js/register-validation.js?{{rand()}}"></script>
 @endsection
