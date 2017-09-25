@@ -189,6 +189,8 @@ return [
         App\Konohanaruto\Providers\Common\MongoLogServiceProvider::class,
         App\Konohanaruto\Providers\Intranet\NavbarComposerServiceProvider::class,
         App\Konohanaruto\Providers\Common\AliyunShortMessageServiceProvider::class,
+        App\Konohanaruto\Providers\Frontend\ExtendValidationServiceProvider::class,
+        App\Konohanaruto\Providers\Intranet\EducationServiceProvider::class,
     ],
 
     /*
