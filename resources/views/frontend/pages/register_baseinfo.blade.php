@@ -49,11 +49,11 @@
             </div>
             <div class="signup-form-content">
 
-                <div class="current-account">
-                    <span>当前账户：1039814413@qq.com</span>
-                    <a href="#">切换账号</a>
-                </div>
-                <form id="register_step_one" action="{{url('register_step_one')}}" method="post" name="register_step_one" enctype="multipart/form-data">
+                {{--<div class="current-account">--}}
+                    {{--<span>当前账户：1039814413@qq.com</span>--}}
+                    {{--<a href="#">切换账号</a>--}}
+                {{--</div>--}}
+                <form id="register_step_one" action="{{url('User/register')}}" method="post" name="register_step_one" enctype="multipart/form-data">
                 <!-- 设置表单token -->
                 {{csrf_field()}}
                 <div class="form-control">

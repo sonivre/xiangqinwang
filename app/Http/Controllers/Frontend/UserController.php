@@ -13,6 +13,7 @@ use App\Konohanaruto\Repositories\Frontend\User\UserRepository;
 use App\Konohanaruto\Validators\EmailPasswordValidator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use App\Http\Requests\Frontend\UserRegisterFormRequest;
 
 class UserController extends BasicController
 {
@@ -115,5 +116,15 @@ class UserController extends BasicController
             }
         }
         return response()->json($response);
+    }
+
+    /**
+     * 用户注册
+     *
+     * @request POST
+     */
+    public function actionRegister(UserRegisterFormRequest $request)
+    {
+        var_dump($request->all());
     }
 }

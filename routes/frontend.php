@@ -6,6 +6,7 @@ Route::group(array('namespace' => 'Frontend'), function () {
     Route::any('finalRegister', 'UserController@finalRegister');
     Route::group(array('prefix' => 'User'), function () {
         Route::post('checkExists', 'UserController@checkUserExists');
+        Route::post('register', 'UserController@actionRegister');
     });
     Route::group(array('middleware' => 'LoginCheck'), function () {
 
