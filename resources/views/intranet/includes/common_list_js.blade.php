@@ -63,7 +63,7 @@ function removeData(actionId, isConfirm)
         // 发送ajax删除请求
     	$.ajax({
  		   type: "POST",
- 		   url: "{{url('intranet/RoleManage/delete')}}",
+ 		   url: "{{$deleteRoute}}",
  		   data: "_token=" + CSRF_TOKEN + "&action_id=" + actionId,
  		   success: function (msg) {
      		   //console.log(msg);

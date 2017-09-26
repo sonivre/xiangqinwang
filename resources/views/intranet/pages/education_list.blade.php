@@ -3,7 +3,8 @@
 @php
 $pageTitle = '学历列表';
 $navigationButtonUrl = url('intranet/Education/showAddForm');
-$editRoute = url('intranet/Education/edit');
+$editRoute = url('intranet/Education/showEditForm');
+$deleteRoute = url('intranet/Education/delete');
 $navigationButtonName = '学历添加';
 $columnTitleName = array('学历名称');
 $columnKey = array('name');

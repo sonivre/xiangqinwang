@@ -4,6 +4,7 @@
 $pageTitle = '角色列表';
 $navigationButtonUrl = url('intranet/RoleManage/add');
 $editRoute = url('intranet/RoleManage/edit');
+$deleteRoute = url('intranet/RoleManage/delete');
 $navigationButtonName = '角色添加';
 $columnTitleName = array('角色名称', '操作用户', '创建时间');
 $columnKey = array('role_name', 'username', 'create_time');

@@ -34,5 +34,8 @@ Route::group(array('namespace' => 'Intranet', 'prefix' => 'intranet'), function 
         Route::get('Education/list', 'EducationController@actionList');
         Route::get('Education/showAddForm', 'EducationController@actionShowAddForm');
         Route::post('Education/store', 'EducationController@actionStore');
+        Route::get('Education/showEditForm/{actionId}', 'EducationController@actionShowEditForm');
+        Route::post('Education/update', 'EducationController@actionUpdate');
+        Route::post('Education/delete', 'EducationController@actionDelete');
     });
 });
