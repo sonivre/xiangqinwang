@@ -73,10 +73,9 @@ create table if not exists `xqw_education` (
 )engine=innodb default charset=utf8;
 
 -- 收入表
-create table if not exists `xqw_revenue` (
+create table if not exists `xqw_revenue_range` (
   `rev_id` smallint unsigned not null auto_increment,
-  `type` tinyint not null comment '0 月 | 1 年',
-  `revenue` varchar(50) not null default '' comment '收入范围等',
+  `revenue` varchar(50) not null default '' comment '收入范围',
   primary key (`rev_id`)
 )engine=innodb default charset=utf8;
 

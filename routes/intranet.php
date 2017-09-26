@@ -37,5 +37,13 @@ Route::group(array('namespace' => 'Intranet', 'prefix' => 'intranet'), function 
         Route::get('Education/showEditForm/{actionId}', 'EducationController@actionShowEditForm');
         Route::post('Education/update', 'EducationController@actionUpdate');
         Route::post('Education/delete', 'EducationController@actionDelete');
+
+        // 注册项 月均收入
+        Route::get('RegisterRevenue/list', 'RegisterRevenueController@actionList');
+        Route::get('RegisterRevenue/showAddForm', 'RegisterRevenueController@actionShowAddForm');
+        Route::post('RegisterRevenue/store', 'RegisterRevenueController@actionStore');
+        Route::get('RegisterRevenue/showEditForm/{actionId}', 'RegisterRevenueController@actionShowEditForm');
+        Route::post('RegisterRevenue/update', 'RegisterRevenueController@actionUpdate');
+        Route::post('RegisterRevenue/delete', 'RegisterRevenueController@actionDelete');
     });
 });
