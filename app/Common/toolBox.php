@@ -48,3 +48,12 @@ if (! function_exists('checkIpAddress')) {
         return false;
     }
 }
+
+if (! function_exists('verifyPhoneNumber')) {
+    // 验证手机号是否有效
+    function verifyPhoneNumber($number) {
+        $reg = '/^((13[0-9])|(15[^4])|(18[0,2,3,5-9])|(17[0-8])|(147))\d{8}$/';
+
+        return preg_match($reg, $number) ? true : false;
+    }
+}

@@ -262,4 +262,12 @@
         var getCitiesUrl = '{{url('tools/cityList')}}';
     </script>
     <script src="{{config('custom.staticServer')}}/js/register-validation.js?{{rand()}}"></script>
+    <script>
+        /**
+         * 获取验证码
+         */
+        $(function () {
+
+        });
+    </script>
 @endsection

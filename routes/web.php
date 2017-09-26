@@ -19,3 +19,8 @@ Route::get('logging', 'HomeController@logging');
 Route::get('storeLog', 'HomeController@storeLog');
 Route::get('jobFeatureTest', 'HomeController@jobFeatureTest');
 Route::get('smsTest', 'HomeController@smsTest');
+
+// 用户服务
+Route::group(array('namespace' => 'Tools\\Json\\', 'prefix' => 'UserService'), function () {
+    Route::any('getmobileverify', 'UserServiceController@sendShortMessage');
+});
