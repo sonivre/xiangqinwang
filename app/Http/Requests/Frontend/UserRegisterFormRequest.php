@@ -31,6 +31,12 @@ class UserRegisterFormRequest extends FormRequest
             'birthday' => 'numeric',
             'height' => 'numeric',
             'education' => 'numeric',
+            'resideprovince' => 'numeric',
+            'residecity' => 'numeric',
+            'revenue' => 'numeric',
+            'mobile' => 'numeric',
+            'mobile_verify_code' => 'numeric',
+            'license' => 'in:1'
         ];
     }
 }
