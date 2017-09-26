@@ -74,34 +74,6 @@ class UserRegisterRepository implements UserRepository
     }
 
     /**
-     * 得到学历数据
-     *
-     * @param void
-     * @return array
-     */
-    public function getEducationSelectData()
-    {
-        if (config('operation.educationLevel')) {
-            return config('operation.educationLevel');
-        }
-        return array();
-    }
-
-    /**
-     * 得到收入下拉框数据
-     *
-     * @param void
-     * @return array
-     */
-    public function getRevenueSelectData()
-    {
-        if (config('operation.revenueLevel')) {
-            return config('operation.revenueLevel');
-        }
-        return array();
-    }
-
-    /**
      * 得到用户地址，根据用户ip
      *
      * @param string $ip

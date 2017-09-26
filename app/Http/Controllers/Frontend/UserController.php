@@ -14,17 +14,22 @@ use App\Konohanaruto\Validators\EmailPasswordValidator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Http\Requests\Frontend\UserRegisterFormRequest;
+use App\Konohanaruto\Infrastructures\Frontend\SystemConfig;
 
 class UserController extends BasicController
 {
 
     private $registerRepo;
     private $emailPasswordValidator;
+    private $systemConfig;
 
-    public function __construct(UserRepository $userRegister, EmailPasswordValidator $emailPasswordValidator)
+    public function __construct(UserRepository $userRegister,
+                                EmailPasswordValidator $emailPasswordValidator,
+                                SystemConfig $systemConfig)
     {
         $this->registerRepo = $userRegister;
         $this->emailPasswordValidator = $emailPasswordValidator;
+        $this->systemConfig = $systemConfig;
     }
 
     public function authenticationRegisterEmail(Request $request)
@@ -64,9 +69,9 @@ class UserController extends BasicController
         // 得到身高的select下拉框数据
         $selectData['height'] = $this->registerRepo->getHeightSelectData();
         // 得到学历数据
-        $selectData['education'] = $this->registerRepo->getEducationSelectData();
+        $selectData['education'] = $this->systemConfig->userRegister->getEducationList();
         // 收入下拉框数据
-        $selectData['revenue'] = $this->registerRepo->getRevenueSelectData();
+        $selectData['revenue'] = $this->systemConfig->userRegister->getRevenueList();
         // 根据用户ip地址粗略得到地址
         $currentIp = $request->ip();
         $selectData['location'] = $this->registerRepo->getLocationSelectData($currentIp);

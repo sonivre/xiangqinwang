@@ -146,7 +146,7 @@
                         <select class="select-row col-12" name="education" id="education">
                             <option disabled selected value="">请选择</option>
                             @foreach ($selectData['education'] as $education)
-                                <option value="{{$education}}">{{$education}}</option>
+                                <option value="{{$education['eduid']}}">{{$education['name']}}</option>
                             @endforeach
                         </select>
                     </span>
@@ -192,7 +192,7 @@
                         <select class="select-row" name="revenue" id="revenue">
                             <option disabled selected value="">请选择</option>
                             @foreach ($selectData['revenue'] as $revenue)
-                                <option value="{{$revenue}}">{{$revenue}}</option>
+                                <option value="{{$revenue['rev_id']}}">{{$revenue['revenue']}}</option>
                             @endforeach
                         </select>
                     </span>
@@ -229,7 +229,7 @@
                     </span>
                 </span>
                 </div>
-<!--
+
                 <div class="form-control">
                     <span class="required-symbol">*</span>
                     <labal>验 证 码：</labal>
@@ -238,7 +238,7 @@
                         <span class=""><button type="button" class="verify-code-btn disabled" name="" value="">获取验证码</button></span>
                     </span>
                 </div>
--->
+
                 <div class="form-control">
                 <span class="form-inline font-11">
                     <input class="agree-checkbox" name="license" id="license" checked="checked" value="1" type="checkbox"><i>我同意花田交友服务条款</i>
