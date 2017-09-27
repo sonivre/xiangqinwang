@@ -8,6 +8,7 @@ use Log;
 use App\Konohanaruto\Jobs\Intranet\SendTestEmail;
 use App\Konohanaruto\Repositories\Intranet\User\UserRepositoryInterface;
 use App\Konohanaruto\Infrastructures\Common\SMS\ShortMessageServiceInterface;
+use Illuminate\Support\Facades\Redis;
 
 class HomeController extends Controller
 {
@@ -40,5 +41,14 @@ class HomeController extends Controller
         $result = $smsService->send('18672670383');
         echo '<pre>';
         var_dump($result);
+    }
+
+    // redis test
+    public function redisTest()
+    {
+//        $array = ['name' => 'lisi', 'age' => 23];
+//        $result = Redis::hmset('jobList', $array);
+        $result = Redis::hgetall('jobList');
+        echo '<pre>';var_dump($result);
     }
 }

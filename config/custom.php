@@ -19,5 +19,5 @@ return array(
         'accessKeyId'    => env('ALIYUN_ACCESS_ID', ''),
         'accessKeySecret' => env('ALIYUN_ACCESS_SECRET', ''),
     ),
-    
+    // 短信验证码list名
 );
