@@ -8,7 +8,6 @@ use Log;
 use App\Konohanaruto\Jobs\Intranet\SendTestEmail;
 use App\Konohanaruto\Repositories\Intranet\User\UserRepositoryInterface;
 use App\Konohanaruto\Infrastructures\Common\SMS\ShortMessageServiceInterface;
-use Illuminate\Support\Facades\Redis;
 
 class HomeController extends Controller
 {

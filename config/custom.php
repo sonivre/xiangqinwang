@@ -20,4 +20,12 @@ return array(
         'accessKeySecret' => env('ALIYUN_ACCESS_SECRET', ''),
     ),
     // 短信验证码list名
+    'REDIS_MOBILE_CODE_KEY' => 'mobile_verify_code',
+
+    // 短信验证码有效时长， 单位：秒
+    'MOBILE_CODE_EXPIRE' => 5*60,
+    'MOBILE_CODE_TYPE' => array(
+        'T1' => 'register',
+        'T2' => 'forget',
+    ),
 );
