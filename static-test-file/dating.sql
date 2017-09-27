@@ -195,12 +195,12 @@ create table xqw_admin_user_role(
 
 create table xqw_mobile_verify_code(
   `id` int unsigned auto_increment,
-  `agent` VARCHAR(150),
+  `agent` VARCHAR(150) COMMENT '设备信息',
   `mobile_number` VARCHAR(20),
-  `code` VARCHAR(10),
-  `type` VARCHAR(30),
+  `code` VARCHAR(10) COMMENT '验证码',
+  `type` VARCHAR(30) COMMENT '类型，注册，密码找回等',
   `add_time` DATETIME default CURRENT_TIMESTAMP,
-  `expire_time` DATETIME,
+  `expire_time` DATETIME COMMENT '过期时间',
   PRIMARY KEY `pk_id` (`id`)
 )engine=innodb default charset=utf8;
 
