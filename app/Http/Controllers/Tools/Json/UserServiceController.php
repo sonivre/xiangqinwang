@@ -37,6 +37,7 @@ class UserServiceController extends Controller
             return Response::Json(array('code' => 10041, 'status' => 400, 'msg' => '手机号格式错误'));
         }
 
-        // ...
+        // 直接响应
+
     }
 }

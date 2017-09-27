@@ -95,6 +95,6 @@ class AliyunShortMessageService implements ShortMessageServiceInterface
         // 打印请求结果
         // var_dump($acsResponse);
 
-        return $acsResponse;
+        //return array('code' => $acsResponse->Code, 'message' => $acsResponse->Message);
     }
 }

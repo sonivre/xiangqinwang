@@ -191,4 +191,17 @@ create table xqw_admin_user_role(
 	primary key `pk_id` (`id`)
 )engine=innodb default charset=utf8;
 
+-- 发送用户短信记录
+
+create table xqw_mobile_verify_code(
+  `id` int unsigned auto_increment,
+  `agent` VARCHAR(150),
+  `mobile_number` VARCHAR(20),
+  `code` VARCHAR(10),
+  `type` VARCHAR(30),
+  `add_time` DATETIME default CURRENT_TIMESTAMP,
+  `expire_time` DATETIME,
+  PRIMARY KEY `pk_id` (`id`)
+)engine=innodb default charset=utf8;
+
 
