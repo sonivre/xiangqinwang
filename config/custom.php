@@ -21,7 +21,8 @@ return array(
     ),
     // 短信验证码list名
     'REDIS_MOBILE_CODE_KEY' => 'mobile_verify_code',
-
+    //短信验证队列名
+    'REDIS_MOBILE_CODE_QUEUE' => 'mobile_verify_code_queue',
     // 短信验证码有效时长， 单位：秒
     'MOBILE_CODE_EXPIRE' => 5*60,
     // 重新请求验证码间隔时间
@@ -30,4 +31,6 @@ return array(
         'T1' => 'register',
         'T2' => 'forget',
     ),
+
+
 );

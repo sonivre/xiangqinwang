@@ -11,22 +11,20 @@
 
 namespace App\Http\Controllers\Tools\Json;
 
-use App\Konohanaruto\Infrastructures\Common\SMS\ShortMessageServiceInterface;
 use App\Konohanaruto\Repositories\Frontend\MobileVerifyCode\MobileVerifyCodeRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Redis;
+use App\Konohanaruto\Jobs\Frontend\MobileVerifyCode;
 
 class UserServiceController extends Controller
 {
 
-    private $sms;
     private $mobileRepo;
 
-    public function __construct(ShortMessageServiceInterface $sms, MobileVerifyCodeRepositoryInterface $mobileRepo)
+    public function __construct( MobileVerifyCodeRepositoryInterface $mobileRepo)
     {
-        $this->sms = $sms;
         $this->mobileRepo = $mobileRepo;
     }
 
@@ -65,6 +63,8 @@ class UserServiceController extends Controller
         $data['expire_time'] = date('Y-m-d H:i:s', strtotime($data['add_time']) + config('custom.MOBILE_CODE_EXPIRE'));
         Redis::hset($hashKey, $data['mobile_number'], json_encode($data, JSON_UNESCAPED_SLASHES));
         // 入队列
-        $this->sms->send($phoneNumber, array('code' => $data['code']));
+        $job = (new MobileVerifyCode($data['mobile_number'], $data['code']))
+            ->onQueue(config('custom.REDIS_MOBILE_CODE_QUEUE'));
+        dispatch($job);
     }
 }
