@@ -24,6 +24,8 @@ return array(
 
     // 短信验证码有效时长， 单位：秒
     'MOBILE_CODE_EXPIRE' => 5*60,
+    // 重新请求验证码间隔时间
+    'MOBILE_CODE_REFETCH_INTERVAL' => 60,
     'MOBILE_CODE_TYPE' => array(
         'T1' => 'register',
         'T2' => 'forget',

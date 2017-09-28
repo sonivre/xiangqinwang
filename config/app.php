@@ -192,6 +192,7 @@ return [
         App\Konohanaruto\Providers\Frontend\ExtendValidationServiceProvider::class,
         App\Konohanaruto\Providers\Intranet\EducationServiceProvider::class,
         App\Konohanaruto\Providers\Intranet\RegisterRevenueServiceProvider::class,
+        App\Konohanaruto\Providers\Frontend\MobileVerifyCodeServiceProvider::class,
     ],
 
     /*
