@@ -17,16 +17,15 @@ use App\Http\Controllers\Controller;
 
 class BaseJsonController extends Controller
 {
-    private $defaultLanguage;
+    private $defaultLanguage = 'zh-cn';
 
     public function __construct()
     {
-        $this->defaultLanguage = 'zh-cn';
         $this->setLocale($this->defaultLanguage);
     }
 
-    public function setLocale($language)
+    public function setLocale($localeName)
     {
-        App::setLocale($language);
+        App::setLocale($localeName);
     }
 }
