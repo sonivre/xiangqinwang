@@ -11,21 +11,20 @@
 
 namespace App\Http\Controllers\Tools\Json;
 
-use App\Konohanaruto\Repositories\Frontend\MobileVerifyCode\MobileVerifyCodeRepositoryInterface;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Redis;
 use App\Konohanaruto\Jobs\Frontend\MobileVerifyCode;
+use App\Konohanaruto\Infrastructures\Common\ShortMessageIO\ShortMessageServiceVisitor;
 
-class UserServiceController extends Controller
+class UserServiceController extends BaseJsonController
 {
 
-    private $mobileRepo;
+    private $smsVisitor;
 
-    public function __construct( MobileVerifyCodeRepositoryInterface $mobileRepo)
+    public function __construct(ShortMessageServiceVisitor $smsVisitor)
     {
-        $this->mobileRepo = $mobileRepo;
+        $this->smsVisitor = $smsVisitor;
+        parent::__construct();
     }
 
     /**
@@ -34,37 +33,26 @@ class UserServiceController extends Controller
     public function sendShortMessage(Request $request)
     {
         $phoneNumber = $request->get('mobile');
-        $hashKey = config('custom.REDIS_MOBILE_CODE_KEY');
 
         if (! verifyPhoneNumber($phoneNumber)) {
-            return Response::Json(array('code' => 10041, 'status' => 400, 'msg' => '手机号格式错误'));
+            return Response::Json(array('status' => -200, 'message' => trans('message.mobile_format_invalid')));
         }
 
-        // 如果redis中不存在，则请求数据库
-        if (empty($detail = json_decode(Redis::hget($hashKey, $phoneNumber), true))) {
-            $detail = $this->mobileRepo->getInfoByMobile($phoneNumber);
-        }
+        $detail = $this->smsVisitor->getDataByMobile($phoneNumber);
 
         // 判断数据库的记录
         if (! empty($detail)) {
             $retryValidTime = strtotime($detail['add_time']) + config('custom.MOBILE_CODE_REFETCH_INTERVAL');
             // 是否可以重新请求验证码
             if ($retryValidTime > time()) {
-                return Response::Json(array('code' => 10042, 'status' => 400, 'msg' => '请求过于频繁，请稍后再试'));
+                return Response::Json(array('status' => -200, 'message' => trans('message.request_frequently')));
             }
         }
 
-        $data = array();
-        $data['agent'] = $request->header('User-Agent');
-        $data['mobile_number'] = $phoneNumber;
-        $data['code'] = rand(100000, 999999);
-        $data['type'] = config('custom.MOBILE_CODE_TYPE.T1');
-        $data['add_time'] = date('Y-m-d H:i:s');
-        $data['expire_time'] = date('Y-m-d H:i:s', strtotime($data['add_time']) + config('custom.MOBILE_CODE_EXPIRE'));
-        Redis::hset($hashKey, $data['mobile_number'], json_encode($data, JSON_UNESCAPED_SLASHES));
+
         // 入队列
-        $job = (new MobileVerifyCode($data['mobile_number'], $data['code']))
-            ->onQueue(config('custom.REDIS_MOBILE_CODE_QUEUE'));
-        dispatch($job);
+//        $job = (new MobileVerifyCode($data['mobile_number'], $data['code']))
+//            ->onQueue(config('custom.REDIS_MOBILE_CODE_QUEUE'));
+//        dispatch($job);
     }
 }

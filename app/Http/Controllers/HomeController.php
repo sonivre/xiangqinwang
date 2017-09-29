@@ -50,4 +50,10 @@ class HomeController extends Controller
         $result = Redis::hgetall('jobList');
         echo '<pre>';var_dump($result);
     }
+
+    public function languageTest()
+    {
+        $msg = trans('zh-cn.username');
+        var_dump($msg);
+    }
 }

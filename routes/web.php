@@ -20,6 +20,7 @@ Route::get('storeLog', 'HomeController@storeLog');
 Route::get('jobFeatureTest', 'HomeController@jobFeatureTest');
 Route::get('smsTest', 'HomeController@smsTest');
 Route::get('redisTest', 'HomeController@redisTest');
+Route::get('languageTest', 'HomeController@languageTest');
 
 // 用户服务
 Route::group(array('namespace' => 'Tools\\Json\\', 'prefix' => 'UserService'), function () {
