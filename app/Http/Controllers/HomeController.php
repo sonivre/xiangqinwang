@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Log;
 use App\Konohanaruto\Jobs\Intranet\SendTestEmail;
 use App\Konohanaruto\Repositories\Intranet\User\UserRepositoryInterface;
 use App\Konohanaruto\Infrastructures\Common\SMS\ShortMessageServiceInterface;
+use Request;
+use UserUniversalData;
 
 class HomeController extends Controller
 {
@@ -53,7 +55,9 @@ class HomeController extends Controller
 
     public function languageTest()
     {
-        $msg = trans('zh-cn.username');
-        var_dump($msg);
+//        $msg = trans('zh-cn.username');
+//        var_dump($msg);
+        //var_dump(Request::header('User-Agent'));
+        var_dump(UserUniversalData::test());
     }
 }

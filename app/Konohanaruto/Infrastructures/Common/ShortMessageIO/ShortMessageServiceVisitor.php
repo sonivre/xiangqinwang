@@ -15,6 +15,7 @@ namespace App\Konohanaruto\Infrastructures\Common\ShortMessageIO;
 use App\Konohanaruto\Repositories\Frontend\MobileVerifyCode\MobileVerifyCodeRepositoryInterface;
 use Redis;
 
+
 class ShortMessageServiceVisitor
 {
     private $repo;
@@ -36,9 +37,10 @@ class ShortMessageServiceVisitor
         return $detail;
     }
 
-    public function setData($phoneNumber, $userAgent)
+    public function setData($phoneNumber)
     {
         $data = array();
+        // ************************************************************
         $data['agent'] = $userAgent;
         $data['mobile_number'] = $phoneNumber;
         $data['code'] = rand(100000, 999999);

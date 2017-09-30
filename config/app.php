@@ -193,6 +193,7 @@ return [
         App\Konohanaruto\Providers\Intranet\EducationServiceProvider::class,
         App\Konohanaruto\Providers\Intranet\RegisterRevenueServiceProvider::class,
         App\Konohanaruto\Providers\Frontend\MobileVerifyCodeServiceProvider::class,
+        App\Konohanaruto\Providers\Common\UserUniversalDataServiceProvider::class,
     ],
 
     /*
@@ -242,6 +243,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
+        'UserUniversalData' => App\Konohanaruto\Facades\Common\UserUniversalData::class,
     ],
 
 ];
