@@ -18,10 +18,6 @@ use App\Konohanaruto\Jobs\Frontend\MobileVerifyCode;
 
 class MemberRegisterService extends BaseService
 {
-    public function test()
-    {
-        return 'bbb';
-    }
 
     /**
      * @param $mobile

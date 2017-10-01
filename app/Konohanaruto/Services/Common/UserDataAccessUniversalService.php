@@ -25,6 +25,11 @@ class UserDataAccessUniversalService extends BaseService
         return Request::header('User-Agent');
     }
 
+    /**
+     * 得到一个随机的手机验证码，6位数
+     *
+     * @return int
+     */
     public function getMobileVerifyCode()
     {
         return rand(100000, 999999);

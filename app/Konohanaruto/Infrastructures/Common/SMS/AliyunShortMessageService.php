@@ -91,9 +91,6 @@ class AliyunShortMessageService implements ShortMessageServiceInterface
         }
 
         // 发起访问请求
-        $result = $this->acsClient->getAcsResponse($request);
-        Log::info(json_encode($result, JSON_UNESCAPED_SLASHES));
-
-        return $result;
+        return $this->acsClient->getAcsResponse($request);
     }
 }

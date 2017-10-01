@@ -195,6 +195,7 @@ return [
         App\Konohanaruto\Providers\Frontend\MobileVerifyCodeServiceProvider::class,
         App\Konohanaruto\Providers\Common\UserUniversalDataServiceProvider::class,
         App\Konohanaruto\Providers\Frontend\MemberRegisterServiceProvider::class,
+        App\Konohanaruto\Providers\Common\LanguageServiceProvider::class,
     ],
 
     /*

@@ -8,6 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Log;
 
 class MobileVerifyCode implements ShouldQueue
 {
@@ -34,6 +35,7 @@ class MobileVerifyCode implements ShouldQueue
      */
     public function handle(ShortMessageServiceInterface $sms)
     {
-        $sms->send($this->phoneNumber, array('code' => $this->code));
+        $response = $sms->send($this->phoneNumber, array('code' => $this->code));
+        Log::info(trans('register_service.aliyun_mobile_code_response') . json_encode($response, JSON_UNESCAPED_SLASHES));
     }
 }

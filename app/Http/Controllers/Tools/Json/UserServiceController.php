@@ -17,10 +17,6 @@ use MemberRegisterService;
 
 class UserServiceController extends BaseJsonController
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     /**
      * 发送短信
