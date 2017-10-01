@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "098354c74a9e8e9146349221fc91f3c0",
+    "content-hash": "ed297c66060d6706ac075e5d7a082e60",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -147,41 +147,6 @@
                 "parser"
             ],
             "time": "2017-05-14T14:47:48+00:00"
-        },
-        {
-            "name": "flc/dysms",
-            "version": "v1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/flc1125/dysms.git",
-                "reference": "a60645c6b35a15fe7fed6282784d2094368fc8f5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://files.phpcomposer.com/files/flc1125/dysms/a60645c6b35a15fe7fed6282784d2094368fc8f5.zip",
-                "reference": "a60645c6b35a15fe7fed6282784d2094368fc8f5",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Flc\\Dysms\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "阿里短信-适用Laravel、Yii、Thinkphp等任何PHP项目...",
-            "keywords": [
-                "dysms",
-                "flc",
-                "阿里短信"
-            ],
-            "time": "2017-08-12T03:35:57+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -2449,6 +2414,41 @@
                 "instantiate"
             ],
             "time": "2015-06-14T21:17:01+00:00"
+        },
+        {
+            "name": "flc/dysms",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/flc1125/dysms.git",
+                "reference": "a60645c6b35a15fe7fed6282784d2094368fc8f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/flc1125/dysms/a60645c6b35a15fe7fed6282784d2094368fc8f5.zip",
+                "reference": "a60645c6b35a15fe7fed6282784d2094368fc8f5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Flc\\Dysms\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "阿里短信-适用Laravel、Yii、Thinkphp等任何PHP项目...",
+            "keywords": [
+                "dysms",
+                "flc",
+                "阿里短信"
+            ],
+            "time": "2017-08-12T03:35:57+00:00"
         },
         {
             "name": "fzaninotto/faker",

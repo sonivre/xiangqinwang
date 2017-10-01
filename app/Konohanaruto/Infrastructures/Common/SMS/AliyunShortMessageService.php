@@ -16,6 +16,7 @@ use Aliyun\Core\Profile\DefaultProfile;
 use Aliyun\Core\DefaultAcsClient;
 use Aliyun\Api\Sms\Request\V20170525\SendSmsRequest;
 use Aliyun\Api\Sms\Request\V20170525\QuerySendDetailsRequest;
+use Log;
 
 
 class AliyunShortMessageService implements ShortMessageServiceInterface
@@ -90,11 +91,9 @@ class AliyunShortMessageService implements ShortMessageServiceInterface
         }
 
         // 发起访问请求
-        $acsResponse = $this->acsClient->getAcsResponse($request);
+        $result = $this->acsClient->getAcsResponse($request);
+        Log::info(json_encode($result, JSON_UNESCAPED_SLASHES));
 
-        // 打印请求结果
-        // var_dump($acsResponse);
-
-        //return array('code' => $acsResponse->Code, 'message' => $acsResponse->Message);
+        return $result;
     }
 }

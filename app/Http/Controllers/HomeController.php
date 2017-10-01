@@ -9,7 +9,7 @@ use App\Konohanaruto\Jobs\Intranet\SendTestEmail;
 use App\Konohanaruto\Repositories\Intranet\User\UserRepositoryInterface;
 use App\Konohanaruto\Infrastructures\Common\SMS\ShortMessageServiceInterface;
 use Request;
-use UserUniversalData;
+use MemberRegisterService;
 
 class HomeController extends Controller
 {
@@ -58,6 +58,6 @@ class HomeController extends Controller
 //        $msg = trans('zh-cn.username');
 //        var_dump($msg);
         //var_dump(Request::header('User-Agent'));
-        var_dump(UserUniversalData::test());
+        var_dump(MemberRegisterService::test());
     }
 }

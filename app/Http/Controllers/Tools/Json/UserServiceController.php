@@ -13,17 +13,12 @@ namespace App\Http\Controllers\Tools\Json;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
-use App\Konohanaruto\Jobs\Frontend\MobileVerifyCode;
-use App\Konohanaruto\Infrastructures\Common\ShortMessageIO\ShortMessageServiceVisitor;
+use MemberRegisterService;
 
 class UserServiceController extends BaseJsonController
 {
-
-    private $smsVisitor;
-
-    public function __construct(ShortMessageServiceVisitor $smsVisitor)
+    public function __construct()
     {
-        $this->smsVisitor = $smsVisitor;
         parent::__construct();
     }
 
@@ -38,21 +33,32 @@ class UserServiceController extends BaseJsonController
             return Response::Json(array('status' => -200, 'message' => trans('message.mobile_format_invalid')));
         }
 
-        $detail = $this->smsVisitor->getDataByMobile($phoneNumber);
+        $detail = empty(MemberRegisterService::getSMSInfoByDB($phoneNumber)) ?
+            MemberRegisterService::getSMSInfoByRedis($phoneNumber) :
+            MemberRegisterService::getSMSInfoByDB($phoneNumber);
 
-        // 判断数据库的记录
-        if (! empty($detail)) {
-            $retryValidTime = strtotime($detail['add_time']) + config('custom.MOBILE_CODE_REFETCH_INTERVAL');
-            // 是否可以重新请求验证码
-            if ($retryValidTime > time()) {
-                return Response::Json(array('status' => -200, 'message' => trans('message.request_frequently')));
-            }
+        // 判断是否可以重新请求验证码
+        if (! empty($detail) && ! MemberRegisterService::retryVerifyCodeCheck($detail['add_time'])) {
+            return Response::Json([
+                'status' => -200,
+                'message' => trans('message.request_frequently')
+            ]);
         }
 
+        // 发送
+        $status = MemberRegisterService::sendShortMessage($phoneNumber);
 
-        // 入队列
-//        $job = (new MobileVerifyCode($data['mobile_number'], $data['code']))
-//            ->onQueue(config('custom.REDIS_MOBILE_CODE_QUEUE'));
-//        dispatch($job);
+        if ($status) {
+            return Response::Json([
+                'status' => 200,
+                'message' => trans('register_service.mobile_code_request_success')
+            ]);
+        }
+
+        return Response::Json([
+            'status' => -200,
+            'message' => trans('register_service.mobile_code_request_failed')
+        ]);
+
     }
 }

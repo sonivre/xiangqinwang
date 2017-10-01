@@ -16,4 +16,21 @@ class MobileVerifyCodeEloquentRepository extends EloquentRepository implements M
     {
         return $this->model->where('mobile_number', $mobile)->first();
     }
+
+    public function insertData($data)
+    {
+        return $this->model->insert($data);
+    }
+
+    public function updateDataByMobile($mobile, $data)
+    {
+        return $this->model->where('mobile_number', $mobile)->update($data);
+    }
+
+    public function replaceDataByMobile($mobile, $data)
+    {
+        $model = $this->getInfoByMobile($mobile);
+
+        return empty($model['id']) ? $this->insertData($data) : $this->updateDataByMobile($mobile, $data);
+    }
 }

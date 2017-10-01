@@ -24,4 +24,9 @@ class UserDataAccessUniversalService extends BaseService
     {
         return Request::header('User-Agent');
     }
+
+    public function getMobileVerifyCode()
+    {
+        return rand(100000, 999999);
+    }
 }
