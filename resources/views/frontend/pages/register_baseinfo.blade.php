@@ -58,7 +58,7 @@
                 <div class="form-control">
                     <span class="required-symbol">*</span>
                     <labal>昵 &nbsp; 称：</labal>
-                    <input class="col-12"  type="text" id="username" name="username" value="" placeholder="限12个汉字和24个英文字母">
+                    <input class="col-12"  type="text" id="username" name="username" value="{{! empty(old('username')) or ''}}" placeholder="限12个汉字和24个英文字母">
                     <span class="text-icon-tips ajaxload-icon hide"><img src="{{config('custom.staticServer')}}/images/refresh-20x20.gif"></span>
                     <span class="text-icon-tips text-icon-tips-correct">
                 	    <em class="icon-correct-check"></em>
@@ -219,7 +219,7 @@
                     </select>
                 </span>
                 <span class="form-inline">
-                    <input class="height-common col-7"   name="mobile" id="mobile" placeholder="请输入手机号">
+                    <input class="height-common col-7"   name="mobile" id="mobile" value="{{! empty(old('mobile')) or ''}}" placeholder="请输入手机号">
                     <span class="text-icon-tips text-icon-tips-correct">
                 	    <em class="icon-correct-check"></em>
                     </span>
@@ -235,7 +235,7 @@
                     <labal>验 证 码：</labal>
                     <span class="form-inline">
                         <input class="height-common col-7" name="mobile_verify_code" placeholder="请输入验证码">
-                        <span class=""><button type="button" class="verify-code-btn disabled" name="" value="">获取验证码</button></span>
+                        <span class=""><button type="button" class="verify-code-btn" name="" value="">获取验证码</button></span>
                     </span>
                 </div>
 
@@ -261,7 +261,7 @@
         var getDaysUrl = '{{url('tools/totalDays')}}';
         var getCitiesUrl = '{{url('tools/cityList')}}';
     </script>
-    <script src="{{config('custom.staticServer')}}/js/register-validation.js?{{rand()}}"></script>
+    <script src="{{config('custom.staticServer')}}/js/register-validation.js"></script>
     <script>
         /**
          * 获取验证码

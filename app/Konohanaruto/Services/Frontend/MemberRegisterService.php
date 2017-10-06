@@ -96,4 +96,23 @@ class MemberRegisterService extends BaseService
 
         return true;
     }
+
+
+    public function getLatestValidMobileCode($mobile)
+    {
+        // redis
+        $hashKey = config('custom.REDIS_MOBILE_CODE_KEY');
+        $data = Redis::hget($hashKey, $mobile);
+        if (empty($data['code'])) {
+            // mysql
+            $mobileRepo = app(MobileVerifyCodeRepositoryInterface::class);
+            $data = $mobileRepo->getInfoByMobile($mobile);
+        }
+
+        if (empty($data['code'])) {
+            return false;
+        }
+
+        return $data['code'];
+    }
 }

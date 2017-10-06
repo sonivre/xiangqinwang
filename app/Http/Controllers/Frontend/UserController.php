@@ -63,6 +63,7 @@ class UserController extends BasicController
         if ($request->isMethod('post')) {
             echo 'coming soon!';exit;
         }
+
         $selectData = array();
         // 得到生日的select数据
         $selectData['birth'] = $this->registerRepo->getBirthSelectData();

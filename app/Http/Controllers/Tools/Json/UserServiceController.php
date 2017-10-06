@@ -42,11 +42,14 @@ class UserServiceController extends BaseJsonController
         }
 
         // 发送
-        $status = MemberRegisterService::sendShortMessage($phoneNumber);
+        //$status = MemberRegisterService::sendShortMessage($phoneNumber);
+        $status = true;
 
         if ($status) {
+            $code = MemberRegisterService::getLatestValidMobileCode($phoneNumber);
             return Response::Json([
                 'status' => 200,
+                'data' => ['code' => $code],
                 'message' => trans('register_service.mobile_code_request_success')
             ]);
         }

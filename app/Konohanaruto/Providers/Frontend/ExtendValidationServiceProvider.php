@@ -31,5 +31,27 @@ class ExtendValidationServiceProvider extends ServiceProvider
 
             return true;
         });
+
+        // rule: is_mobile
+        Validator::extend('is_mobile', function ($attribute, $mobile) {
+            $reg = '/^((13[0-9])|(15[^4])|(18[0,2,3,5-9])|(17[0-8])|(147))\d{8}$/';
+
+            if (! preg_match($reg, $mobile)) {
+                return false;
+            }
+
+            return true;
+        });
+
+        // rule: six_number  验证短信验证码使用，必须是6位数的数字
+        Validator::extend('six_number', function ($attribute, $field) {
+            $reg = '/^\d{6}$/';
+
+            if (! preg_match($reg, $field)) {
+                return false;
+            }
+
+            return true;
+        });
     }
 }
