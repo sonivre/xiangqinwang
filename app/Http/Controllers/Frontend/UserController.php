@@ -9,12 +9,14 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Konohanaruto\Exceptions\Frontend\NotFoundException;
+use App\Konohanaruto\Facades\Frontend\MemberRegisterService;
 use App\Konohanaruto\Repositories\Frontend\User\UserRepository;
 use App\Konohanaruto\Validators\EmailPasswordValidator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Http\Requests\Frontend\UserRegisterFormRequest;
 use App\Konohanaruto\Infrastructures\Frontend\SystemConfig;
+use Illuminate\Support\Facades\Response;
 
 class UserController extends BasicController
 {
@@ -82,31 +84,12 @@ class UserController extends BasicController
     }
     
     /**
-     * 注册的最终页面
+     * 注册时提交头像页面
      * 
      * @param Request $request
      */
-    public function finalRegister(Request $request)
+    public function actionRegisterMemberAvatar(Request $request)
     {
-        if ($request->ajax()) {
-            $file = $request->file('avatar');
-            if (empty($file)) {
-                return response()->json(array('status' => '-200'));
-            }
-            $path = 'avatar/' . date('Ymd');
-            //file_put_contents('kk.txt', json_encode($_FILES));
-            $imagePath = $file->store($path, 'uploads');
-            if (! empty($imagePath)) {
-                $fullPath = config('custom.staticServer') . '/uploads/' . $imagePath;
-                return response()->json(array(
-                    'msg' => array(
-                        'src' => $fullPath,
-                        'relationPath' => $imagePath
-                    )
-                ));
-            }
-            return response()->json(array('status' => '-200'));
-        }
         return view('frontend.pages.register_final');
     }
 
@@ -124,13 +107,32 @@ class UserController extends BasicController
         return response()->json($response);
     }
 
+    public function actionStoreMemberRegisterAvatar()
+    {
+
+    }
+
     /**
-     * 用户注册
+     * ajax上传头像
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    public function actionUploadMemberAvatar(Request $request)
+    {
+        $response = MemberRegisterService::uploadAvatar($request);
+
+        return Response::Json($response);
+    }
+
+    /**
+     * 用户基本信息录入
      *
      * @request POST
      */
-    public function actionRegister(UserRegisterFormRequest $request)
+    public function actionStoreRegisterInfo(UserRegisterFormRequest $request)
     {
-        var_dump($request->all());
+        // 跳转到
+        return redirect('User/registerMemberAvatar');
     }
 }

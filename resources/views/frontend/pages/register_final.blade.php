@@ -54,7 +54,7 @@
                 <div class="js-upload-avatar">
                     <div class="preview-img-box">
                         <div class="middle-img-avatar">
-                            <img id="user-avatar" src="">
+                            <img id="user-avatar">
                         </div>
                         <div class="insideloading">
                             <img class="loading-gif" src="{{config('custom.staticServer')}}/images/loading_info.gif">
@@ -79,7 +79,7 @@
 
 @section('addtional-js')
     <script>
-        var url = '{{url('finalRegister')}}';
+        var url = '{{url('User/uploadMemberAvatar')}}';
         $(function () {
     		$("#user_upload_avatar").on('submit', function(e){
         		e.preventDefault();

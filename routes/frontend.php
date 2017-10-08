@@ -2,11 +2,13 @@
 Route::group(array('namespace' => 'Frontend'), function () {
 
     Route::any('/', 'UserController@authenticationRegisterEmail');
-    Route::any('register_step_one', 'UserController@prepareRegister');
-    Route::any('finalRegister', 'UserController@finalRegister');
+    Route::get('register_step_one', 'UserController@prepareRegister');
     Route::group(array('prefix' => 'User'), function () {
         Route::post('checkExists', 'UserController@checkUserExists');
-        Route::post('register', 'UserController@actionRegister');
+        Route::post('storeRegisterInfo', 'UserController@actionStoreRegisterInfo');
+        Route::get('registerMemberAvatar', 'UserController@actionRegisterMemberAvatar');
+        Route::post('storeMemberRegisterAvatar', 'UserController@actionStoreMemberRegisterAvatar');
+        Route::post('uploadMemberAvatar', 'UserController@actionUploadMemberAvatar');
     });
     Route::group(array('middleware' => 'LoginCheck'), function () {
 

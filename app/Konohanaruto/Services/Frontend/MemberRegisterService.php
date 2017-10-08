@@ -98,6 +98,12 @@ class MemberRegisterService extends BaseService
     }
 
 
+    /**
+     * 得到注册时短信验证码
+     *
+     * @param $mobile
+     * @return bool
+     */
     public function getLatestValidMobileCode($mobile)
     {
         // redis
@@ -114,5 +120,29 @@ class MemberRegisterService extends BaseService
         }
 
         return $data['code'];
+    }
+
+    public function uploadAvatar($request)
+    {
+        $file = $request->file('avatar');
+
+        if (empty($file)) {
+            return array('status' => '-200');
+        }
+
+        $path = 'avatar/' . date('Ymd');
+        $imagePath = $file->store($path, 'uploads');
+
+        if (! empty($imagePath)) {
+            $fullPath = config('custom.staticServer') . '/uploads/' . $imagePath;
+
+            return array(
+                'msg' => array(
+                    'src' => $fullPath,
+                    'relationPath' => $imagePath
+                )
+            );
+        }
+        return array('status' => '-200');
     }
 }

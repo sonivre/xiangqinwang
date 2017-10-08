@@ -14,6 +14,19 @@
 @endsection
 
 @section('content')
+    @if (count($errors) > 0)
+        <div class="alert alert-danger alert-dismissible fade in" role="alert">
+            <a href="#" class="close" data-dismiss="alert">
+                &times;
+            </a>
+            <ul>
+                <li style="list-style: none"><strong>警告！</strong></li>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <header>
         <div class="top-nav">
             <div class="w">
@@ -52,13 +65,13 @@
                     {{--<span>当前账户：1039814413@qq.com</span>--}}
                     {{--<a href="#">切换账号</a>--}}
                 {{--</div>--}}
-                <form id="register_step_one" action="{{url('User/register')}}" method="post" name="register_step_one" enctype="multipart/form-data">
+                <form id="register_step_one" action="{{url('User/storeRegisterInfo')}}" method="post" name="register_step_one" enctype="multipart/form-data">
                 <!-- 设置表单token -->
                 {{csrf_field()}}
                 <div class="form-control">
                     <span class="required-symbol">*</span>
                     <labal>昵 &nbsp; 称：</labal>
-                    <input class="col-12"  type="text" id="username" name="username" value="{{! empty(old('username')) or ''}}" placeholder="限12个汉字和24个英文字母">
+                    <input class="col-12"  type="text" id="username" name="username" value="{{! empty(old('username')) ? old('username') : ''}}" placeholder="限12个汉字和24个英文字母">
                     <span class="text-icon-tips ajaxload-icon hide"><img src="{{config('custom.staticServer')}}/images/refresh-20x20.gif"></span>
                     <span class="text-icon-tips text-icon-tips-correct">
                 	    <em class="icon-correct-check"></em>
@@ -67,6 +80,18 @@
                         <em class="icon-incorrect-check"></em>
                         <i class="text-error-tips"></i>
                     </span>
+                </div>
+                <div class="form-control">
+                    <span class="required-symbol">*</span>
+                    <labal>邮 &nbsp; 箱：</labal>
+                    <input class="col-12"  type="text" id="email" name="email" value="{{! empty(old('email')) ? old('email') : ''}}" placeholder="填写您的邮箱">
+                <span class="text-icon-tips text-icon-tips-correct">
+                    <em class="icon-correct-check"></em>
+                </span>
+                <span class="text-icon-tips text-icon-tips-incorrect">
+                    <em class="icon-incorrect-check"></em>
+                    <i class="text-error-tips"></i>
+                </span>
                 </div>
                 <div class="form-control">
                     <span class="required-symbol">*</span>
@@ -219,7 +244,7 @@
                     </select>
                 </span>
                 <span class="form-inline">
-                    <input class="height-common col-7"   name="mobile" id="mobile" value="{{! empty(old('mobile')) or ''}}" placeholder="请输入手机号">
+                    <input class="height-common col-7"   name="mobile" id="mobile" value="{{! empty(old('mobile')) ? old('mobile') : ''}}" placeholder="请输入手机号">
                     <span class="text-icon-tips text-icon-tips-correct">
                 	    <em class="icon-correct-check"></em>
                     </span>
