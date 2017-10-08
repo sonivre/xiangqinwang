@@ -44,8 +44,8 @@
                 </div>
             </div>
             <div class="signup-menu clearfix">
-                <div class="s-tab1 visited fl"><span>创建个人资料</span></div>
-                <div class="s-tab2 fl"><span>上传照片，完成注册</span></div>
+                <div class="s-tab1 fl"><span>创建个人资料</span></div>
+                <div class="s-tab2 visited fl"><span>上传照片，完成注册</span></div>
             </div>
             <div class="signup-form-content">
                 <div class="upload-avatar-tips">
