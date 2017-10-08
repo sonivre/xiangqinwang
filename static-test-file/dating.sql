@@ -205,4 +205,38 @@ create table xqw_mobile_verify_code(
   PRIMARY KEY `pk_id` (`id`)
 )engine=innodb default charset=utf8;
 
+create table xqw_member_album(
+  `album_id` int unsigned not null auto_increment,
+  `album_name` varchar(50),
+  `is_available` enum('Y','N') default 'Y',
+  `add_time` datetime default CURRENT_TIMESTAMP,
+  `views` int comment '浏览次数',
+  `photo_count` int unsigned comment '照片数量',
+  `user_id` int unsigned,
+  `username` varchar(50) not null,
+  `friend` tinyint comment '相册隐私设置:"0"全站用户可见,"1"为全好友可见,"2"为仅指定的好友可见,"3"为仅自己可见,"4"为凭密码查看',
+  `password` varchar(100) comment '相册密码',
+  `target_user_ids` text comment '可以浏览该相册的用户列表，用逗号分割',
+  `description` text comment '相册描述',
+  primary key `pk_album_id`(`album_id`)
+)engine=innodb default charset=utf8;
+
+create table xqw_member_picture(
+  `pic_id` mediumint unsigned not null auto_increment,
+  `album_id` int unsigned not null,
+  `user_id` int unsigned not null,
+  `username` varchar(50) not null,
+  `action_ip` varchar(20) comment '操作ip',
+  `file_name` varchar(50) comment '文件名',
+  `file_type` varchar(50) comment '文件类型，如：jpg等',
+  `file_title` varchar(100) comment '图片标题，比如放在src属性',
+  `file_size` int unsigned,
+  `is_remote` tinyint comment '是否是远程图片',
+  `file_path` varchar(255) comment '图片路径',
+  `status` tinyint comment '审核状态',
+  `is_available` enum('Y','N') default 'Y' comment '是否可用',
+  `add_time` datetime default CURRENT_TIMESTAMP,
+  `clicks` mediumint unsigned comment '点击次数',
+  primary key `pk_pic_id` (`pic_id`)
+)engine=innodb default charset=utf8;
 
