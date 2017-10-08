@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\View;
 use App\Http\Requests\Frontend\UserRegisterFormRequest;
 use App\Konohanaruto\Infrastructures\Frontend\SystemConfig;
 use Illuminate\Support\Facades\Response;
+use Session;
 
 class UserController extends BasicController
 {
@@ -90,6 +91,10 @@ class UserController extends BasicController
      */
     public function actionRegisterMemberAvatar(Request $request)
     {
+        if (empty($request->session()->get('register.userinfo'))) {
+            return redirect()->back();
+        }
+
         return view('frontend.pages.register_final');
     }
 
@@ -107,8 +112,13 @@ class UserController extends BasicController
         return response()->json($response);
     }
 
-    public function actionStoreMemberRegisterAvatar()
+    public function actionStoreMemberRegisterAvatar(Request $request)
     {
+        $userId = Session::get('register.userinfo.user_id');
+        $username = Session::get('register.userinfo.username');
+        $avatarPath = $request->get('avatar_src');
+
+        var_dump($userId . '--' . $username . '--' . $avatarPath);
     }
 
     /**
@@ -132,8 +142,13 @@ class UserController extends BasicController
     public function actionStoreRegisterInfo(UserRegisterFormRequest $request)
     {
         // 存储用户信息
-        MemberRegisterService::addUser($request->all());
-        // 跳转到
-        return redirect('User/registerMemberAvatar');
+        $result = MemberRegisterService::addUser($request->all());
+
+        if (! empty($result['status'] == 200)) {
+            // 跳转到
+            return redirect('User/registerMemberAvatar');
+        }
+
+        return redirect()->back()->withInput($request->all());
     }
 }

@@ -65,13 +65,18 @@
                     <span class="open-selet-file upload-text active">上传</span>
                     <span class="open-selet-file re-upload-text">重新上传</span>
                 </div>
-                <form id="user_upload_avatar" method="post" action="" enctype="multipart/form-data">
+                <form id="user_upload_avatar" method="post" enctype="multipart/form-data">
                 <div class="form-control">
                     {{csrf_field()}}
                     <input type="file" class="img-file-input hide" name="avatar">
+                </div>
+                </form>
+                <form method="post" action="{{url('User/storeMemberRegisterAvatar')}}">
+                    <div class="form-control">
+                    {{csrf_field()}}
                     <input type="hidden" name="avatar_src" value="">
                     <button class="register-step1-btn" type="submit" name="" value="">提交，完成</button>
-                </div>
+                    </div>
                 </form>
             </div>
         </div>

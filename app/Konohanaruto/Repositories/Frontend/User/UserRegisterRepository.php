@@ -156,7 +156,7 @@ class UserRegisterRepository implements UserRepository
         $insert['mobile'] = $data['mobile'];
         $insert['height'] = $data['height'];
 
-        return DB::table('user')->insert($insert);
+        return DB::table('user')->insertGetId($insert);
     }
 
 }

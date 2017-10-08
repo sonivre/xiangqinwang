@@ -16,6 +16,7 @@ use App\Konohanaruto\Repositories\Frontend\MobileVerifyCode\MobileVerifyCodeRepo
 use Log;
 use App\Konohanaruto\Jobs\Frontend\MobileVerifyCode;
 use App\Konohanaruto\Repositories\Frontend\User\UserRepository;
+use Illuminate\Support\Facades\Session;
 
 class MemberRegisterService extends BaseService
 {
@@ -142,6 +143,8 @@ class MemberRegisterService extends BaseService
 
         if (! empty($imagePath)) {
             $fullPath = config('custom.staticServer') . '/uploads/' . $imagePath;
+            // 将图片路径写入session
+            session('register.userinfo.avatar', $imagePath);
 
             return array(
                 'msg' => array(
@@ -161,10 +164,14 @@ class MemberRegisterService extends BaseService
         }
 
         $userRepo = app(UserRepository::class);
-        $status = $userRepo->addUser($data);
+        $userId = $userRepo->addUser($data);
 
-        if ($status) {
+        if ($userId) {
             Log::info('添加了新用户：' . $data['username']);
+            Session::put('register.userinfo', [
+                'user_id' => $userId,
+                'username' => $data['username']
+            ]);
             return ['status' => 200];
         }
 
