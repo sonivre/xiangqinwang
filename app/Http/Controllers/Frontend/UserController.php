@@ -109,7 +109,6 @@ class UserController extends BasicController
 
     public function actionStoreMemberRegisterAvatar()
     {
-
     }
 
     /**
@@ -132,6 +131,8 @@ class UserController extends BasicController
      */
     public function actionStoreRegisterInfo(UserRegisterFormRequest $request)
     {
+        // 存储用户信息
+        MemberRegisterService::addUser($request->all());
         // 跳转到
         return redirect('User/registerMemberAvatar');
     }

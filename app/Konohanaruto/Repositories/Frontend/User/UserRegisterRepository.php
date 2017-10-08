@@ -9,6 +9,7 @@
 namespace App\Konohanaruto\Repositories\Frontend\User;
 use Illuminate\Support\Facades\DB;
 use App\Konohanaruto\Infrastructures\Common\BirthDate;
+use App\Konohanaruto\Infrastructures\Common\PasswordSecure;
 
 class UserRegisterRepository implements UserRepository
 {
@@ -134,6 +135,28 @@ class UserRegisterRepository implements UserRepository
             $result[$item->code] = $item->name;
         }
         return $result;
+    }
+
+    public function addUser($data)
+    {
+        $passwordSecure = app(PasswordSecure::class);
+        $insert = [];
+        $insert['username'] = $data['username'];
+        $insert['email'] = $data['email'];
+        $insert['gender'] = $data['gender'];
+        $insert['birthyear'] = $data['birthyear'];
+        $insert['birthmonth'] = $data['birthmonth'];
+        $insert['birthday'] = $data['birthday'];
+        $insert['salt'] = $passwordSecure->gernerateSalt();
+        $insert['password'] = $passwordSecure->getEncryptPassword($data['password'], $insert['salt']);
+        $insert['education'] = $data['education'];
+        $insert['resideprovince'] = $data['resideprovince'];
+        $insert['residecity'] = $data['residecity'];
+        $insert['revenue'] = $data['revenue'];
+        $insert['mobile'] = $data['mobile'];
+        $insert['height'] = $data['height'];
+
+        return DB::table('user')->insert($insert);
     }
 
 }

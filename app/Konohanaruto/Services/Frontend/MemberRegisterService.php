@@ -15,6 +15,7 @@ use Redis;
 use App\Konohanaruto\Repositories\Frontend\MobileVerifyCode\MobileVerifyCodeRepositoryInterface;
 use Log;
 use App\Konohanaruto\Jobs\Frontend\MobileVerifyCode;
+use App\Konohanaruto\Repositories\Frontend\User\UserRepository;
 
 class MemberRegisterService extends BaseService
 {
@@ -122,6 +123,12 @@ class MemberRegisterService extends BaseService
         return $data['code'];
     }
 
+    /**
+     * 会员头像上传
+     *
+     * @param $request
+     * @return array
+     */
     public function uploadAvatar($request)
     {
         $file = $request->file('avatar');
@@ -144,5 +151,25 @@ class MemberRegisterService extends BaseService
             );
         }
         return array('status' => '-200');
+    }
+
+    public function addUser($data = [])
+    {
+        if (empty($data)) {
+            Log::info('新用户注册失败');
+            return ['status' => -200];
+        }
+
+        $userRepo = app(UserRepository::class);
+        $status = $userRepo->addUser($data);
+
+        if ($status) {
+            Log::info('添加了新用户：' . $data['username']);
+            return ['status' => 200];
+        }
+
+        Log::info('新用户注册写入数据库失败');
+
+        return ['status' => -200];
     }
 }

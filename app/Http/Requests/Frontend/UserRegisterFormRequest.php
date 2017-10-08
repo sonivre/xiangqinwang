@@ -26,7 +26,8 @@ class UserRegisterFormRequest extends FormRequest
     {
         return [
             'username' => 'required|register_username|unique:user,username,null,user_id',
-            //'email' => 'email',
+            'email' => 'email',
+            'password' => 'required',
             'gender' => 'in:1,2',
             'birthyear' => 'numeric',
             'birthmonth' => 'numeric',

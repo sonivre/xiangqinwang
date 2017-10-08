@@ -14,19 +14,6 @@
 @endsection
 
 @section('content')
-    @if (count($errors) > 0)
-        <div class="alert alert-danger alert-dismissible fade in" role="alert">
-            <a href="#" class="close" data-dismiss="alert">
-                &times;
-            </a>
-            <ul>
-                <li style="list-style: none"><strong>警告！</strong></li>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
     <header>
         <div class="top-nav">
             <div class="w">
@@ -81,6 +68,7 @@
                         <i class="text-error-tips"></i>
                     </span>
                 </div>
+
                 <div class="form-control">
                     <span class="required-symbol">*</span>
                     <labal>邮 &nbsp; 箱：</labal>
@@ -93,6 +81,20 @@
                     <i class="text-error-tips"></i>
                 </span>
                 </div>
+
+                <div class="form-control">
+                    <span class="required-symbol">*</span>
+                    <labal>密 &nbsp; 码：</labal>
+                    <input class="col-12"  type="password" id="password" name="password" value="" placeholder="输入您的密码">
+                    <span class="text-icon-tips text-icon-tips-correct">
+                        <em class="icon-correct-check"></em>
+                    </span>
+                    <span class="text-icon-tips text-icon-tips-incorrect">
+                        <em class="icon-incorrect-check"></em>
+                        <i class="text-error-tips"></i>
+                    </span>
+                </div>
+
                 <div class="form-control">
                     <span class="required-symbol">*</span>
                     <labal>性 &nbsp; 别：</labal>

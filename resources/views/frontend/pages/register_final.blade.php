@@ -69,6 +69,7 @@
                 <div class="form-control">
                     {{csrf_field()}}
                     <input type="file" class="img-file-input hide" name="avatar">
+                    <input type="hidden" name="avatar_src" value="">
                     <button class="register-step1-btn" type="submit" name="" value="">提交，完成</button>
                 </div>
                 </form>
@@ -98,6 +99,8 @@
             			if (data.msg) {
                 			$('#user-avatar').attr('src', data.msg.src);
                 			$('#user-avatar').attr('alt', data.msg.relationPath);
+                            // 数据库存储相对路径
+                            $('input[name=avatar_src]').val(data.msg.relationPath);
                 		}
             			if ('status' in data) {
                 			alert('上传失败, 请刷新页面后再试！');
