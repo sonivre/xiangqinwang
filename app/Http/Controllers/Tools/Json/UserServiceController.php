@@ -42,8 +42,8 @@ class UserServiceController extends BaseJsonController
         }
 
         // 发送
-        $status = MemberRegisterService::sendShortMessage($phoneNumber);
-        //$status = true;
+        //$status = MemberRegisterService::sendShortMessage($phoneNumber);
+        $status = true;
 
         if ($status) {
             $code = MemberRegisterService::getLatestValidMobileCode($phoneNumber);
