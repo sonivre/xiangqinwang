@@ -17,6 +17,7 @@ use Log;
 use App\Konohanaruto\Jobs\Frontend\MobileVerifyCode;
 use App\Konohanaruto\Repositories\Frontend\User\UserRepository;
 use Illuminate\Support\Facades\Session;
+use App\Konohanaruto\Repositories\Frontend\MemberAlbum\MemberAlbumRepositoryInterface;
 
 class MemberRegisterService extends BaseService
 {
@@ -156,6 +157,12 @@ class MemberRegisterService extends BaseService
         return array('status' => '-200');
     }
 
+    /**
+     * 添加用户
+     *
+     * @param array $data
+     * @return array
+     */
     public function addUser($data = [])
     {
         if (empty($data)) {
@@ -178,5 +185,26 @@ class MemberRegisterService extends BaseService
         Log::info('新用户注册写入数据库失败');
 
         return ['status' => -200];
+    }
+
+    /**
+     * 创建相册
+     *
+     * @param $albumName 相册名称
+     * @param $userId 用户id
+     * @param null $username 用户名
+     * @return mixed
+     */
+    public function createMemberAlbum($albumName, $userId, $username = null)
+    {
+        $memberAlbumRepo = app(MemberAlbumRepositoryInterface::class);
+
+        $albumId = $memberAlbumRepo->insertData([
+            'album_name' => $albumName,
+            'user_id' => $userId,
+            'username' => $username
+        ]);
+
+        return $albumId;
     }
 }

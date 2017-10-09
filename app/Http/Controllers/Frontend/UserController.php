@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\View;
 use App\Http\Requests\Frontend\UserRegisterFormRequest;
 use App\Konohanaruto\Infrastructures\Frontend\SystemConfig;
 use Illuminate\Support\Facades\Response;
+use Mockery\CountValidator\Exception;
 use Session;
+use App\Konohanaruto\Repositories\Frontend\MemberAlbum\MemberAlbumRepositoryInterface;
 
 class UserController extends BasicController
 {
@@ -118,7 +120,26 @@ class UserController extends BasicController
         $username = Session::get('register.userinfo.username');
         $avatarPath = $request->get('avatar_src');
 
-        var_dump($userId . '--' . $username . '--' . $avatarPath);
+        // 存储用户头像到数据库, 如果不存在相册，则创建默认相册
+        $memberAlubmRepo = app(MemberAlbumRepositoryInterface::class);
+        $album = $memberAlubmRepo->getAvatarAlbumByUserId($userId);
+
+        // 用户没有默认相册，我们替它创建一个与业务相关联的相册
+        if (empty($album)) {
+            $albumId = MemberRegisterService::createMemberAlbum(trans('register_service.avatar_album'), $userId, $username);
+        } else {
+            $albumId = $album['album_id'];
+        }
+
+        if ($albumId <= 0) {
+            throw new \Exception(trans('register_service.avatar_album_create_failed'));
+        }
+
+        // 写入session中，记录当前用户的头像相册id和头像路径
+        Session::put('register.userinfo.avatar_album_id', $albumId);
+        Session::put('register.userinfo.avatar_path', $avatarPath);
+
+        var_dump(Session::get('register.userinfo'));
     }
 
     /**

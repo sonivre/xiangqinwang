@@ -17,4 +17,7 @@ return [
     'mobile_code_request_failed' => '手机验证码请求失败',
     'aliyun_mobile_code_response' => '阿里云短信验证码操作结果：',
     'register_mobile_verify_code_missed' => '短信验证码错误',
+
+    'avatar_album' => '头像相册',
+    'avatar_album_create_failed' => '默认头像相册创建失败'
 ];
