@@ -198,6 +198,7 @@ return [
         App\Konohanaruto\Providers\Common\LanguageServiceProvider::class,
         App\Konohanaruto\Providers\Frontend\MemberAlbumServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        App\Konohanaruto\Providers\Frontend\MemberPictureServiceProvider::class
     ],
 
     /*

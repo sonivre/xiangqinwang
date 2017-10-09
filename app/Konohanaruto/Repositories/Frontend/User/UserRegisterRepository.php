@@ -137,6 +137,10 @@ class UserRegisterRepository implements UserRepository
         return $result;
     }
 
+    /**
+     * @param $data
+     * @return mixed
+     */
     public function addUser($data)
     {
         $passwordSecure = app(PasswordSecure::class);
@@ -157,6 +161,18 @@ class UserRegisterRepository implements UserRepository
         $insert['height'] = $data['height'];
 
         return DB::table('user')->insertGetId($insert);
+    }
+
+    /**
+     * 更新用户信息
+     *
+     * @param $data
+     * @param $where
+     * @return mixed
+     */
+    public function updateUserDataByUserId($data, $userId)
+    {
+        return DB::table('user')->where('user_id', $userId)->update($data);
     }
 
 }

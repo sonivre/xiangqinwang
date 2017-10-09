@@ -18,6 +18,9 @@ use App\Konohanaruto\Jobs\Frontend\MobileVerifyCode;
 use App\Konohanaruto\Repositories\Frontend\User\UserRepository;
 use Illuminate\Support\Facades\Session;
 use App\Konohanaruto\Repositories\Frontend\MemberAlbum\MemberAlbumRepositoryInterface;
+use Image;
+use Request;
+use App\Konohanaruto\Repositories\Frontend\MemberPicture\MemberPictureRepositoryInterface;
 
 class MemberRegisterService extends BaseService
 {
@@ -192,10 +195,10 @@ class MemberRegisterService extends BaseService
      *
      * @param $albumName 相册名称
      * @param $userId 用户id
-     * @param null $username 用户名
+     * @param $username 用户名
      * @return mixed
      */
-    public function createMemberAlbum($albumName, $userId, $username = null)
+    public function createMemberAlbum($albumName, $userId, $username)
     {
         $memberAlbumRepo = app(MemberAlbumRepositoryInterface::class);
 
@@ -206,5 +209,34 @@ class MemberRegisterService extends BaseService
         ]);
 
         return $albumId;
+    }
+
+    public function storeUserAvatar($userId, $username, $albumId, $avatarPath)
+    {
+        $avatarFullPath = config('custom.staticServer') . '/uploads/' . $avatarPath;
+        $userRepo = app(UserRepository::class);
+        $userRepo->updateUserDataByUserId(['avatar' => $avatarPath], $userId);
+
+        $memberPictureRepo = app(MemberPictureRepositoryInterface::class);
+
+        // 得到图片的一些基本信息
+        $avatarInfo = explode('.', substr($avatarPath, strrpos($avatarPath, '/')+1));
+        $fileHeaders = get_headers($avatarFullPath, 1);
+
+        $picture = [];
+        $picture['file_name'] = $avatarInfo[0];
+        $picture['file_type'] = $avatarInfo[1];
+        $picture['file_size'] = empty($fileHeaders['Content-Length']) ? 0 : $fileHeaders['Content-Length'];
+        $picture['is_remote'] = 1;
+        $picture['file_path'] = $avatarPath;
+        $picture['user_id'] = $userId;
+        $picture['username'] = $username;
+        $picture['album_id'] = $albumId;
+        $picture['action_ip'] = Request::ip();
+        //审核状态，0待审核
+        $picture['status'] = 0;
+
+        // 插入到用户头像表，并且属于头像相册表中
+        return $memberPictureRepo->insertData($picture);
     }
 }

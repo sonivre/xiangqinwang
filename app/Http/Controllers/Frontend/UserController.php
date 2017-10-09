@@ -139,7 +139,8 @@ class UserController extends BasicController
         Session::put('register.userinfo.avatar_album_id', $albumId);
         Session::put('register.userinfo.avatar_path', $avatarPath);
 
-        var_dump(Session::get('register.userinfo'));
+        MemberRegisterService::storeUserAvatar($userId, $username, $albumId, $avatarPath);
+        // 跳转邮箱认证引导页面
     }
 
     /**
