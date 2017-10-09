@@ -287,6 +287,7 @@
         var csrfToken = '{{csrf_token()}}';
         var getDaysUrl = '{{url('tools/totalDays')}}';
         var getCitiesUrl = '{{url('tools/cityList')}}';
+        var mobileVerifyCodeUrl = '{{url('tools/api/registerMobileCode')}}';
     </script>
     <script src="{{config('custom.staticServer')}}/js/register-validation.js"></script>
     <script>
@@ -294,7 +295,6 @@
          * 获取验证码
          */
         $(function () {
-
         });
     </script>
 @endsection

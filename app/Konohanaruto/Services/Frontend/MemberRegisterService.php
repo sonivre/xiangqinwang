@@ -11,7 +11,7 @@
 
 namespace App\Konohanaruto\Services\Frontend;
 use UserUniversalData;
-use Redis;
+use Illuminate\Support\Facades\Redis;
 use App\Konohanaruto\Repositories\Frontend\MobileVerifyCode\MobileVerifyCodeRepositoryInterface;
 use Log;
 use App\Konohanaruto\Jobs\Frontend\MobileVerifyCode;
