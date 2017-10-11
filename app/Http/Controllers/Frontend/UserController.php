@@ -21,6 +21,7 @@ use Mockery\CountValidator\Exception;
 use Session;
 use App\Konohanaruto\Repositories\Frontend\MemberAlbum\MemberAlbumRepositoryInterface;
 use MemberEmailService;
+use Request as RequestFacade;
 
 class UserController extends BasicController
 {
@@ -178,6 +179,16 @@ class UserController extends BasicController
 
     public function actionActivationEmail()
     {
-        echo MemberEmailService::test();
+        $userId = Session::get('register.userinfo.user_id');
+        $username = Session::get('register.userinfo.username');
+        $currentRoute = RequestFacade::path();
+
+        if (! $userId && ! $username) {
+            return redirect()->back();
+        }
+
+        //MemberEmailService::test();
+
+        return view('frontend.pages.register_emailing', ['currentRoute' => $currentRoute]);
     }
 }
