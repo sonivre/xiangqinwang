@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Response;
 use Mockery\CountValidator\Exception;
 use Session;
 use App\Konohanaruto\Repositories\Frontend\MemberAlbum\MemberAlbumRepositoryInterface;
+use MemberEmailService;
 
 class UserController extends BasicController
 {
@@ -177,6 +178,6 @@ class UserController extends BasicController
 
     public function actionActivationEmail()
     {
-        echo 'aaa';
+        echo MemberEmailService::test();
     }
 }
