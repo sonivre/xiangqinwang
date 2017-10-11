@@ -141,6 +141,7 @@ class UserController extends BasicController
 
         MemberRegisterService::storeUserAvatar($userId, $username, $albumId, $avatarPath);
         // 跳转邮箱认证引导页面
+        return redirect('User/Supports/activationEmail');
     }
 
     /**
@@ -172,5 +173,10 @@ class UserController extends BasicController
         }
 
         return redirect()->back()->withInput($request->all());
+    }
+
+    public function actionActivationEmail()
+    {
+        echo 'aaa';
     }
 }

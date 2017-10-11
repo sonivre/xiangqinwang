@@ -9,6 +9,9 @@ Route::group(array('namespace' => 'Frontend'), function () {
         Route::get('registerMemberAvatar', 'UserController@actionRegisterMemberAvatar');
         Route::post('storeMemberRegisterAvatar', 'UserController@actionStoreMemberRegisterAvatar');
         Route::post('uploadMemberAvatar', 'UserController@actionUploadMemberAvatar');
+        Route::group(['prefix' => 'Supports'], function () {
+            Route::get('activationEmail', 'UserController@actionActivationEmail');
+        });
     });
     Route::group(array('middleware' => 'LoginCheck'), function () {
 
