@@ -221,6 +221,7 @@ class MemberRegisterService extends BaseService
 
         // 得到图片的一些基本信息
         $avatarInfo = explode('.', substr($avatarPath, strrpos($avatarPath, '/')+1));
+        // 必须在本机hosts中添加对应域名映射
         $fileHeaders = get_headers($avatarFullPath, 1);
 
         $picture = [];
