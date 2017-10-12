@@ -179,6 +179,9 @@ class UserController extends BasicController
         return redirect()->back()->withInput($request->all());
     }
 
+    /**
+     * 发送注册激活邮件
+     */
     public function actionActivationEmail()
     {
         $userId = Session::get('register.userinfo.user_id');
@@ -200,5 +203,10 @@ class UserController extends BasicController
         }
 
         return view('frontend.pages.register_emailing', ['currentRoute' => $currentRoute]);
+    }
+
+    public function actionActivationAccount(Request $request)
+    {
+        var_dump($request->all());
     }
 }
