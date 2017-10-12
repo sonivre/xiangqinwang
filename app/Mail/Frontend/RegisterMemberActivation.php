@@ -28,6 +28,7 @@ class RegisterMemberActivation extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.frontend.register_member_activation');
+        return $this->subject(trans('register_service.register_activation_email_subject'))
+            ->view('mails.frontend.register_member_activation');
     }
 }
