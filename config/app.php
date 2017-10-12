@@ -199,7 +199,6 @@ return [
         App\Konohanaruto\Providers\Frontend\MemberAlbumServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         App\Konohanaruto\Providers\Frontend\MemberPictureServiceProvider::class,
-        App\Konohanaruto\Providers\Frontend\MemberEmailServiceProvider::class,
     ],
 
     /*
@@ -251,7 +250,6 @@ return [
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
         'UserUniversalData' => App\Konohanaruto\Facades\Common\UserUniversalData::class,
         'MemberRegisterService' => App\Konohanaruto\Facades\Frontend\MemberRegisterService::class,
-        'MemberEmailService' => App\Konohanaruto\Facades\Frontend\MemberEmailService::class,
         'Image' => Intervention\Image\Facades\Image::class,
     ],
 

@@ -31,6 +31,8 @@ return array(
         'T1' => 'register',
         'T2' => 'forget',
     ),
+    // 会员注册激活邮件redis队列名
+    'REDIS_ACCOUNT_ACTIVATION_MAIL_QUEUE' => 'account_activation_mail_queue',
 
 
 );

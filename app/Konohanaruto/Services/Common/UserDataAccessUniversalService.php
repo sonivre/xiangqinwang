@@ -12,6 +12,7 @@
 namespace App\Konohanaruto\Services\Common;
 
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserDataAccessUniversalService extends BaseService
 {
@@ -33,5 +34,18 @@ class UserDataAccessUniversalService extends BaseService
     public function getMobileVerifyCode()
     {
         return rand(100000, 999999);
+    }
+
+    /**
+     * 生成会员激活Token
+     *
+     * @param $userId
+     * @param $username
+     * @param $email
+     * @return mixed
+     */
+    public function accountMailActivationToken($userId, $username, $email)
+    {
+        return Hash::make("$userId:$username:$email");
     }
 }

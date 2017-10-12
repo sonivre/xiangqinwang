@@ -17,12 +17,13 @@ use Illuminate\Support\Facades\View;
 use App\Http\Requests\Frontend\UserRegisterFormRequest;
 use App\Konohanaruto\Infrastructures\Frontend\SystemConfig;
 use Illuminate\Support\Facades\Response;
+use Mockery\CountValidator\Exception;
 use Session;
 use App\Konohanaruto\Repositories\Frontend\MemberAlbum\MemberAlbumRepositoryInterface;
-use MemberEmailService;
 use Request as RequestFacade;
 use Mail;
 use App\Mail\Frontend\RegisterMemberActivation;
+use Swift_TransportException;
 
 class UserController extends BasicController
 {
@@ -189,7 +190,14 @@ class UserController extends BasicController
             return redirect()->back();
         }
 
-        //Mail::to($email)->send(new RegisterMemberActivation());
+        try {
+            Mail::to($email)->queue((new RegisterMemberActivation($userId, $username, $email))
+                ->onQueue(config('custom.REDIS_ACCOUNT_ACTIVATION_MAIL_QUEUE')));
+        } catch (Swift_TransportException $e) {
+            Log::error($e->getMessage());
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+        }
 
         return view('frontend.pages.register_emailing', ['currentRoute' => $currentRoute]);
     }
