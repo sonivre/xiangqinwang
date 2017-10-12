@@ -17,11 +17,12 @@ use Illuminate\Support\Facades\View;
 use App\Http\Requests\Frontend\UserRegisterFormRequest;
 use App\Konohanaruto\Infrastructures\Frontend\SystemConfig;
 use Illuminate\Support\Facades\Response;
-use Mockery\CountValidator\Exception;
 use Session;
 use App\Konohanaruto\Repositories\Frontend\MemberAlbum\MemberAlbumRepositoryInterface;
 use MemberEmailService;
 use Request as RequestFacade;
+use Mail;
+use App\Mail\Frontend\RegisterMemberActivation;
 
 class UserController extends BasicController
 {
@@ -181,13 +182,14 @@ class UserController extends BasicController
     {
         $userId = Session::get('register.userinfo.user_id');
         $username = Session::get('register.userinfo.username');
+        $email = Session::get('register.userinfo.email');
         $currentRoute = RequestFacade::path();
 
         if (! $userId && ! $username) {
             return redirect()->back();
         }
 
-        //MemberEmailService::test();
+        //Mail::to($email)->send(new RegisterMemberActivation());
 
         return view('frontend.pages.register_emailing', ['currentRoute' => $currentRoute]);
     }

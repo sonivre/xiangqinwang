@@ -180,7 +180,8 @@ class MemberRegisterService extends BaseService
             Log::info('添加了新用户：' . $data['username']);
             Session::put('register.userinfo', [
                 'user_id' => $userId,
-                'username' => $data['username']
+                'username' => $data['username'],
+                'email' => $data['email']
             ]);
             return ['status' => 200];
         }
