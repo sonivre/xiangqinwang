@@ -21,6 +21,7 @@ Route::get('jobFeatureTest', 'HomeController@jobFeatureTest');
 Route::get('smsTest', 'HomeController@smsTest');
 Route::get('redisTest', 'HomeController@redisTest');
 Route::get('languageTest', 'HomeController@languageTest');
+Route::get('emailTest', 'HomeController@emailTest');
 
 // 用户服务
 Route::group(array('namespace' => 'Tools\\Json\\', 'prefix' => 'UserService'), function () {

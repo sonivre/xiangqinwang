@@ -10,6 +10,8 @@ use App\Konohanaruto\Repositories\Intranet\User\UserRepositoryInterface;
 use App\Konohanaruto\Infrastructures\Common\SMS\ShortMessageServiceInterface;
 use Request;
 use MemberRegisterService;
+use Mail;
+use App\Mail\Frontend\RegisterMemberActivation;
 
 class HomeController extends Controller
 {
@@ -59,5 +61,11 @@ class HomeController extends Controller
 //        var_dump($msg);
         //var_dump(Request::header('User-Agent'));
         var_dump(MemberRegisterService::test());
+    }
+
+    public function emailTest()
+    {
+        $rs = Mail::to('kingshi2010@gmail.com')->send(new RegisterMemberActivation());
+        var_dump($rs);
     }
 }
