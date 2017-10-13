@@ -214,7 +214,7 @@ class UserController extends BasicController
 
     public function actionActivationAccount(Request $request)
     {
-        $token = $request->get('token');
+        $token = $request->get('code');
 
         try {
             $plainToken = Crypt::decryptString($token);
