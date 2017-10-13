@@ -12,6 +12,7 @@ use Request;
 use MemberRegisterService;
 use Mail;
 use App\Mail\Frontend\RegisterMemberActivation;
+use Illuminate\Support\Facades\Crypt;
 
 class HomeController extends Controller
 {
@@ -65,6 +66,9 @@ class HomeController extends Controller
 
     public function emailTest()
     {
+        $encrypted = Crypt::encryptString('Hello world.');
+        $decrypted = Crypt::decryptString($encrypted);
+
         $rs = Mail::to('kingshi2010@gmail.com')->send(new RegisterMemberActivation());
         var_dump($rs);
     }

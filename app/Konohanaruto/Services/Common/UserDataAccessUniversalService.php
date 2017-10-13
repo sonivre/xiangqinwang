@@ -12,7 +12,7 @@
 namespace App\Konohanaruto\Services\Common;
 
 use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
 
 class UserDataAccessUniversalService extends BaseService
 {
@@ -46,6 +46,17 @@ class UserDataAccessUniversalService extends BaseService
      */
     public function accountMailActivationToken($userId, $username, $email)
     {
-        return Hash::make("$userId:$username:$email");
+        return Crypt::encryptString("$userId:$username:$email");
+    }
+
+    /**
+     * 返回解密后的token
+     *
+     * @param $token
+     * @return mixed
+     */
+    public function decodeAccountMailActivationToken($token)
+    {
+        return Crypt::decryptString($token);
     }
 }

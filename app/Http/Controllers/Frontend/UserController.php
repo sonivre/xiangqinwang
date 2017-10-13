@@ -24,6 +24,9 @@ use Request as RequestFacade;
 use Mail;
 use App\Mail\Frontend\RegisterMemberActivation;
 use Swift_TransportException;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Log;
 
 class UserController extends BasicController
 {
@@ -198,8 +201,12 @@ class UserController extends BasicController
                 ->onQueue(config('custom.REDIS_ACCOUNT_ACTIVATION_MAIL_QUEUE')));
         } catch (Swift_TransportException $e) {
             Log::error($e->getMessage());
+
+            return redirect()->back();
         } catch (Exception $e) {
             Log::error($e->getMessage());
+
+            return redirect()->back();
         }
 
         return view('frontend.pages.register_emailing', ['currentRoute' => $currentRoute]);
@@ -207,6 +214,16 @@ class UserController extends BasicController
 
     public function actionActivationAccount(Request $request)
     {
-        var_dump($request->all());
+        $token = $request->get('token');
+
+        try {
+            $plainToken = Crypt::decryptString($token);
+        } catch (DecryptException $e) {
+            Log::error($e->getMessage());
+
+            return redirect()->back();
+        }
+
+        var_dump($plainToken);
     }
 }
