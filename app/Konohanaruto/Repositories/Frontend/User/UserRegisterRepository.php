@@ -175,4 +175,30 @@ class UserRegisterRepository implements UserRepository
         return DB::table('user')->where('user_id', $userId)->update($data);
     }
 
+    /**
+     * 根据条件搜索用户
+     *
+     * @param $conditions
+     * @return array
+     */
+    public function findUser($conditions)
+    {
+        if (is_array($conditions)) {
+            return DB::table('user')->where($conditions)->first();
+        } else {
+            return array();
+        }
+    }
+
+    /**
+     * 更改用户为激活会员
+     *
+     * @param $userId
+     * @return mixed
+     */
+    public function changeUserIdentifyStatus($userId)
+    {
+        return DB::table('user')->where('user_id', $userId)->update(['emailstatus' => 1]);
+    }
+
 }

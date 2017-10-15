@@ -224,6 +224,16 @@ class UserController extends BasicController
             return redirect('/');
         }
 
-        var_dump($plainToken);
+        if (MemberRegisterService::checkEmailActivationToken($plainToken)) {
+            // 让用户变成激活状态
+            $status = MemberRegisterService::updateMemberIdentifyStatus();
+        }
+
+        // 会员一些初始化信息更新，日志，花田币等
+        // ...
+
+        if (! empty($status)) {
+            // 跳转到个人资料页
+        }
     }
 }

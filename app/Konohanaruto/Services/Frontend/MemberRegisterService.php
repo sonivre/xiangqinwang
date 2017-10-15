@@ -212,6 +212,15 @@ class MemberRegisterService extends BaseService
         return $albumId;
     }
 
+    /**
+     * 存储用户头像
+     *
+     * @param $userId
+     * @param $username
+     * @param $albumId
+     * @param $avatarPath
+     * @return mixed
+     */
     public function storeUserAvatar($userId, $username, $albumId, $avatarPath)
     {
         $avatarFullPath = config('custom.staticServer') . '/uploads/' . $avatarPath;
@@ -240,5 +249,39 @@ class MemberRegisterService extends BaseService
 
         // 插入到用户头像表，并且属于头像相册表中
         return $memberPictureRepo->insertData($picture);
+    }
+
+    /**
+     * 验证用户激活邮箱中的激活地址是否有效
+     *
+     * @param $token
+     * @return bool
+     */
+    public function checkEmailActivationToken($token)
+    {
+        $filter = array();
+        list($userId, $username, $email) = explode(':', $token);
+        $filter[] = array('user_id', '=', $userId);
+        $filter[] = array('username', '=', $username);
+        $filter[] = array('email', '=', $email);
+        $userRepo = app(UserRepository::class);
+        $userInfo = $userRepo->findUser($filter);
+
+        if ($userInfo) {
+            // 写入用户信息缓存
+            //...
+
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public function updateMemberIdentifyStatus()
+    {
+        $userId = Session::get('register.userinfo.user_id');
+        $userRepo = app(UserRepository::class);
+        return $userRepo->changeUserIdentifyStatus($userId);
     }
 }
