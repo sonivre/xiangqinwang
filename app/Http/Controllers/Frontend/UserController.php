@@ -24,9 +24,9 @@ use Request as RequestFacade;
 use Mail;
 use App\Mail\Frontend\RegisterMemberActivation;
 use Swift_TransportException;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Contracts\Encryption\DecryptException;
 use Log;
+use UserUniversalData;
+use DecryptException;
 
 class UserController extends BasicController
 {
@@ -217,11 +217,11 @@ class UserController extends BasicController
         $token = $request->get('code');
 
         try {
-            $plainToken = Crypt::decryptString($token);
+            $plainToken = UserUniversalData::decodeAccountMailActivationToken($token);
         } catch (DecryptException $e) {
             Log::error($e->getMessage());
 
-            return redirect()->back();
+            return redirect('/');
         }
 
         var_dump($plainToken);

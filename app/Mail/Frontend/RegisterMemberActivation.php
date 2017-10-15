@@ -45,6 +45,6 @@ class RegisterMemberActivation extends Mailable
     {
         $token = UserUniversalData::accountMailActivationToken($this->userId, $this->username, $this->email);
 
-        return url('User/activationAccount') . '?code=' . urlencode($token);
+        return url('User/activationAccount') . '?code=' . $token;
     }
 }
