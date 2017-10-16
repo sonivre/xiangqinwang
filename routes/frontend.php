@@ -14,6 +14,12 @@ Route::group(array('namespace' => 'Frontend'), function () {
             Route::get('activationEmail', 'UserController@actionActivationEmail');
         });
     });
+
+    // 登录后的用户
+    Route::group([], function () {
+        Route::get('home', 'MemberRecommendController@actionHome');
+    });
+
     Route::group(array('middleware' => 'LoginCheck'), function () {
 
     });
