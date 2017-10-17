@@ -16,7 +16,7 @@ Route::group(array('namespace' => 'Frontend'), function () {
     });
 
     // 登录后的用户
-    Route::group([], function () {
+    Route::group(['middleware' => 'frontend.member_login_check'], function () {
         Route::get('home', 'MemberRecommendController@actionHome');
     });
 

@@ -14,6 +14,8 @@ return array(
     'ipTaobaoMap' => 'http://ip.taobao.com//service/getIpInfo.php?ip=',
     // 后台session名
     'intranetSessionName' => 'intranet',
+    // 前端session名
+    'frontendSessionName' => 'frontend',
     // 阿里云 sms
     'aliyunSMS' => array(
         'accessKeyId'    => env('ALIYUN_ACCESS_ID', ''),

@@ -58,5 +58,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'intranet.logincheck' => \App\Http\Middleware\Intranet\LoginCheck::class,
         'intranet.useranalyzetool' => \App\Http\Middleware\Intranet\UserAnalyzeTool::class,
+
+        'frontend.member_login_check' => \App\Http\Middleware\Frontend\MemberLoginCheck::class,
     ];
 }

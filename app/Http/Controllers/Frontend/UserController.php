@@ -236,4 +236,9 @@ class UserController extends BasicController
             // 跳转到个人资料页
         }
     }
+
+    public function actionLogin(LoginRequest $request)
+    {
+        var_dump($request->all());
+    }
 }
