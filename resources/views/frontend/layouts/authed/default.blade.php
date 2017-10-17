@@ -21,3 +21,4 @@
 @include('frontend.includes.authed.footer')
 </body>
 </html>
+@yield('additional-js')

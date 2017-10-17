@@ -14,6 +14,9 @@
 {{--title--}}
 @section('title', '首页')
 
+@section('subsequent')
+    <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/index.css">
+@endsection
 {{--content--}}
 @section('content')
 <section id="top-logo">
@@ -748,4 +751,11 @@
         <a href="javascript:;">意见反馈</a>
     </div>
 </section>
+@endsection
+
+@section('additional-js')
+    <script>
+        var staticServer = "{{config('custom.staticServer')}}";
+    </script>
+    <script src="{{config('custom.staticServer')}}/js/home-nav-bar.js"></script>
 @endsection
