@@ -13,6 +13,19 @@
     <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/login.css" />
 @endsection
 @section('content')
+    {{--@if (count($errors) > 0 || ! empty($userAuthErrors))--}}
+        {{--<div class="alert alert-danger alert-dismissible fade in" role="alert">--}}
+            {{--<a href="#" class="close" data-dismiss="alert">--}}
+                {{--&times;--}}
+            {{--</a>--}}
+            {{--<ul>--}}
+                {{--<li style="list-style: none"><strong>警告！</strong></li>--}}
+                {{--@foreach ($errors->all() as $error)--}}
+                    {{--<li>{{ $error }}</li>--}}
+                    {{--@endforeach--}}
+            {{--</ul>--}}
+        {{--</div>--}}
+    {{--@endif--}}
     <section id="top-login">
         <div class="w login-shadow">
             <div class="certification">
@@ -26,7 +39,7 @@
                     <div class="content content-1">
                         <div class="left-form fl">
                             <p>网易邮箱可以直接登录开通</p>
-                            <form>
+                            <form action="{{url('login')}}" method="POST" enctype="multipart/form-data">
                                 <div class="login-input">
                                     <i class="user-icon"></i>
                                     <input type="text" name="username" placeholder="邮箱账号/邮箱地址/手机号"/>
@@ -41,6 +54,7 @@
                                     <input type="submit" class="submit-btn enable" value="登&nbsp;&nbsp;录"/>
                                 </div>
                                 <div class="remember">
+                                    {{ csrf_field() }}
                                     <input type="checkbox" name="remember" value="1">
                                     <div class="fl">
                                         <a href="#">十天免费登录</a> |

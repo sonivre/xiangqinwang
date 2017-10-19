@@ -27,6 +27,8 @@ use Swift_TransportException;
 use Log;
 use UserUniversalData;
 use DecryptException;
+use App\Http\Requests\Frontend\LoginRequest;
+use App\Konohanaruto\Infrastructures\Common\PasswordSecure;
 
 class UserController extends BasicController
 {
@@ -239,6 +241,26 @@ class UserController extends BasicController
 
     public function actionLogin(LoginRequest $request)
     {
-        var_dump($request->all());
+        $username = $request->get('username');
+        $password = $request->get('password');
+        $remember = intval($request->get('remember'));
+        $userRepo = app(UserRepository::class);
+        $passwordSecure = app(PasswordSecure::class);
+        $userInfo = $userRepo->findUser(['username' => $username]);
+
+        if (empty($userInfo) ||
+            $userInfo['password'] != $passwordSecure->getEncryptPassword($password, $userInfo['salt'])
+        ) {
+            return redirect()
+                ->back()
+                ->withInput($request->all)
+                ->withErrors([trans('authentication.username_or_password_mistake')]);
+        }
+
+        // 保存用户信息到session等
+        Session::put(config('custom.frontendSessionName') . '.member.info', $userInfo);
+
+        // 如果用户选择记住密码，保存到cookie
+        return redirect('home')->withCookie(cookie('user_id', $userInfo['user_id'], 7*24*60));
     }
 }
