@@ -3,6 +3,7 @@ Route::group(array('namespace' => 'Frontend'), function () {
 
     Route::any('/', 'UserController@authenticationRegisterEmail');
     Route::any('login', 'UserController@actionLogin');
+    Route::any('logout', 'UserController@actionLogout');
     Route::get('register_step_one', 'UserController@prepareRegister');
     Route::group(array('prefix' => 'User'), function () {
         Route::post('checkExists', 'UserController@checkUserExists');

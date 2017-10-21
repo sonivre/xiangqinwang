@@ -16,6 +16,8 @@ return array(
     'intranetSessionName' => 'intranet',
     // 前端session名
     'frontendSessionName' => 'frontend',
+    //前端cookie前缀
+    'frontendCookiePrefix' => 'frontend',
     // 阿里云 sms
     'aliyunSMS' => array(
         'accessKeyId'    => env('ALIYUN_ACCESS_ID', ''),

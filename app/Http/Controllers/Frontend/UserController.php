@@ -29,6 +29,7 @@ use UserUniversalData;
 use DecryptException;
 use App\Http\Requests\Frontend\LoginRequest;
 use App\Konohanaruto\Infrastructures\Common\PasswordSecure;
+use MemberAuthService;
 
 class UserController extends BasicController
 {
@@ -49,6 +50,11 @@ class UserController extends BasicController
     public function authenticationRegisterEmail(Request $request)
     {
         if ($request->isMethod('get')) {
+            // 验证如果已经登录，就不让他显示此页面
+            if (MemberAuthService::checkUserLogin()) {
+                return redirect('home');
+            }
+
             if (View::exists('frontend.pages.login')) {
                 return view('frontend.pages.login');
             }
@@ -233,10 +239,8 @@ class UserController extends BasicController
 
         // 会员一些初始化信息更新，日志，花田币等
         // ...
+        return redirect('/');
 
-        if (! empty($status)) {
-            // 跳转到个人资料页
-        }
     }
 
     public function actionLogin(LoginRequest $request)
@@ -246,7 +250,7 @@ class UserController extends BasicController
         $remember = intval($request->get('remember'));
         $userRepo = app(UserRepository::class);
         $passwordSecure = app(PasswordSecure::class);
-        $userInfo = $userRepo->findUser(['username' => $username]);
+        $userInfo = (array) $userRepo->findUser(['username' => $username]);
 
         if (empty($userInfo) ||
             $userInfo['password'] != $passwordSecure->getEncryptPassword($password, $userInfo['salt'])
@@ -258,9 +262,19 @@ class UserController extends BasicController
         }
 
         // 保存用户信息到session等
-        Session::put(config('custom.frontendSessionName') . '.member.info', $userInfo);
+        MemberAuthService::storeUserInfoToSession($userInfo);
 
         // 如果用户选择记住密码，保存到cookie
-        return redirect('home')->withCookie(cookie('user_id', $userInfo['user_id'], 7*24*60));
+        if ($remember == 1) {
+            return redirect('home')->withCookie(MemberAuthService::storeUserInfoToCookie($userInfo));
+        }
+
+        return redirect('home');
+    }
+
+    public function actionLogout()
+    {
+        MemberAuthService::flushUserSession();
+        return redirect('/')->withCookie(MemberAuthService::forgetUserLoginCookie());
     }
 }

@@ -54,7 +54,7 @@
                         <li><a href="#">认证</a></li>
                         <li><a href="#">关闭资料</a></li>
                     </ul>
-                    <p><a href="#">退出</a></p>
+                    <p><a href="{{url('logout')}}">退出</a></p>
                 </div>
             </div>
         </div>

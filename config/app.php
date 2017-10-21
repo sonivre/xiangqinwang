@@ -199,6 +199,7 @@ return [
         App\Konohanaruto\Providers\Frontend\MemberAlbumServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         App\Konohanaruto\Providers\Frontend\MemberPictureServiceProvider::class,
+        App\Konohanaruto\Providers\Frontend\MemberAuthenticationServiceProvider::class,
     ],
 
     /*
@@ -251,6 +252,7 @@ return [
         'UserUniversalData' => App\Konohanaruto\Facades\Common\UserUniversalData::class,
         'MemberRegisterService' => App\Konohanaruto\Facades\Frontend\MemberRegisterService::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'MemberAuthService' => App\Konohanaruto\Facades\Frontend\MemberAuthenticationService::class,
     ],
 
 ];

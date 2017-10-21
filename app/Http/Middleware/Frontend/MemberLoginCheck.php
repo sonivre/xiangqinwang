@@ -14,6 +14,7 @@ namespace App\Http\Middleware\Frontend;
 use Closure;
 use App\Http\Controllers\Intranet\SystemController;
 use Illuminate\Support\Facades\Session;
+use MemberAuthService;
 
 class MemberLoginCheck
 {
@@ -27,10 +28,8 @@ class MemberLoginCheck
      */
     public function handle($request, Closure $next)
     {
-        $userInfo = Session::get(config('custom.frontendSessionName') . '.member.info');
-
         // 验证是否已经登录, 否则跳转到登录界面
-        if (! is_array($userInfo) && empty($userInfo['user_id'])) {
+        if (! MemberAuthService::checkUserLogin()) {
             return redirect('/');
         }
 
