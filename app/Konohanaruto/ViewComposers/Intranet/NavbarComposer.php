@@ -2,6 +2,7 @@
 
 namespace App\Konohanaruto\ViewComposers\Intranet;
 
+use App\Konohanaruto\Repositories\Intranet\User\UserRepositoryInterface;
 use Illuminate\View\View;
 use App\Konohanaruto\Repositories\Intranet\Menus\MenusRepositoryInterface;
 use Request;
@@ -10,15 +11,17 @@ class NavbarComposer
 {
     
     private $menuRepository;
+    private $userRepository;
     
     /**
      * Create a new composer.
      *
      * @return void
      */
-    public function __construct(MenusRepositoryInterface $menuRepository)
+    public function __construct(MenusRepositoryInterface $menuRepository, UserRepositoryInterface $userRepository)
     {
         $this->menuRepository = $menuRepository;
+        $this->userRepository = $userRepository;
     }
     
     /**
@@ -62,6 +65,12 @@ class NavbarComposer
         $menuList = $this->menuRepository->getMenuList();
         $menuList = $this->menuRepository->getMenuTree($menuList);
         $menuList = $this->filterInvalidMenu($menuList);
+
+        $permissions = $this->userRepository->getUserPermissions(8);
+        foreach ($permissions as $item) {
+            $array[] = $item['permission_id'];
+        }
+        echo '<pre>';var_dump($array);exit;
 
         $view->with(array(
             'currentRoute' => $currentRoute,

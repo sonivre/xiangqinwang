@@ -25,4 +25,15 @@ class UserEloquentRepository extends EloquentRepository implements UserRepositor
         }
         return $this->model->where('username', $username)->first()->toArray();
     }
+
+    public function getUserPermissions($userId)
+    {
+        return $this->model
+            ->from('admin_user_role as a')
+            ->select('a.admin_id', 'b.permission_id')
+            ->join('admin_role_permission as b', 'a.role_id', '=', 'b.role_id')
+            ->where('a.admin_id', $userId)
+            ->groupBy(array('a.admin_id', 'b.permission_id'))
+            ->get();
+    }
 }
