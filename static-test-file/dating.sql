@@ -240,3 +240,37 @@ create table xqw_member_picture(
   primary key `pk_pic_id` (`pic_id`)
 )engine=innodb default charset=utf8;
 
+-- 会员实名认证
+create table xqw_member_auth_identity_card(
+  `id` int unsigned not null auto_increment,
+  `user_id` int unsigned not null,
+  `card_number` varchar(20) not null,
+  `cart_front_view` varchar(100) not null default '',
+  `cart_back_view` varchar(100) not null default '',
+  `card_hold_view` varchar(100) not null default '',
+  `add_time` DATETIME not null default CURRENT_TIMESTAMP,
+  `status` TINYINT not null default 0 comment '0 审核中, 1 通过, 2 拒绝',
+  `admin_id` smallint unsigned not null,
+  `reason_desc` text,
+  PRIMARY KEY `pk_id` (`id`)
+)engine=innodb default charset=utf8 comment '会员实名认证身份证信息';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
