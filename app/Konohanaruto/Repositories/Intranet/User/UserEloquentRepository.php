@@ -26,6 +26,12 @@ class UserEloquentRepository extends EloquentRepository implements UserRepositor
         return $this->model->where('username', $username)->first()->toArray();
     }
 
+    /**
+     * 得到用户拥有的所有权限
+     *
+     * @param $userId
+     * @return \Illuminate\Support\Collection
+     */
     public function getUserPermissions($userId)
     {
         return $this->model

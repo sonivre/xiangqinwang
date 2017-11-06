@@ -200,6 +200,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         App\Konohanaruto\Providers\Frontend\MemberPictureServiceProvider::class,
         App\Konohanaruto\Providers\Frontend\MemberAuthenticationServiceProvider::class,
+        App\Konohanaruto\Providers\Intranet\SessionServiceProvider::class,
     ],
 
     /*
@@ -253,6 +254,7 @@ return [
         'MemberRegisterService' => App\Konohanaruto\Facades\Frontend\MemberRegisterService::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'MemberAuthService' => App\Konohanaruto\Facades\Frontend\MemberAuthenticationService::class,
+        'SessionService' => App\Konohanaruto\Facades\Intranet\SessionService::class,
     ],
 
 ];

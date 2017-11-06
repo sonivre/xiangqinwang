@@ -6,6 +6,7 @@ use App\Konohanaruto\Repositories\Intranet\User\UserRepositoryInterface;
 use Illuminate\View\View;
 use App\Konohanaruto\Repositories\Intranet\Menus\MenusRepositoryInterface;
 use Request;
+use SessionService;
 
 class NavbarComposer
 {
@@ -43,6 +44,7 @@ class NavbarComposer
             $currentRoute = substr($requestUri, strpos($requestUri, '/') + 1);
             $routeStatus = $this->menuRepository->getMenuInfoByRoute($currentRoute);
             $sessionData = session(config('custom.intranetSessionName') . '.selectedMenuRoute');
+            
             if (! empty($routeStatus)) {
                 $parentMenuDetail = $this->menuRepository->getParentMenuIdByRoute($currentRoute);
                 $parentMenuId = $parentMenuDetail['menu_id'];
@@ -65,17 +67,18 @@ class NavbarComposer
         $menuList = $this->menuRepository->getMenuList();
         $menuList = $this->menuRepository->getMenuTree($menuList);
         $menuList = $this->filterInvalidMenu($menuList);
+        $result = $this->userRepository->getUserPermissions(SessionService::getUserId());
+        $permissions = [];
 
-        $permissions = $this->userRepository->getUserPermissions(8);
-        foreach ($permissions as $item) {
-            $array[] = $item['permission_id'];
+        foreach ($result as $item) {
+            $permissions[] = $item['permission_id'];
         }
-        echo '<pre>';var_dump($array);exit;
 
         $view->with(array(
             'currentRoute' => $currentRoute,
             'menuList' => $menuList,
-            'parentMenuId' => $parentMenuId
+            'parentMenuId' => $parentMenuId,
+            'permissions' => $permissions,
         ));
     }
 
