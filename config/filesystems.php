@@ -65,7 +65,7 @@ return [
         
         'uploads' => array(
             'driver' => 'local',
-            'root' => '/data/uploads'
+            'root' => '/data/assets/uploads'
         ),
 
     ],
