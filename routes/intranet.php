@@ -45,5 +45,9 @@ Route::group(array('namespace' => 'Intranet', 'prefix' => 'intranet'), function 
         Route::get('RegisterRevenue/showEditForm/{actionId}', 'RegisterRevenueController@actionShowEditForm');
         Route::post('RegisterRevenue/update', 'RegisterRevenueController@actionUpdate');
         Route::post('RegisterRevenue/delete', 'RegisterRevenueController@actionDelete');
+
+        // 礼物管理
+        Route::get('MemberGift/list', 'MemberGiftController@actionList');
+        Route::get('MemberGift/showAddForm', 'MemberGiftController@actionShowAddForm');
     });
 });

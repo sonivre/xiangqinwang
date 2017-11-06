@@ -255,22 +255,13 @@ create table xqw_member_auth_identity_card(
   PRIMARY KEY `pk_id` (`id`)
 )engine=innodb default charset=utf8 comment '会员实名认证身份证信息';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+create table if not exists `xqw_member_gift_type` (
+  `id` int unsigned not null AUTO_INCREMENT,
+  `gift_name` varchar(50) not null default '',
+  `htb` int unsigned not null default 0 comment '花田币售价/个',
+  `is_vip` tinyint default 0 comment '是否是vip专属',
+  `is_valid` tinyint default 0,
+  `add_time` DATETIME default CURRENT_TIMESTAMP,
+  `action_admin_id` SMALLINT unsigned comment '操作的管理员id',
+  PRIMARY KEY `pk_id` (`id`)
+)engine=innodb default charset=utf8 comment '会员礼物种类表';

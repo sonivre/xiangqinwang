@@ -44,7 +44,7 @@ class NavbarComposer
             $currentRoute = substr($requestUri, strpos($requestUri, '/') + 1);
             $routeStatus = $this->menuRepository->getMenuInfoByRoute($currentRoute);
             $sessionData = session(config('custom.intranetSessionName') . '.selectedMenuRoute');
-            
+
             if (! empty($routeStatus)) {
                 $parentMenuDetail = $this->menuRepository->getParentMenuIdByRoute($currentRoute);
                 $parentMenuId = $parentMenuDetail['menu_id'];
