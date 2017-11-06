@@ -240,3 +240,28 @@ create table xqw_member_picture(
   primary key `pk_pic_id` (`pic_id`)
 )engine=innodb default charset=utf8;
 
+-- 会员实名认证
+create table xqw_member_auth_identity_card(
+  `id` int unsigned not null auto_increment,
+  `user_id` int unsigned not null,
+  `card_number` varchar(20) not null,
+  `card_front_view` varchar(100) not null default '',
+  `card_back_view` varchar(100) not null default '',
+  `card_hold_view` varchar(100) not null default '',
+  `add_time` DATETIME not null default CURRENT_TIMESTAMP,
+  `status` TINYINT not null default 0 comment '0 审核中, 1 通过, 2 拒绝',
+  `admin_id` smallint unsigned not null,
+  `reason_desc` text,
+  PRIMARY KEY `pk_id` (`id`)
+)engine=innodb default charset=utf8 comment '会员实名认证身份证信息';
+
+create table if not exists `xqw_member_gift_type` (
+  `id` int unsigned not null AUTO_INCREMENT,
+  `gift_name` varchar(50) not null default '',
+  `htb` int unsigned not null default 0 comment '花田币售价/个',
+  `is_vip` tinyint default 0 comment '是否是vip专属',
+  `is_valid` tinyint default 0,
+  `add_time` DATETIME default CURRENT_TIMESTAMP,
+  `action_admin_id` SMALLINT unsigned comment '操作的管理员id',
+  PRIMARY KEY `pk_id` (`id`)
+)engine=innodb default charset=utf8 comment '会员礼物种类表';
