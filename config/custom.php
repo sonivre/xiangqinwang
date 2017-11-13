@@ -8,8 +8,8 @@
 
 return array(
     // 静态文件服务器
-    'staticServer' => 'http://image.xqw.test',
-    'staticServerIntranet' => 'http://image.xqw.test/Intranet',
+    'staticServer' => 'http://image.xqw.test/assets',
+    'staticServerIntranet' => 'http://image.xqw.test/assets/Intranet',
     // 淘宝ip地址库
     'ipTaobaoMap' => 'http://ip.taobao.com//service/getIpInfo.php?ip=',
     // 后台session名

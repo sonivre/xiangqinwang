@@ -45,7 +45,70 @@
     <div class="w">
         <div class="left-area">
             <div class="search">
-                <h1>湖北 武汉  18到22岁 的女生<i></i></h1>
+                <div class="feed-filter clearfix hide">
+                    <div class="feed-filter-conditions">
+                        <div class="feed-filter-group">
+                            <select class="feed-filter-province" name="">
+                                <option value="不限">不限</option>
+                                <option value="湖南">湖南</option>
+                            </select>
+                            <select class="feed-filter-city" name="">
+                                <option value="不限">不限</option>
+                                <option value="长沙">长沙</option>
+                            </select>
+                        </div>
+
+                        <div class="feed-filter-group">
+                            <select class="feed-filter-age-start" name="">
+                                <option value="18">18</option>
+                            </select>
+                            <span>-</span>
+                            <select class="feed-filter-age-end" name="">
+                                <option value="不限">不限</option>
+                                <option value="24">24</option>
+                            </select>
+                            <span>岁</span>
+                        </div>
+
+                        <div class="feed-filter-group">
+                            <select class="feed-filter-height-start" name="">
+                                <option value="不限">不限</option>
+                                <option value="150">150</option>
+                            </select>
+                            <span>-</span>
+                            <select class="feed-filter-height-end" name="">
+                                <option value="不限">不限</option>
+                                <option value="165">165</option>
+                            </select>
+                            <span>厘米</span>
+                        </div>
+
+                        <div class="feed-filter-group">
+                            <select class="feed-filter-education" name="">
+                                <option value="不限">不限</option>
+                                <option value="大专及以下">大专及以下</option>
+                            </select>
+                        </div>
+
+                        <div class="feed-filter-group">
+                            <select class="feed-filter-revenue-start" name="">
+                                <option value="不限">不限</option>
+                                <option value="2000">2000</option>
+                            </select>
+                            <span>-</span>
+                            <select class="feed-filter-revenue-end" name="">
+                                <option value="不限">不限</option>
+                                <option value="4000">4000</option>
+                            </select>
+                            <span>元月收入</span>
+                        </div>
+                    </div>
+                    <div class="feed-filter-action">
+                        <a class="submit-trigger">保存</a>
+                        <a class="submit-cancel">取消</a>
+                    </div>
+                </div>
+                <h1>湖北 武汉  18到22岁 的女生<i class="slider-js"></i></h1>
                 <div class="open-vip">
                     <span class="to-open"><em></em></em><a href="#">开通高级VIP会员</a>可使用更多推荐条件</span>
                 </div>
