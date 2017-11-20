@@ -12,7 +12,8 @@
         "laravel/tinker": "~1.0",
         "mews/captcha": "^2.1",
         "php-curl-class/php-curl-class": "^7.2",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "qiniu/php-sdk": "^7.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

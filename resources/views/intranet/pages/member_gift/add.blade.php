@@ -12,6 +12,40 @@
 ?>
 
 @extends('intranet.layouts.intranet_iframe_style')
+@section('import-resource')
+@parent
+<style>
+    .gift-image-preview {
+        border: 1px solid #ccc;
+        width: 300px;
+        height: 300px;
+        overflow:hidden;
+        position: relative;
+    }
+
+    .gift-image-preview .image-main-box {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .gift-image-preview .preview-shadow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .5);
+    }
+
+    .gift-image-preview .preview-shadow > button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+@endsection
 @section('page-main')
 <div class="x_panel">
 
@@ -89,7 +123,7 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('label_fields.gift_picture')}} <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12" style="margin-top:5px;">
-                        <button type="button" class="btn btn-primary btn-xs">{{trans('buttons.click_to_upload')}}</button>
+                        <button type="button" class="js-gift-file-select btn btn-primary btn-xs">{{trans('buttons.click_to_upload')}}</button>
                     </div>
                 </div>
 
@@ -97,32 +131,20 @@
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('common.preview')}} <span class="required"> </span></label>
                     <div class="col-md-6 col-sm-6 col-xs-12" style="margin-top:5px;">
-                        <div class="preview" style="border: 1px solid #ccc; width: 300px; height: 300px; overflow:hidden;"></div>
+                        <div class="gift-image-preview">
+                            <div class="image-main-box"></div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="form-group" style="margin-top: 20px;">
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                         {{csrf_field()}}
+                        <input class="js-gift-thumb-upload" type="file" name="gift_thumb" style="display: none;">
                         <button type="submit" class="btn btn-success">{{trans('buttons.submit')}}</button>
                         <button class="btn btn-primary" type="reset" onclick="window.location.href=window.location.href;">{{trans('buttons.reset')}}</button>
                     </div>
                 </div>
-
-                {{--模态框开始--}}
-                <div id="crop-image-box" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                                <h4 class="modal-title" id="myLargeModalLabel">图片裁剪</h4>
-                            </div> <div class="modal-body"> ... </div>
-                        </div>
-                    </div>
-                </div>
-                {{--模态框结束--}}
             </form>
         </div>
 </div>
@@ -130,8 +152,8 @@
 
 @section('extra-js')
     <script type="text/javascript">
-//        var cropImageModal = $('#crop-image-box');
-//        cropImageModal.modal({backdrop: "static", keyboard: false});
-//        cropImageModal.modal('show');
+        $('input[name="gift_thumb"]').on('change', function () {
+            // 上传图片开始
+        });
     </script>
 @endsection
