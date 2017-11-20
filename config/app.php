@@ -201,6 +201,7 @@ return [
         App\Konohanaruto\Providers\Frontend\MemberPictureServiceProvider::class,
         App\Konohanaruto\Providers\Frontend\MemberAuthenticationServiceProvider::class,
         App\Konohanaruto\Providers\Intranet\SessionServiceProvider::class,
+        App\Konohanaruto\Providers\Common\QiniuStorageServiceProvider::class,
     ],
 
     /*
@@ -255,6 +256,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'MemberAuthService' => App\Konohanaruto\Facades\Frontend\MemberAuthenticationService::class,
         'SessionService' => App\Konohanaruto\Facades\Intranet\SessionService::class,
+        'QiniuStorage' => App\Konohanaruto\Facades\Common\QiniuStorage::class,
     ],
 
 ];
