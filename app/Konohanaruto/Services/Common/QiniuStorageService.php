@@ -14,8 +14,16 @@ namespace App\Konohanaruto\Services\Common;
 
 class QiniuStorageService extends BaseService
 {
-    public function test()
+    protected $accessKey = null;
+    protected $secretKey = null;
+    protected $domain = null;
+    protected $bucket = null;
+
+    public function __construct()
     {
-        return 'bbb';
+        $this->accessKey = env('QINIU_ACCESS_KEY');
+        $this->secretKey = env('QINIU_SECRET_KEY');
+        $this->bucket = env('QINIU_BUCKET');
+        $this->domain = env('QINIU_DOMAIN');
     }
 }
