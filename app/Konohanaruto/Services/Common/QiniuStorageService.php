@@ -35,7 +35,11 @@ class QiniuStorageService extends BaseService
         $upManager = new UploadManager();
         $auth = new Auth($this->accessKey, $this->secretKey);
         $token = $auth->uploadToken($this->bucket);
+        // 上传字符到七牛云
         //list($ret, $error) = $upManager->put($token, 'formput', 'hello world');
-        return $token;
+        $filePath = 'upload-demo-image.jpg';
+        $key = 'demo.jpg';
+        list($ret, $error) = $upManager->putFile($token, $key, $filePath);
+        return array($ret, $error);
     }
 }
