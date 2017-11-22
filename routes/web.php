@@ -22,6 +22,7 @@ Route::get('smsTest', 'HomeController@smsTest');
 Route::get('redisTest', 'HomeController@redisTest');
 Route::get('languageTest', 'HomeController@languageTest');
 Route::get('emailTest', 'HomeController@emailTest');
+Route::get('qiniuStorageTest', 'HomeController@qiniuStorageTest');
 
 // 用户服务
 Route::group(array('namespace' => 'Tools\\Json\\', 'prefix' => 'UserService'), function () {

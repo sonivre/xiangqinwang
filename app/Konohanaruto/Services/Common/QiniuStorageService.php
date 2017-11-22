@@ -12,6 +12,9 @@
 
 namespace App\Konohanaruto\Services\Common;
 
+use Qiniu\Storage\UploadManager;
+use Qiniu\Auth;
+
 class QiniuStorageService extends BaseService
 {
     protected $accessKey = null;
@@ -25,5 +28,14 @@ class QiniuStorageService extends BaseService
         $this->secretKey = env('QINIU_SECRET_KEY');
         $this->bucket = env('QINIU_BUCKET');
         $this->domain = env('QINIU_DOMAIN');
+    }
+
+    public function pingTest()
+    {
+        $upManager = new UploadManager();
+        $auth = new Auth($this->accessKey, $this->secretKey);
+        $token = $auth->uploadToken($this->bucket);
+        //list($ret, $error) = $upManager->put($token, 'formput', 'hello world');
+        return $token;
     }
 }

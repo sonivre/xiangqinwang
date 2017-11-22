@@ -14,6 +14,7 @@ use Mail;
 use App\Mail\Frontend\RegisterMemberActivation;
 use Illuminate\Support\Facades\Crypt;
 use MemberAuthService;
+use QiniuStorage;
 
 class HomeController extends Controller
 {
@@ -68,5 +69,11 @@ class HomeController extends Controller
     public function emailTest()
     {
         var_dump(MemberAuthService::checkUserLogin());
+    }
+
+    public function qiniuStorageTest()
+    {
+        $res = QiniuStorage::pingTest();
+        var_dump($res);
     }
 }
