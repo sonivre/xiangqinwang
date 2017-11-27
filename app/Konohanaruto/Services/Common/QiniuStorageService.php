@@ -40,6 +40,19 @@ class QiniuStorageService extends BaseService
         $filePath = 'upload-demo-image.jpg';
         $key = 'demo.jpg';
         list($ret, $error) = $upManager->putFile($token, $key, $filePath);
+
+        return array($ret, $error);
+    }
+
+    public function formFileUpload($info)
+    {
+        $upManager = new UploadManager();
+        $auth = new Auth($this->accessKey, $this->secretKey);
+        $token = $auth->uploadToken($this->bucket);
+        // 上传字符到七牛云
+        //list($ret, $error) = $upManager->put($token, 'formput', 'hello world');
+        list($ret, $error) = $upManager->putFile($token, $info['filename'], $info['pathname']);
+
         return array($ret, $error);
     }
 }

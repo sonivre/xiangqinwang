@@ -12,10 +12,20 @@
 
 namespace App\Http\Controllers\Intranet;
 
+use App\Http\Requests\Intranet\UploadGiftThumbFormRequest;
+use App\Konohanaruto\Services\Intranet\GiftService;
 use Illuminate\Http\Request;
+use QiniuStorageService;
 
 class MemberGiftController extends CoreController
 {
+    public $giftService;
+
+    public function __construct(GiftService $giftService)
+    {
+        $this->giftService = $giftService;
+    }
+
     public function actionList()
     {
         return view('intranet.pages.member_gift.list');
@@ -24,5 +34,16 @@ class MemberGiftController extends CoreController
     public function actionShowAddForm()
     {
         return view('intranet.pages.member_gift.add');
+    }
+
+    /**
+     * @return json
+     */
+    public function uploadGiftThumb(UploadGiftThumbFormRequest $request)
+    {
+        if ($request->isMethod('post')) {
+            $res = $this->giftService->uploadCoverPicture($request->file('gift_thumb'));
+            return json_encode($res);
+        }
     }
 }

@@ -256,7 +256,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'MemberAuthService' => App\Konohanaruto\Facades\Frontend\MemberAuthenticationService::class,
         'SessionService' => App\Konohanaruto\Facades\Intranet\SessionService::class,
-        'QiniuStorage' => App\Konohanaruto\Facades\Common\QiniuStorage::class,
+        'QiniuStorageService' => App\Konohanaruto\Facades\Common\QiniuStorage::class,
     ],
 
 ];

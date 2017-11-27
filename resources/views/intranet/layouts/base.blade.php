@@ -22,6 +22,7 @@
 <link href="{{config('custom.staticServerIntranet')}}/build/css/custom.min.css" rel="stylesheet">
 
 <script src="{{config('custom.staticServerIntranet')}}/vendors/jquery/dist/jquery.min.js"></script>
+<script src="{{config('custom.staticServerIntranet')}}/js/JQuery-extends-functions.js"></script>
 <script src="{{config('custom.staticServerIntranet')}}/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="{{config('custom.staticServerIntranet')}}/build/js/jquery.validationEngine.js"></script>
 <script src="{{config('custom.staticServerIntranet')}}/build/js/jquery.validationEngine-zh_CN.js"></script>

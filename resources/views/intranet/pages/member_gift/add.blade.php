@@ -140,20 +140,26 @@
                 <div class="form-group" style="margin-top: 20px;">
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                         {{csrf_field()}}
-                        <input class="js-gift-thumb-upload" type="file" name="gift_thumb" style="display: none;">
                         <button type="submit" class="btn btn-success">{{trans('buttons.submit')}}</button>
                         <button class="btn btn-primary" type="reset" onclick="window.location.href=window.location.href;">{{trans('buttons.reset')}}</button>
                     </div>
                 </div>
+            </form>
+            {{--ajax图片上传表单--}}
+            <form class="js-ajax-file-upload-form" data-url="{{url('intranet/MemberGift/uploadGiftThumb')}}">
+                {{csrf_field()}}
+                <input class="js-gift-thumb-upload" type="file" name="gift_thumb" style="display: none;">
+                <button class="hide ajax-upload-avatar-btn"></button>
             </form>
         </div>
 </div>
 @endsection
 
 @section('extra-js')
-    <script type="text/javascript">
-        $('input[name="gift_thumb"]').on('change', function () {
-            // 上传图片开始
+    <script type="text/javascript" charset="utf-8">
+        var inputFileObject = $('input[name="gift_thumb"]');
+        inputFileObject.on('change', function () {
+            $(this).parent('.js-ajax-file-upload-form').trigger('submit');
         });
     </script>
 @endsection

@@ -49,5 +49,6 @@ Route::group(array('namespace' => 'Intranet', 'prefix' => 'intranet'), function 
         // 礼物管理
         Route::get('MemberGift/list', 'MemberGiftController@actionList');
         Route::get('MemberGift/showAddForm', 'MemberGiftController@actionShowAddForm');
+        Route::post('MemberGift/uploadGiftThumb', 'MemberGiftController@uploadGiftThumb');
     });
 });

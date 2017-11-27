@@ -12,5 +12,8 @@
 
 return [
     'mobile_format_invalid' => '手机号格式不正确',
-    'request_frequently' => '请求过于频繁，请稍后再试'
+    'request_frequently' => '请求过于频繁，请稍后再试',
+    'unsupported_request_method' => '不支持的请求方法',
+    'unsupported_image_type' => '不支持的图片格式',
+    'upload_error' => '上传错误',
 ];

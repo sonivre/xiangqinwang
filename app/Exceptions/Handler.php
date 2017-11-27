@@ -8,6 +8,10 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use App\Konohanaruto\Exceptions\Frontend\FrequentException;
 use App\Konohanaruto\Exceptions\Frontend\NotFoundException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use App\Exceptions\Frontend\CustomException as FrontendCustomException;
+use App\Exceptions\Intranet\CustomException as IntranetCustomException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Response;
 
 class Handler extends ExceptionHandler
 {
@@ -53,6 +57,27 @@ class Handler extends ExceptionHandler
         //    return parent::render($request, $exception);
         //}
         //return $this->handle($request, $exception);
+
+        if ($exception instanceof FrontendCustomException) {
+
+        }
+
+        if ($exception instanceof IntranetCustomException) {
+
+        }
+
+        if ($exception instanceof MethodNotAllowedHttpException) {
+            if ($request->wantsJson()) {
+                return response()->json([
+                    'errorMsg' => trans('message.unsupported_request_method')
+                ], 405);
+            }
+
+            return Response::make(trans('message.unsupported_request_method'), 405);
+        }
+
+
+
         return parent::render($request, $exception);
     }
 
