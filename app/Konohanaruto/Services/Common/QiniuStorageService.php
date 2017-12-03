@@ -14,6 +14,9 @@ namespace App\Konohanaruto\Services\Common;
 
 use Qiniu\Storage\UploadManager;
 use Qiniu\Auth;
+use Qiniu\Http\Error as QiniuUploadError;
+use App\Konohanaruto\Traits\Intranet\QiniuFileFormat;
+use File;
 
 class QiniuStorageService extends BaseService
 {
@@ -41,7 +44,13 @@ class QiniuStorageService extends BaseService
         $key = 'demo.jpg';
         list($ret, $error) = $upManager->putFile($token, $key, $filePath);
 
-        return array($ret, $error);
+        if ($error instanceof QiniuUploadError) {
+            return false;
+        }
+
+        // return array($ret, $error);
+
+        return $this->getFileDownloadLink($key);
     }
 
     public function formFileUpload($info)
@@ -53,6 +62,22 @@ class QiniuStorageService extends BaseService
         //list($ret, $error) = $upManager->put($token, 'formput', 'hello world');
         list($ret, $error) = $upManager->putFile($token, $info['filename'], $info['pathname']);
 
-        return array($ret, $error);
+        if ($error instanceof QiniuUploadError) {
+            return false;
+        }
+
+        // return array($ret, $error);
+
+        return $this->getFileDownloadLink($info['filename']);
+    }
+
+    public function getFileDownloadLink($filename)
+    {
+        $auth = new Auth($this->accessKey, $this->secretKey);
+        // 私有空间中的外链 http://<domain>/<file_key>
+        $baseUrl = "http://{$this->domain}/$filename";
+        // 对链接进行签名
+        $signedUrl = $auth->privateDownloadUrl($baseUrl);
+        return $signedUrl;
     }
 }

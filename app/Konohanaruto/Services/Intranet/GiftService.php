@@ -15,9 +15,16 @@ namespace App\Konohanaruto\Services\Intranet;
 use App\Konohanaruto\Facades\Common\QiniuStorage;
 use QiniuStorageService;
 use Request;
+use App\Konohanaruto\Traits\Intranet\QiniuFileFormat;
+use File;
 
 class GiftService extends BaseService
 {
+
+    public function __construct(QiniuFileFormat $qiniuFileFormat)
+    {
+        $this->qiniuFileFormat = $qiniuFileFormat;
+    }
     /**
      * @param $file
      * @return mixed
@@ -26,9 +33,15 @@ class GiftService extends BaseService
     {
         $info = [];
         $info['pathname'] = $file->getPathname();
-        $info['filename'] = $file->getClientOriginalName();
+        //$info['filename'] = $file->getClientOriginalName();
+        $info['filename'] = $this->qiniuFileFormat->userAvatarImageKey() . '.' . File::extension($file->getClientOriginalName());
         $info['type'] = $file->getClientMimeType();
+        $result = QiniuStorageService::formFileUpload($info);
 
-        return QiniuStorageService::formFileUpload($info);
+        if ($result == false) {
+            return ['img_url' => '', 'status' => -200];
+        }
+
+        return $this->qiniuFileFormat->userAvatarImageKey();
     }
 }
