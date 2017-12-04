@@ -6,6 +6,3 @@
  * Time: 10:52
  */
 ?>
-<meta charset="UTF-8">
-<title>花田网 - @yield('title')</title>
-<link rel="stylesheet" href="{{config('custom.staticServer')}}/css/base.css" />
