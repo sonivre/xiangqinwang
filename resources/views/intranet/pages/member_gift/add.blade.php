@@ -12,41 +12,6 @@
 ?>
 
 @extends('intranet.layouts.intranet_iframe_style')
-@section('import-resource')
-@parent
-<style>
-    .gift-image-preview {
-        border: 1px solid #ccc;
-        width: 300px;
-        height: 300px;
-        overflow:hidden;
-        position: relative;
-    }
-
-    .gift-image-preview .image-main-box {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%)
-    }
-
-    .gift-image-preview .preview-shadow {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, .5);
-    }
-
-    .gift-image-preview .preview-shadow > button {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-</style>
-@endsection
 @section('page-main')
 {{--避免原模版报错--}}
 <div class="x_panel">
@@ -134,8 +99,13 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('common.preview')}} <span class="required"> </span></label>
                     <div class="col-md-6 col-sm-6 col-xs-12" style="margin-top:5px;">
                         <div class="gift-image-preview">
+                            <div class="shadow-box">
+                                <div class="loading hide">
+                                    <img src="{{config('custom.staticServerIntranet')}}/build/images/loading_info.gif" alt="">
+                                </div>
+                            </div>
                             <div class="image-main-box">
-                                <img class="hide" width="300px" src="">
+                                <img class="hide show" width="300px" src="http://p0bvwqt56.bkt.clouddn.com/Users/Avatar/Temp/2017-12-04/5a25022427ed3.jpg?e=1512378421&token=O71dPyXqTw17ZdSQ4nUpf9rK2cltu67bLNJLwuAE:4JLuuvxxgKV7f8olCql7Ka1dU0Y=">
                             </div>
                         </div>
                     </div>
@@ -164,6 +134,15 @@
         var inputFileObject = $('input[name="gift_thumb"]');
         inputFileObject.on('change', function () {
             $(this).parent('.js-ajax-file-upload-form').trigger('submit');
+        });
+
+        $('.gift-image-preview .image-main-box img').cropper({
+            aspectRatio: 1,
+            preview: '.preview',
+            cropBoxResizable: false,
+            viewMode: 1,
+            toggleDragModeOnDblclick: false,
+            minCropBoxWidth: 415
         });
     </script>
 @endsection

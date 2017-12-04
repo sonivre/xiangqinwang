@@ -20,6 +20,8 @@
 <link href="{{config('custom.staticServerIntranet')}}/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 <!-- Custom Theme Style -->
 <link href="{{config('custom.staticServerIntranet')}}/build/css/custom.min.css" rel="stylesheet">
+{{--我自定义的css文件--}}
+<link href="{{config('custom.staticServerIntranet')}}/build/css/common.css" rel="stylesheet">
 <link href="{{config('custom.staticServerIntranet')}}/vendors/cropper/dist/cropper.min.css" rel="stylesheet">
 
 <script src="{{config('custom.staticServerIntranet')}}/vendors/jquery/dist/jquery.min.js"></script>
