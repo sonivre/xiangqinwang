@@ -105,7 +105,8 @@
                                 </div>
                             </div>
                             <div class="image-main-box">
-                                <img class="hide show" width="300px" src="http://p0bvwqt56.bkt.clouddn.com/Users/Avatar/Temp/2017-12-04/5a25022427ed3.jpg?e=1512378421&token=O71dPyXqTw17ZdSQ4nUpf9rK2cltu67bLNJLwuAE:4JLuuvxxgKV7f8olCql7Ka1dU0Y=">
+                                {{--<img class="" width="300px" src="http://p0bvwqt56.bkt.clouddn.com/Users/Avatar/Temp/2017-12-04/5a25022427ed3.jpg?e=1512378421&token=O71dPyXqTw17ZdSQ4nUpf9rK2cltu67bLNJLwuAE:4JLuuvxxgKV7f8olCql7Ka1dU0Y=">--}}
+                                <img class="hide" width="300px" src="">
                             </div>
                         </div>
                     </div>
@@ -136,13 +137,26 @@
             $(this).parent('.js-ajax-file-upload-form').trigger('submit');
         });
 
-        $('.gift-image-preview .image-main-box img').cropper({
-            aspectRatio: 1,
-            preview: '.preview',
-            cropBoxResizable: false,
-            viewMode: 1,
-            toggleDragModeOnDblclick: false,
-            minCropBoxWidth: 415
-        });
+//        $('.cropper-crop-box').attr({width: 100, height: 100});
+//
+//        $('.gift-image-preview .image-main-box img').cropper({
+//            aspectRatio: 1,
+//            preview: '.preview',
+//            cropBoxResizable: false,
+//            viewMode: 1,
+//            toggleDragModeOnDblclick: false,
+//            minCropBoxWidth: 415,
+//            checkCrossOrigin: false,
+//            built: function () {
+//                $(this).cropper('setCropBoxData', {
+//                    width: 100,
+//                    height: 100
+//                })
+//            }
+//
+//        });
+
+
+
     </script>
 @endsection
