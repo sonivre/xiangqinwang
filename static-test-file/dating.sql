@@ -263,5 +263,7 @@ create table if not exists `xqw_member_gift_type` (
   `is_valid` tinyint default 0,
   `add_time` DATETIME default CURRENT_TIMESTAMP,
   `action_admin_id` SMALLINT unsigned comment '操作的管理员id',
+  `thumb_image_url` varchar(255) comment '图片路径',
+  `original_image_url` varchar(255) comment '原始图片路径',
   PRIMARY KEY `pk_id` (`id`)
 )engine=innodb default charset=utf8 comment '会员礼物种类表';

@@ -12,19 +12,26 @@
 
 namespace App\Konohanaruto\Services\Intranet;
 
-use App\Konohanaruto\Facades\Common\QiniuStorage;
-use QiniuStorageService;
 use Request;
-use App\Konohanaruto\Traits\Intranet\QiniuFileFormat;
 use File;
+use App\Konohanaruto\Services\Intranet\FileStorageServiceInterface;
 
 class GiftService extends BaseService
 {
+    use \App\Konohanaruto\Traits\Intranet\QiniuFileFormat;
 
-    public function __construct(QiniuFileFormat $qiniuFileFormat)
+    private $redisData;
+    private $fileStorageService;
+
+    public function __construct(
+        RedisDataService $redisData,
+        FileStorageServiceInterface $fileStorageService
+    )
     {
-        $this->qiniuFileFormat = $qiniuFileFormat;
+        $this->redisData = $redisData;
+        $this->fileStorageService = $fileStorageService;
     }
+
     /**
      * @param $file
      * @return mixed
@@ -34,14 +41,14 @@ class GiftService extends BaseService
         $info = [];
         $info['pathname'] = $file->getPathname();
         //$info['filename'] = $file->getClientOriginalName();
-        $info['filename'] = $this->qiniuFileFormat->userAvatarImageKey() . '.' . File::extension($file->getClientOriginalName());
+        $info['filename'] = $this->userAvatarTempImageKey() . '.' . File::extension($file->getClientOriginalName());
         $info['type'] = $file->getClientMimeType();
-        $result = QiniuStorageService::formFileUpload($info);
+        $result = $this->fileStorageService->formFileUpload($info);
 
         if ($result == false) {
             return ['img_url' => '', 'status' => -200];
         }
 
-        return $this->qiniuFileFormat->userAvatarImageKey();
+        return ['img_url' => $result, 'status' => 200];
     }
 }

@@ -8,7 +8,7 @@
   <a data-toggle="tooltip" data-placement="top" title="Lock">
     <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
   </a>
-  <a data-toggle="tooltip" data-placement="top" title="退出系统" href="{{url('intranet/logout')}}">
+  <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{url('intranet/logout')}}">
     <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
   </a>
 </div>

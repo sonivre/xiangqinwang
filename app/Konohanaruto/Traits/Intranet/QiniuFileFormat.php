@@ -15,11 +15,11 @@
 
 namespace App\Konohanaruto\Traits\Intranet;
 
-class QiniuFileFormat
+trait QiniuFileFormat
 {
-    public function userAvatarImageKey()
+    public function userAvatarTempImageKey()
     {
-        return 'Users/Avatar/' . date('Y-m-d') . '/' . $this->uniqueString();
+        return 'Users/Avatar/Temp/' . date('Y-m-d') . '/' . $this->uniqueString();
     }
 
     public function uniqueString()

@@ -37,6 +37,6 @@ return array(
     ),
     // 会员注册激活邮件redis队列名
     'REDIS_ACCOUNT_ACTIVATION_MAIL_QUEUE' => 'account_activation_mail_queue',
-
-
+    // 后台命名
+    'INTRANET_MODULE_NAME' => 'Intranet',
 );

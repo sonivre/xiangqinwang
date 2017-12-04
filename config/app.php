@@ -197,11 +197,13 @@ return [
         App\Konohanaruto\Providers\Frontend\MemberRegisterServiceProvider::class,
         App\Konohanaruto\Providers\Common\LanguageServiceProvider::class,
         App\Konohanaruto\Providers\Frontend\MemberAlbumServiceProvider::class,
+        App\Konohanaruto\Providers\Intranet\FileStorageServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         App\Konohanaruto\Providers\Frontend\MemberPictureServiceProvider::class,
         App\Konohanaruto\Providers\Frontend\MemberAuthenticationServiceProvider::class,
         App\Konohanaruto\Providers\Intranet\SessionServiceProvider::class,
         App\Konohanaruto\Providers\Common\QiniuStorageServiceProvider::class,
+        App\Konohanaruto\Providers\Intranet\MemberGiftTypeServiceProvider::class,
     ],
 
     /*

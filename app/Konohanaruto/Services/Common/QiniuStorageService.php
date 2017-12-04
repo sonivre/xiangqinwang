@@ -17,8 +17,9 @@ use Qiniu\Auth;
 use Qiniu\Http\Error as QiniuUploadError;
 use App\Konohanaruto\Traits\Intranet\QiniuFileFormat;
 use File;
+use App\Konohanaruto\Services\Intranet\FileStorageServiceInterface;
 
-class QiniuStorageService extends BaseService
+class QiniuStorageService extends BaseService implements FileStorageServiceInterface
 {
     protected $accessKey = null;
     protected $secretKey = null;

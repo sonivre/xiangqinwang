@@ -25,8 +25,9 @@
 
     .gift-image-preview .image-main-box {
         position: absolute;
-        left: 0;
-        top: 0;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%)
     }
 
     .gift-image-preview .preview-shadow {
@@ -47,6 +48,7 @@
 </style>
 @endsection
 @section('page-main')
+{{--避免原模版报错--}}
 <div class="x_panel">
 
     @if (count($errors) > 0)
@@ -132,7 +134,9 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('common.preview')}} <span class="required"> </span></label>
                     <div class="col-md-6 col-sm-6 col-xs-12" style="margin-top:5px;">
                         <div class="gift-image-preview">
-                            <div class="image-main-box"></div>
+                            <div class="image-main-box">
+                                <img class="hide" width="300px" src="">
+                            </div>
                         </div>
                     </div>
                 </div>
