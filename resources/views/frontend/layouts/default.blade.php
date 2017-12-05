@@ -9,11 +9,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>花田网 - @yield('title')</title>
-@section('basic-static-resource')
-<link rel="stylesheet" href="{{config('custom.staticServer')}}/css/base.css" />
-<script src="{{config('custom.staticServer')}}/js/jquery.js"></script>
-@show
+    <title>花田网 - @yield('title')</title>
+    @section('basic-static-resource')
+        <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/base.css" />
+        <script src="{{config('custom.staticServer')}}/js/jquery.js"></script>
+    @show
 </head>
 <body>
 @yield('content')

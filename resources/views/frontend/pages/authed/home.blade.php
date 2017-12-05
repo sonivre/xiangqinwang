@@ -14,8 +14,11 @@
 {{--title--}}
 @section('title', '首页')
 
-@section('subsequent')
+@section('basic-static-resource')
+    @parent
     <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/index.css">
+    <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/common.css">
+    <script src="{{config('custom.staticServer')}}/js/common.js"></script>
 @endsection
 {{--content--}}
 @section('content')

@@ -9,7 +9,8 @@
 @extends('frontend.layouts.default')
 <!--标题-->
 @section('title', '登录')
-@section('addtional-css')
+@section('basic-static-resource')
+    @parent
     <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/login.css" />
 @endsection
 @section('content')
