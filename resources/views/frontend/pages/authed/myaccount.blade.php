@@ -29,7 +29,7 @@
                         <span>点击修改头像</span>
                     </div>
                     <div class="user-check"><span>非真人头像，请上传清晰美观个人照</span></div>
-                    <img src="images/myaccount/40476055953806.jpg" alt="">
+                    <img src="{{config('custom.staticServer')}}/images/myaccount/40476055953806.jpg" alt="">
                     <p>
                         <em class="icon-online-android"></em>
                         <span class="profile-online-text">她在线，赶紧跟她联系吧</span>
@@ -140,8 +140,8 @@
                             <li>
                                 <div class="trend-item-title">上传了头像</div>
                                 <div class="photo-media">
-                                    <a href="javascript:;"><img src="images/myaccount/94540476055953806.jpg" alt=""></a>
-                                    <a href="javascript:;"><img src="images/myaccount/94540476055953806.jpg" alt=""></a>
+                                    <a href="javascript:;"><img src="{{config('custom.staticServer')}}/images/myaccount/94540476055953806.jpg" alt=""></a>
+                                    <a href="javascript:;"><img src="{{config('custom.staticServer')}}/images/myaccount/94540476055953806.jpg" alt=""></a>
                                 </div>
                                 <div class="trend-footer">
                                     <div class="media-info fl">
@@ -564,31 +564,31 @@
                             </li>
                             <li>
                                 <div class="gift-item-img">
-                                    <img src="images/gift/cake.png" alt="">
+                                    <img src="{{config('custom.staticServer')}}/images/gift/cake.png" alt="">
                                 </div>
                                 <div class="gift-item-desc-text">蛋糕<br>高级会员免费使用</div>
                             </li>
                             <li>
                                 <div class="gift-item-img">
-                                    <img src="images/gift/cat.png" alt="">
+                                    <img src="{{config('custom.staticServer')}}/images/gift/cat.png" alt="">
                                 </div>
                                 <div class="gift-item-desc-text">喵<br>高级会员免费使用</div>
                             </li>
                             <li>
                                 <div class="gift-item-img">
-                                    <img src="images/gift/kouhong.png" alt="">
+                                    <img src="{{config('custom.staticServer')}}/images/gift/kouhong.png" alt="">
                                 </div>
                                 <div class="gift-item-desc-text">口红<br>高级会员免费使用</div>
                             </li>
                             <li>
                                 <div class="gift-item-img">
-                                    <img src="images/gift/panda.png" alt="">
+                                    <img src="{{config('custom.staticServer')}}/images/gift/panda.png" alt="">
                                 </div>
                                 <div class="gift-item-desc-text">熊猫<br>高级会员免费使用</div>
                             </li>
                             <li>
                                 <div class="gift-item-img">
-                                    <img src="images/gift/puppy.png" alt="">
+                                    <img src="{{config('custom.staticServer')}}/images/gift/puppy.png" alt="">
                                 </div>
                                 <div class="gift-item-desc-text">小狗<br>高级会员免费使用</div>
                             </li>
@@ -623,12 +623,12 @@
                 <div class="weixin-guide">
                     <p>关注花田君</p>
                     <p>免费领取花田<i>SVIP</i></p>
-                    <p class="qr-bg"><img src="images/weixin_attract.png" alt=""></p>
+                    <p class="qr-bg"><img src="{{config('custom.staticServer')}}/images/weixin_attract.png" alt=""></p>
                     <p>使用微信扫描即可关注</p>
                 </div>
                 <div class="system-ads">
                     <ul>
-                        <li><a href="#"><img src="images/myaccount-ad1.png" alt=""></a></li>
+                        <li><a href="#"><img src="{{config('custom.staticServer')}}/images/myaccount-ad1.png" alt=""></a></li>
                     </ul>
                 </div>
             </div>
@@ -739,76 +739,76 @@
                 </div>
                 <div class="winlayer-emoji-list clearfix">
                     <ul class="clearfix">
-                        <li><a data-code="[daizhi]" data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
-                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/peach/daizhi.png" alt="呆滞"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
+                        <li><a data-code="[daizhi]" href="javascript:;" title="呆滞"><img src="{{config('custom.staticServer')}}/images/emotion/emoji/Smiling_Face_With_Smiling_Eyes.png" alt="微笑"></a></li>
                     </ul>
                     <p class="emoji-select-tip text-gray">提示：按Ctrl可以一次多选表情</p>
                 </div>
@@ -846,7 +846,7 @@
                                 <li>
                                     <a href="javascript:;">
                                         <div class="gift-img-box">
-                                            <img src="images/gift/chocolate.png" alt="篮球">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/chocolate.png" alt="篮球">
                                         </div>
                                         <div class="gift-desc-box clearfix">
                                             <span>表达好感礼物</span>
@@ -861,7 +861,7 @@
                                 <li>
                                     <a href="javascript:;">
                                         <div class="gift-img-box">
-                                            <img src="images/gift/chocolate.png" alt="篮球">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/chocolate.png" alt="篮球">
                                         </div>
                                         <div class="gift-desc-box clearfix">
                                             <span>表达好感礼物</span>
@@ -876,7 +876,7 @@
                                 <li>
                                     <a href="javascript:;">
                                         <div class="gift-img-box">
-                                            <img src="images/gift/chocolate.png" alt="篮球">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/chocolate.png" alt="篮球">
                                         </div>
                                         <div class="gift-desc-box clearfix">
                                             <span>表达好感礼物</span>
@@ -891,7 +891,7 @@
                                 <li>
                                     <a href="javascript:;">
                                         <div class="gift-img-box">
-                                            <img src="images/gift/chocolate.png" alt="篮球">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/chocolate.png" alt="篮球">
                                         </div>
                                         <div class="gift-desc-box clearfix">
                                             <span>表达好感礼物</span>
@@ -906,7 +906,7 @@
                                 <li>
                                     <a href="javascript:;">
                                         <div class="gift-img-box">
-                                            <img src="images/gift/chocolate.png" alt="篮球">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/chocolate.png" alt="篮球">
                                         </div>
                                         <div class="gift-desc-box clearfix">
                                             <span>表达好感礼物</span>
@@ -921,7 +921,7 @@
                                 <li>
                                     <a href="javascript:;">
                                         <div class="gift-img-box">
-                                            <img src="images/gift/chocolate.png" alt="篮球">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/chocolate.png" alt="篮球">
                                         </div>
                                         <div class="gift-desc-box clearfix">
                                             <span>表达好感礼物</span>
@@ -936,7 +936,7 @@
                                 <li>
                                     <a href="javascript:;">
                                         <div class="gift-img-box">
-                                            <img src="images/gift/chocolate.png" alt="篮球">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/chocolate.png" alt="篮球">
                                         </div>
                                         <div class="gift-desc-box clearfix">
                                             <span>表达好感礼物</span>
@@ -951,7 +951,7 @@
                                 <li>
                                     <a href="javascript:;">
                                         <div class="gift-img-box">
-                                            <img src="images/gift/chocolate.png" alt="篮球">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/chocolate.png" alt="篮球">
                                         </div>
                                         <div class="gift-desc-box clearfix">
                                             <span>表达好感礼物</span>
@@ -966,7 +966,7 @@
                                 <li>
                                     <a href="javascript:;">
                                         <div class="gift-img-box">
-                                            <img src="images/gift/chocolate.png" alt="篮球">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/chocolate.png" alt="篮球">
                                         </div>
                                         <div class="gift-desc-box clearfix">
                                             <span>表达好感礼物</span>
@@ -981,159 +981,7 @@
                                 <li>
                                     <a href="javascript:;">
                                         <div class="gift-img-box">
-                                            <img src="images/gift/chocolate.png" alt="篮球">
-                                        </div>
-                                        <div class="gift-desc-box clearfix">
-                                            <span>表达好感礼物</span>
-                                            <em></em>
-                                        </div>
-                                        <div class="gift-name">巧克力</div>
-                                        <div class="gift-price text-gray">免费</div>
-                                        <div class="icon-vip-privilege"></div>
-                                        <div class="icon-gift-selected hide"></div>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="gift-list-ul fl clearfix">
-                                <li>
-                                    <a href="javascript:;">
-                                        <div class="gift-img-box">
-                                            <img src="images/gift/cat.png" alt="篮球">
-                                        </div>
-                                        <div class="gift-desc-box clearfix">
-                                            <span>表达好感礼物</span>
-                                            <em></em>
-                                        </div>
-                                        <div class="gift-name">巧克力</div>
-                                        <div class="gift-price text-gray">免费</div>
-                                        <div class="icon-vip-privilege"></div>
-                                        <div class="icon-gift-selected hide"></div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">
-                                        <div class="gift-img-box">
-                                            <img src="images/gift/cat.png" alt="篮球">
-                                        </div>
-                                        <div class="gift-desc-box clearfix">
-                                            <span>表达好感礼物</span>
-                                            <em></em>
-                                        </div>
-                                        <div class="gift-name">巧克力</div>
-                                        <div class="gift-price text-gray">免费</div>
-                                        <div class="icon-vip-privilege"></div>
-                                        <div class="icon-gift-selected hide"></div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">
-                                        <div class="gift-img-box">
-                                            <img src="images/gift/cat.png" alt="篮球">
-                                        </div>
-                                        <div class="gift-desc-box clearfix">
-                                            <span>表达好感礼物</span>
-                                            <em></em>
-                                        </div>
-                                        <div class="gift-name">巧克力</div>
-                                        <div class="gift-price text-gray">免费</div>
-                                        <div class="icon-vip-privilege"></div>
-                                        <div class="icon-gift-selected hide"></div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">
-                                        <div class="gift-img-box">
-                                            <img src="images/gift/cat.png" alt="篮球">
-                                        </div>
-                                        <div class="gift-desc-box clearfix">
-                                            <span>表达好感礼物</span>
-                                            <em></em>
-                                        </div>
-                                        <div class="gift-name">巧克力</div>
-                                        <div class="gift-price text-gray">免费</div>
-                                        <div class="icon-vip-privilege"></div>
-                                        <div class="icon-gift-selected hide"></div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">
-                                        <div class="gift-img-box">
-                                            <img src="images/gift/cat.png" alt="篮球">
-                                        </div>
-                                        <div class="gift-desc-box clearfix">
-                                            <span>表达好感礼物</span>
-                                            <em></em>
-                                        </div>
-                                        <div class="gift-name">巧克力</div>
-                                        <div class="gift-price text-gray">免费</div>
-                                        <div class="icon-vip-privilege"></div>
-                                        <div class="icon-gift-selected hide"></div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">
-                                        <div class="gift-img-box">
-                                            <img src="images/gift/cat.png" alt="篮球">
-                                        </div>
-                                        <div class="gift-desc-box clearfix">
-                                            <span>表达好感礼物</span>
-                                            <em></em>
-                                        </div>
-                                        <div class="gift-name">巧克力</div>
-                                        <div class="gift-price text-gray">免费</div>
-                                        <div class="icon-vip-privilege"></div>
-                                        <div class="icon-gift-selected hide"></div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">
-                                        <div class="gift-img-box">
-                                            <img src="images/gift/cat.png" alt="篮球">
-                                        </div>
-                                        <div class="gift-desc-box clearfix">
-                                            <span>表达好感礼物</span>
-                                            <em></em>
-                                        </div>
-                                        <div class="gift-name">巧克力</div>
-                                        <div class="gift-price text-gray">免费</div>
-                                        <div class="icon-vip-privilege"></div>
-                                        <div class="icon-gift-selected hide"></div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">
-                                        <div class="gift-img-box">
-                                            <img src="images/gift/cat.png" alt="篮球">
-                                        </div>
-                                        <div class="gift-desc-box clearfix">
-                                            <span>表达好感礼物</span>
-                                            <em></em>
-                                        </div>
-                                        <div class="gift-name">巧克力</div>
-                                        <div class="gift-price text-gray">免费</div>
-                                        <div class="icon-vip-privilege"></div>
-                                        <div class="icon-gift-selected hide"></div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">
-                                        <div class="gift-img-box">
-                                            <img src="images/gift/cat.png" alt="篮球">
-                                        </div>
-                                        <div class="gift-desc-box clearfix">
-                                            <span>表达好感礼物</span>
-                                            <em></em>
-                                        </div>
-                                        <div class="gift-name">巧克力</div>
-                                        <div class="gift-price text-gray">免费</div>
-                                        <div class="icon-vip-privilege"></div>
-                                        <div class="icon-gift-selected hide"></div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">
-                                        <div class="gift-img-box">
-                                            <img src="images/gift/cat.png" alt="篮球">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/chocolate.png" alt="篮球">
                                         </div>
                                         <div class="gift-desc-box clearfix">
                                             <span>表达好感礼物</span>
@@ -1150,7 +998,7 @@
                                 <li>
                                     <a href="javascript:;">
                                         <div class="gift-img-box">
-                                            <img src="images/gift/yaodai.png" alt="篮球">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/cat.png" alt="篮球">
                                         </div>
                                         <div class="gift-desc-box clearfix">
                                             <span>表达好感礼物</span>
@@ -1165,7 +1013,7 @@
                                 <li>
                                     <a href="javascript:;">
                                         <div class="gift-img-box">
-                                            <img src="images/gift/yaodai.png" alt="篮球">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/cat.png" alt="篮球">
                                         </div>
                                         <div class="gift-desc-box clearfix">
                                             <span>表达好感礼物</span>
@@ -1180,7 +1028,7 @@
                                 <li>
                                     <a href="javascript:;">
                                         <div class="gift-img-box">
-                                            <img src="images/gift/yaodai.png" alt="篮球">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/cat.png" alt="篮球">
                                         </div>
                                         <div class="gift-desc-box clearfix">
                                             <span>表达好感礼物</span>
@@ -1195,7 +1043,7 @@
                                 <li>
                                     <a href="javascript:;">
                                         <div class="gift-img-box">
-                                            <img src="images/gift/yaodai.png" alt="篮球">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/cat.png" alt="篮球">
                                         </div>
                                         <div class="gift-desc-box clearfix">
                                             <span>表达好感礼物</span>
@@ -1210,7 +1058,7 @@
                                 <li>
                                     <a href="javascript:;">
                                         <div class="gift-img-box">
-                                            <img src="images/gift/yaodai.png" alt="篮球">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/cat.png" alt="篮球">
                                         </div>
                                         <div class="gift-desc-box clearfix">
                                             <span>表达好感礼物</span>
@@ -1225,7 +1073,7 @@
                                 <li>
                                     <a href="javascript:;">
                                         <div class="gift-img-box">
-                                            <img src="images/gift/yaodai.png" alt="篮球">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/cat.png" alt="篮球">
                                         </div>
                                         <div class="gift-desc-box clearfix">
                                             <span>表达好感礼物</span>
@@ -1240,7 +1088,7 @@
                                 <li>
                                     <a href="javascript:;">
                                         <div class="gift-img-box">
-                                            <img src="images/gift/yaodai.png" alt="篮球">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/cat.png" alt="篮球">
                                         </div>
                                         <div class="gift-desc-box clearfix">
                                             <span>表达好感礼物</span>
@@ -1255,7 +1103,7 @@
                                 <li>
                                     <a href="javascript:;">
                                         <div class="gift-img-box">
-                                            <img src="images/gift/yaodai.png" alt="篮球">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/cat.png" alt="篮球">
                                         </div>
                                         <div class="gift-desc-box clearfix">
                                             <span>表达好感礼物</span>
@@ -1270,7 +1118,7 @@
                                 <li>
                                     <a href="javascript:;">
                                         <div class="gift-img-box">
-                                            <img src="images/gift/yaodai.png" alt="篮球">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/cat.png" alt="篮球">
                                         </div>
                                         <div class="gift-desc-box clearfix">
                                             <span>表达好感礼物</span>
@@ -1285,7 +1133,159 @@
                                 <li>
                                     <a href="javascript:;">
                                         <div class="gift-img-box">
-                                            <img src="images/gift/yaodai.png" alt="篮球">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/cat.png" alt="篮球">
+                                        </div>
+                                        <div class="gift-desc-box clearfix">
+                                            <span>表达好感礼物</span>
+                                            <em></em>
+                                        </div>
+                                        <div class="gift-name">巧克力</div>
+                                        <div class="gift-price text-gray">免费</div>
+                                        <div class="icon-vip-privilege"></div>
+                                        <div class="icon-gift-selected hide"></div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="gift-list-ul fl clearfix">
+                                <li>
+                                    <a href="javascript:;">
+                                        <div class="gift-img-box">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/yaodai.png" alt="篮球">
+                                        </div>
+                                        <div class="gift-desc-box clearfix">
+                                            <span>表达好感礼物</span>
+                                            <em></em>
+                                        </div>
+                                        <div class="gift-name">巧克力</div>
+                                        <div class="gift-price text-gray">免费</div>
+                                        <div class="icon-vip-privilege"></div>
+                                        <div class="icon-gift-selected hide"></div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <div class="gift-img-box">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/yaodai.png" alt="篮球">
+                                        </div>
+                                        <div class="gift-desc-box clearfix">
+                                            <span>表达好感礼物</span>
+                                            <em></em>
+                                        </div>
+                                        <div class="gift-name">巧克力</div>
+                                        <div class="gift-price text-gray">免费</div>
+                                        <div class="icon-vip-privilege"></div>
+                                        <div class="icon-gift-selected hide"></div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <div class="gift-img-box">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/yaodai.png" alt="篮球">
+                                        </div>
+                                        <div class="gift-desc-box clearfix">
+                                            <span>表达好感礼物</span>
+                                            <em></em>
+                                        </div>
+                                        <div class="gift-name">巧克力</div>
+                                        <div class="gift-price text-gray">免费</div>
+                                        <div class="icon-vip-privilege"></div>
+                                        <div class="icon-gift-selected hide"></div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <div class="gift-img-box">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/yaodai.png" alt="篮球">
+                                        </div>
+                                        <div class="gift-desc-box clearfix">
+                                            <span>表达好感礼物</span>
+                                            <em></em>
+                                        </div>
+                                        <div class="gift-name">巧克力</div>
+                                        <div class="gift-price text-gray">免费</div>
+                                        <div class="icon-vip-privilege"></div>
+                                        <div class="icon-gift-selected hide"></div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <div class="gift-img-box">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/yaodai.png" alt="篮球">
+                                        </div>
+                                        <div class="gift-desc-box clearfix">
+                                            <span>表达好感礼物</span>
+                                            <em></em>
+                                        </div>
+                                        <div class="gift-name">巧克力</div>
+                                        <div class="gift-price text-gray">免费</div>
+                                        <div class="icon-vip-privilege"></div>
+                                        <div class="icon-gift-selected hide"></div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <div class="gift-img-box">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/yaodai.png" alt="篮球">
+                                        </div>
+                                        <div class="gift-desc-box clearfix">
+                                            <span>表达好感礼物</span>
+                                            <em></em>
+                                        </div>
+                                        <div class="gift-name">巧克力</div>
+                                        <div class="gift-price text-gray">免费</div>
+                                        <div class="icon-vip-privilege"></div>
+                                        <div class="icon-gift-selected hide"></div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <div class="gift-img-box">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/yaodai.png" alt="篮球">
+                                        </div>
+                                        <div class="gift-desc-box clearfix">
+                                            <span>表达好感礼物</span>
+                                            <em></em>
+                                        </div>
+                                        <div class="gift-name">巧克力</div>
+                                        <div class="gift-price text-gray">免费</div>
+                                        <div class="icon-vip-privilege"></div>
+                                        <div class="icon-gift-selected hide"></div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <div class="gift-img-box">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/yaodai.png" alt="篮球">
+                                        </div>
+                                        <div class="gift-desc-box clearfix">
+                                            <span>表达好感礼物</span>
+                                            <em></em>
+                                        </div>
+                                        <div class="gift-name">巧克力</div>
+                                        <div class="gift-price text-gray">免费</div>
+                                        <div class="icon-vip-privilege"></div>
+                                        <div class="icon-gift-selected hide"></div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <div class="gift-img-box">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/yaodai.png" alt="篮球">
+                                        </div>
+                                        <div class="gift-desc-box clearfix">
+                                            <span>表达好感礼物</span>
+                                            <em></em>
+                                        </div>
+                                        <div class="gift-name">巧克力</div>
+                                        <div class="gift-price text-gray">免费</div>
+                                        <div class="icon-vip-privilege"></div>
+                                        <div class="icon-gift-selected hide"></div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <div class="gift-img-box">
+                                            <img src="{{config('custom.staticServer')}}/images/gift/yaodai.png" alt="篮球">
                                         </div>
                                         <div class="gift-desc-box clearfix">
                                             <span>表达好感礼物</span>
