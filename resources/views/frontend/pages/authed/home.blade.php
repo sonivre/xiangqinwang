@@ -48,7 +48,7 @@
     <div class="w">
         <div class="left-area">
             <div class="search">
-                <div class="feed-filter clearfix hide">
+                <div class="feed-filter clearfix" style="display: none;">
                     <div class="feed-filter-conditions">
                         <div class="feed-filter-group">
                             <select class="feed-filter-province" name="">
@@ -817,11 +817,4 @@
         <a href="javascript:;">意见反馈</a>
     </div>
 </section>
-@endsection
-
-@section('additional-js')
-    <script>
-        var staticServer = "{{config('custom.staticServer')}}";
-    </script>
-    <script src="{{config('custom.staticServer')}}/js/home-nav-bar.js"></script>
 @endsection

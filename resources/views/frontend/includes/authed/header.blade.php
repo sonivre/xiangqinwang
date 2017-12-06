@@ -19,14 +19,18 @@
                     <li><a href="#">动态</a></li>
                     <li><a href="#">遇见</a></li>
                     <li><a href="#">搭讪广场</a></li>
-                    <li><a href="#">个人主页</a></li>
+                    <li><a href="{{url('myAccount')}}">个人主页</a></li>
                 </ul>
             </div>
             <div class="right-area">
-                <a href="#"><span class="sp1"></span><span class="sp2">服务</span><span class="sp3"></span></a>
+                <a href="#">
+                    <span class="icon-white-vip"></span>
+                    <span class="header-vip-service">服务</span>
+                    <span class="icon-hot"></span>
+                </a>
                 <a href="#"><em></em></a>
-                <a href="#"><span class="sp1"></span></a>
-                <a href="#"><span class="sp1"></span></a>
+                <a href="#"><span class="icon-header-mess"></span></a>
+                <a href="#"><span class="icon-header-info"></span></a>
                 <div class="today-base">
                     <a href="#">今日推荐<em class="notice-num">1</em></a>
                     <a href="#">暂不提示</a>
