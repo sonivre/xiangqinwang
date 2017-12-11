@@ -12,6 +12,7 @@
 
 namespace App\Konohanaruto\Providers\Intranet;
 
+use App\Konohanaruto\Services\Common\LocalFileStorageService;
 use App\Konohanaruto\Services\Common\QiniuStorageService;
 use App\Konohanaruto\Services\Intranet\FileStorageServiceInterface;
 use Illuminate\Support\ServiceProvider;
@@ -20,9 +21,13 @@ class FileStorageServiceProvider extends ServiceProvider
 {
     public function register()
     {
+//        $this->app->bind(
+//            FileStorageServiceInterface::class,
+//            QiniuStorageService::class
+//        );
         $this->app->bind(
             FileStorageServiceInterface::class,
-            QiniuStorageService::class
+            LocalFileStorageService::class
         );
     }
 }

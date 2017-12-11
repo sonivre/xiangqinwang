@@ -43,7 +43,13 @@ class MemberGiftController extends CoreController
     {
         if ($request->isMethod('post')) {
             $res = $this->giftService->uploadCoverPicture($request->file('gift_thumb'));
-            return json_encode($res);
+            $response = json_decode($res, true);
+
+            if (! empty($response['img_url'])) {
+                $response['img_url'] = config('custom.staticServer') . '/' . $response['img_url'];
+            }
+
+            return json_encode($response, JSON_UNESCAPED_SLASHES);
         }
     }
 }

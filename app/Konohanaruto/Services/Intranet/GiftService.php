@@ -38,17 +38,23 @@ class GiftService extends BaseService
      */
     public function uploadCoverPicture($file)
     {
-        $info = [];
-        $info['pathname'] = $file->getPathname();
-        //$info['filename'] = $file->getClientOriginalName();
-        $info['filename'] = $this->userAvatarTempImageKey() . '.' . File::extension($file->getClientOriginalName());
-        $info['type'] = $file->getClientMimeType();
-        $result = $this->fileStorageService->formFileUpload($info);
+//        $info = [];
+//        $info['pathname'] = $file->getPathname();
+//        //$info['filename'] = $file->getClientOriginalName();
+//        $info['filename'] = $this->userAvatarTempImageKey() . '.' . File::extension($file->getClientOriginalName());
+//        $info['type'] = $file->getClientMimeType();
+//        $result = $this->fileStorageService->formFileUpload($info);
+//
+//        if ($result == false) {
+//            return ['img_url' => '', 'status' => -200];
+//        }
+//
+//        return ['img_url' => $result, 'status' => 200];
+        $extension = '.' . File::extension($file->getClientOriginalName());
+        $savedName = uniqid() . $extension;
+        $stream = curl_file_create($file->getPathname(), $file->getClientMimeType(), $savedName);
+        $uploadDir = 'uploads/intranet/avatars/' . date('Y-m-d');
 
-        if ($result == false) {
-            return ['img_url' => '', 'status' => -200];
-        }
-
-        return ['img_url' => $result, 'status' => 200];
+        return $this->fileStorageService->formFileUpload($stream, $uploadDir);
     }
 }
