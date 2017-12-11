@@ -97,7 +97,7 @@
                 {{--图片预览区域--}}
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('common.preview')}} <span class="required"> </span></label>
-                    <div class="col-md-6 col-sm-6 col-xs-12" style="margin-top:5px;">
+                    <div class="col-md-6 col-sm-6 col-xs-12 gift-upload-panel" style="margin-top:5px;">
                         <div class="gift-image-preview">
                             <div class="shadow-box">
                                 <div class="loading hide">
@@ -109,6 +109,7 @@
                                 <img class="hide" width="300px" src="">
                             </div>
                         </div>
+                        <div class="small-preview"></div>
                     </div>
                 </div>
 
@@ -136,27 +137,5 @@
         inputFileObject.on('change', function () {
             $(this).parent('.js-ajax-file-upload-form').trigger('submit');
         });
-
-//        $('.cropper-crop-box').attr({width: 100, height: 100});
-//
-//        $('.gift-image-preview .image-main-box img').cropper({
-//            aspectRatio: 1,
-//            preview: '.preview',
-//            cropBoxResizable: false,
-//            viewMode: 1,
-//            toggleDragModeOnDblclick: false,
-//            minCropBoxWidth: 415,
-//            checkCrossOrigin: false,
-//            built: function () {
-//                $(this).cropper('setCropBoxData', {
-//                    width: 100,
-//                    height: 100
-//                })
-//            }
-//
-//        });
-
-
-
     </script>
 @endsection
