@@ -135,7 +135,9 @@
     <script type="text/javascript" charset="utf-8">
         var inputFileObject = $('input[name="gift_thumb"]');
         inputFileObject.on('change', function () {
-            $(this).parent('.js-ajax-file-upload-form').trigger('submit');
+            if ($(this).val()) {
+                $(this).parent('.js-ajax-file-upload-form').trigger('submit');
+            }
         });
     </script>
 @endsection
