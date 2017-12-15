@@ -47,12 +47,12 @@
         </div>
         <div class="x_content">
             <br>
-            <form id="gift-add-form" action="{{url('intranet/MemberGift/store')}}" method="post" class="form-horizontal form-label-left  gift-image-upload-form">
+            <form novalidate id="gift-add-form" action="{{url('intranet/MemberGift/store')}}" method="post" class="form-horizontal form-label-left  gift-image-upload-form">
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('label_fields.gift_name')}} <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="gift_name" name="gift_name" class="form-control col-md-7 col-xs-12">
+                        <input required data-validate-length-range="6" data-validate-words="2" type="text" id="gift_name" name="gift_name" class="form-control col-md-7 col-xs-12">
                     </div>
                 </div>
 
@@ -140,6 +140,34 @@
                 $(this).parent('.js-ajax-file-upload-form').trigger('submit');
             }
         });
+
+        var validator = new FormValidator({
+            texts : {
+                date:'not a real date'
+            }
+        });
+
+        validator.settings.alerts = false;
+
+        document.forms[0].addEventListener('blur', function(e){
+            var result = validator.checkField(e.target);
+            console.log(result);
+        }, true);
+
+        document.forms[0].addEventListener('input', function(e){
+            validator.checkField(e.target);
+        }, true);
+
+        document.forms[0].addEventListener('change', function(e){
+            validator.checkField(e.target)
+        }, true);
+
+        document.forms[0].onsubmit = function(e){
+            var validatorResult = validator.checkAll(this);
+
+            return !!validatorResult.valid;
+        };
+
 
     </script>
 @endsection
