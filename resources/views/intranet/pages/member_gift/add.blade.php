@@ -47,7 +47,7 @@
         </div>
         <div class="x_content">
             <br>
-            <form action="{{url('intranet/MemberGift/store')}}" method="post" class="form-horizontal form-label-left">
+            <form id="gift-add-form" action="{{url('intranet/MemberGift/store')}}" method="post" class="form-horizontal form-label-left  gift-image-upload-form">
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('label_fields.gift_name')}} <span class="required">*</span>
                     </label>
@@ -116,6 +116,7 @@
                 <div class="form-group" style="margin-top: 20px;">
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                         {{csrf_field()}}
+                        <input type="hidden" name="gift_image_info" value="">
                         <button type="submit" class="btn btn-success">{{trans('buttons.submit')}}</button>
                         <button class="btn btn-primary" type="reset" onclick="window.location.href=window.location.href;">{{trans('buttons.reset')}}</button>
                     </div>
