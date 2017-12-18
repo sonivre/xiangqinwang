@@ -16,6 +16,7 @@ use App\Http\Requests\Intranet\UploadGiftThumbFormRequest;
 use App\Konohanaruto\Services\Intranet\GiftService;
 use Illuminate\Http\Request;
 use QiniuStorageService;
+use App\Http\Requests\Intranet\MemberGift;
 
 class MemberGiftController extends CoreController
 {
@@ -36,6 +37,12 @@ class MemberGiftController extends CoreController
         return view('intranet.pages.member_gift.add');
     }
 
+    public function store(MemberGift $request)
+    {
+        $result = $this->giftService->storeData($request->all());
+        var_dump($result);
+    }
+
     /**
      * @return json
      */
@@ -46,7 +53,8 @@ class MemberGiftController extends CoreController
             $response = json_decode($res, true);
 
             if (! empty($response['img_url'])) {
-                $response['img_url'] = config('custom.staticServer') . '/' . $response['img_url'];
+                $response['img_url'] =  $response['img_url'];
+                $response['img_host'] = config('custom.staticServer');
             }
 
             return json_encode($response, JSON_UNESCAPED_SLASHES);

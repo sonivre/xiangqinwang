@@ -52,7 +52,7 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('label_fields.gift_name')}} <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input required data-validate-length-range="6" data-validate-words="2" type="text" id="gift_name" name="gift_name" class="form-control col-md-7 col-xs-12">
+                        <input required type="text" id="gift_name" name="gift_name" class="form-control col-md-7 col-xs-12">
                     </div>
                 </div>
 
@@ -60,7 +60,7 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('label_fields.htb')}} <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="htb" name="htb" class="form-control col-md-7 col-xs-12">
+                        <input required type="text" pattern="\d+" id="htb" name="htb" class="form-control col-md-7 col-xs-12">
                     </div>
                 </div>
 
@@ -175,5 +175,6 @@
         }
 
         init_validator();
+
     </script>
 @endsection

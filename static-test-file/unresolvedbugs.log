@@ -9,3 +9,15 @@ ajax验证用户名格式，当前仅仅验证了是否存在，还需验证是�
 认证模块
 
 首页好友推荐模块
+
+等待解决的问题
+
+2017-12-18
+
+session读写facades
+
+图片上传服务接口的方法抽象、interface控制
+
+后台登录页console面板警告
+
+无意义的intranet下的sessionService类

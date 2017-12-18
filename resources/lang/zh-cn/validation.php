@@ -12,4 +12,5 @@
 return [
 
     'required' => '不能为空',
+    'integer' => '必须是一个整数',
 ];

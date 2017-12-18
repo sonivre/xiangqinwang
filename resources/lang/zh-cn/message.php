@@ -16,4 +16,5 @@ return [
     'unsupported_request_method' => '不支持的请求方法',
     'unsupported_image_type' => '不支持的图片格式',
     'upload_error' => '上传错误',
+    'params_error' => '参数错误',
 ];
