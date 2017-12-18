@@ -40,7 +40,15 @@ class MemberGiftController extends CoreController
     public function store(MemberGift $request)
     {
         $result = $this->giftService->storeData($request->all());
-        var_dump($result);
+
+        if (! $result) {
+            return redirect('intranet/MemberGift/list');
+        }
+
+        return redirect()
+            ->back()
+            ->with('errorMsg', trans('message.insert_failed'))
+            ->withInput($request->all());
     }
 
     /**

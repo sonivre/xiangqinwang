@@ -20,4 +20,12 @@ session读写facades
 
 后台登录页console面板警告
 
+报错如下：
+
+This page includes a password or credit card input in a non-secure context. A warning has been added to the URL bar. For more information, see https://goo.gl/zmWq3m.
+
+解决方案：
+
+换成Https，等待部署。。
+
 无意义的intranet下的sessionService类
