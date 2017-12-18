@@ -48,7 +48,7 @@
         <div class="x_content">
             <br>
             <form novalidate id="gift-add-form" action="{{url('intranet/MemberGift/store')}}" method="post" class="form-horizontal form-label-left  gift-image-upload-form">
-                <div class="form-group">
+                <div class="item form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('label_fields.gift_name')}} <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="item form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('label_fields.htb')}} <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="item form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('label_fields.only_vip')}}
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12" style="margin-top:5px;">
@@ -75,7 +75,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="item form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('label_fields.is_valid')}}
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12" style="margin-top:5px;">
@@ -86,7 +86,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="item form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('label_fields.gift_picture')}} <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12" style="margin-top:5px;">
@@ -113,7 +113,7 @@
                     </div>
                 </div>
 
-                <div class="form-group" style="margin-top: 20px;">
+                <div class="item form-group" style="margin-top: 20px;">
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                         {{csrf_field()}}
                         <input type="hidden" name="gift_image_info" value="">
@@ -141,33 +141,39 @@
             }
         });
 
-        var validator = new FormValidator({
-            texts : {
-                date:'not a real date'
-            }
-        });
+        function init_validator () {
+            if( typeof (validator) === 'undefined'){ return; }
+            //console.log('init_validator');
 
-        validator.settings.alerts = false;
+            // initialize the validator function
+            validator.message.date = 'not a real date';
 
-        document.forms[0].addEventListener('blur', function(e){
-            var result = validator.checkField(e.target);
-            console.log(result);
-        }, true);
+            // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
+            $('form')
+             .on('blur', 'input[required], input.optional, select.required', validator.checkField)
+             .on('change', 'select.required', validator.checkField)
+             .on('keypress', 'input[required][pattern]', validator.keypress);
 
-        document.forms[0].addEventListener('input', function(e){
-            validator.checkField(e.target);
-        }, true);
+            $('.multi.required').on('keyup blur', 'input', function() {
+             validator.checkField.apply($(this).siblings().last()[0]);
+            });
 
-        document.forms[0].addEventListener('change', function(e){
-            validator.checkField(e.target)
-        }, true);
+            $('form').submit(function(e) {
+             e.preventDefault();
+             var submit = true;
 
-        document.forms[0].onsubmit = function(e){
-            var validatorResult = validator.checkAll(this);
+             // evaluate the form using generic validaing
+             if (!validator.checkAll($(this))) {
+               submit = false;
+             }
 
-            return !!validatorResult.valid;
-        };
+             if (submit)
+               this.submit();
 
+             return false;
+            });
+        }
 
+        init_validator();
     </script>
 @endsection

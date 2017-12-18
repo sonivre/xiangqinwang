@@ -30,7 +30,7 @@
 <script src="{{config('custom.staticServerIntranet')}}/build/js/jquery.validationEngine.js"></script>
 <script src="{{config('custom.staticServerIntranet')}}/build/js/jquery.validationEngine-zh_CN.js"></script>
 <script src="{{config('custom.staticServerIntranet')}}/build/js/jquery.validationEngine-zh_CN.js"></script>
-<script src="{{config('custom.staticServerIntranet')}}/vendors/validator_v171215/validator.js"></script>
+<script src="{{config('custom.staticServerIntranet')}}/vendors/validator/validator.js"></script>
 {{--这里记录一下，common.js和common.min.js都定义了一个download变量，它的值为$('download')，而我们html中没有，会报错，所以在这里我注视掉了那段代码--}}
 <script src="{{config('custom.staticServerIntranet')}}/js/common.js"></script>
 <!-- csrf token define -->
