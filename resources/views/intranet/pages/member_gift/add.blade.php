@@ -48,23 +48,23 @@
         <div class="x_content">
             <br>
             <form novalidate id="gift-add-form" action="{{url('intranet/MemberGift/store')}}" method="post" class="form-horizontal form-label-left  gift-image-upload-form">
-                <div class="form-group">
+                <div class="item form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('label_fields.gift_name')}} <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input required data-validate-length-range="6" data-validate-words="2" type="text" id="gift_name" name="gift_name" class="form-control col-md-7 col-xs-12">
+                        <input required type="text" id="gift_name" name="gift_name" class="form-control col-md-7 col-xs-12">
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="item form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('label_fields.htb')}} <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="htb" name="htb" class="form-control col-md-7 col-xs-12">
+                        <input required type="text" pattern="\d+" id="htb" name="htb" class="form-control col-md-7 col-xs-12">
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="item form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('label_fields.only_vip')}}
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12" style="margin-top:5px;">
@@ -141,32 +141,43 @@
             }
         });
 
-        var validator = new FormValidator({
-            texts : {
-                date:'not a real date'
-            }
+        function init_validator (formJQueryObject) {
+
+        if( typeof (validator) === 'undefined'){ return; }
+        ////console.log('init_validator');
+
+        // initialize the validator function
+        validator.message.date = 'not a real date';
+
+        // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
+        formJQueryObject
+         .on('blur', 'input[required], input.optional, select.required', validator.checkField)
+         .on('change', 'select.required', validator.checkField)
+         .on('keypress', 'input[required][pattern]', validator.keypress);
+
+        $('.multi.required').on('keyup blur', 'input', function() {
+         validator.checkField.apply($(this).siblings().last()[0]);
         });
 
-        validator.settings.alerts = false;
+            formJQueryObject.submit(function(e) {
+         e.preventDefault();
+         var submit = true;
 
-        document.forms[0].addEventListener('blur', function(e){
-            var result = validator.checkField(e.target);
-            console.log(result);
-        }, true);
+         // evaluate the form using generic validaing
+         if (!validator.checkAll($(this))) {
+           submit = false;
+         }
 
-        document.forms[0].addEventListener('input', function(e){
-            validator.checkField(e.target);
-        }, true);
+         if (submit)
+           this.submit();
 
-        document.forms[0].addEventListener('change', function(e){
-            validator.checkField(e.target)
-        }, true);
+         return false;
+        });
 
-        document.forms[0].onsubmit = function(e){
-            var validatorResult = validator.checkAll(this);
+        }
 
-            return !!validatorResult.valid;
-        };
+        init_validator($('#gift-add-form'));
+
 
 
     </script>
