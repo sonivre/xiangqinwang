@@ -5,8 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class MemberGiftType extends Model
 {
-    protected $table = '';
-    protected $primaryKey = '';
+    protected $table = 'member_gift_type';
+    protected $primaryKey = 'id';
     public $timestamps = false;
     
 }

@@ -28,7 +28,7 @@ class LocalFileStorageService extends BaseService implements FileStorageServiceI
      *
      * @param $curlFileObject
      * @param $uploadDir
-     * @return json
+     * @return mixed 由于设置了RETURNTRANSFER，则在失败时返回false
      */
     public function formFileUpload($curlFileObject, $uploadDir)
     {
