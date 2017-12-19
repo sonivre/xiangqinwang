@@ -41,7 +41,7 @@ class MemberGiftController extends CoreController
     {
         $result = $this->giftService->storeData($request->all());
 
-        if (! $result) {
+        if ($result) {
             return redirect('intranet/MemberGift/list');
         }
 
@@ -52,7 +52,10 @@ class MemberGiftController extends CoreController
     }
 
     /**
-     * @return json
+     * ajax图片上传
+     *
+     * @param UploadGiftThumbFormRequest $request
+     * @return string
      */
     public function uploadGiftThumb(UploadGiftThumbFormRequest $request)
     {
@@ -61,7 +64,6 @@ class MemberGiftController extends CoreController
             $response = json_decode($res, true);
 
             if (! empty($response['img_url'])) {
-                $response['img_url'] =  $response['img_url'];
                 $response['img_host'] = config('custom.staticServer');
             }
 

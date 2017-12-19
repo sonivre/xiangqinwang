@@ -17,7 +17,7 @@ use Request;
 use File;
 use App\Konohanaruto\Services\Intranet\FileStorageServiceInterface;
 use Intervention\Image\Facades\Image;
-use Session;
+use App\Konohanaruto\Facades\Intranet\SessionService as SessionAccess;
 
 class GiftService extends BaseService
 {
@@ -108,17 +108,13 @@ class GiftService extends BaseService
         // 删除临时文件
         @unlink($thumbLocalTempFileName);
 
-        // session 读写等待优化的代码
-        $session = Session::get(config('custom.intranetSessionName'));
-        $userId = $session['admin_id'];
-
         // 构建保存的数据数组
         $data['gift_name'] = $info['gift_name'];
         $data['htb'] = $info['htb'];
         $data['htb'] = $info['htb'];
         $data['is_vip'] = $info['is_vip'];
         $data['is_valid'] = $info['is_valid'];
-        $data['action_admin_id'] = $userId;
+        $data['action_admin_id'] = SessionAccess::getUserId();
         $data['thumb_image_url'] = $thumbFileName;
         $data['original_image_url'] = $formCrop['img_url'];
 
