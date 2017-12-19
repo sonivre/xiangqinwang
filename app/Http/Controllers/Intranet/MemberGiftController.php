@@ -45,6 +45,9 @@ class MemberGiftController extends CoreController
             return redirect('intranet/MemberGift/list');
         }
 
+        // reference: https://laravel.com/docs/5.4/redirects#redirecting-with-flashed-session-data
+
+        // 使用with保存在session, blade中使用session访问
         return redirect()
             ->back()
             ->with('errorMsg', trans('message.insert_failed'))
