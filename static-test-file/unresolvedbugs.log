@@ -16,7 +16,7 @@ ajax验证用户名格式，当前仅仅验证了是否存在，还需验证是�
 
 session读写facades
 
-图片上传服务接口的方法抽象、interface控制
+图片上传服务接口的方法抽象、interface控制  【等待优化】
 
 后台登录页console面板警告
 
