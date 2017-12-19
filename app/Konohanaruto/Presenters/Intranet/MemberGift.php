@@ -15,14 +15,10 @@ class MemberGift
 {
     public function isOnlyVipChecked($radioValue, $isVip, $optional = null)
     {
-        if (empty($isVip)) {
-            if ($optional == 'default') {
-                return 'checked';
-            }
-
-        } else {
-            return $radioValue == $isVip ? 'checked' : '';
+        if (is_null($isVip)) {
+            return $optional == 'default' ? 'checked' : '';
         }
 
+        return $radioValue == $isVip ? 'checked' : '';
     }
 }

@@ -69,9 +69,9 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('label_fields.only_vip')}}
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12" style="margin-top:5px;">
-                        <input type="radio" id="is-vip-true" name="is_vip" value="1" {{$MemberGift->isOnlyVipChecked(1, old('is_vip'), 'default')}}>
+                        <input type="radio" id="is-vip-true" name="is_vip" value="1" data-id="{{old('is_vip')}}" {{$MemberGift->isOnlyVipChecked(1, old('is_vip'), 'default')}}>
                         <span style="margin-right: 10px;">{{trans('status.yes')}}</span>
-                        <input type="radio" id="is-vip-false" name="is_vip" value="0" {{$MemberGift->isOnlyVipChecked(0, old('is_vip'))}}>
+                        <input type="radio" id="is-vip-false" name="is_vip" value="0" data-id="{{old('is_vip')}}" {{$MemberGift->isOnlyVipChecked(0, old('is_vip'))}}>
                         <span>{{trans('status.no')}}</span>
                     </div>
                 </div>
