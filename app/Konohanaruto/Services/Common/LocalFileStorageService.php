@@ -45,4 +45,9 @@ class LocalFileStorageService extends BaseService implements FileStorageServiceI
 
         return $result;
     }
+
+    public function getServiceHost()
+    {
+        return config('custom.staticServer');
+    }
 }

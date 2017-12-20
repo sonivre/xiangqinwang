@@ -19,4 +19,5 @@ return [
     'only_vip' => '会员专属',
     'is_valid' => '是否有效',
     'gift_picture' => '礼物图片',
+    'action' => '操作',
 ];

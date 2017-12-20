@@ -16,4 +16,5 @@ return array(
     'view_list' => '查看列表',
     'click_to_upload' => '点击上传',
     'crop' => '裁剪',
+    'add' => '添加',
 );

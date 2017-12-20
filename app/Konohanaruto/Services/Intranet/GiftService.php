@@ -167,6 +167,13 @@ class GiftService extends BaseService
      */
     public function getAllGiftType()
     {
-        return $this->giftTypeRepo->getAll();
+        $list = $this->giftTypeRepo->getAll();
+
+        foreach ($list as $key => $item) {
+            $list[$key]['thumb_image_url'] = $this->fileStorageService->getServiceHost() . '/' . $item['thumb_image_url'];
+            $list[$key]['original_image_url'] = $this->fileStorageService->getServiceHost() . '/' . $item['original_image_url'];
+        }
+
+        return $list;
     }
 }
