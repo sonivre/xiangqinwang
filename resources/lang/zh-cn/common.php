@@ -14,4 +14,5 @@ return array(
     'htb' => '花田币',
     'preview' => '预览',
     'gift_list' => '礼物列表',
+    'gift_edit' => '礼物编辑'
 );

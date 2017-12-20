@@ -31,4 +31,15 @@ class MemberGiftTypeEloquentRepository extends EloquentRepository implements Mem
     {
         return $this->model->get();
     }
+
+    /**
+     * 得到礼物类型信息
+     *
+     * @param $id
+     * @return \Illuminate\Database\Eloquent\Model|null|static
+     */
+    public function getDetailById($id)
+    {
+        return $this->model->where($this->model->getKeyName(), $id)->first();
+    }
 }

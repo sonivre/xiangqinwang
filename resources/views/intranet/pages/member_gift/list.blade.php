@@ -47,8 +47,8 @@
                     <td style="cursor: pointer;">{{$item['is_vip']}}</td>
                     <td style="cursor: pointer;">{{$item['is_valid']}}</td>
                     <td>
-                        <a href="" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> 编辑</a>
-                        <a href="javascript:;" class="btn btn-danger btn-xs remove-item" data-itemid=""><i class="fa fa-trash-o"></i> 删除</a>
+                        <a href="{{url('intranet/MemberGift/showEditForm')}}/{{$item['id']}}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> {{trans('buttons.edit')}}</a>
+                        <a href="javascript:;" class="btn btn-danger btn-xs remove-item" data-itemid="{{$item['id']}}"><i class="fa fa-trash-o"></i> {{trans('buttons.remove')}}</a>
                     </td>
                 </tr>
                 @endforeach

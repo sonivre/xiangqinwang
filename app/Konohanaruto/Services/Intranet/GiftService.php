@@ -176,4 +176,21 @@ class GiftService extends BaseService
 
         return $list;
     }
+
+    /**
+     * 返回礼物详细信息
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function getGiftInfo($id)
+    {
+        $detail = $this->giftTypeRepo->getDetailById($id);
+
+        if (! empty($detail['original_image_url'])) {
+            $detail['original_image_url'] = $this->fileStorageService->getServiceHost() . '/' . $detail['original_image_url'];
+        }
+
+        return $detail;
+    }
 }

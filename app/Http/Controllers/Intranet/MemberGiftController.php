@@ -12,6 +12,7 @@
 
 namespace App\Http\Controllers\Intranet;
 
+use App\Http\Requests\Intranet\MemberGiftUpdate;
 use App\Http\Requests\Intranet\UploadGiftThumbFormRequest;
 use App\Konohanaruto\Services\Intranet\GiftService;
 use Illuminate\Http\Request;
@@ -30,7 +31,6 @@ class MemberGiftController extends CoreController
     public function actionList()
     {
         $list = $this->giftService->getAllGiftType();
-        //echo '<pre>';var_dump($list);exit;
 
         return view('intranet.pages.member_gift.list', ['list' => $list]);
     }
@@ -55,6 +55,23 @@ class MemberGiftController extends CoreController
             ->back()
             ->with('errorMsg', trans('message.insert_failed'))
             ->withInput($request->all());
+    }
+
+    public function showEditForm($actionId)
+    {
+        $detail = $this->giftService->getGiftInfo(intval($actionId));
+
+        if (empty($detail)) {
+            return redirect('intranet/MemberGift/list');
+        }
+
+        return view('intranet.pages.member_gift.edit', ['detail' => $detail]);
+    }
+
+    public function update(MemberGiftUpdate $request)
+    {
+        echo '<pre>';
+        var_dump($request->all());
     }
 
     /**

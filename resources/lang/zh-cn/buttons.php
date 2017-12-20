@@ -17,4 +17,6 @@ return array(
     'click_to_upload' => '点击上传',
     'crop' => '裁剪',
     'add' => '添加',
+    'edit' => '编辑',
+    'remove' => '删除',
 );

@@ -51,5 +51,7 @@ Route::group(array('namespace' => 'Intranet', 'prefix' => 'intranet'), function 
         Route::get('MemberGift/showAddForm', 'MemberGiftController@actionShowAddForm');
         Route::post('MemberGift/uploadGiftThumb', 'MemberGiftController@uploadGiftThumb');
         Route::post('MemberGift/store', 'MemberGiftController@store');
+        Route::get('MemberGift/showEditForm/{actionId}', 'MemberGiftController@showEditForm');
+        Route::post('MemberGift/update', 'MemberGiftController@update');
     });
 });
