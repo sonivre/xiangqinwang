@@ -159,4 +159,14 @@ class GiftService extends BaseService
 
         return storage_path('framework/cache/image/' . date('Y-m-d'));
     }
+
+    /**
+     * 返回礼物类型列表
+     *
+     * @return array
+     */
+    public function getAllGiftType()
+    {
+        return $this->giftTypeRepo->getAll();
+    }
 }

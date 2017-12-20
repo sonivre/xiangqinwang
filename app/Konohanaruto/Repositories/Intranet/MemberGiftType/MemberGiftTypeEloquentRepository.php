@@ -21,4 +21,14 @@ class MemberGiftTypeEloquentRepository extends EloquentRepository implements Mem
     {
         return $this->model->insert($data);
     }
+
+    /**
+     * 得到列表
+     *
+     * @return array
+     */
+    public function getAll()
+    {
+        return $this->model->get();
+    }
 }

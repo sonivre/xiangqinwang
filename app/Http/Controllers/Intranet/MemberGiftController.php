@@ -29,6 +29,8 @@ class MemberGiftController extends CoreController
 
     public function actionList()
     {
+        $list = $this->giftService->getAllGiftType();
+        echo '<pre>';var_dump($list);exit;
         return view('intranet.pages.member_gift.list');
     }
 
