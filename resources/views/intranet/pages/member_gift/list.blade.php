@@ -22,7 +22,7 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content table-responsive" style="display: block;">
-            <table class="table table-hover">
+            <table class="table table-hover" style="margin-bottom: 40px;">
                 <thead>
                 <tr class="pointer">
                     <th class="a-center check-all-box">#</th>
@@ -41,7 +41,7 @@
                     <td class="a-center">
                         <div class="icheckbox_flat-green item-row" data-itemid="{{$item['id']}}"><input type="checkbox" class="flat" name="table_records" style="position: absolute; opacity: 0;"></div>
                     </td>
-                    <td><img class="gift-thumb-image" src="{{$item['thumb_image_url']}}"></td>
+                    <td class="gift-thumb-td"><img class="gift-thumb-image" src="{{$item['thumb_image_url']}}"></td>
                     <td>{{$item['gift_name']}}</td>
                     <td>{{$item['htb']}}</td>
                     <td style="cursor: pointer;">{{$item['is_vip']}}</td>
