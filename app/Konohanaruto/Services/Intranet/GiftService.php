@@ -72,10 +72,33 @@ class GiftService extends BaseService
      */
     public function storeData($info)
     {
-        //$this->cropGiftImage($info['gift_image_info']);
+        // 得到缩略图路径
+        $thumbFileName = $this->getThumbImage($info);
+
+        if (empty($thumbFileName)) {
+            return false;
+        }
+
+        $formCrop = json_decode($info['gift_image_info'], true);
+
+        // 构建保存的数据数组
+        $data = array();
+        $data['gift_name'] = $info['gift_name'];
+        $data['htb'] = $info['htb'];
+        $data['htb'] = $info['htb'];
+        $data['is_vip'] = $info['is_vip'];
+        $data['is_valid'] = $info['is_valid'];
+        $data['action_admin_id'] = SessionAccess::getUserId();
+        $data['thumb_image_url'] = $thumbFileName;
+        $data['original_image_url'] = $formCrop['img_url'];
+
+        return $this->giftTypeRepo->storeGift($data);
+    }
+
+    public function getThumbImage($info)
+    {
         $formCrop = json_decode($info['gift_image_info'], true);
         $cropInfo = array();
-        $data = array();
 
         $imagePath = $formCrop['img_host'] . '/' . $formCrop['img_url'];
         $cropInfo['width'] = $formCrop['cropWidth'];
@@ -108,17 +131,7 @@ class GiftService extends BaseService
         // 删除临时文件
         @unlink($thumbLocalTempFileName);
 
-        // 构建保存的数据数组
-        $data['gift_name'] = $info['gift_name'];
-        $data['htb'] = $info['htb'];
-        $data['htb'] = $info['htb'];
-        $data['is_vip'] = $info['is_vip'];
-        $data['is_valid'] = $info['is_valid'];
-        $data['action_admin_id'] = SessionAccess::getUserId();
-        $data['thumb_image_url'] = $thumbFileName;
-        $data['original_image_url'] = $formCrop['img_url'];
-
-        return $this->giftTypeRepo->storeGift($data);
+        return $thumbFileName;
     }
 
     /**

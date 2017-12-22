@@ -26,6 +26,7 @@ class MemberGiftController extends CoreController
     public function __construct(GiftService $giftService)
     {
         $this->giftService = $giftService;
+        parent::__construct();
     }
 
     public function actionList()
@@ -45,6 +46,8 @@ class MemberGiftController extends CoreController
         $result = $this->giftService->storeData($request->all());
 
         if ($result) {
+            // 写入日志记录
+            $this->writeAdminLog('添加了"' . $request->get('gift_name') . '"礼物类型');
             return redirect('intranet/MemberGift/list');
         }
 

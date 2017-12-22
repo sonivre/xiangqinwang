@@ -42,4 +42,17 @@ class MemberGiftTypeEloquentRepository extends EloquentRepository implements Mem
     {
         return $this->model->where($this->model->getKeyName(), $id)->first();
     }
+
+    /**
+     * 更新
+     *
+     * @param $data
+     * @return bool
+     */
+    public function updateData($data)
+    {
+        return $this->model
+            ->where($this->model->getKeyName(), $data['action_id'])
+            ->update(array('name' => $data['name']));
+    }
 }
