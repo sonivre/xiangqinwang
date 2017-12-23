@@ -13,15 +13,12 @@
 namespace App\Konohanaruto\Services\Common;
 
 use App\Konohanaruto\Services\Intranet\FileStorageServiceInterface;
+use \Curl\Curl;
 
 class LocalFileStorageService extends BaseService implements FileStorageServiceInterface
 {
-    private $serverDomain;
-
-    public function __construct()
-    {
-        $this->serverDomain = env('LOCAL_FILE_STORAGE_SERVER');
-    }
+    private $uploadFileApi = 'http://image.xqw.test/upload.php';
+    private $removeFileApi = 'http://image.xqw.test/remove.php';
 
     /**
      * 上传文件
@@ -32,7 +29,7 @@ class LocalFileStorageService extends BaseService implements FileStorageServiceI
      */
     public function formFileUpload($curlFileObject, $uploadDir)
     {
-        $ch = curl_init($this->serverDomain);
+        $ch = curl_init($this->uploadFileApi);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, array(
@@ -49,5 +46,19 @@ class LocalFileStorageService extends BaseService implements FileStorageServiceI
     public function getServiceHost()
     {
         return config('custom.staticServer');
+    }
+
+    public function removeFile($filePath)
+    {
+        // reference: https://github.com/php-curl-class/php-curl-class
+        $curl = new Curl();
+        $curl->post($this->removeFileApi, ['file_name' => $filePath]);
+
+        if ($curl->error) {
+            return false;
+            //echo 'Error: ' . $curl->errorCode . ': ' . $curl->errorMessage . "\n";
+        }
+
+        return $curl->response;
     }
 }

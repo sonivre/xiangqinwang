@@ -18,6 +18,7 @@ use File;
 use App\Konohanaruto\Services\Intranet\FileStorageServiceInterface;
 use Intervention\Image\Facades\Image;
 use App\Konohanaruto\Facades\Intranet\SessionService as SessionAccess;
+use Log;
 
 class GiftService extends BaseService
 {
@@ -95,6 +96,12 @@ class GiftService extends BaseService
         return $this->giftTypeRepo->storeGift($data);
     }
 
+    /**
+     * 得到图片缩略图路径
+     *
+     * @param $info
+     * @return mixed 成功时返回图片路径，失败时返回false
+     */
     public function getThumbImage($info)
     {
         $formCrop = json_decode($info['gift_image_info'], true);
@@ -205,5 +212,73 @@ class GiftService extends BaseService
         }
 
         return $detail;
+    }
+
+    /**
+     * 完成member gift更新logic
+     *
+     * @param $formData
+     * @return mixed
+     */
+    public function updateMemberGiftInfo($formData)
+    {
+        $data = [];
+
+        // 上传了新图片
+        if (! empty($formData['gift_image_info'])) {
+            $thumbFileName = $this->getThumbImage($formData);
+
+            // 图片裁剪失败
+            if (! $thumbFileName) {
+                return false;
+            }
+
+            $formCrop = json_decode($formData['gift_image_info'], true);
+            $data['thumb_image_url'] = $thumbFileName;
+            $data['original_image_url'] = $formCrop['img_url'];
+
+            // 查询数据库，得到之前的图片
+            $detail = $this->giftTypeRepo->getDetailById($formData['action_id']);
+            $oldOriginalImage = $detail['original_image_url'];
+            $oldThumbImage = $detail['thumb_image_url'];
+
+            // 在保存完成之后，删除之前的图片
+        }
+
+        $data['gift_name'] = $formData['gift_name'];
+        $data['htb'] = $formData['htb'];
+        $data['is_vip'] = $formData['is_vip'];
+        $data['is_valid'] = $formData['is_valid'];
+        $data['action_admin_id'] = SessionAccess::getUserId();
+        $data['action_id'] = $formData['action_id'];
+
+        $status = $this->giftTypeRepo->updateData($data);
+
+        if ($status !== false) {
+            // 删除原始图片
+            if (isset($oldOriginalImage) && $oldThumbImage) {
+                $removeOriginalRes = json_decode($this->fileStorageService->removeFile($oldOriginalImage), true);
+                $removeThumbRes = json_decode($this->fileStorageService->removeFile($oldThumbImage), true);
+
+                /**
+                 * 将未能删除的垃圾图片资源，写入log系统
+                 */
+                if (! $removeOriginalRes) {
+                    Log::error('file path: ' . $oldOriginalImage . ', error message: 删除图片请求失败!');
+                } elseif($removeOriginalRes['status'] == -200) {
+                    Log::error('file path: ' . $oldOriginalImage . ', error message: ' . $removeOriginalRes['errorMsg']);
+                }
+
+                if (! $removeThumbRes) {
+                    Log::error('file path: ' . $removeThumbRes . ', error message: 删除图片请求失败!');
+                } elseif($removeThumbRes['status'] == -200) {
+                    Log::error('file path: ' . $oldThumbImage . ', error message: ' . $removeThumbRes['errorMsg']);
+                }
+            }
+
+            return true;
+        }
+
+        return false;
     }
 }

@@ -73,8 +73,13 @@ class MemberGiftController extends CoreController
 
     public function update(MemberGiftUpdate $request)
     {
-        echo '<pre>';
-        var_dump($request->all());
+        $result = $this->giftService->updateMemberGiftInfo($request->all());
+
+        if ($result) {
+            return redirect('intranet/MemberGift/list');
+        }
+
+        return redirect('intranet/MemberGift/showEditForm/' . $request->get('action_id'));
     }
 
     /**

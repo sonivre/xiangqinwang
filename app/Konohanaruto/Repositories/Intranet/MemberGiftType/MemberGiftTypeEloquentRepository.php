@@ -51,8 +51,11 @@ class MemberGiftTypeEloquentRepository extends EloquentRepository implements Mem
      */
     public function updateData($data)
     {
+        $id = $data['action_id'];
+        unset($data['action_id']);
+
         return $this->model
-            ->where($this->model->getKeyName(), $data['action_id'])
-            ->update(array('name' => $data['name']));
+            ->where($this->model->getKeyName(), $id)
+            ->update($data);
     }
 }

@@ -1,3 +1,6 @@
 
 创建某个子目录控制器，例如一个命名空间路由
 php artisan make:controller Frontend/BasicController
+
+
+laravel中关于update方法，返回的是受影响的条数
