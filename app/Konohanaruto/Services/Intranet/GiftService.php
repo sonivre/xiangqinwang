@@ -23,6 +23,7 @@ use Log;
 class GiftService extends BaseService
 {
     use \App\Konohanaruto\Traits\Intranet\QiniuFileFormat;
+    use \App\Konohanaruto\Traits\Intranet\FileStorage;
 
     private $redisData;
     private $fileStorageService;
@@ -257,23 +258,7 @@ class GiftService extends BaseService
         if ($status !== false) {
             // 删除原始图片
             if (isset($oldOriginalImage) && $oldThumbImage) {
-                $removeOriginalRes = json_decode($this->fileStorageService->removeFile($oldOriginalImage), true);
-                $removeThumbRes = json_decode($this->fileStorageService->removeFile($oldThumbImage), true);
-
-                /**
-                 * 将未能删除的垃圾图片资源，写入log系统
-                 */
-                if (! $removeOriginalRes) {
-                    Log::error('file path: ' . $oldOriginalImage . ', error message: 删除图片请求失败!');
-                } elseif($removeOriginalRes['status'] == -200) {
-                    Log::error('file path: ' . $oldOriginalImage . ', error message: ' . $removeOriginalRes['errorMsg']);
-                }
-
-                if (! $removeThumbRes) {
-                    Log::error('file path: ' . $removeThumbRes . ', error message: 删除图片请求失败!');
-                } elseif($removeThumbRes['status'] == -200) {
-                    Log::error('file path: ' . $oldThumbImage . ', error message: ' . $removeThumbRes['errorMsg']);
-                }
+                $this->safeRemoveFile(array($oldOriginalImage, $oldThumbImage));
             }
 
             return true;

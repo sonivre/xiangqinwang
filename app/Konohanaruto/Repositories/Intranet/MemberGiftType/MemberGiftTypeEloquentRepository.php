@@ -58,4 +58,28 @@ class MemberGiftTypeEloquentRepository extends EloquentRepository implements Mem
             ->where($this->model->getKeyName(), $id)
             ->update($data);
     }
+
+    /**
+     * 删除记录
+     *
+     * @param array $actionId 相关的id数组
+     * @return mixed 返回受影响的行
+     */
+    public function removeDataByIds($ids)
+    {
+        return $this->model->whereIn($this->model->getKeyName(), $ids)->delete();
+    }
+
+    /**
+     * 通过id返回相应列表
+     *
+     * @param $ids
+     * @return array
+     */
+    public function getListByIds($ids)
+    {
+        $lists = $this->model->whereIn($this->model->getKeyName(), $ids)->get();
+
+        return empty($lists) ? array() : $lists->toArray();
+    }
 }

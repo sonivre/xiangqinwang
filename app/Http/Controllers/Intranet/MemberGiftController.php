@@ -14,26 +14,35 @@ namespace App\Http\Controllers\Intranet;
 
 use App\Http\Requests\Intranet\MemberGiftUpdate;
 use App\Http\Requests\Intranet\UploadGiftThumbFormRequest;
+use App\Konohanaruto\Providers\Intranet\FileStorageServiceProvider;
+use App\Konohanaruto\Repositories\Intranet\MemberGiftType\MemberGiftTypeRepositoryInterface;
 use App\Konohanaruto\Services\Intranet\GiftService;
 use Illuminate\Http\Request;
 use QiniuStorageService;
 use App\Http\Requests\Intranet\MemberGift;
+use App\Konohanaruto\Services\Intranet\FileStorageServiceInterface;
 
 class MemberGiftController extends CoreController
 {
-    public $giftService;
+    use \App\Konohanaruto\Traits\Intranet\FileStorage;
 
-    public function __construct(GiftService $giftService)
+    public $giftService;
+    private $giftTypeRepo;
+
+    public function __construct(GiftService $giftService, MemberGiftTypeRepositoryInterface $giftTypeRepo)
     {
         $this->giftService = $giftService;
+        $this->giftTypeRepo = $giftTypeRepo;
+
         parent::__construct();
     }
 
     public function actionList()
     {
         $list = $this->giftService->getAllGiftType();
+        $removeRoute = url('intranet/MemberGift/delete');
 
-        return view('intranet.pages.member_gift.list', ['list' => $list]);
+        return view('intranet.pages.member_gift.list', ['list' => $list, 'removeRoute' => $removeRoute]);
     }
 
     public function actionShowAddForm()
@@ -80,6 +89,39 @@ class MemberGiftController extends CoreController
         }
 
         return redirect('intranet/MemberGift/showEditForm/' . $request->get('action_id'));
+    }
+
+    public function delete(Request $request)
+    {
+        // 我在客户端加上了accept请求头，表明接收一个json对象
+        if ($request->ajax()) {
+            $actionId = $request->get('action_id');
+            $removeIds = explode(',', $actionId);
+
+            if (empty($actionId) || empty($removeIds)) {
+                return array('error' => '参数错误');
+            }
+
+            $removeDataList = $this->giftTypeRepo->getListByIds($removeIds);
+
+            // 移除相关记录
+            $affects = $this->giftTypeRepo->removeDataByIds($removeIds);
+
+            // 写入管理员日志
+            if ($affects) {
+                foreach ($removeDataList as $item) {
+                    // 删除图片
+                    $this->safeRemoveFile(array($item['thumb_image_url'], $item['original_image_url']));
+                    // 写入管理员日志
+                    $logContent = '删除了"' . $item['gift_name'] . '"礼物';
+                    $this->writeAdminLog($logContent);
+                }
+            }
+
+            return array('rows' => $affects);
+        }
+
+        return array('code' => 400, 'errorMsg' => '非法请求');
     }
 
     /**
