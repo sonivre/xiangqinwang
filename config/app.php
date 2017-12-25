@@ -198,6 +198,7 @@ return [
         App\Konohanaruto\Providers\Common\LanguageServiceProvider::class,
         App\Konohanaruto\Providers\Frontend\MemberAlbumServiceProvider::class,
         App\Konohanaruto\Providers\Intranet\FileStorageServiceProvider::class,
+        App\Konohanaruto\Providers\Frontend\FileStorageServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         App\Konohanaruto\Providers\Frontend\MemberPictureServiceProvider::class,
         App\Konohanaruto\Providers\Frontend\MemberAuthenticationServiceProvider::class,

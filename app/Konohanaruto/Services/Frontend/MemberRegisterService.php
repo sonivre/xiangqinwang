@@ -10,6 +10,7 @@
  */
 
 namespace App\Konohanaruto\Services\Frontend;
+use App\Konohanaruto\Services\Frontend\FileStorageServiceInterface;
 use UserUniversalData;
 use Illuminate\Support\Facades\Redis;
 use App\Konohanaruto\Repositories\Frontend\MobileVerifyCode\MobileVerifyCodeRepositoryInterface;
@@ -21,9 +22,16 @@ use App\Konohanaruto\Repositories\Frontend\MemberAlbum\MemberAlbumRepositoryInte
 use Image;
 use Request;
 use App\Konohanaruto\Repositories\Frontend\MemberPicture\MemberPictureRepositoryInterface;
+use File;
 
 class MemberRegisterService extends BaseService
 {
+    private $fileStorage;
+
+    public function __construct()
+    {
+        $this->fileStorage = app(FileStorageServiceInterface::class);
+    }
 
     /**
      * @param $mobile
@@ -142,21 +150,29 @@ class MemberRegisterService extends BaseService
             return array('status' => '-200');
         }
 
-        $path = 'avatar/' . date('Ymd');
-        $imagePath = $file->store($path, 'uploads');
+//        $path = 'avatar/' . date('Ymd');
+//        $imagePath = $file->store($path, 'uploads');
 
-        if (! empty($imagePath)) {
-            $fullPath = config('custom.staticServer') . '/uploads/' . $imagePath;
+        $extension = '.' . File::extension($file->getClientOriginalName());
+        $savedName = uniqid() . $extension;
+        $stream = curl_file_create($file->getPathname(), $file->getClientMimeType(), $savedName);
+        $uploadDir = 'uploads/frontend/avatars/' . date('Y-m-d');
+        $uploadParams = array('file' => $stream, 'upload_dir' => $uploadDir);
+        $response = json_decode($this->fileStorage->uploadFile($uploadParams), true);
+
+        if (! empty($response['img_url'])) {
+            $fullPath = config('custom.staticServer') . '/' . $response['img_url'];
             // 将图片路径写入session
-            session('register.userinfo.avatar', $imagePath);
+            session('register.userinfo.avatar', $response['img_url']);
 
             return array(
                 'msg' => array(
                     'src' => $fullPath,
-                    'relationPath' => $imagePath
+                    'relationPath' => $response['img_url']
                 )
             );
         }
+
         return array('status' => '-200');
     }
 
