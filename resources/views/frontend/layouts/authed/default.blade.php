@@ -15,8 +15,11 @@
 <meta charset="UTF-8">
 <title>花田网 - @yield('title')</title>
 @section('basic-static-resource')
-    <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/base.css" />
+    <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/base.css">
+    <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/common.css">
+    <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/form.css">
     <script src="{{config('custom.staticServer')}}/js/jquery.js"></script>
+    <script type="text/javascript" src="{{config('custom.staticServer')}}/js/common.js"></script>
 @show
 </head>
 <body>

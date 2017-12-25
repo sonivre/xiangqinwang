@@ -21,6 +21,10 @@ Route::group(array('namespace' => 'Frontend'), function () {
     Route::group(['middleware' => 'frontend.member_login_check'], function () {
         Route::get('home', 'MemberRecommendController@actionHome');
         Route::get('myAccount', 'MemberController@myAccount');
+        Route::get('myAccount', 'MemberController@myAccount');
+        Route::group(array('prefix' => 'setting'), function () {
+            Route::get('face', 'SettingController@avatarEdit');
+        });
     });
 
     Route::group(array('middleware' => 'LoginCheck'), function () {

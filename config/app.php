@@ -203,8 +203,10 @@ return [
         App\Konohanaruto\Providers\Frontend\MemberPictureServiceProvider::class,
         App\Konohanaruto\Providers\Frontend\MemberAuthenticationServiceProvider::class,
         App\Konohanaruto\Providers\Intranet\SessionServiceProvider::class,
+        App\Konohanaruto\Providers\Frontend\SessionServiceProvider::class,
         App\Konohanaruto\Providers\Common\QiniuStorageServiceProvider::class,
         App\Konohanaruto\Providers\Intranet\MemberGiftTypeServiceProvider::class,
+        App\Konohanaruto\Providers\Frontend\UserServiceProvider::class,
     ],
 
     /*
@@ -259,6 +261,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'MemberAuthService' => App\Konohanaruto\Facades\Frontend\MemberAuthenticationService::class,
         'SessionService' => App\Konohanaruto\Facades\Intranet\SessionService::class,
+        'SessionFront' => App\Konohanaruto\Facades\Frontend\SessionService::class,
         'QiniuStorageService' => App\Konohanaruto\Facades\Common\QiniuStorage::class,
     ],
 

@@ -14,6 +14,7 @@
 <title>@yield('title')</title>
 <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/base.css">
 <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/common.css">
+<link rel="stylesheet" href="{{config('custom.staticServer')}}/css/form.css">
 {{--<link rel="stylesheet" href="{{config('custom.staticServer')}}/css/myaccount.css">--}}
 <script type="text/javascript" src="{{config('custom.staticServer')}}/js/jquery.js"></script>
 <script type="text/javascript" src="{{config('custom.staticServer')}}/js/common.js"></script>
