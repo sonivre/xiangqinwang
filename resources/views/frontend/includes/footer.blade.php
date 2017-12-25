@@ -24,6 +24,6 @@
 <!--type = text/javascript -->
 <script type="text/javascript" src="{{config('custom.staticServer')}}/js/jquery.js"></script>
 <script type="text/javascript" src="{{config('custom.staticServer')}}/js/common.js"></script>
-<script type="text/javascript" src="{{config('custom.staticServer')}}/js/helper.js"></script>
+{{--<script type="text/javascript" src="{{config('custom.staticServer')}}/js/helper.js"></script>--}}
 {{--<script type="text/javascript" src="{{config('custom.staticServer')}}/js/validationEngine-zh_CN.js"></script>--}}
 {{--<script type="text/javascript" src="{{config('custom.staticServer')}}/js/validationEngine.js"></script>--}}

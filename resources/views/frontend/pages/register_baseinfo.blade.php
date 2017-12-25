@@ -8,7 +8,8 @@
 ?>
 @extends('frontend.layouts.default')
 @section('title', '注册基本资料')
-@section('addtional-css')
+@section('basic-static-resource')
+    @parent
     <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/common.css">
     <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/register.css">
 @endsection

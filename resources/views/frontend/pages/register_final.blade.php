@@ -8,7 +8,7 @@
 ?>
 @extends('frontend.layouts.default')
 @section('title', '注册基本资料')
-@section('addtional-css')
+@section('basic-static-resource')
     <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/common.css">
     <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/register.css">
 @endsection
@@ -68,7 +68,7 @@
                 <form id="user_upload_avatar" method="post" enctype="multipart/form-data">
                 <div class="form-control">
                     {{csrf_field()}}
-                    <input type="file" class="img-file-input hide" name="avatar">
+                    <input type="file" class="img-file-input hide" style="display: none;" name="avatar">
                 </div>
                 </form>
                 <form method="post" action="{{url('User/storeMemberRegisterAvatar')}}">
