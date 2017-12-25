@@ -48,4 +48,14 @@ class LocalFileStorageService extends BaseService implements FileStorageServiceI
     {
         // TODO: Implement removeFile() method.
     }
+
+    /**
+     * 返回服务器路径
+     *
+     * @return mixed
+     */
+    public function getServiceHost()
+    {
+        return config('custom.staticServer');
+    }
 }

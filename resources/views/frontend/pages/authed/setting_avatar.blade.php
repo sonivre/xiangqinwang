@@ -43,12 +43,18 @@
                             <p class="file-size-tips">大小在10K-8M之间</p>
                         </div>
                     </div>
-                    <div class="preview-box-bg" style="border: 1px solid red"></div>
-                    <div class="preview-box-sm" style="border: 1px solid red"></div>
+                    <div class="preview-box-bg">
+                        <img src="{{$userInfo['avatar']}}" width="140px">
+                    </div>
+                    <div class="preview-box-sm">
+                        <img src="{{$userInfo['avatar']}}" width="70px">
+                    </div>
                 </div>
                 <div class="form-trigger">
                     <a class="red-button submit-red-button disabled" href="#">提交，完成</a>
                 </div>
+
+                <form action=""></form>
             </div>
         </div>
     </div>

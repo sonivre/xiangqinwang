@@ -17,10 +17,12 @@ use App\Konohanaruto\Repositories\Frontend\User\UserRepositoryInterface;
 class UserService extends BaseService
 {
     private $userRepo;
+    private $fileStorage;
 
-    public function __construct(UserRepositoryInterface $userRepo)
+    public function __construct(UserRepositoryInterface $userRepo, FileStorageServiceInterface $fileStorage)
     {
         $this->userRepo = $userRepo;
+        $this->fileStorage = $fileStorage;
     }
 
     public function getUserAvatar($uid)
@@ -30,6 +32,9 @@ class UserService extends BaseService
 
         if (empty($userCache)) {
             $userInfo = $this->userRepo->userInfo($uid);
+            $userAvatar = $this->fileStorage->getServiceHost() . '/' . $userInfo['avatar'];
+
+            return $userAvatar;
         }
     }
 }

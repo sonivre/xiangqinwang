@@ -25,6 +25,6 @@ class SessionService extends BaseService
 
     public function getUserId()
     {
-        return $this->session;
+        return $this->session['member']['info']['user_id'];
     }
 }

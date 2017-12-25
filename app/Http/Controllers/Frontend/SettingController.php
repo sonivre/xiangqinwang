@@ -30,8 +30,11 @@ class SettingController extends BasicController
 
     public function avatarEdit()
     {
-        var_dump(SessionFront::getUserId());exit;
-        $userInfo = $this->userService->getUserAvatar(1);
-        return view('frontend.pages.authed.setting_avatar');
+        $userId = SessionFront::getUserId();
+        $userAvatar = $this->userService->getUserAvatar($userId);
+
+        return view('frontend.pages.authed.setting_avatar', [
+            'userInfo' => ['user_id' => $userId, 'avatar' => $userAvatar]
+        ]);
     }
 }
