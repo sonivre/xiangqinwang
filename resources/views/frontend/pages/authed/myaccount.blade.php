@@ -23,7 +23,7 @@
 @section('content')
     <div class="profile-mainbox profile-female clearfix">
         <div class="w clearfix">
-            <div class="profile-basic-avatar fl">
+            <div class="profile-basic-avatar fl" onclick="window.location.href='{{url('setting/face')}}'">
                 <div class="user-avatar">
                     <div class="avatar-update hide">
                         <span>点击修改头像</span>
@@ -1308,4 +1308,11 @@
         </div>
     </div>
     <!-- 送礼模态框结束 -->
+@endsection
+@section('additional-js')
+    <script>
+        $(function () {
+
+        })
+    </script>
 @endsection

@@ -12,6 +12,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Http\Requests\Frontend\AvatarUploadFormRequest;
 use App\Konohanaruto\Services\Frontend\SessionService;
 use App\Konohanaruto\Services\Frontend\UserService;
 use Illuminate\Http\Request;
@@ -36,5 +37,22 @@ class SettingController extends BasicController
         return view('frontend.pages.authed.setting_avatar', [
             'userInfo' => ['user_id' => $userId, 'avatar' => $userAvatar]
         ]);
+    }
+
+    /**
+     * ajax 上传用户头像
+     */
+    public function uploadAvatar(AvatarUploadFormRequest $request)
+    {
+        if ($request->isMethod('post')) {
+            $res = $this->userService->uploadAvatar($request->file('avatar_file'));
+            $response = json_decode($res, true);
+
+            if (! empty($response['img_url'])) {
+                $response['img_host'] = config('custom.staticServer');
+            }
+
+            return json_encode($response, JSON_UNESCAPED_SLASHES);
+        }
     }
 }

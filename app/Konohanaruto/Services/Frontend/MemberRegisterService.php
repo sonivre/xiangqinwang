@@ -23,6 +23,7 @@ use Image;
 use Request;
 use App\Konohanaruto\Repositories\Frontend\MemberPicture\MemberPictureRepositoryInterface;
 use File;
+use SessionFront;
 
 class MemberRegisterService extends BaseService
 {
@@ -150,13 +151,11 @@ class MemberRegisterService extends BaseService
             return array('status' => '-200');
         }
 
-//        $path = 'avatar/' . date('Ymd');
-//        $imagePath = $file->store($path, 'uploads');
-
+        $userId = SessionFront::getUserId();
         $extension = '.' . File::extension($file->getClientOriginalName());
         $savedName = uniqid() . $extension;
         $stream = curl_file_create($file->getPathname(), $file->getClientMimeType(), $savedName);
-        $uploadDir = 'uploads/frontend/avatars/' . date('Y-m-d');
+        $uploadDir = 'uploads/frontend/avatars/' . $userId . '/' . date('Y-m-d');
         $uploadParams = array('file' => $stream, 'upload_dir' => $uploadDir);
         $response = json_decode($this->fileStorage->uploadFile($uploadParams), true);
 

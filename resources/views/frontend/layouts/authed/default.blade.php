@@ -18,8 +18,11 @@
     <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/base.css">
     <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/common.css">
     <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/form.css">
+    <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/cropper.min.css" />
     <script src="{{config('custom.staticServer')}}/js/jquery.js"></script>
+    <script src="{{config('custom.staticServer')}}/js/cropper.min.js"></script>
     <script type="text/javascript" src="{{config('custom.staticServer')}}/js/common.js"></script>
+
 @show
 </head>
 <body>

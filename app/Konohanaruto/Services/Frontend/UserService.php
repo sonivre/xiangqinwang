@@ -13,6 +13,8 @@
 namespace App\Konohanaruto\Services\Frontend;
 
 use App\Konohanaruto\Repositories\Frontend\User\UserRepositoryInterface;
+use SessionFront;
+use File;
 
 class UserService extends BaseService
 {
@@ -35,6 +37,25 @@ class UserService extends BaseService
             $userAvatar = $this->fileStorage->getServiceHost() . '/' . $userInfo['avatar'];
 
             return $userAvatar;
+        }
+    }
+
+    public function uploadAvatar($file)
+    {
+        $userId = SessionFront::getUserId();
+        $uploadDir = 'uploads/frontend/avatars/' . $userId . '/' . date('Y-m-d');
+        //$uploadDir = 'uploads/frontend/avatars/' . date('Y-m-d');
+        $extension = '.' . File::extension($file->getClientOriginalName());
+        $savedName = uniqid() . $extension;
+        $stream = curl_file_create($file->getPathname(), $file->getClientMimeType(), $savedName);
+
+        $uploadParams = array('file' => $stream, 'upload_dir' => $uploadDir);
+        //$response = json_decode($this->fileStorage->uploadFile($uploadParams), true);
+
+        return $this->fileStorage->uploadFile($uploadParams);
+
+        if (! empty($response['img_url'])) {
+
         }
     }
 }
