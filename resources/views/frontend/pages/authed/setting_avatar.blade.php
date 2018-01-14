@@ -100,20 +100,21 @@
                         </div>
                     </div>
                     <div class="preview preview-box-bg">
-                        <img src="{{$userInfo['avatar']}}" width="140px">
+                        <img src="{{$userInfo['thumb_avatar']}}" width="140px">
                     </div>
                     <div class="preview preview-box-sm">
-                        <img src="{{$userInfo['avatar']}}" width="70px">
+                        <img src="{{$userInfo['thumb_avatar']}}" width="70px">
                     </div>
                 </div>
                 {{--重新添加--}}
                 <div class="reset-box hide">
                     <a class="js-reset-avatar" href="javascript:;">重新添加</a>
                 </div>
-                <form class="avatar-image-upload-form" action="">
+                <form class="avatar-image-upload-form" action="{{url('setting/face/updateRequest')}}" method="POST">
                 <div class="form-trigger">
+                    {{csrf_field()}}
                     <input type="hidden" name="avatar_image_info" value="">
-                    <a class="red-button submit-red-button disabled" href="#">提交，完成</a>
+                    <a class="red-button submit-red-button disabled" href="javascript:;">提交，完成</a>
                 </div>
                 </form>
 
@@ -135,6 +136,10 @@
 
             $('.js-reset-avatar').on('click', function () {
                 $('.avatar-file-input').trigger('click');
+            });
+
+            $('.avatar-image-upload-form .submit-red-button').on('click', function () {
+                $('.avatar-image-upload-form').submit();
             });
 
             var avatarFileInput = $('.avatar-file-input');

@@ -38,6 +38,7 @@ create table if not exists `xqw_user` (
   `credits` int unsigned not null default 0 comment '花田币',
   `emailstatus` tinyint not null default 0 comment '邮件是否认证',
   `avatar` varchar(255) not null default '' comment '头像',
+  `thumb_avatar` varchar(255) not null default '' comment '头像缩略图',
   primary key(`user_id`),
   unique key `username` (`username`),
   key `email` (`email`),

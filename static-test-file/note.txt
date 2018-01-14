@@ -4,3 +4,15 @@ php artisan make:controller Frontend/BasicController
 
 
 laravel中关于update方法，返回的是受影响的条数
+
+$cacheKey = 'frontend:user:base:info:' . SessionFront::getUserId();
+$userAvatar = Redis::connection('frontend')->hmget($cacheKey, ['thumb_avatar', 'avatar']);
+
+array(2) {
+  [0]=>
+  string(3) "222"
+  [1]=>
+  string(3) "111"
+}
+
+hmget得到的和实参数组顺序是一致的

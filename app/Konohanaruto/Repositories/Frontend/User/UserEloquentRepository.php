@@ -22,4 +22,11 @@ class UserEloquentRepository extends EloquentRepository implements UserRepositor
     {
         return $this->model->where($this->model->getKeyName(), $uid)->first();
     }
+
+    public function updateUserInfoById($uid, $data)
+    {
+        return $this->model
+            ->where('user_id', $uid)
+            ->update($data);
+    }
 }

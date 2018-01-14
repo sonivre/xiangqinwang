@@ -125,6 +125,14 @@ return [
             'database' => 0,
         ],
 
+        'frontend' => [
+            'host' => env('FRONTEND_REDIS_HOST', '127.0.0.1'),
+            'password' => env('FRONTEND_REDIS_PASSWORD', null),
+            'port' => env('FRONTEND_REDIS_PORT', 6379),
+            'database' => 0,
+            'read_write_timeout' => 60,
+        ],
+
     ],
 
 ];

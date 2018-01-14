@@ -17,6 +17,8 @@ use App\Konohanaruto\Services\Frontend\SessionService;
 use App\Konohanaruto\Services\Frontend\UserService;
 use Illuminate\Http\Request;
 use SessionFront;
+use App\Http\Requests\Frontend\AvatarCropFormRequest;
+use Redis;
 
 class SettingController extends BasicController
 {
@@ -35,8 +37,17 @@ class SettingController extends BasicController
         $userAvatar = $this->userService->getUserAvatar($userId);
 
         return view('frontend.pages.authed.setting_avatar', [
-            'userInfo' => ['user_id' => $userId, 'avatar' => $userAvatar]
+            'userInfo' => ['user_id' => $userId, 'thumb_avatar' => $userAvatar]
         ]);
+    }
+
+    public function updateUserAvatar(AvatarCropFormRequest $request)
+    {
+        $result = $this->userService->updateUserInfoToDb($request->all());
+        //写入用户动态表
+        /********!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!******************/
+        // 使用with保存在session, blade中使用session访问
+        return redirect('home');
     }
 
     /**
@@ -50,6 +61,9 @@ class SettingController extends BasicController
 
             if (! empty($response['img_url'])) {
                 $response['img_host'] = config('custom.staticServer');
+
+                // 保存用户基本信息到redis临时数据媒介
+                //$this->userService->setUserBaseData(array('tmp_portrait_original' => $response['img_url']));
             }
 
             return json_encode($response, JSON_UNESCAPED_SLASHES);

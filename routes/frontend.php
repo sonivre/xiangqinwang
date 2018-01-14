@@ -25,6 +25,7 @@ Route::group(array('namespace' => 'Frontend'), function () {
         Route::group(array('prefix' => 'setting'), function () {
             Route::get('face', 'SettingController@avatarEdit');
             Route::post('face/upload', 'SettingController@uploadAvatar');
+            Route::post('face/updateRequest', 'SettingController@updateUserAvatar');
         });
     });
 
