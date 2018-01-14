@@ -39,6 +39,7 @@ create table if not exists `xqw_user` (
   `emailstatus` tinyint not null default 0 comment '邮件是否认证',
   `avatar` varchar(255) not null default '' comment '头像',
   `thumb_avatar` varchar(255) not null default '' comment '头像缩略图',
+  `avatar_verify_status` tinyint not null default 0 comment '头像是否验证, -1 审核中 0 非真人头像 1审核通过',
   primary key(`user_id`),
   unique key `username` (`username`),
   key `email` (`email`),

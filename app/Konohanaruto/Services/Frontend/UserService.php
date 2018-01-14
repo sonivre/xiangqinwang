@@ -99,6 +99,7 @@ class UserService extends BaseService
         $updateData = array();
         $updateData['thumb_avatar'] = $thumbFileName;
         $updateData['avatar'] = $originalBigAvatar;
+        $updateData['avatar_verify_status'] = -1; // 审核中
         $userInfo = $this->userRepo->userInfo(SessionFront::getUserId());
         $status = $this->userRepo->updateUserInfoById(SessionFront::getUserId(), $updateData);
         // 删除原始的用户图片
