@@ -22,6 +22,7 @@
 @endsection
 {{--content--}}
 @section('content')
+@inject('UserPresenter', '\App\Konohanaruto\Presenters\Frontend\UserPresenter')
 <section id="top-logo">
     <div class="w clearfix">
         <div class="left-area fl">
@@ -111,6 +112,7 @@
                         <a class="submit-cancel">取消</a>
                     </div>
                 </div>
+
                 <h1>湖北 武汉  18到22岁 的女生<i class="slider-js"></i></h1>
                 <div class="open-vip">
                     <span class="to-open"><em></em></em><a href="#">开通高级VIP会员</a>可使用更多推荐条件</span>
@@ -703,8 +705,8 @@
             <div class="top-info">
                 <div class="portrait">
                     <a href="#">
-                        <img src="{{config('custom.staticServer')}}/images/user-portrait.jpg" alt="">
-                        <span class="portrait-truth">非真人头像</span>
+                        <img width="70px" src="{{config('custom.staticServer') . '/'. $userInfo['thumb_avatar']}}" alt="">
+                        <span class="portrait-truth {{$UserPresenter->showAvatarTips($userInfo['avatar_verify_status'])}}">{{$UserPresenter->userAvatarVerifyStatusText($userInfo['avatar_verify_status'])}}</span>
                     </a>
                 </div>
                 <div class="fans">
@@ -730,7 +732,7 @@
                     <a href="#" class="open-vip-btn"><em></em><span>开通会员</span></a>
                 </div>
                 <div class="upload-bar">
-                    <a href="#"><em class="upload-img"></em><span>上传照片</span></a>
+                    <a class="g-upload-photo-trigger" href="#"><em class="upload-img"></em><span>上传照片</span></a>
                     <a href="#"><em class="text-emoji"></em><span>文字表情</span></a>
                     <a href="#"><em class="push-date"></em><span>发布约会</span></a>
                 </div>
@@ -817,4 +819,143 @@
         <a href="javascript:;">意见反馈</a>
     </div>
 </section>
+
+<!--发布动态模态框开始-->
+<div class="modal-layer publish-trend-modal hide">
+    <div class="main-box modal-layer-main">
+        <div class="title-row">
+            <h3>发布动态</h3>
+            <a class="icon-close" href="javascript:;"></a>
+        </div>
+        <div class="content">
+            <p class="title">大家都在聊：</p>
+            <ul class="tag-list clearfix">
+                <li class="js-add-tag">#新人报道#</li>
+                <li class="js-add-tag">#2017渐行渐远#</li>
+                <li class="js-add-tag">#唯美食不可辜负#</li>
+                <li class="js-add-tag">#减肥打卡#</li>
+                <li class="js-add-tag">#冒泡儿#</li>
+                <li class="js-add-tag">#买买买#</li>
+                <li class="js-add-tag">#佛系青年#</li>
+                <li class="js-add-tag">#我等的人，你在哪儿#</li>
+                <li class="js-add-tag custom-tag">+自定义标签</li>
+            </ul>
+            <div class="trend-content-container">
+                <p class="js-placeholder placeholder">说出你的心声让大家认识你吧</p>
+                <textarea class="js-trend-content trend-content" style="height: 66px;"></textarea>
+                <p class="word-count"><span class="js-word-count">0</span>/163</p>
+                <ul class="photo-group js-photo-group">
+                    <li class="photo-uploader js-photo-uploader js-upload-drag">
+                        <p class="bottom-desc">
+                            <i class="icon-add-b"></i><br>
+                            <span class="text">点击或者拖入上传</span>
+                        </p>
+                        <form class="js-upload-form" action="/upload" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+                            <input class="btn-file" name="uploadPhoto" accept="image/jpg,image/jpeg,image/png,image/gif,image/bmp" multiple="" type="file">
+                        </form>
+                    </li>
+                    <li class="photo-item js-photo-item" data-url="" data-id="9e4a" data-file-info="">
+                        <a href="javascript:;" class="icon-close-m hover js-remove-photo"></a>
+                        <img src="{{config('custom.staticServer')}}/images/trend_modules/upload_demo.png">
+                        <p class="bottom-line tip-background js-tip-background"></p>
+                        <p class="bottom-line tip js-tip">上传成功</p>
+                    </li>
+                    <li class="photo-item js-photo-item" data-url="" data-id="9e4a" data-file-info="">
+                        <a href="javascript:;" class="icon-close-m hover js-remove-photo"></a>
+                        <img src="{{config('custom.staticServer')}}/images/trend_modules/upload_demo.png">
+                        <p class="bottom-line tip-background js-tip-background"></p>
+                        <p class="bottom-line tip js-tip">上传成功</p>
+                    </li>
+                    <li class="photo-item js-photo-item" data-url="" data-id="9e4a" data-file-info="">
+                        <a href="javascript:;" class="icon-close-m hover js-remove-photo"></a>
+                        <img src="{{config('custom.staticServer')}}/images/trend_modules/upload_demo.png">
+                        <p class="bottom-line tip-background js-tip-background"></p>
+                        <p class="bottom-line tip js-tip">上传成功</p>
+                    </li>
+                    <li class="photo-item js-photo-item" data-url="" data-id="9e4a" data-file-info="">
+                        <a href="javascript:;" class="icon-close-m hover js-remove-photo"></a>
+                        <img src="{{config('custom.staticServer')}}/images/trend_modules/upload_demo.png">
+                        <p class="bottom-line tip-background js-tip-background"></p>
+                        <p class="bottom-line tip js-tip">上传成功</p>
+                    </li>
+                    <li class="photo-item js-photo-item" data-url="" data-id="9e4a" data-file-info="">
+                        <a href="javascript:;" class="icon-close-m hover js-remove-photo"></a>
+                        <img src="{{config('custom.staticServer')}}/images/trend_modules/upload_demo.png">
+                        <p class="bottom-line tip-background js-tip-background"></p>
+                        <p class="bottom-line tip js-tip">上传成功</p>
+                    </li>
+                    <li class="photo-item js-photo-item" data-url="" data-id="9e4a" data-file-info="">
+                        <a href="javascript:;" class="icon-close-m hover js-remove-photo"></a>
+                        <img src="{{config('custom.staticServer')}}/images/trend_modules/upload_demo.png">
+                        <p class="bottom-line tip-background js-tip-background"></p>
+                        <p class="bottom-line tip js-tip">上传成功</p>
+                    </li>
+                </ul>
+                <div class="photo-tip"><p class="photo-number">还可上传&nbsp;<span class="js-photo-number">0</span>&nbsp;张图片（大小支持10K-8M）</p><p class="js-photo-errors hide photo-errors text-icon-tips-warning"><em class="icon-warning-s"></em>最多只能上传9张照片</p></div>
+            </div>
+        </div>
+        <div class="foot-row">
+            <a class="general-btn red-button publish-btn" href="javascript:;">发布</a>
+        </div>
+    </div>
+</div>
+<!--发布动态模态框结束-->
+
+<!--文字传情模态框开始-->
+<div class="modal-layer publish-letter-modal hide">
+    <div class="main-box modal-layebr-main">
+        <div class="title-row">
+            <h3>发布动态</h3>
+            <span class="text-md poplayer-subtitle">表达爱的心语,遥寄未来的TA</span>
+            <a class="icon-close" href="javascript:;"></a>
+        </div>
+        <div class="content">
+            <div class="poplayer-letter-template js-tab">
+                <a class="current" data-target-bd="n-letter-title-default" href="javascript:;">无主情话</a>
+                <a data-target-bd="n-letter-title-past" href="javascript:;">时光隧道</a>
+                <a data-target-bd="n-letter-title-xiaoshipian" href="javascript:;">独居生活</a>
+                <a data-target-bd="n-letter-title-unbosom" href="javascript:;">想对你说</a>
+            </div>
+            <div class="poplayer-letter-content js-content letter-template-default">
+                <div class="letter-body">
+                    <div class="letter-hd">
+                        <h2 class="letter-hd-title">
+                            <span class="n-letter-title-default">随便说点情话：</span>
+                            <span class="n-letter-title-past">分享我的过去：</span>
+                            <span class="n-letter-title-xiaoshipian">记录现在的生活：</span>
+                            <span class="n-letter-title-unbosom">写给喜欢的人：</span>
+                        </h2>
+                    </div>
+                    <div class="letter-bd">
+                        <div class="poplayer-letter-textarea js-textareaCon">
+                            <textarea data-adaptheight rows="3" cols="40" class="ui-scrollbar" style="height: 28px;"></textarea>
+                        </div>
+                        <p class="poplayer-letter-sign">——by&nbsp;麻瓜</p>
+                    </div>
+                    <div class="letter-ft"></div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="foot-row">-->
+        <!--<a class="general-btn red-button publish-btn" href="javascript:;">发布</a>-->
+        <!--</div>-->
+        <div class="poplayer-letter-ft js-send-btn clearfix">
+            <div class="show">
+                <div class="poplayer-letter-btn n-btn-box js-btn">
+                    <div class="disabled js-btn-txt">
+                        <a class="general-btn red-button publish-btn disabled" href="javascript:;">发布</a>
+                    </div>
+                </div>
+                <span class="poplayer-letter-tips js-lineCounter warn">至少输入<b class="char-constantia">10</b>个字</span>
+            </div>
+            <div class="hide">
+            <span class="text-small-tips cGray">
+                <em class="icon-correct-s" style="vertical-align: text-top; margin-right: 3px;"></em>
+                发布成功！
+            </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--文字传情模态框结束-->
 @endsection

@@ -22,6 +22,7 @@
     <script src="{{config('custom.staticServer')}}/js/jquery.js"></script>
     <script src="{{config('custom.staticServer')}}/js/cropper.min.js"></script>
     <script type="text/javascript" src="{{config('custom.staticServer')}}/js/common.js"></script>
+    <script type="text/javascript" src="{{config('custom.staticServer')}}/js/default.js"></script>
 
 @show
 </head>

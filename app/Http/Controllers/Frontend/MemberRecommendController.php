@@ -12,11 +12,23 @@
 namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
+use App\Konohanaruto\Services\Frontend\UserService;
+use SessionFront;
 
 class MemberRecommendController extends BasicController
 {
+    private $userSerivce;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userSerivce = $userService;
+    }
+
     public function actionHome()
     {
-        return view('frontend.pages.authed.home');
+        $userId = SessionFront::getUserId();
+        $userInfo = $this->userSerivce->getUserBaseInfoById($userId);
+
+        return view('frontend.pages.authed.home', ['userInfo' => $userInfo]);
     }
 }

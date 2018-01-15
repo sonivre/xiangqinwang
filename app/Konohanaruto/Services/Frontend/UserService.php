@@ -199,34 +199,25 @@ class UserService extends BaseService
     /**
      * 从缓存中得到用户基本信息
      */
-//    public function getUserBaseInfoById($userId)
-//    {
-//        // 查看redis中是否存在
-//        $cacheKey = 'frontend:user:base:info:' . SessionFront::getUserId();
-//        $cacheResult = Redis::connection('frontend')->hgetall($cacheKey);
-//    }
-
-    public function getUserPortraitById($userId)
+    public function getUserBaseInfoById($userId)
     {
         // 查看redis中是否存在
         $cacheKey = 'frontend:user:base:info:' . SessionFront::getUserId();
-        $userAvatar = Redis::connection('frontend')->hmget($cacheKey, ['thumb_avatar', 'avatar']);
+        $cacheResult = Redis::connection('frontend')->hgetall($cacheKey);
 
-        if (! empty($userAvatar[0]) && ! empty($userAvatar[1])) {
-            return ['thumb_avatar' => $userAvatar[0], 'avatar' => $userAvatar[1]];
+        if (empty($cacheResult)) {
+            // 读取数据库
+            $userInfo = $this->userRepo->userInfo(SessionFront::getUserId());
+
+            if (empty($userInfo)) {
+                return [];
+            }
+
+            $this->setUserBaseData($userInfo->toArray());
+
+            return $userInfo;
         }
 
-        // 读取数据库
-        $userInfo = $this->userRepo->userInfo(SessionFront::getUserId());
-
-        if (empty($userInfo)) {
-            return [];
-        }
-
-        $userPortrait = ['thumb_avatar' => $userInfo['thumb_avatar'], 'avatar' => $userInfo['avatar']];
-        // 设置用户信息到redis
-        $this->setUserBaseData($userPortrait);
-
-        return $userPortrait;
+        return $cacheResult;
     }
 }
