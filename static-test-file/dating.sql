@@ -269,3 +269,29 @@ create table if not exists `xqw_member_gift_type` (
   `original_image_url` varchar(255) comment '原始图片路径',
   PRIMARY KEY `pk_id` (`id`)
 )engine=innodb default charset=utf8 comment '会员礼物种类表';
+
+create table if not exists `xqw_member_trends`(
+  `trends_id` int unsigned not null auto_increment,
+  `user_id` int unsigned,
+  `pic_id` varchar(255) not null default '' comment '逗号隔开的图片id',
+  `username` varchar(255) not null default '' comment '用户'
+  `tag_id` int unsigned not null default 0 comment '动态热门标签id',
+  `tag_name` varchar(255) not null default '' comment '标签内容，自定义标签',
+  `content` text,
+  `favour_number` int unsigned not null default 0 comment '获赞数量',
+  `add_time` datetime default CURRENT_TIMESTAMP comment '添加时间',
+  `client_type` varchar(255) not null default '' comment '客户端，例如 iphone客户端',
+  `verify_status` tinyint not null default 1 comment '审核状态，目前没有这个功能，默认为1',
+  primary key `pk_trends_id` (`trends_id`)
+)engine=innodb default charset=utf8 comment '会员动态表';
+
+create table if not exists `xqw_member_trends_favour`(
+  `id` int unsigned not null auto_increment,
+  `trends_id` int unsigned not null default 0,
+  `from_user_id` int unsigned not null default 0 comment '点赞用户id',
+  `from_username` varchar(50) not null default '' comment '点赞用户名',
+  `to_user_id` int unsigned not null default 0 comment '被赞用户id',
+  `to_username` varchar(50) not null default '' comment '被赞用户名',
+  `add_time` datetime not null default CURRENT_TIMESTAMP,
+  primary key `pk_id` (`id`)
+)engine=innodb default charset=utf8 comment '会员动态获赞表';
