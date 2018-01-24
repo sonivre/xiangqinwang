@@ -282,6 +282,9 @@ create table if not exists `xqw_member_trends`(
   `add_time` datetime default CURRENT_TIMESTAMP comment '添加时间',
   `client_type` varchar(255) not null default '' comment '客户端，例如 iphone客户端',
   `verify_status` tinyint not null default 1 comment '审核状态，目前没有这个功能，默认为1',
+  `ip` char(15) not null default '' comment '添加时的ip地址',
+  `lat` decimal(10, 7) not null default 0 comment '纬度',
+  `lng` decimal(10, 7) not null default 0 comment '经度',
   primary key `pk_trends_id` (`trends_id`)
 )engine=innodb default charset=utf8 comment '会员动态表';
 
