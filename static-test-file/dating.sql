@@ -274,6 +274,7 @@ create table if not exists `xqw_member_trends`(
   `trends_id` int unsigned not null auto_increment,
   `user_id` int unsigned,
   `pic_id` varchar(255) not null default '' comment '逗号隔开的图片id',
+  `is_avatar` tinyint not null default 0 comment '是否是头像被更新的动态，默认0 否',
   `username` varchar(255) not null default '' comment '用户',
   `tag_name` varchar(255) not null default '' comment '标签内容',
   `content` text,
