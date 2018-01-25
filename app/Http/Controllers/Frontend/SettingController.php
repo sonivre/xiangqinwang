@@ -47,10 +47,11 @@ class SettingController extends BasicController
 
         // 写入个人动态
         $status = $this->userService->addMemberTrends();
-        var_dump($status);exit;
-        //写入用户动态表
-        /********!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!******************/
-        // 使用with保存在session, blade中使用session访问
+
+        if (! $status) {
+            Log::error('上传头像更新个人动态数据失败');
+        }
+
         return redirect('home');
     }
 
