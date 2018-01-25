@@ -23,8 +23,23 @@ class SessionService extends BaseService
         $this->session = Session::get(config('custom.frontendSessionName'));
     }
 
+    /**
+     * 返回用户id
+     *
+     * @return mixed
+     */
     public function getUserId()
     {
         return $this->session['member']['info']['user_id'];
+    }
+
+    /**
+     * 返回用户名
+     *
+     * @return mixed
+     */
+    public function getUsername()
+    {
+        return $this->session['member']['info']['username'];
     }
 }

@@ -12,12 +12,14 @@
 
 namespace App\Konohanaruto\Services\Frontend;
 
+use App\Konohanaruto\Repositories\Frontend\MemberTrends\MemberTrendsRepositoryInterface;
 use App\Konohanaruto\Repositories\Frontend\User\UserRepositoryInterface;
 use SessionFront;
 use File;
 use Illuminate\Support\Facades\Redis;
 use Intervention\Image\Facades\Image;
 use App\Konohanaruto\Services\Frontend\FileStorageServiceInterface;
+use Request;
 
 class UserService extends BaseService
 {
@@ -25,14 +27,17 @@ class UserService extends BaseService
 
     private $userRepo;
     private $fileStorage;
+    private $memberTrendsRepo;
 
     public function __construct(
         UserRepositoryInterface $userRepo,
-        FileStorageServiceInterface $fileStorage
+        FileStorageServiceInterface $fileStorage,
+        MemberTrendsRepositoryInterface $memberTrendsRepo
     )
     {
         $this->userRepo = $userRepo;
         $this->fileStorage = $fileStorage;
+        $this->memberTrendsRepo = $memberTrendsRepo;
     }
 
     public function getUserAvatar($uid)
@@ -219,5 +224,18 @@ class UserService extends BaseService
         }
 
         return $cacheResult;
+    }
+
+    public function addMemberTrends()
+    {
+        $data = [];
+        $data['user_id'] = SessionFront::getUserId();
+        $data['username'] = SessionFront::getUsername();
+        $data['is_avatar'] = 1;
+        $data['content'] = '上传了头像';
+        $data['client_type'] = Request::header('User-Agent');
+        $data['ip'] = Request::ip();
+
+        return $this->memberTrendsRepo->insertData($data);
     }
 }

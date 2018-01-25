@@ -44,6 +44,10 @@ class SettingController extends BasicController
     public function updateUserAvatar(AvatarCropFormRequest $request)
     {
         $result = $this->userService->updateUserInfoToDb($request->all());
+
+        // 写入个人动态
+        $status = $this->userService->addMemberTrends();
+        var_dump($status);exit;
         //写入用户动态表
         /********!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!******************/
         // 使用with保存在session, blade中使用session访问

@@ -207,6 +207,7 @@ return [
         App\Konohanaruto\Providers\Common\QiniuStorageServiceProvider::class,
         App\Konohanaruto\Providers\Intranet\MemberGiftTypeServiceProvider::class,
         App\Konohanaruto\Providers\Frontend\UserServiceProvider::class,
+        App\Konohanaruto\Providers\Frontend\MemberTrendsServiceProvider::class,
     ],
 
     /*
