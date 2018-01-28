@@ -16,3 +16,6 @@ array(2) {
 }
 
 hmget得到的和实参数组顺序是一致的
+
+// 添加多个文件
+formData.append('file[]', e.target.files[i])

@@ -12,6 +12,9 @@ Route::group(array('namespace' => 'Frontend'), function () {
         Route::post('storeMemberRegisterAvatar', 'UserController@actionStoreMemberRegisterAvatar');
         Route::post('uploadMemberAvatar', 'UserController@actionUploadMemberAvatar');
         Route::get('activationAccount', 'UserController@actionActivationAccount');
+        Route::group(['prefix' => 'Upload'], function () {
+            Route::post('TrendsAttachedImage', 'MemberRecommendController@uploadTrendsAttachedImage');
+        });
         Route::group(['prefix' => 'Supports'], function () {
             Route::get('activationEmail', 'UserController@actionActivationEmail');
         });

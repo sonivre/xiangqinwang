@@ -19,6 +19,16 @@
     <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/index.css">
     <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/common.css">
     <script src="{{config('custom.staticServer')}}/js/common.js"></script>
+    <style>
+        .publish-trend-modal .photo-group > li .process-bar {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 22px;
+            background-color: #68B229;
+        }
+    </style>
 @endsection
 {{--content--}}
 @section('content')
@@ -830,68 +840,33 @@
         <div class="content">
             <p class="title">大家都在聊：</p>
             <ul class="tag-list clearfix">
-                <li class="js-add-tag">#新人报道#</li>
-                <li class="js-add-tag">#2017渐行渐远#</li>
-                <li class="js-add-tag">#唯美食不可辜负#</li>
-                <li class="js-add-tag">#减肥打卡#</li>
-                <li class="js-add-tag">#冒泡儿#</li>
-                <li class="js-add-tag">#买买买#</li>
-                <li class="js-add-tag">#佛系青年#</li>
-                <li class="js-add-tag">#我等的人，你在哪儿#</li>
+                @foreach($hotTags as $tag)
+                    <li class="js-add-tag">#{{$tag}}#</li>
+                @endforeach
                 <li class="js-add-tag custom-tag">+自定义标签</li>
             </ul>
             <div class="trend-content-container">
                 <p class="js-placeholder placeholder">说出你的心声让大家认识你吧</p>
                 <textarea class="js-trend-content trend-content" style="height: 66px;"></textarea>
                 <p class="word-count"><span class="js-word-count">0</span>/163</p>
-                <ul class="photo-group js-photo-group">
+                <ul class="photo-group js-photo-group" data-test="0">
                     <li class="photo-uploader js-photo-uploader js-upload-drag">
                         <p class="bottom-desc">
                             <i class="icon-add-b"></i><br>
                             <span class="text">点击或者拖入上传</span>
                         </p>
-                        <form class="js-upload-form" action="/upload" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
-                            <input class="btn-file" name="uploadPhoto" accept="image/jpg,image/jpeg,image/png,image/gif,image/bmp" multiple="" type="file">
+                        <form class="js-upload-form" action="{{url('User/Upload/TrendsAttachedImage')}}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+                            <input class="btn-file add-trends-image-btn" multiple name="uploadPhoto" accept="image/jpg,image/jpeg,image/png,image/gif,image/bmp" type="file">
                         </form>
                     </li>
-                    <li class="photo-item js-photo-item" data-url="" data-id="9e4a" data-file-info="">
-                        <a href="javascript:;" class="icon-close-m hover js-remove-photo"></a>
-                        <img src="{{config('custom.staticServer')}}/images/trend_modules/upload_demo.png">
-                        <p class="bottom-line tip-background js-tip-background"></p>
-                        <p class="bottom-line tip js-tip">上传成功</p>
-                    </li>
-                    <li class="photo-item js-photo-item" data-url="" data-id="9e4a" data-file-info="">
-                        <a href="javascript:;" class="icon-close-m hover js-remove-photo"></a>
-                        <img src="{{config('custom.staticServer')}}/images/trend_modules/upload_demo.png">
-                        <p class="bottom-line tip-background js-tip-background"></p>
-                        <p class="bottom-line tip js-tip">上传成功</p>
-                    </li>
-                    <li class="photo-item js-photo-item" data-url="" data-id="9e4a" data-file-info="">
-                        <a href="javascript:;" class="icon-close-m hover js-remove-photo"></a>
-                        <img src="{{config('custom.staticServer')}}/images/trend_modules/upload_demo.png">
-                        <p class="bottom-line tip-background js-tip-background"></p>
-                        <p class="bottom-line tip js-tip">上传成功</p>
-                    </li>
-                    <li class="photo-item js-photo-item" data-url="" data-id="9e4a" data-file-info="">
-                        <a href="javascript:;" class="icon-close-m hover js-remove-photo"></a>
-                        <img src="{{config('custom.staticServer')}}/images/trend_modules/upload_demo.png">
-                        <p class="bottom-line tip-background js-tip-background"></p>
-                        <p class="bottom-line tip js-tip">上传成功</p>
-                    </li>
-                    <li class="photo-item js-photo-item" data-url="" data-id="9e4a" data-file-info="">
-                        <a href="javascript:;" class="icon-close-m hover js-remove-photo"></a>
-                        <img src="{{config('custom.staticServer')}}/images/trend_modules/upload_demo.png">
-                        <p class="bottom-line tip-background js-tip-background"></p>
-                        <p class="bottom-line tip js-tip">上传成功</p>
-                    </li>
-                    <li class="photo-item js-photo-item" data-url="" data-id="9e4a" data-file-info="">
-                        <a href="javascript:;" class="icon-close-m hover js-remove-photo"></a>
-                        <img src="{{config('custom.staticServer')}}/images/trend_modules/upload_demo.png">
-                        <p class="bottom-line tip-background js-tip-background"></p>
-                        <p class="bottom-line tip js-tip">上传成功</p>
-                    </li>
                 </ul>
-                <div class="photo-tip"><p class="photo-number">还可上传&nbsp;<span class="js-photo-number">0</span>&nbsp;张图片（大小支持10K-8M）</p><p class="js-photo-errors hide photo-errors text-icon-tips-warning"><em class="icon-warning-s"></em>最多只能上传9张照片</p></div>
+                <div class="photo-tip">
+                    <p class="photo-number">还可上传&nbsp;<span class="js-photo-number">0</span>&nbsp;张图片（大小支持10K-8M）</p>
+                    <p class="js-photo-errors hide photo-errors text-icon-tips-warning">
+                        <em class="icon-warning-s"></em>
+                        <span class="js-photo-upload-errors-text">最多只能上传9张照片</span>
+                    </p>
+                </div>
             </div>
         </div>
         <div class="foot-row">
@@ -958,4 +933,116 @@
     </div>
 </div>
 <!--文字传情模态框结束-->
+@endsection
+
+@section('additional-js')
+    <script>
+        $(function () {
+            var uploadedLIDOM = '';
+            var attachedFileNumber = 0;
+            var attachedConfig = JSON.parse('{!! json_encode($attachedSpecification) !!}');
+            var errorMsg = '最多上传9张照片';
+            var trendsErrorMsgBox = $('.trend-content-container .text-icon-tips-warning');
+            var textBox = trendsErrorMsgBox.children('js-photo-upload-errors-text');
+
+            $('.add-trends-image-btn').on('change', function (e) {
+                var fileNumber = e.target.files.length;
+                var residueNumber = 0;
+                var uploadFiles= [];
+                var smKey;
+                var smDataUrl;
+                var bgKey;
+                var bgDataUrl;
+                
+                if (fileNumber < 0) {
+                    return false;
+                }
+
+                //console.log(e.target.files[0]);
+                if (fileNumber + attachedFileNumber > attachedConfig.file_number_limit) {
+                    residueNumber = attachedConfig.file_number_limit - attachedFileNumber;
+                    // 显示错误并隐藏添加附件按钮
+                } else {
+                    residueNumber = fileNumber;
+                }
+
+                // 为了显示进度条，单张上传/次
+                for (var i = 0; i < residueNumber; i++) {
+                    var formData = new FormData();
+                    formData.append('_token', '{{csrf_token()}}');
+                    // 如果是一次上传多个文件，必须加中括号，单个的话可以省略
+                    formData.append('trendsFile[]', e.target.files[i]);
+
+                    $.ajax({
+                        xhr: function() {
+                            var xhr = new window.XMLHttpRequest();
+                            var progressRecords = [];
+                            xhr.upload.addEventListener("progress", function(evt) {
+                                if (evt.lengthComputable) {
+                                    var percentComplete = evt.loaded / evt.total;
+                                    //Do something with upload progress here
+                                    var testData = $('.js-photo-group').data('test');
+
+                                    if (! testData) {
+                                        $('.js-photo-group').data('test', percentComplete);
+                                    } else {
+                                        $('.js-photo-group').data('test', testData + '-' + percentComplete);
+                                    }
+
+                                }
+                            }, false);
+
+                            return xhr;
+                        },
+                        url: '{{url("User/Upload/TrendsAttachedImage")}}',
+                        type: "POST",
+                        headers: {
+                            accept : "application/json; charset=utf-8"
+                        },
+                        // 参数很重要
+                        contentType: false,
+                        cache: false,
+                        // 参数很重要, 如果不设置成false, 他会将你的formData数据转变成一个string
+                        processData: false,
+                        data: formData,
+                        beforeSend: function () {
+
+                        },
+                        success: function (data, textStatus, xhr) {
+                            //console.log($('.js-photo-group').data('test'));
+                            var liNumber = $('.trend-content-container .js-photo-group li').length;
+                            for (var i = 0 in data) {
+                                if (/^sm\w+/.test(i)) {
+                                    smKey = i;
+                                    smDataUrl = data[i].encoded;
+                                } else if (/^bg\w+/.test(i)) {
+                                    bgKey = i;
+                                    bgDataUrl = data[i].encoded;
+                                }
+                            }
+                            //console.log(smKey+smDataUrl+bgKey+bgDataUrl);
+                            $('.trend-content-container .js-upload-drag').after('<li class="photo-item js-photo-item"> <a href="javascript:;" class="icon-close-m js-remove-photo"></a> <img src="'+smDataUrl+'"> <p class="bottom-line tip-background js-tip-background"></p> <p class="upload-success bottom-line tip js-tip">上传成功</p><p class="process-bar bottom-line tip"></p> </li>');
+                            var progressRecord = $('.js-photo-group').data('test');
+                            var progressRecord = progressRecord.split('-');
+                            var progressRecord = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.9, 1];
+                            //console.log($('.js-upload-drag').next('li').find('.process-bar').attr('class'));
+                            for (var j = 0 in progressRecord) {
+                                setTimeout(function () {
+                                    $('.js-upload-drag').next('li').find('.process-bar').css('width', parseInt(progressRecord[j] * 100) + '%');
+                                }, 1000);
+                            }
+
+                            //console.log(progressRecord);
+                        },
+                        error: function (request, status, error) {
+
+                        }
+                    });
+
+                    ++attachedFileNumber;
+                }
+
+            });
+        });
+    </script>
 @endsection
