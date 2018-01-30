@@ -948,7 +948,6 @@
             $('.add-trends-image-btn').on('change', function (e) {
                 var fileNumber = e.target.files.length;
                 var residueNumber = 0;
-                var uploadFiles= [];
                 var smKey;
                 var smDataUrl;
                 var bgKey;
@@ -958,7 +957,6 @@
                     return false;
                 }
 
-                //console.log(e.target.files[0]);
                 if (fileNumber + attachedFileNumber > attachedConfig.file_number_limit) {
                     residueNumber = attachedConfig.file_number_limit - attachedFileNumber;
                     // 显示错误并隐藏添加附件按钮
@@ -967,28 +965,27 @@
                 }
 
                 // 为了显示进度条，单张上传/次
-                for (var i = 0; i < residueNumber; i++) {
+                for (let i = 0; i < residueNumber; i++) {
                     var formData = new FormData();
                     formData.append('_token', '{{csrf_token()}}');
                     // 如果是一次上传多个文件，必须加中括号，单个的话可以省略
                     formData.append('trendsFile[]', e.target.files[i]);
+                    var progressList = [];
 
                     $.ajax({
                         xhr: function() {
                             var xhr = new window.XMLHttpRequest();
-                            var progressRecords = [];
+
                             xhr.upload.addEventListener("progress", function(evt) {
                                 if (evt.lengthComputable) {
                                     var percentComplete = evt.loaded / evt.total;
-                                    //Do something with upload progress here
-                                    var testData = $('.js-photo-group').data('test');
 
-                                    if (! testData) {
-                                        $('.js-photo-group').data('test', percentComplete);
-                                    } else {
-                                        $('.js-photo-group').data('test', testData + '-' + percentComplete);
+                                    if (! progressList[i]) {
+                                        progressList[i] = [];
+
                                     }
 
+                                    progressList[i].push(percentComplete);
                                 }
                             }, false);
 
@@ -1008,31 +1005,30 @@
                         beforeSend: function () {
 
                         },
-                        success: function (data, textStatus, xhr) {
-                            //console.log($('.js-photo-group').data('test'));
-                            var liNumber = $('.trend-content-container .js-photo-group li').length;
-                            for (var i = 0 in data) {
-                                if (/^sm\w+/.test(i)) {
-                                    smKey = i;
-                                    smDataUrl = data[i].encoded;
-                                } else if (/^bg\w+/.test(i)) {
-                                    bgKey = i;
-                                    bgDataUrl = data[i].encoded;
+                        success: function (data) {
+                            var loopI = 0;
+
+                            for (var j = 0 in data) {
+                                if (/^sm\w+/.test(j)) {
+                                    smKey = j;
+                                    smDataUrl = data[j].encoded;
+                                } else if (/^bg\w+/.test(j)) {
+                                    bgKey = j;
+                                    bgDataUrl = data[j].encoded;
                                 }
                             }
-                            //console.log(smKey+smDataUrl+bgKey+bgDataUrl);
-                            $('.trend-content-container .js-upload-drag').after('<li class="photo-item js-photo-item"> <a href="javascript:;" class="icon-close-m js-remove-photo"></a> <img src="'+smDataUrl+'"> <p class="bottom-line tip-background js-tip-background"></p> <p class="upload-success bottom-line tip js-tip">上传成功</p><p class="process-bar bottom-line tip"></p> </li>');
-                            var progressRecord = $('.js-photo-group').data('test');
-                            var progressRecord = progressRecord.split('-');
-                            var progressRecord = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.9, 1];
-                            //console.log($('.js-upload-drag').next('li').find('.process-bar').attr('class'));
-                            for (var j = 0 in progressRecord) {
-                                setTimeout(function () {
-                                    $('.js-upload-drag').next('li').find('.process-bar').css('width', parseInt(progressRecord[j] * 100) + '%');
-                                }, 1000);
-                            }
 
-                            //console.log(progressRecord);
+                            $('.trend-content-container .js-upload-drag').after('<li class="photo-item js-photo-item"> <a href="javascript:;" class="icon-close-m js-remove-photo"></a> <img src="'+smDataUrl+'"> <p class="bottom-line tip-background js-tip-background"></p> <p class="upload-success bottom-line tip js-tip"></p><p class="process-bar bottom-line tip"></p> </li>');
+                            var timer = setInterval(function () {
+                                if (loopI < progressList[i].length) {
+                                    $('.js-upload-drag').next('li').find('.process-bar').css('width', parseInt(progressList[i][loopI] * 100) + '%');
+                                    $('.js-upload-drag').next('li').find('.process-bar').html(parseInt(progressList[i][loopI] * 100) + '%');
+                                    //$('.js-upload-drag').next('li').find('.upload-success').html('上传成功');
+                                    ++loopI;
+                                } else {
+                                    clearInterval(timer);
+                                }
+                            }, 1000);
                         },
                         error: function (request, status, error) {
 
