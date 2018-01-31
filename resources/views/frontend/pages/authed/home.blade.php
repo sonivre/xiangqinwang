@@ -1019,16 +1019,21 @@
                             }
 
                             $('.trend-content-container .js-upload-drag').after('<li class="photo-item js-photo-item"> <a href="javascript:;" class="icon-close-m js-remove-photo"></a> <img src="'+smDataUrl+'"> <p class="bottom-line tip-background js-tip-background"></p> <p class="upload-success bottom-line tip js-tip"></p><p class="process-bar bottom-line tip"></p> </li>');
+                            var currentLiObject = $('.js-upload-drag').next('li');
                             var timer = setInterval(function () {
                                 if (loopI < progressList[i].length) {
-                                    $('.js-upload-drag').next('li').find('.process-bar').css('width', parseInt(progressList[i][loopI] * 100) + '%');
-                                    $('.js-upload-drag').next('li').find('.process-bar').html(parseInt(progressList[i][loopI] * 100) + '%');
-                                    //$('.js-upload-drag').next('li').find('.upload-success').html('上传成功');
+                                    var progressPercent = parseInt(progressList[i][loopI] * 100) + '%';
+                                    currentLiObject.find('.process-bar').css('width', progressPercent);
+                                    currentLiObject.find('.process-bar').html(progressPercent);
                                     ++loopI;
                                 } else {
                                     clearInterval(timer);
+                                    currentLiObject.find('.process-bar').remove();
+                                    currentLiObject.find('.upload-success').html('上传成功');
                                 }
                             }, 1000);
+
+
                         },
                         error: function (request, status, error) {
 
