@@ -849,7 +849,7 @@
                 <p class="js-placeholder placeholder">说出你的心声让大家认识你吧</p>
                 <textarea class="js-trend-content trend-content" style="height: 66px;"></textarea>
                 <p class="word-count"><span class="js-word-count">0</span>/163</p>
-                <ul class="photo-group js-photo-group" data-test="0">
+                <ul class="photo-group js-photo-group">
                     <li class="photo-uploader js-photo-uploader js-upload-drag">
                         <p class="bottom-desc">
                             <i class="icon-add-b"></i><br>
@@ -861,10 +861,10 @@
                     </li>
                 </ul>
                 <div class="photo-tip">
-                    <p class="photo-number">还可上传&nbsp;<span class="js-photo-number">0</span>&nbsp;张图片（大小支持10K-8M）</p>
+                    <p class="photo-number">还可上传&nbsp;<span class="js-photo-number">{{$attachedSpecification['file_number_limit']}}</span>&nbsp;张图片（大小支持10K-8M）</p>
                     <p class="js-photo-errors hide photo-errors text-icon-tips-warning">
                         <em class="icon-warning-s"></em>
-                        <span class="js-photo-upload-errors-text">最多只能上传9张照片</span>
+                        <span class="js-photo-upload-errors-text">最多只能上传<i></i>张照片</span>
                     </p>
                 </div>
             </div>
@@ -938,12 +938,11 @@
 @section('additional-js')
     <script>
         $(function () {
-            var uploadedLIDOM = '';
             var attachedFileNumber = 0;
             var attachedConfig = JSON.parse('{!! json_encode($attachedSpecification) !!}');
-            var errorMsg = '最多上传9张照片';
             var trendsErrorMsgBox = $('.trend-content-container .text-icon-tips-warning');
-            var textBox = trendsErrorMsgBox.children('js-photo-upload-errors-text');
+            var textBox = trendsErrorMsgBox.children('.js-photo-upload-errors-text');
+
 
             $('.add-trends-image-btn').on('change', function (e) {
                 var fileNumber = e.target.files.length;
@@ -953,13 +952,23 @@
                 var bgKey;
                 var bgDataUrl;
                 
-                if (fileNumber < 0) {
+                if (fileNumber < 0 || attachedFileNumber == attachedConfig.file_number_limit) {
+                    // 显示错误信息
+//
+
                     return false;
                 }
 
-                if (fileNumber + attachedFileNumber > attachedConfig.file_number_limit) {
+                if (fileNumber + attachedFileNumber >= attachedConfig.file_number_limit) {
                     residueNumber = attachedConfig.file_number_limit - attachedFileNumber;
-                    // 显示错误并隐藏添加附件按钮
+
+                    if (fileNumber + attachedFileNumber > attachedConfig.file_number_limit) {
+                        trendsErrorMsgBox.removeClass('hide');
+                        textBox.children('i').html(attachedConfig.file_number_limit);
+                    }
+
+                    // 隐藏添加图片的toolbar
+                    $('.js-upload-drag').addClass('hide');
                 } else {
                     residueNumber = fileNumber;
                 }
@@ -1032,6 +1041,9 @@
                                     currentLiObject.find('.upload-success').html('上传成功');
                                 }
                             }, 1000);
+
+                            // 判断还可以添加的图片张数
+                            $('.js-photo-number').html(attachedConfig.file_number_limit - attachedFileNumber);
 
 
                         },
