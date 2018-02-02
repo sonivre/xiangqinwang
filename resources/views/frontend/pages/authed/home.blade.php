@@ -864,7 +864,7 @@
                     <p class="photo-number">还可上传&nbsp;<span class="js-photo-number">{{$attachedSpecification['file_number_limit']}}</span>&nbsp;张图片（大小支持10K-8M）</p>
                     <p class="js-photo-errors hide photo-errors text-icon-tips-warning">
                         <em class="icon-warning-s"></em>
-                        <span class="js-photo-upload-errors-text">最多只能上传<i></i>张照片</span>
+                        <span class="js-photo-upload-errors-text"></span>
                     </p>
                 </div>
             </div>
@@ -942,6 +942,7 @@
             var attachedConfig = JSON.parse('{!! json_encode($attachedSpecification) !!}');
             var trendsErrorMsgBox = $('.trend-content-container .text-icon-tips-warning');
             var textBox = trendsErrorMsgBox.children('.js-photo-upload-errors-text');
+            var uploadFailedNumber = 0;
 
 
             $('.add-trends-image-btn').on('change', function (e) {
@@ -949,13 +950,14 @@
                 var residueNumber = 0;
                 var smKey;
                 var smDataUrl;
-                var bgKey;
-                var bgDataUrl;
+                var lgKey;
+                var lgDataUrl;
+
+                // 重置上传错误张数
+                uploadFailedNumber = 0;
+
                 
                 if (fileNumber < 0 || attachedFileNumber == attachedConfig.file_number_limit) {
-                    // 显示错误信息
-//
-
                     return false;
                 }
 
@@ -964,13 +966,14 @@
 
                     if (fileNumber + attachedFileNumber > attachedConfig.file_number_limit) {
                         trendsErrorMsgBox.removeClass('hide');
-                        textBox.children('i').html(attachedConfig.file_number_limit);
+                        textBox.html('最多只能上传' + attachedConfig.file_number_limit + '张照片');
                     }
 
                     // 隐藏添加图片的toolbar
                     $('.js-upload-drag').addClass('hide');
                 } else {
                     residueNumber = fileNumber;
+                    trendsErrorMsgBox.addClass('hide');
                 }
 
                 // 为了显示进度条，单张上传/次
@@ -1021,9 +1024,9 @@
                                 if (/^sm\w+/.test(j)) {
                                     smKey = j;
                                     smDataUrl = data[j].encoded;
-                                } else if (/^bg\w+/.test(j)) {
-                                    bgKey = j;
-                                    bgDataUrl = data[j].encoded;
+                                } else if (/^lg\w+/.test(j)) {
+                                    lgKey = j;
+                                    lgDataUrl = data[j].encoded;
                                 }
                             }
 
@@ -1037,7 +1040,7 @@
                                     ++loopI;
                                 } else {
                                     clearInterval(timer);
-                                    currentLiObject.find('.process-bar').remove();
+                                    currentLiObject.find('.process-bar').addClass('hide');
                                     currentLiObject.find('.upload-success').html('上传成功');
                                 }
                             }, 1000);
@@ -1045,15 +1048,39 @@
                             // 判断还可以添加的图片张数
                             $('.js-photo-number').html(attachedConfig.file_number_limit - attachedFileNumber);
 
+                            // 显示错误提示
+                            if (uploadFailedNumber > 0) {
+                                trendsErrorMsgBox.removeClass('hide');
+                                textBox.html(uploadFailedNumber + '张照片大小或格式不合规范');
+                            }
+
+                            // 追加image的key、value值，记录到dom
+                            currentLiObject.find('.js-remove-photo').attr('data-img-info', smKey + '|' + lgKey);
 
                         },
-                        error: function (request, status, error) {
+                        error: function (request) {
+                            ++uploadFailedNumber;
+                            --attachedFileNumber;
 
+                            if (attachedFileNumber < attachedConfig.file_number_limit) {
+                                $('.js-upload-drag').removeClass('hide');
+                            }
+
+                            // 当没有一张图片上传成功时，也就是全部失败时
+                            if (residueNumber == uploadFailedNumber) {
+                                trendsErrorMsgBox.removeClass('hide');
+                                textBox.html(uploadFailedNumber + '张照片大小或格式不合规范');
+                            }
                         }
                     });
 
                     ++attachedFileNumber;
                 }
+
+            });
+
+            // 删除上传完成的头像
+            $(document).on('click', '.trend-content-container .js-remove-photo', function () {
 
             });
         });
