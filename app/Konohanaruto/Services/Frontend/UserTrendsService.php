@@ -44,7 +44,7 @@ class UserTrendsService extends BaseService
         // unit /kb
         $specifications['single_max_size'] = 8 * 1024; // 8M
         $specifications['single_min_size'] = 10; // 10kb
-        $specifications['file_number_limit'] = 3; // 10kb
+        $specifications['file_number_limit'] = 3; // 允许的最大图片上传张数
 
         return $specifications;
     }
