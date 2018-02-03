@@ -1054,8 +1054,8 @@
                                 textBox.html(uploadFailedNumber + '张照片大小或格式不合规范');
                             }
 
-                            // 追加image的key、value值，记录到dom
-                            currentLiObject.find('.js-remove-photo').attr('data-img-info', smKey + '|' + lgKey);
+                            // 追加image的key、value值，记录到dom，这里必须写data，而不是attr,而且不是字符串，直接参数就是对象
+                            currentLiObject.find('.js-remove-photo').data('img-info', {smKey: smKey, lgKey: lgKey});
 
                         },
                         error: function (request) {
@@ -1079,9 +1079,35 @@
 
             });
 
-            // 删除上传完成的头像
+            // 删除上传完成的缓存图片
             $(document).on('click', '.trend-content-container .js-remove-photo', function () {
+                var imageInfo = $(this).data('img-info');
+                $.ajax({
+                    type: "POST",
+                    url: "{{url("User/Remove/TrendsAttachedFile")}}",
+                    data: {"tmpImageFile[0]": imageInfo['smKey'], "tmpImageFile[1]": imageInfo['lgKey'], "_token": "{{csrf_token()}}"},
+                    headers: {
+                        accept : "application/json; charset=utf-8"
+                    },
+                    context: this,
+                    success: function (data) {
+                        // 返回的是删除成功的条数
+                        if (data > 0) {
+                            $(this).parent().remove();
+                            --attachedFileNumber;
 
+                            if (attachedFileNumber < attachedConfig.file_number_limit) {
+                                $('.js-upload-drag').removeClass('hide');
+                                trendsErrorMsgBox.addClass('hide');
+                            }
+
+                            // 判断还可以添加的图片张数
+                            $('.js-photo-number').html(attachedConfig.file_number_limit - attachedFileNumber);
+                        }
+                    },
+                    error: function (request) {
+                    }
+                });
             });
         });
     </script>

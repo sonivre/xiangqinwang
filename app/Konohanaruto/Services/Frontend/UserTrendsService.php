@@ -17,6 +17,11 @@ use Redis;
 
 class UserTrendsService extends BaseService
 {
+    /**
+     * 返回热门标签
+     *
+     * @return array
+     */
     public function getHotTags()
     {
         return [
@@ -28,6 +33,11 @@ class UserTrendsService extends BaseService
         ];
     }
 
+    /**
+     * 发布动态时的图片张数限制，以及单张文件大小配置等
+     *
+     * @return array
+     */
     public function attachedSpecification()
     {
         $specifications = [];
@@ -39,6 +49,12 @@ class UserTrendsService extends BaseService
         return $specifications;
     }
 
+    /**
+     * 存储发布动态时的临时文件存储到redis
+     *
+     * @param $tmpFilePath
+     * @return mixed
+     */
     public function storeTempAttachedFileToCache($tmpFilePath)
     {
         $cacheKey = 'frontend:user:base64uploadtempfile';
@@ -52,5 +68,18 @@ class UserTrendsService extends BaseService
         Redis::connection('frontend')->hmset($cacheKey, $data);
 
         return $data;
+    }
+
+    /**
+     * 删除trends发布时的缓存图片
+     *
+     * @param array $fields
+     * @return integer 返回删除成功的记录数
+     */
+    public function removeTrendsTempFileFrom($fields = [])
+    {
+        $cacheKey = 'frontend:user:base64uploadtempfile';
+
+        return Redis::connection('frontend')->hdel($cacheKey, $fields);
     }
 }

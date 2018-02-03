@@ -15,6 +15,9 @@ Route::group(array('namespace' => 'Frontend'), function () {
         Route::group(['prefix' => 'Upload'], function () {
             Route::post('TrendsAttachedImage', 'MemberRecommendController@uploadTrendsAttachedImage');
         });
+        Route::group(['prefix' => 'Remove'], function () {
+            Route::post('TrendsAttachedFile', 'MemberRecommendController@removeTrendsAttachedImage');
+        });
         Route::group(['prefix' => 'Supports'], function () {
             Route::get('activationEmail', 'UserController@actionActivationEmail');
         });
