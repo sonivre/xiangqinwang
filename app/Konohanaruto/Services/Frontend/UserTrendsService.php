@@ -59,8 +59,8 @@ class UserTrendsService extends BaseService
     {
         $cacheKey = 'frontend:user:base64uploadtempfile';
 
-        // format: 时间戳加上用户id
-        $keyPrefix = uniqid() . SessionFront::getUserId();
+        // 格式，唯一字符串+userid+时间戳, 同时需要写一个脚本去过期它
+        $keyPrefix = uniqid() . SessionFront::getUserId() . '-' . time();
         $data['lg' . $keyPrefix] = Image::make($tmpFilePath)->encode('data-url');
         $data['sm' . $keyPrefix] = Image::make($tmpFilePath)->fit(127)->encode('data-url');
 
