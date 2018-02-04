@@ -18,4 +18,9 @@ array(2) {
 hmget得到的和实参数组顺序是一致的
 
 // 添加多个文件
-formData.append('file[]', e.target.files[i]) 
+formData.append('file[]', e.target.files[i])
+
+
+TODO:
+
+# 发布动态的临时图片存储是存到redis的hash中，需创建一个定时删除过期hash中field的脚本

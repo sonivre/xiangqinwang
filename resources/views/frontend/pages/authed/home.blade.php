@@ -847,7 +847,7 @@
             </ul>
             <div class="trend-content-container">
                 <p class="js-placeholder placeholder">说出你的心声让大家认识你吧</p>
-                <textarea class="js-trend-content trend-content" style="height: 66px;"></textarea>
+                <textarea class="js-trend-content trend-content" style="height: 80px;"></textarea>
                 <p class="word-count"><span class="js-word-count">0</span>/163</p>
                 <ul class="photo-group js-photo-group">
                     <li class="photo-uploader js-photo-uploader js-upload-drag">
@@ -870,7 +870,7 @@
             </div>
         </div>
         <div class="foot-row">
-            <a class="general-btn red-button publish-btn" href="javascript:;">发布</a>
+            <a class="general-btn red-button publish-btn disabled" href="javascript:;">发布</a>
         </div>
     </div>
 </div>
@@ -943,6 +943,7 @@
             var trendsErrorMsgBox = $('.trend-content-container .text-icon-tips-warning');
             var textBox = trendsErrorMsgBox.children('.js-photo-upload-errors-text');
             var uploadFailedNumber = 0;
+            var trendsPublishBtn = $('.publish-trend-modal .publish-btn');
 
 
             $('.add-trends-image-btn').on('change', function (e) {
@@ -994,7 +995,6 @@
 
                                     if (! progressList[i]) {
                                         progressList[i] = [];
-
                                     }
 
                                     progressList[i].push(percentComplete);
@@ -1057,6 +1057,8 @@
                             // 追加image的key、value值，记录到dom，这里必须写data，而不是attr,而且不是字符串，直接参数就是对象
                             currentLiObject.find('.js-remove-photo').data('img-info', {smKey: smKey, lgKey: lgKey});
 
+                            // 取消发布状态的禁用状态
+                            trendsPublishBtn.removeClass('disabled');
                         },
                         error: function (request) {
                             ++uploadFailedNumber;
@@ -1103,11 +1105,51 @@
 
                             // 判断还可以添加的图片张数
                             $('.js-photo-number').html(attachedConfig.file_number_limit - attachedFileNumber);
+
+                            if (attachedFileNumber == 0) {
+                                // 取消发布状态的禁用状态
+                                trendsPublishBtn.addClass('disabled');
+                            }
                         }
                     },
                     error: function (request) {
                     }
                 });
+            });
+
+            // ajax发布个人动态
+            trendsPublishBtn.on('click', function (e) {
+                if ($(this).hasClass('disabled')) {
+                    e.preventDefault();
+                }
+
+                var imageKeys = {};
+                var content = $('.publish-trend-modal .js-trend-content').val();
+                var smKey;
+                var lgKey;
+                // 得到所有需要保存的图片的缓存的key名
+                $('.publish-trend-modal .js-remove-photo').each(function (i, n) {
+                    smKey = $(n).data('img-info')['smKey'];
+                    lgKey = $(n).data('img-info')['lgKey'];
+                    imageKeys[i] = {'smKey': smKey, 'lgKey': lgKey};
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{url("User/publishTrends")}}",
+                    data: {"imageKeys": imageKeys, "content": content, "_token": "{{csrf_token()}}"},
+                    headers: {
+                        accept : "application/json; charset=utf-8"
+                    },
+                    context: this,
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (request) {
+                    }
+                });
+
+                console.log(content);
             });
         });
     </script>

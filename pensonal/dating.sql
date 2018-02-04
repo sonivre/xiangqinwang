@@ -224,8 +224,9 @@ create table xqw_member_album(
 )engine=innodb default charset=utf8;
 
 create table xqw_member_picture(
-  `pic_id` mediumint unsigned not null auto_increment,
+  `pic_id` int unsigned not null auto_increment,
   `album_id` int unsigned not null,
+  `parent_id` int unsigned not null default 0 comment '父级图片，例如缩略图',
   `user_id` int unsigned not null,
   `username` varchar(50) not null,
   `action_ip` varchar(20) comment '操作ip',
@@ -235,6 +236,8 @@ create table xqw_member_picture(
   `file_size` int unsigned,
   `is_remote` tinyint comment '是否是远程图片',
   `file_path` varchar(255) comment '图片路径',
+  `width` decimal(10, 5) not null default 0 comment '图片高度',
+  `height` decimal(10, 5) not null default 0 comment '图片宽度',
   `status` tinyint comment '审核状态',
   `is_available` enum('Y','N') default 'Y' comment '是否可用',
   `add_time` datetime default CURRENT_TIMESTAMP,

@@ -12,12 +12,6 @@ Route::group(array('namespace' => 'Frontend'), function () {
         Route::post('storeMemberRegisterAvatar', 'UserController@actionStoreMemberRegisterAvatar');
         Route::post('uploadMemberAvatar', 'UserController@actionUploadMemberAvatar');
         Route::get('activationAccount', 'UserController@actionActivationAccount');
-        Route::group(['prefix' => 'Upload'], function () {
-            Route::post('TrendsAttachedImage', 'MemberRecommendController@uploadTrendsAttachedImage');
-        });
-        Route::group(['prefix' => 'Remove'], function () {
-            Route::post('TrendsAttachedFile', 'MemberRecommendController@removeTrendsAttachedImage');
-        });
         Route::group(['prefix' => 'Supports'], function () {
             Route::get('activationEmail', 'UserController@actionActivationEmail');
         });
@@ -27,7 +21,15 @@ Route::group(array('namespace' => 'Frontend'), function () {
     Route::group(['middleware' => 'frontend.member_login_check'], function () {
         Route::get('home', 'MemberRecommendController@actionHome');
         Route::get('myAccount', 'MemberController@myAccount');
-        Route::get('myAccount', 'MemberController@myAccount');
+        Route::group(array('prefix' => 'User'), function () {
+            Route::group(['prefix' => 'Upload'], function () {
+                Route::post('TrendsAttachedImage', 'MemberRecommendController@uploadTrendsAttachedImage');
+            });
+            Route::group(['prefix' => 'Remove'], function () {
+                Route::post('TrendsAttachedFile', 'MemberRecommendController@removeTrendsAttachedImage');
+            });
+            Route::post('publishTrends', 'MemberRecommendController@publishTrends');
+        });
         Route::group(array('prefix' => 'setting'), function () {
             Route::get('face', 'SettingController@avatarEdit');
             Route::post('face/upload', 'SettingController@uploadAvatar');

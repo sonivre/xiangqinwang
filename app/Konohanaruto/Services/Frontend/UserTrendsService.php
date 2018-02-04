@@ -11,12 +11,23 @@
 
 namespace App\Konohanaruto\Services\Frontend;
 
+use App\Konohanaruto\Repositories\Frontend\MemberAlbum\MemberAlbumRepositoryInterface;
+use App\Konohanaruto\Repositories\Frontend\MemberPicture\MemberPictureRepositoryInterface;
 use SessionFront;
 use Intervention\Image\Facades\Image;
 use Redis;
 
 class UserTrendsService extends BaseService
 {
+    private $memberAlbum;
+    private $memberPic;
+
+    public function __construct(MemberAlbumRepositoryInterface $memberAlbum, MemberPictureRepositoryInterface $memberPic)
+    {
+        $this->memberAlbum = $memberAlbum;
+        $this->memberPic = $memberPic;
+    }
+
     /**
      * 返回热门标签
      *
@@ -81,5 +92,17 @@ class UserTrendsService extends BaseService
         $cacheKey = 'frontend:user:base64uploadtempfile';
 
         return Redis::connection('frontend')->hdel($cacheKey, $fields);
+    }
+
+    public function publishTrends($imageKeys, $content)
+    {
+        $userId = SessionFront::getUserId();
+        $albumInfo = $this->memberAlbum->checkTrendsAlbumById($userId);
+        // 为用户创建默认相册
+        $trendsAlbumId = empty($albumInfo) ? $this->memberAlbum->createTrendsAlbum() : $albumInfo['album_id'];
+
+        $picIds = $this->memberPic->storePublicTrendsImage($imageKeys, $trendsAlbumId);
+
+        return $picIds;
     }
 }

@@ -56,4 +56,15 @@ class MemberRecommendController extends BasicController
 
         return $this->userTrends->removeTrendsTempFileFrom($tempFiles);
     }
+
+    public function publishTrends(Request $request)
+    {
+        $imageKeys = $request->get('imageKeys');
+        $content = $request->get('content', '');
+
+        if (! empty($imageKeys)) {
+            // 插入到用户图片表
+            return $this->userTrends->publishTrends($imageKeys, $content);
+        }
+    }
 }

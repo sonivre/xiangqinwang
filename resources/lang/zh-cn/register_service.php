@@ -19,6 +19,7 @@ return [
     'register_mobile_verify_code_missed' => '短信验证码错误',
 
     'avatar_album' => '头像相册',
+    'trends_album' => '个人动态相册',
     'avatar_album_create_failed' => '默认头像相册创建失败',
     'register_activation_email_subject' => '帐号激活',
 ];
