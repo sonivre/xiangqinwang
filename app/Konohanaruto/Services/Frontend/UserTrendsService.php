@@ -105,4 +105,9 @@ class UserTrendsService extends BaseService
 
         return $picIds;
     }
+
+    public function getTrendsTempFileUploadDir()
+    {
+        return 'uploads/frontend/trends/' . SessionFront::getUserId() . '/' . date('Y-m-d');
+    }
 }
