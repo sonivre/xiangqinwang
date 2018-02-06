@@ -24,3 +24,10 @@ formData.append('file[]', e.target.files[i])
 TODO:
 
 # 发布动态的临时图片存储是存到redis的hash中，需创建一个定时删除过期hash中field的脚本
+
+
+Found Bugs:
+
+# 更新会员头像后，在home页面，redis在30秒内不能读取缓存图片
+
+# 从base64code字符串读取图片mime类型在部分情况下返回意外值
