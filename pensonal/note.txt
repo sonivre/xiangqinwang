@@ -29,5 +29,3 @@ TODO:
 Found Bugs:
 
 # 更新会员头像后，在home页面，redis在30秒内不能读取缓存图片
-
-# 从base64code字符串读取图片mime类型在部分情况下返回意外值
