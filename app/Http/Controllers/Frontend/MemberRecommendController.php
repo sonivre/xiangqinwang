@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use App\Konohanaruto\Services\Frontend\UserService;
 use SessionFront;
 use App\Http\Requests\Frontend\RemoveTrendsAttachedFilesFromRequest;
+use App\Http\Requests\Frontend\PublishTrendsFormRequest;
 
 class MemberRecommendController extends BasicController
 {
@@ -57,7 +58,7 @@ class MemberRecommendController extends BasicController
         return $this->userTrends->removeTrendsTempFileFrom($tempFiles);
     }
 
-    public function publishTrends(Request $request)
+    public function publishTrends(PublishTrendsFormRequest $request)
     {
         $imageKeys = $request->get('imageKeys');
         $content = $request->get('content', '');
