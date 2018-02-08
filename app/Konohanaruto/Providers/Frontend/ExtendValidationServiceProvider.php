@@ -14,6 +14,7 @@ namespace App\Konohanaruto\Providers\Frontend;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Log;
 
 class ExtendValidationServiceProvider extends ServiceProvider
 {
@@ -52,6 +53,23 @@ class ExtendValidationServiceProvider extends ServiceProvider
             }
 
             return true;
+        });
+
+        /** 关于参数的说明
+         *  根据源码：
+         *  vendor/laravel/framework/src/Illuminate/Validation/Validator.php 第 352行得出，有四个参数
+         *  例如： str_length:1,10 参数结果 string(10) ["1","10"]
+         *  参数可以通过$paramaters[下标]进行访问
+         *  $this->$method($attribute, $value, $parameters, $this)
+         */
+        validator::extend('str_length', function ($attribute, $value, $paramaters, $validator) {
+            // 计算非中文字符长度
+            $asciiLength = strlen(preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $value));
+            // 中文字符长度，改为中文占两个字符，php默认是3
+            $unAsciiLength = (strlen($value) - $asciiLength) / 3 * 2;
+            $length = $asciiLength + $unAsciiLength;
+
+            return $length >= $paramaters[0] && $length <= $paramaters[1] ? true : false;
         });
     }
 }
