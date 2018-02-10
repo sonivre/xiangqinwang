@@ -60,12 +60,10 @@ class MemberRecommendController extends BasicController
 
     public function publishTrends(PublishTrendsFormRequest $request)
     {
-        $imageKeys = $request->get('imageKeys');
+        $imageKeys = $request->get('imageKeys', '');
         $content = $request->get('content', '');
+        $rs = $this->userTrends->publishTrends($imageKeys, $content);
 
-        if (! empty($imageKeys)) {
-            // 插入到用户图片表
-            return $this->userTrends->publishTrends($imageKeys, $content);
-        }
+        return ! $rs ? ['status' => false] : ['status' => true];
     }
 }

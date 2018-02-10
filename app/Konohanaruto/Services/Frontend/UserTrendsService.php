@@ -13,19 +13,28 @@ namespace App\Konohanaruto\Services\Frontend;
 
 use App\Konohanaruto\Repositories\Frontend\MemberAlbum\MemberAlbumRepositoryInterface;
 use App\Konohanaruto\Repositories\Frontend\MemberPicture\MemberPictureRepositoryInterface;
+use App\Konohanaruto\Repositories\Frontend\MemberTrends\MemberTrendsRepositoryInterface;
 use SessionFront;
 use Intervention\Image\Facades\Image;
 use Redis;
+use Log;
+use Request;
 
 class UserTrendsService extends BaseService
 {
     private $memberAlbum;
     private $memberPic;
+    private $memberTrendsRepo;
 
-    public function __construct(MemberAlbumRepositoryInterface $memberAlbum, MemberPictureRepositoryInterface $memberPic)
+    public function __construct(
+        MemberAlbumRepositoryInterface $memberAlbum,
+        MemberPictureRepositoryInterface $memberPic,
+        MemberTrendsRepositoryInterface $memberTrendsRepo
+    )
     {
         $this->memberAlbum = $memberAlbum;
         $this->memberPic = $memberPic;
+        $this->memberTrendsRepo = $memberTrendsRepo;
     }
 
     /**
@@ -94,20 +103,72 @@ class UserTrendsService extends BaseService
         return Redis::connection('frontend')->hdel($cacheKey, $fields);
     }
 
+    /**
+     * 发布trends
+     *
+     * @param $imageKeys
+     * @param $content
+     * @return mixed
+     */
     public function publishTrends($imageKeys, $content)
     {
+        $trendsData = [];
         $userId = SessionFront::getUserId();
-        $albumInfo = $this->memberAlbum->checkTrendsAlbumById($userId);
+        $parsedContent = $this->parseContent($content);
         // 为用户创建默认相册
-        $trendsAlbumId = empty($albumInfo) ? $this->memberAlbum->createTrendsAlbum() : $albumInfo['album_id'];
+        if (! empty($imageKeys)) {
+            $albumInfo = $this->memberAlbum->checkTrendsAlbumById($userId);
+            $trendsAlbumId = empty($albumInfo) ? $this->memberAlbum->createTrendsAlbum() : $albumInfo['album_id'];
+            $picIds = $this->memberPic->storePublicTrendsImage($imageKeys, $trendsAlbumId);
+        } else {
+            $picIds = '';
+        }
 
-        $picIds = $this->memberPic->storePublicTrendsImage($imageKeys, $trendsAlbumId);
+        // 构造数据
+        $trendsData['user_id'] = $userId;
+        $trendsData['pic_id'] = implode(',', $picIds);
+        $trendsData['username'] = SessionFront::getUsername();
+        $trendsData['tag_name'] = $parsedContent['tag'];
+        $trendsData['content'] = $parsedContent['content'];
+        $trendsData['client_type'] = Request::header('User-Agent');
+        $trendsData['ip'] = Request::ip();
+        $trendsId = $this->memberTrendsRepo->insertData($trendsData);
 
-        return $picIds;
+        if (! $trendsId) {
+            Log::error('用户"' . $trendsData['username'] . '"发布个人动态失败！');
+
+            return false;
+        }
+
+        return true;
     }
 
+    /**
+     * 得到trends存储临时文件目录
+     *
+     * @return string
+     */
     public function getTrendsTempFileUploadDir()
     {
         return 'uploads/frontend/trends/' . SessionFront::getUserId() . '/' . date('Y-m-d');
+    }
+
+    /**
+     * 解析内容，并返回tag和content
+     *
+     * @param $content
+     * @return array
+     */
+    public function parseContent($content)
+    {
+        // 匹配#字符，直到第二次出现, 并返回他们所在的position
+        $matches = preg_match_all('/#/', $content, $result, PREG_OFFSET_CAPTURE);
+        $tag = '';
+
+        if ($matches > 1) {
+            $tag = trim(substr($content, $result[0][0][1], ($result[0][1][1] - $result[0][0][1]) + 1), '#');
+        }
+
+        return ['tag' => $tag, 'content' => $content];
     }
 }
