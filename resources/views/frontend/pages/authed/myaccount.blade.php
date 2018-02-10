@@ -13,6 +13,7 @@
 
 {{--title--}}
 @section('title', '个人中心')
+@inject('userPresenter', 'App\Konohanaruto\Presenters\Frontend\UserPresenter')
 @section('basic-static-resource')
     @parent
     <link rel="stylesheet" href="{{config('custom.staticServer')}}/css/common.css" />
@@ -21,7 +22,7 @@
     <script src="{{config('custom.staticServer')}}/js/common.js"></script>
 @endsection
 @section('content')
-    <div class="profile-mainbox profile-female clearfix">
+    <div class="profile-mainbox {{$userPresenter->detectMyAccoutBackgroundByUserId($userInfo['user_id'])}} clearfix">
         <div class="w clearfix">
             <div class="profile-basic-avatar fl" onclick="window.location.href='{{url('setting/face')}}'">
                 <div class="user-avatar">
@@ -29,7 +30,7 @@
                         <span>点击修改头像</span>
                     </div>
                     <div class="user-check"><span>非真人头像，请上传清晰美观个人照</span></div>
-                    <img src="{{config('custom.staticServer')}}/images/myaccount/40476055953806.jpg" alt="">
+                    <img width="238" src="{{config('custom.staticServer') . '/'. $userInfo['thumb_avatar']}}">
                     <p>
                         <em class="icon-online-android"></em>
                         <span class="profile-online-text">她在线，赶紧跟她联系吧</span>

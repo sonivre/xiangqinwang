@@ -10,6 +10,7 @@
  */
 
 namespace App\Konohanaruto\Presenters\Frontend;
+use App\Konohanaruto\Repositories\Frontend\User\UserRepositoryInterface;
 
 class UserPresenter
 {
@@ -35,5 +36,20 @@ class UserPresenter
     public function showAvatarTips($avatarVerifyStatus)
     {
         return $avatarVerifyStatus == 1 ? "hide" : "";
+    }
+
+    /**
+     * 提供个人中心页面的背景颜色样式
+     *
+     * @param $userId
+     * @return string
+     */
+    public function detectMyAccoutBackgroundByUserId($userId)
+    {
+        // 得到用户性别
+        $userRepo = app(UserRepositoryInterface::class);
+        $userInfo = $userRepo->userInfo($userId);
+
+        return $userInfo['gender'] == 1 ? 'profile-male' : 'profile-female';
     }
 }

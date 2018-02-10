@@ -52,7 +52,7 @@ class SettingController extends BasicController
             Log::error('上传头像更新个人动态数据失败');
         }
 
-        return redirect('home');
+        return redirect('myAccount');
     }
 
     /**

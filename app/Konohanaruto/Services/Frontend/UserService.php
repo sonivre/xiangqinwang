@@ -207,23 +207,26 @@ class UserService extends BaseService
     public function getUserBaseInfoById($userId)
     {
         // 查看redis中是否存在
-        $cacheKey = 'frontend:user:base:info:' . SessionFront::getUserId();
-        $cacheResult = Redis::connection('frontend')->hgetall($cacheKey);
+//        $cacheKey = 'frontend:user:base:info:' . SessionFront::getUserId();
+//        $cacheResult = Redis::connection('frontend')->hgetall($cacheKey);
+//
+//        if (empty($cacheResult)) {
+//            // 读取数据库
+//            $userInfo = $this->userRepo->userInfo(SessionFront::getUserId());
+//
+//            if (empty($userInfo)) {
+//                return [];
+//            }
+//
+//            $this->setUserBaseData($userInfo->toArray());
+//
+//            return $userInfo;
+//        }
+//
+//        return $cacheResult;
+        $userInfo = $this->userRepo->userInfo(SessionFront::getUserId());
 
-        if (empty($cacheResult)) {
-            // 读取数据库
-            $userInfo = $this->userRepo->userInfo(SessionFront::getUserId());
-
-            if (empty($userInfo)) {
-                return [];
-            }
-
-            $this->setUserBaseData($userInfo->toArray());
-
-            return $userInfo;
-        }
-
-        return $cacheResult;
+        return $userInfo;
     }
 
     public function addMemberTrends()
