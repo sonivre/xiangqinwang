@@ -18,4 +18,5 @@ return [
     'upload_error' => '上传错误',
     'params_error' => '参数错误',
     'insert_failed' => '插入失败',
+    'content_length_limit' => '内容长度限制',
 ];

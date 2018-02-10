@@ -24,7 +24,14 @@ class PublishTrendsFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => 'str_length:10,163'
+            'content' => 'sometimes|str_length:10,163'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'content.str_length' => trans('message.content_length_limit')
         ];
     }
 }
