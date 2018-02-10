@@ -933,6 +933,18 @@
     </div>
 </div>
 <!--文字传情模态框结束-->
+
+<!-- 发布状态的模态框开始 -->
+<div class="modal-layer publish-status-modal hide">
+    <div class="main-box modal-layer-main">
+        <div class="content">
+            <p class="result-row"><em class="success fail"></em><span class="operation-msg"><!--上传[成功|失败]--></span></p>
+            <!-- 成功时的提示 -->
+            <p class="success-relation-msg">您的动态将会推送给合适的TA，并同步到您的相册</p>
+        </div>
+    </div>
+</div>
+<!-- 发布状态的模态框结束 -->
 @endsection
 
 @section('additional-js')
