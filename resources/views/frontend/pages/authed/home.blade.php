@@ -938,9 +938,9 @@
 <div class="modal-layer publish-status-modal hide">
     <div class="main-box modal-layer-main">
         <div class="content">
-            <p class="result-row"><em class="success fail"></em><span class="operation-msg"><!--上传[成功|失败]--></span></p>
+            <p class="result-row"><em class="icon-status success fail"></em><span class="operation-msg"><!--上传[成功|失败]--></span></p>
             <!-- 成功时的提示 -->
-            <p class="success-relation-msg">您的动态将会推送给合适的TA，并同步到您的相册</p>
+            <p class="success-relation-msg hide">您的动态将会推送给合适的TA，并同步到您的相册</p>
         </div>
     </div>
 </div>
@@ -1139,6 +1139,7 @@
                 var content = $('.publish-trend-modal .js-trend-content').val();
                 var smKey;
                 var lgKey;
+                var data;
                 // 得到所有需要保存的图片的缓存的key名
                 $('.publish-trend-modal .js-remove-photo').each(function (i, n) {
                     smKey = $(n).data('img-info')['smKey'];
@@ -1146,22 +1147,38 @@
                     imageKeys[i] = {'smKey': smKey, 'lgKey': lgKey};
                 });
 
+                if (content) {
+                    data = {"imageKeys": imageKeys, "content": content, "_token": "{{csrf_token()}}"};
+                } else {
+                    data = {"imageKeys": imageKeys, "_token": "{{csrf_token()}}"};
+                }
+
                 $.ajax({
                     type: "POST",
                     url: "{{url("User/publishTrends")}}",
-                    data: {"imageKeys": imageKeys, "content": content, "_token": "{{csrf_token()}}"},
+                    data: data,
                     headers: {
                         accept : "application/json; charset=utf-8"
                     },
                     context: this,
                     success: function (data) {
-                        console.log(data);
+                        // 操作dom
+                        if (data['status']) {
+                            $('.publish-status-modal .operation-msg').html('发布成功！');
+                            $('.publish-status-modal .icon-status').removeClass('success fail').addClass('success');
+                            $('.publish-status-modal .success-relation-msg').removeClass('hide');
+                            $('.publish-trend-modal').addClass('hide');
+                            $('.publish-status-modal').removeClass('hide');
+
+                            setTimeout(function () {
+                                $('.publish-status-modal').addClass('hide');
+                            }, 1000);
+                        }
                     },
                     error: function (request) {
+                        // 验证错误，内容过长
                     }
                 });
-
-                console.log(content);
             });
         });
     </script>
